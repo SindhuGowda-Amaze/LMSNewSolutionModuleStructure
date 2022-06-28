@@ -8,6 +8,7 @@ import { LoaderComponent } from './loader/loader.component';
 import { SupportTicketsDashComponent } from './support-tickets-dash/support-tickets-dash.component';
 import { SupportTicketsFormComponent } from './support-tickets-form/support-tickets-form.component';
 import { FormsModule } from '@angular/forms';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
@@ -22,9 +23,11 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     SharedRoutingModule,
     FormsModule,
+    Ng2SearchPipeModule,
   ],
   exports: [
     FormsModule,
+    Ng2SearchPipeModule,
   ]
 })
 export class SharedModule { }

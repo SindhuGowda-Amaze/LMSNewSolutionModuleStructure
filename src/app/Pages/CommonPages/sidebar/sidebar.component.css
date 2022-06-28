@@ -1,0 +1,125 @@
+.sidenav {
+    /* height:50px;
+    width:200px; */
+    position: fixed;
+    z-index: 1;
+    top: -0.6%;
+    left: 0;
+    background: #FFFFFF;   
+    box-shadow: 1px 1px 15px 3px rgba(0, 0, 0, 0.12);
+    overflow-x: hidden;
+    padding-top: 10px;
+   
+  }
+
+  
+  .sidenav a {
+    padding: 24px 0px 9px 0px;
+    text-decoration: none;
+    font-size: 12px;
+    color: gray;
+    display: block;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #949393;
+    border-bottom: 1px solid gray;
+
+
+  }
+  
+  .sidenav a:hover {
+    color: #3247D5;
+    cursor: pointer;
+  }
+  
+  .togglebtn{
+   /* background-color: #343536; */
+   border: none;
+   color: aliceblue;
+   font-size: 12px;
+   padding-left: 7%;
+   width: 100%;
+   text-align: left;
+  }
+
+
+
+
+  .tab {
+    overflow: hidden;
+    border: 1px solid silver;
+    background-color: silver;
+  }
+  
+  .tab a {
+    /* background-color: inherit;
+    float: left;
+    border-bottom: 1px solid black;
+    outline:none;
+    cursor: pointer;
+    width: 100%; */
+    /* padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px; */
+    padding: 24px 0px 9px 0px;
+    text-decoration: none;
+    font-size: 12px;
+    color: gray;
+    display: block;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #949393;
+    border-bottom: 1px solid gray;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+background: #FFFFFF;
+  }
+  
+  /* .tab a:hover {
+    background-color: #322b6b;
+  } */
+  
+  .tab .active {
+    color: #3247D5;
+    width: 100%;
+  }
+
+
+
+  .Active1 {
+    display: inline-flex;
+    color: #3247D5;
+  }
+  .Active2 {
+    display: none;
+    color: #949393;
+  }
+  .Active3 {
+    color: #949393;
+  }
+  
+  .dashboard{
+  margin-left:10px;
+  height:20px ;
+  width:18px;
+  color:#3247D5;
+  }
+  
+  .Active1 {
+    display: inline-flex;
+    color: #3247D5;
+  }
+  .Active2 {
+    display: none;
+    color: #949393;
+  }
+  .Active3 {
+    color: #949393;
+  }
