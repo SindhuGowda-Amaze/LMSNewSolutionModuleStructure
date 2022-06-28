@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'LMSNewSolutionModuleStructure';
+  temp:any
+  ngOnInit() {
+     this.temp=sessionStorage.getItem('temp')
+  }
 }

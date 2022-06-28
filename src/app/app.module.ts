@@ -6,17 +6,21 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './Pages/CommonPages/footer/footer.component';
 import { HeaderComponent } from './Pages/CommonPages/header/header.component';
 import { SidebarComponent } from './Pages/CommonPages/sidebar/sidebar.component';
+import { LoginComponent } from './Pages/login/login.component';
+import { SharedModule } from './Modules/shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     HeaderComponent,
-    SidebarComponent
+    SidebarComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

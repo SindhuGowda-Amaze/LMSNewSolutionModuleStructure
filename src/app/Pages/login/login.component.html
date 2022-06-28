@@ -1,0 +1,114 @@
+<!-- <app-loader *ngIf="loader==true"></app-loader> -->
+<div class="container-fluid  fullscreen" *ngIf="temp!=1">
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10 maindiv">
+            <div class="inndercard">
+                <img src="assets/Images/Logo_digiOffice_Colored.png">
+                <div class="input-group ">
+                    <input type="text" class="inputclass" [(ngModel)]="companycode" (ngModelChange)="getcompanycode()"
+                        name="companycode">
+                    <label class="placeholder">Company Code</label>
+                </div>
+                <div class="input-group ">
+                    <select class="inputclass inputclass1" (change)="getRoleID($event)">
+                        <option selected>Select</option>
+                        <option value="1">Admin</option>
+                        <option value="2">Employee</option>
+                        <option value="3">Manager</option>
+                        <option value="4">Trainer</option>
+                    </select>
+                </div>
+                <div class="input-group ">
+                    <input type="text" class="inputclass" [(ngModel)]="userName" name="userName">
+                    <label class="placeholder">Username</label>
+                </div>
+
+
+
+                <div class="input-group ">
+
+                    <input *ngIf="showpassword==0" type="password" class="inputclass" [(ngModel)]="password"
+                        name="password" />
+                    <input *ngIf="showpassword==1" type="text" class="inputclass" [(ngModel)]="password"
+                        name="password" />
+                    <span class="fa fa-fw fa-eye field-icon toggle-password" style="color: #3247D5;
+                    margin-left: -224px;
+                    margin-top: 18px;" (click)="Showhidepassword()"></span>
+
+                    <span class="highlight"></span>
+
+                    <span class="bar"></span>
+
+                    <label class="placeholder">Password</label>
+
+                </div>
+                <div class="btnalign">
+                    <a style="color: #3247D5;">Forgot Password</a>
+                    <button type="button" class="loginbtn" (click)="login()">Login</button>
+                </div>
+
+            </div>
+            <div class="imgdiv">
+                <img src="assets/Images/Mask Group.png">
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="container-fluid fullscreen bgimage"*ngIf="temp!=1">
+
+    <br>
+    <br>
+    <br>
+    <br> -->
+<!-- https://www.highreshdwallpapers.com/wp-content/uploads/2014/01/HD-Beautiful-Architecture-Wallpaper-1920x1080.jpg -->
+<!-- <div class="row">
+       <br>
+        <div class="col-lg-1">
+
+        </div>
+        
+        <div class="col-lg-4 card" style="text-align:center;background-color:lightblue;margin-top:0%;border-radius:20px;height:100%;margin-left: 1%;background: black;">
+
+            <img src="assets/Images/DgOfficeLogo.png" style="width: 18%; height: 85px;
+            margin-left: 39%;
+            margin-top: 5%;
+            background: white;
+            border-radius: 12px;
+        "> -->
+<!-- <br>
+            <p style="font-size: 16px;font-weight: 500;">LOGIN</p> -->
+<!-- <br>
+            <select class="form-control" (change)="getRoleID($event)" style="width:77%;margin-left: 66px;" >
+              
+                <option selected disabled >Select</option> -->
+<!-- <option *ngFor="let list of loginTypeList" value="{{list.id}}">{{list.loginType}}</option> -->
+<!-- <option value="6">Admin</option> -->
+<!-- <option value="1">Admin</option>  
+                <option value="2">Employee</option>             
+                <option value="3">Manager</option>
+                <option value="4">Trainer</option>
+            </select>
+            <br>
+            <input type="text" class="form-control" [(ngModel)]="userName"   style="width:77%;margin-left: 66px;" placeholder="EmailID" name="userName" >
+            <br>
+            <input type="password" class="form-control" [(ngModel)]="password"  style="width:77%;margin-left: 66px;"  placeholder="Password" 
+            name="password">
+            <br>
+            <button type="submit" class="loginbtn" (click)="login()">Login</button>
+        </div>
+        <div class="col-lg-7"></div>
+    </div> 
+</div> -->
