@@ -23,7 +23,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     CommonModule,
     SharedRoutingModule,
     FormsModule,
-    Ng2SearchPipeModule,
+    Ng2SearchPipeModule
   ],
   exports: [
     FormsModule,
