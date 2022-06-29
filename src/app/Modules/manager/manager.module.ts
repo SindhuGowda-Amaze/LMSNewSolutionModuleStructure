@@ -5,6 +5,7 @@ import { ManagerRoutingModule } from './manager-routing.module';
 import { ManagerComponent } from './manager.component';
 import { EmployeeReportComponent } from './employee-report/employee-report.component';
 import { EmployeeAssessmentReportComponent } from './employee-assessment-report/employee-assessment-report.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { EmployeeAssessmentReportComponent } from './employee-assessment-report/
   ],
   imports: [
     CommonModule,
-    ManagerRoutingModule
+    ManagerRoutingModule,
+    SharedModule
   ]
 })
 export class ManagerModule { }

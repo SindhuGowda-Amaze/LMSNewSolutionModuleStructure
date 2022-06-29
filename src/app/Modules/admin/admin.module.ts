@@ -15,6 +15,7 @@ import { TrainerCouresMappingComponent } from './trainer-coures-mapping/trainer-
 import { TrainerCouresMappingFormComponent } from './trainer-coures-mapping-form/trainer-coures-mapping-form.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { EmployeeFormComponent } from './employee-form/employee-form.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { EmployeeFormComponent } from './employee-form/employee-form.component';
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    SharedModule
   ]
 })
 export class AdminModule { }

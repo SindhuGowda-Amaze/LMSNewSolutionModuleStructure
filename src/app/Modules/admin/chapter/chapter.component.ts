@@ -4,7 +4,8 @@ import { LearningService } from 'src/app/Pages/Services/learning.service';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 // import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import * as ClassicEditor from '@ckeditor/ckeditor5-angular';
+// import * as ClassicEditor from '@ckeditor/ckeditor5-angular';
+import { CKEditorModule } from 'ckeditor4-angular';
 
 
 
@@ -20,7 +21,7 @@ export class ChapterComponent implements OnInit {
   result: any;
 
   constructor(public LearningService: LearningService, private ActivatedRoute: ActivatedRoute) { }
-  public Editor = ClassicEditor;
+  public Editor = CKEditorModule;
   id: any;
   CourseID: any;
   courseID: any;
