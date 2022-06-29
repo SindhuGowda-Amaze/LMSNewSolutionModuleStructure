@@ -34,16 +34,12 @@ const ngWizardConfig: NgWizardConfig = {
     CommonModule,
     SharedRoutingModule,
     FormsModule,
-<<<<<<< HEAD
-    Ng2SearchPipeModule
-=======
     Ng2SearchPipeModule,
     NgxPaginationModule,
     NgWizardModule.forRoot(ngWizardConfig),
     NgxDropzoneModule,
 
 
->>>>>>> d5bafc0b35b85834bfea9315fef21117c149cefb
   ],
   exports: [
     FormsModule,
