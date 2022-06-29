@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LearningService } from 'src/app/Pages/Services/learning.service';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
-import * as ClassicEditor from '@ckeditor/ckeditor5-angular';
+
 
 
 @Component({
@@ -32,7 +32,6 @@ export class AssessmentFormComponent implements OnInit {
     chapterid: any;
     questionid: any;
     courseName: any;
-    public Editor = ClassicEditor;
     Question: any;
     Option1: any;
     Option2: any;

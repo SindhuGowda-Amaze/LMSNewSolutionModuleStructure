@@ -6,6 +6,7 @@ import { TrainerComponent } from './trainer.component';
 import { AssessmentFormComponent } from './assessment-form/assessment-form.component';
 import { AssessmentResultComponent } from './assessment-result/assessment-result.component';
 import { AssessmentdashboardComponent } from './assessmentdashboard/assessmentdashboard.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -17,7 +18,9 @@ import { AssessmentdashboardComponent } from './assessmentdashboard/assessmentda
   ],
   imports: [
     CommonModule,
-    TrainerRoutingModule
+    TrainerRoutingModule,
+    SharedModule,
+    
   ]
 })
 export class TrainerModule { }

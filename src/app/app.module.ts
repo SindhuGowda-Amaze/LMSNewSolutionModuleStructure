@@ -10,6 +10,7 @@ import { LoginComponent } from './Pages/login/login.component';
 import { SharedModule } from './Modules/shared/shared.module';
 import { DatePipe } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { CKEditorModule } from 'ckeditor4-angular';
 
 
 
@@ -26,6 +27,9 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     SharedModule,
     HttpClientModule,
+    CKEditorModule,
+
+    
   ],
   providers: [ DatePipe],
   bootstrap: [AppComponent]

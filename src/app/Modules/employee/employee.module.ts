@@ -6,6 +6,7 @@ import { EmployeeComponent } from './employee.component';
 import { AttendanceNewComponent } from './attendance-new/attendance-new.component';
 import { AttendanceDetailsComponent } from './attendance-details/attendance-details.component';
 import { CatalogComponent } from './catalog/catalog.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { CatalogComponent } from './catalog/catalog.component';
   ],
   imports: [
     CommonModule,
-    EmployeeRoutingModule
+    EmployeeRoutingModule,
+    SharedModule
   ]
 })
 export class EmployeeModule { }
