@@ -1,70 +1,38 @@
-.card{
-    background-color: white;
-    padding:15px;
-}
-.button
-{
-    border: none;
-    width:80%;
-    height:auto;
-    border-radius: 5px;
-    background-color: #2f87cc;
-    color:white;
-    font-size: 15px;
-}
+<div class="container-fluid">   
+    <div class="row">
+        <div class="col-lg-12">
+            <p class="headings">Category Details </p>
+        </div>
+        <div class="col-lg-8"></div>
+    </div>
+    <!-- <hr> -->
+    <div class="card">
+        <div class="row header">
+            <div class="col-lg-3">
+                <p>Category Name</p>
+            </div>
+            <div class="col-lg-4">
+                <p>Description</p>
+            </div>
+        </div>
+        <div class="row header">
+            <div class="col-lg-3">
+                <input class="form-control" placeholder="Category Name" [(ngModel)]="Name">
+            </div>
+            <div class="col-lg-4">
+                <textarea class="form-control" placeholder="Description" rows="5" [(ngModel)]="Description"></textarea>
+            </div>
+        </div> <br>
+        <div class="row">
+            <div class="col-lg-9"></div>
+            <div class="col-lg-1">
+                <button class="form-control cancel" *ngIf="id==undefined" (click)="Save()">Save</button>
+                <button class="form-control cancel" *ngIf="id!= undefined" (click)="Update()">Update</button>
+            </div>
+            <div class="col-lg-1">
+                <button class="form-control cancel" (click)="Cancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
 
-
-.button1{
-
-    border-radius: 5px;
-    border:none;
-    background-color: #2f87cc;
-    color:white; 
-    width:100%;
-    font-size: 16px;
-  }
-.button2{
-    padding:5px;
-    border-radius: 5px;
-    color:white;
-    background-color: #2F87CC;
-    border:none;
-    width:80%;
-    }
-.head{
-    font-size: 15px;
-    color: #0C275A;
-}
-.header{
-    font-size: 12px;
-    color: #0C275A;
-}
-.card{    
-    width:100%;
-   background: #FFFFFF;
-   box-shadow: 1px 1px 15px 3px rgba(0, 0, 0, 0.12);
-   border-radius: 12px;
-}
-.headings{
-    height: 15px;
-    left: 221px;
-    top: 100px;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 19px;
-    line-height: 15px;
-    letter-spacing: 0.5px;
-    color: #3247D5;
-    }
-
-    .header { 
-        left: 17.5%;
-        right: 76.67%;
-        font-weight: normal;
-        font-size: 13px;
-        line-height: 17px;
-        color: #0C275A;
-          }
-
-
-
+</div>
