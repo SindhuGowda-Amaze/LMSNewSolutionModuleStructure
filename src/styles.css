@@ -1,1 +1,221 @@
 /* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+/* @import '~ng-wizard/themes/ng_wizard.min.css';
+@import '~ng-wizard/themes/ng_wizard_theme_arrows.min.css';
+@import '~ng-wizard/themes/ng_wizard_theme_circles.min.css';
+@import '~ng-wizard/themes/ng_wizard_theme_dots.min.css'; */
+
+/* 
+@font-face {
+    font-family: 'DIN Regular';
+    src: 
+      
+      url('assets/D-DIN.otf') 
+      format('opentype');
+  }
+  @font-face {
+    font-family: 'DIN Bold';
+    src: 
+      
+      url('assets/D-DIN-Bold.otf') 
+      format('opentype');
+  }
+
+  @font-face {
+    font-family: 'DIN Medium';
+    src: 
+      
+      url('assets/DIN Medium.otf') 
+      format('opentype');
+  } */
+  body,button,p{
+    font-family: 'Poppins';
+    font-size: 14px;
+    cursor: pointer; 
+  }
+  input{
+    font-size: 10px;
+  }
+
+  .actionbuttons{
+    width:75%;
+    border: none;
+    background: #3247D5;
+    text-align: center;
+    border-radius: 6px;
+    color: white;
+    margin-top: 6px;
+    padding: 5px;
+  }
+  .addbtn{
+    padding:5px;
+    border-radius: 5px;
+    color:white;
+    background-color: #3247D5;
+    border:none;
+    width:92%;
+  }
+
+  .cancel{
+    border: none;
+    background: #3247D5;
+    text-align: center;
+    border-radius: 6px;
+    color: white;
+    margin-top: 6px;
+    padding: 5px;
+    font-weight: bold;
+  }
+  
+  .edit{
+    width:50%;
+    border: none;
+    background: #3247D5;
+    text-align: center;
+    border-radius: 6px;
+    color: white;
+    margin-top: 6px;
+    padding: 5px;
+    margin-bottom: 5px;
+  }
+
+  .headings{
+    height: 15px;
+    left: 221px;
+    top: 100px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 19px;
+    line-height: 15px;
+    letter-spacing: 0.5px;
+    color: #3247D5;
+    }
+    .count{
+      height: 15px;
+    left: 221px;
+    top: 100px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 19px;
+    line-height: 15px;
+    letter-spacing: 0.5px;
+    color:#0C275A ;
+    }
+    
+    .filter{
+    margin-top: 10px;
+    height: 13px;
+    left: calc(50% - 56px/2 - 441px);
+    top: 180px;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 13px;
+    color: #0C275A;
+    }
+
+    .filter2{
+    margin-top: 10px;
+    height: 13px;
+    float: right;
+    top: 180px;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 13px;
+    color: #0C275A;
+    }
+    
+    .search{
+    left: 0%;
+    right: 0%;
+    top: 35.59%;
+    bottom: 0%;
+    background: #FFFFFF;
+    border: 1px solid #BBBBBB;
+    box-sizing: border-box;
+    border-radius: 5px;
+    }
+    
+    .addnew{
+      width: 116px;
+      height: 37px;
+      background: #3247D5;
+      border-radius: 5px;
+      color: white;
+      text-align: center;
+      border: none;
+      float: right;
+      margin-right: 10px;
+    }
+
+    .tableheader{                           
+      width: 1199px;
+      height: 50px;
+      right: 20px;
+      top: 264px;
+      background: #02CFFF;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      color:white;
+        }
+        .tabletext{
+          height: 17px;
+          left: 17.5%;
+          right: 76.67%;
+          top: 331px;
+          font-weight: normal;
+          font-size: 13px;
+          line-height: 17px;
+          color: #0C275A;
+        }
+
+
+       th{
+         background-color: #02CFFF ;
+         color:white;
+       }
+
+        th:first-of-type {
+          border-top-left-radius: 10px;       
+        }        
+        th:last-of-type {
+
+          border-top-right-radius: 10px;        
+        }      
+        tr:last-of-type td:first-of-type {       
+          border-bottom-left-radius: 10px;      
+        }
+        
+        tr:last-of-type td:last-of-type {      
+          border-bottom-right-radius: 10px;
+        
+        }       
+        table,        
+        tr,        
+        td {      
+          border: none !important;       
+          font-family: Poppins;       
+          font-style: normal;       
+          font-weight: normal;        
+          font-size: 13px;
+          /* line-height: 17px;        */
+          color: #0C275A;
+        
+        }      
+        tr:nth-child(odd) {
+        
+          background-color: #FFFFFF !important
+        
+        }       
+        tr:nth-child(even) {
+        
+          background-color: #F2F2F2 !important
+        
+        }
+
+        .card {
+          padding: 20px;
+          background: #ffffff;
+          box-shadow: 1px 1px 15px 3px rgba(0, 0, 0, 0.12);
+          border-radius: 12px;
+          width: 100%;
+        }

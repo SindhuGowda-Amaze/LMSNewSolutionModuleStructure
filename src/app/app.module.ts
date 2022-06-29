@@ -8,6 +8,10 @@ import { HeaderComponent } from './Pages/CommonPages/header/header.component';
 import { SidebarComponent } from './Pages/CommonPages/sidebar/sidebar.component';
 import { LoginComponent } from './Pages/login/login.component';
 import { SharedModule } from './Modules/shared/shared.module';
+import { DatePipe } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+
+
 
 @NgModule({
   declarations: [
@@ -21,8 +25,9 @@ import { SharedModule } from './Modules/shared/shared.module';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [ DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

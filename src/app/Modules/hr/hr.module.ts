@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { HRRoutingModule } from './hr-routing.module';
 import { HRComponent } from './hr.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { HRComponent } from './hr.component';
   ],
   imports: [
     CommonModule,
-    HRRoutingModule
+    HRRoutingModule,
+    SharedModule
   ]
 })
 export class HRModule { }
