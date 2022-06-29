@@ -1,0 +1,1194 @@
+<div class="container-fluid">
+    <ng-wizard [config]="config" (stepChanged)="stepChanged($event)">
+        <ng-wizard-step [title]="'Employee Profile '" [description]="''">
+            <br />
+            <div class="row">
+
+                <!-- <div class="col-lg-1"></div> -->
+                <div class="col-lg-12">
+                    <div class="card  card-padding">
+                        <label class="label">My Information</label>
+                        <hr>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <img class="image" src="assets/Images/profile_pic.png">
+                            </div>
+                            <div class="col-lg-2 Text">
+                                <p>Title: <span style="color:red">*</span>
+                                    <input type="text" class="form-control" placeholder="Title" id="Title" name="Title"
+                                        [(ngModel)]="Title">
+                                </p>
+                                <p>Place of Birth:
+                                    <br> <input type="text" class="form-control" placeholder="" id="PlaceO_f_Birth"
+                                        name="PlaceO_f_Birth" [(ngModel)]="PlaceO_f_Birth">
+                                </p>
+                                <p>Status:
+                                    <br>
+                                    <input type="text" class="form-control" placeholder="Status" id="Status"
+                                        name="Status" [(ngModel)]="Status">
+                                </p>
+                                <p>Date of Joining:
+                                    <input type="date" class="form-control" id="JoiningDate" name="JoiningDate"
+                                        [(ngModel)]="JoiningDate">
+                                </p>
+                            </div>
+                            <div class="col-lg-2 Text">
+                                <p>Name:
+                                    <span style="color:red">*</span>
+                                    <input type="text" class="form-control" placeholder="Name" id="Name" name="Name"
+                                        [(ngModel)]="Name">
+                                </p>
+                                <p>Country of Birth:
+                                    <input type="text" class="form-control" placeholder="" id="Country_Of_Birth"
+                                        name="Country_Of_Birth" [(ngModel)]="Country_Of_Birth">
+                                </p>
+                                <p>Date of Marriage:
+                                    <input type="date" class="form-control" id="Date_Of_Marriage"
+                                        name="Date_Of_Marriage" [(ngModel)]="Date_Of_Marriage">
+                                </p>
+                                <p>Date of Birth:
+                                    <input type="date" class="form-control" id="DOB" name="DOB" [(ngModel)]="DOB">
+                                </p>
+                            </div>
+                            <div class="col-lg-2 Text">
+                                <p>Middle Name:
+                                    <br> <input type="text" class="form-control" placeholder="Middle_Name"
+                                        id="Middle_Name" name="Middle_Name" [(ngModel)]="Middle_Name">
+                                </p>
+                                <br>
+
+                                <p>Age:
+                                    <br> <input type="number" class="form-control" placeholder="Age" id="Age" name="Age"
+                                        [(ngModel)]="Age">
+                                </p>
+                                <p>Personal Email:
+                                    <br> <input type="text" id="Personal_Email" name="Personal_Email"
+                                        [(ngModel)]="Personal_Email" class="form-control" placeholder="">
+                                </p>
+                            </div>
+                            <div class="col-lg-2 Text">
+                                <p>Last Name:
+                                    <br> <input type="text" class="form-control" placeholder="Last Name" id="Last_Name"
+                                        name="Last_Name" [(ngModel)]="Last_Name">
+                                </p>
+                                <p>Gender:
+                                    <br> <select class="form-control" id="Gender" name="Gender" [(ngModel)]="Gender">
+                                        <option value="Select one">Select Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </p>
+                                <p>Mobile
+                                    <input type="text" id="Mobile" name="Mobile" [(ngModel)]="Mobile"
+                                        class="form-control" placeholder="">
+                                </p>
+                            </div>
+
+                            <div class="col-lg-1"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-3">
+
+                            </div>
+                            <div class="col-lg-2 Text">
+                                <p>Role:
+                                    <br> <select class="form-control" id="RoleType" name="RoleType"
+                                        (change)='getRoleType($event)' [(ngModel)]="RoleType">
+                                        <option value="Select one">Select Role</option>
+                                        <option *ngFor="let item of RoleTypeList" value="{{item.id}}">{{item.short}}
+                                        </option>
+                                    </select>
+                                </p>
+
+                            </div>
+                            <div class="col-lg-2 Text">
+                                <p>Manager:
+                                    <br> <select class="form-control" id="Supervisor" name="Supervisor"
+                                        [(ngModel)]="Supervisor">
+                                        <option value="Select one">Select Manager</option>
+                                        <option value="{{item.id}}" *ngFor="let item of supervisorlist">{{item.name}}
+                                        </option>
+                                    </select>
+                                </p>
+
+                            </div>
+                            <div class="col-lg-2 Text">
+                                <p> Signature:
+                                <ngx-dropzone (change)="onSelect($event)" style="height: 60px;">
+                                    <ngx-dropzone-label>Drop it here!</ngx-dropzone-label>
+                                    <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                                        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                                    </ngx-dropzone-preview>
+                                </ngx-dropzone>
+                            </p>
+                            </div>
+                        </div>
+                    </div><br>
+
+
+                    <div class="card card-padding">
+                        <label class="label">Ethnicity Information</label>
+                        <hr>
+                        <div class="row Text">
+                            <div class="col-lg-2">
+                                <p>Religion</p>
+                                <select class="form-control" id="Religion" name="Religion" [(ngModel)]="Religion">
+                                    <option value="Select one">Select one</option>
+                                    <option value="Hindu">Hindu</option>
+                                    <option value="Agnostic">Agnostic</option>
+                                    <option value="Buddhism">Buddhism</option>
+                                    <option value="Christianity">Christianity</option>
+                                    <option value="Islam">Islam</option>
+                                    <option value="Non-Religious">Non-Religious</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-2">
+                                <p>Ethnicity</p>
+                                <input type="Ethnicity" id="Ethnicity" name="Ethnicity" [(ngModel)]="Ethnicity"
+                                    class="form-control" placeholder="">
+                            </div>
+                            <div class="col-lg-2">
+                                <p>Citizen Ship</p>
+                                <select class="form-control" id="Citizen_Ship" name="Citizen_Ship"
+                                    [(ngModel)]="Citizen_Ship">
+                                    <option value="Select one">Select one</option>
+                                    <option value="Algerian">Algerian</option>
+                                    <option value="Albanian">Albanian</option>
+                                    <option value="American">American</option>
+                                    <option value="Antarcitic">Antarcitic</option>
+                                    <option value="Austrian">Austrian</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-2">
+                                <p>Nationality</p>
+                                <select class="form-control" id="Nationality" name="Nationality"
+                                    [(ngModel)]="Nationality">
+                                    <option value="Select one">Select one</option>
+                                    <option value="Algerian">Algerian</option>
+                                    <option value="Albanian">Albanian</option>
+                                    <option value="American">American</option>
+                                    <option value="Antarcitic">Antarcitic</option>
+                                    <option value="Austrian">Austrian</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div> <br>
+
+                    <div class="card card-padding">
+                        <label class="label">Disability Information</label>
+                        <hr>
+                        <div class="row Text">
+                            <div class="col-lg-2">
+                                <p>Is Disabled:</p>
+                                <input type="checkbox" id="Is_Disabled" name="Is_Disabled" [(ngModel)]="Is_Disabled">
+                            </div>
+                        </div>
+                    </div> <br>
+                    <div class="card card-padding">
+                        <label class="label">Health Information</label>
+                        <hr>
+                        <div class="row Text">
+                            <div class="col-lg-2 ">
+                                <p>Blood Group:</p>
+                                <select class="form-control" id="Blood_Group" name="Blood_Group"
+                                    [(ngModel)]="Blood_Group">
+                                    <option value="Select one">Select one</option>
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="AB-">AB-</option>
+                                    <option value="B-">B-</option>
+                                    <option value="O-">O-</option>
+                                    <option value="O+">O+</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-2">
+                                <p>Height[cm]:</p>
+                                <input type="number" id="Height" name="Height" [(ngModel)]="Height"
+                                    class="form-control " placeholder="">
+                            </div>
+                            <div class="col-lg-2">
+                                <p>Weight[kg]:</p>
+                                <input type="number" id="Weight" name="Weight" [(ngModel)]="Weight"
+                                    class="form-control " placeholder="">
+                            </div>
+                            <div class="col-lg-2">
+                                <p>Is Night Blind:</p>
+                                <input type="checkbox" id="IS_Night_Blind" name="IS_Night_Blind"
+                                    [(ngModel)]="IS_Night_Blind">
+                            </div>
+                            <div class="col-lg-2">
+                                <p>Is Color Blind:</p>
+                                <input type="checkbox" id="Is_Color_Blind" name="Is_Color_Blind"
+                                    [(ngModel)]="Is_Color_Blind">
+                            </div>
+                        </div>
+                        <div class="row Text">
+                            <div class="col-lg-2">
+                                <p>Major Illness</p>
+                                <input type="text" id="MajorIllness" name="MajorIllness" [(ngModel)]="MajorIllness"
+                                    class="form-control " placeholder="">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <br />
+
+        </ng-wizard-step>
+        <ng-wizard-step [title]="'Position Details '" [description]="''">
+            <div class="card card-padding">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p class="Employement">Position Details: </p>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="row Details">
+                    <div class="col-lg-2">
+                        <p>Employee Code <span style="color: red;">*</span></p>
+                        <input class="form-control" id="EmployeeCode" name="EmployeeCode" [(ngModel)]="EmployeeCode"
+                            placeholder="Employee Code">
+                    </div>
+                    <div class="col-lg-2">
+                        <p>Official Email: <span style="color: red;">*</span></p>
+                        <input class="form-control" id="OfficialEmail" name="OfficialEmail" [(ngModel)]="OfficialEmail"
+                            placeholder="Official Email">
+                    </div>
+                    <div class="col-lg-2">
+                        <p>BAND <span style="color: red;">*</span></p>
+                        <input class="form-control" id="Band" name="Band" [(ngModel)]="Band" placeholder="Band">
+
+                    </div>
+                    <div class="col-lg-2">
+                        <p>Grade:</p>
+                        <input class="form-control" id="Grade2" name="Grade2" [(ngModel)]="Grade2" placeholder="Grade2">
+                    </div>
+                    <div class="col-lg-2">
+                        <p>JOB ROLE:</p>
+                        <input class="form-control" id="JobRole" name="JobRole" [(ngModel)]="JobRole"
+                            placeholder="JobRole">
+                    </div>
+                </div><br>
+                <div class="row Details">
+                    <div class="col-lg-2">
+                        <p>Manager:</p>
+                        <input class="form-control" id="Manager" name="Manager" [(ngModel)]="Manager"
+                            placeholder="Manager">
+                    </div>
+                    <div class="col-lg-2">
+                        <p>Employment Type:</p>
+                        <input class="form-control" placeholder="Employee Type" id="EmployeeType" name="EmployeeType"
+                            [(ngModel)]="EmployeeType" placeholder="EmployeeType">
+                    </div>
+                    <div class="col-lg-2">
+                        <p>Employment Status:</p>
+                        <input class="form-control" placeholder="Employee Status" id="EmployeeStatus"
+                            name="EmployeeStatus" [(ngModel)]="EmployeeStatus">
+                    </div>
+                    <div class="col-lg-2">
+                        <p>Notice Period:</p>
+                        <input class="form-control" placeholder="Notice Period" id="NoticePeriod" name="NoticePeriod"
+                            [(ngModel)]="NoticePeriod">
+                    </div>
+                    <div class="col-lg-2">
+                        <p>Probation Period:</p>
+                        <input class="form-control" placeholder="Probation Period" id="ProbationPeriod"
+                            name="ProbationPeriod" [(ngModel)]="ProbationPeriod">
+                    </div>
+                </div>
+                <div class="row Details">
+
+                </div> <br>
+                <div class="row Details">
+                    <div class="col-lg-2">
+                        <p>Confirmation Due Date::</p>
+                        <input type="date" class="form-control" placeholder=" Confirmation DueDate"
+                            id="ConfirmationDueDate" name="ConfirmationDueDate" [(ngModel)]="ConfirmationDueDate">
+                    </div>
+                    <div class="col-lg-2">
+                        <p>Confirmation Status:</p>
+                        <input class="form-control" placeholder="Confirmation Status" id="ConfirmationStatus"
+                            name="ConfirmationStatus" [(ngModel)]="ConfirmationStatus">
+                    </div>
+
+
+
+                </div> <br> <br>
+
+
+
+            </div>
+
+        </ng-wizard-step>
+        <ng-wizard-step [title]="'Address Details'" [description]="''">
+            <div class="card card-padding">
+                <br />
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p class="Employement">My Address Details: </p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row Details">
+                    <div class="col-lg-2">
+                        <p>Address Type <span style="color: red;">*</span></p>
+                        <select class="form-control" id="AddressType" name="AddressType" [(ngModel)]="AddressType">
+                            <option value="Select One">Select One</option>
+                            <option value="Official">Official</option>
+                            <option value="Permanent">Permanent</option>
+                            <option value="Residence">Residence </option>
+
+                        </select>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <p>Find Places </p>
+                        <input class="form-control" id="FindPlace" name="FindPlace" [(ngModel)]="FindPlace"
+                            placeholder="find your Address">
+                    </div>
+                    <div class="col-lg-2">
+                        <p>Address line 1:
+                            <span style="color: red;">*</span>
+                        </p>
+                        <input class="form-control" placeholder="" id="AddressLine1" name="AddressLine1"
+                            [(ngModel)]="AddressLine1">
+                    </div>
+                    <div class="col-lg-2">
+                        <p>Address line 2:
+                        </p>
+                        <input class="form-control" placeholder="" id="AddressLine2" name="AddressLine2"
+                            [(ngModel)]="AddressLine2">
+                    </div>
+                </div><br>
+                <div class="row Details">
+                    <div class="col-lg-2">
+                        <p>Address line 3:
+                        </p>
+                        <input class="form-control" placeholder="" id="AddressLine3" name="AddressLine3"
+                            [(ngModel)]="AddressLine3">
+                    </div>
+                    <div class="col-lg-2">
+                        <p>Address line 4:
+                        </p>
+                        <input class="form-control" placeholder="" id="AddressLine4" name="AddressLine4"
+                            [(ngModel)]="AddressLine4">
+                    </div>
+
+                    <div class="col-lg-2">
+                        <p>District:
+                            <span style="color: red;">*</span>
+                        </p>
+                        <input class="form-control" placeholder="" id="District" name="District" [(ngModel)]="District">
+                    </div>
+                    <div class="col-lg-2">
+                        <p> Province:
+                            <span style="color: red;">*</span>
+                        </p>
+                        <input class="form-control" placeholder="" id="Province" name="Province" [(ngModel)]="Province">
+                    </div>
+                </div>
+                <div class="row Details">
+                    <div class="col-lg-2">
+                        <p>Country:
+                            <span style="color: red;">*</span>
+                        </p>
+                        <input class="form-control" placeholder="" id="Country" name="Country" [(ngModel)]="Country">
+                    </div>
+                    <div class="col-lg-2">
+                        <p>Sub-District : Postcode
+                            <span style="color: red;">*</span>
+                        </p>
+                        <input class="form-control" placeholder="" id="SubDistrictPostcode" name="SubDistrictPostcode"
+                            [(ngModel)]="SubDistrictPostcode">
+                    </div>
+                    <div class="col-lg-2">
+                        <p>Mobile::</p>
+                        <input class="form-control" placeholder="" id="Mobile1" name="Mobile1" [(ngModel)]="Mobile1">
+                    </div>
+                    <div class="col-lg-2">
+                        <p>Landline / Fax:</p>
+                        <input class="form-control" placeholder="" id="LandLineFax" name="LandLineFax"
+                            [(ngModel)]="LandLineFax">
+                    </div>
+                    <div class="col-lg-2">
+                        <p>Is Correspondance:</p>
+                        <input type="checkbox" id="IsCorrespondance" name="IsCorrespondance"
+                            [(ngModel)]="IsCorrespondance">
+                    </div>
+                </div> <br>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label class="Guidelines">Emergency Contact </label>
+                        <hr>
+                    </div>
+                </div>
+                <div class="row Details">
+                    <div class="col-lg-2">
+                        <p>Contact Name:
+                            <span style="color: red;">*</span>
+                        </p>
+                        <input class="form-control" placeholder="" id="EmergencyContactName" name="EmergencyContactName"
+                            [(ngModel)]="EmergencyContactName">
+                    </div><br>
+                    <div class="col-lg-2">
+                        <p>Contact Relationship:
+                            <span style="color: red;">*</span>
+                        </p>
+                        <input class="form-control" placeholder="" id="EmergencyContactRelationship"
+                            name="EmergencyContactRelationship" [(ngModel)]="EmergencyContactRelationship">
+                    </div><br>
+                    <div class="col-lg-2">
+                        <p>Mobile Number:
+                            <span style="color: red;">*</span>
+                        </p>
+                        <input class="form-control" placeholder="" id="EmergencyContactMobileNumber"
+                            name="EmergencyContactMobileNumber" [(ngModel)]="EmergencyContactMobileNumber">
+                    </div><br>
+                    <div class="col-lg-2">
+                        <p>Office Number:</p>
+                        <input class="form-control" placeholder="" id="EmergencyContactOfficeNumber"
+                            name="EmergencyContactOfficeNumber" [(ngModel)]="EmergencyContactOfficeNumber">
+                    </div><br>
+                    <div class="col-lg-2">
+                        <p>Contact Address: </p>
+                        <input class="form-control" placeholder="" id="EmergencyContact_Address"
+                            name="EmergencyContact_Address" [(ngModel)]="EmergencyContact_Address">
+                    </div><br>
+                </div><br>
+                <div class="row Details">
+                    <div class="col-lg-2">
+                        <p>Landline Number:</p>
+                        <input class="form-control" placeholder="" id="EmergencyContactLandLineNumber"
+                            name="EmergencyContactLandLineNumber" [(ngModel)]="EmergencyContactLandLineNumber">
+                    </div>
+                    <div class="col-lg-2">
+                        <p>Email-ID:</p>
+                        <input class="form-control" placeholder="" id="EmergencyContact_EmailID"
+                            name="EmergencyContact_EmailID" [(ngModel)]="EmergencyContact_EmailID">
+                    </div>
+                </div>
+
+                <br>
+            </div>
+
+        </ng-wizard-step>
+        <ng-wizard-step [title]="'Dependant Details'" [description]="''">
+            <div class="card card-padding">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p class="Employement">Dependent Details: </p>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="row Details">
+                    <div class="col-lg-2">
+                        <p>Dependent Name <span style="color: red;">*</span></p>
+                        <input class="form-control" id="DependentName" name="DependentName" [(ngModel)]="DependentName"
+                            placeholder="Dependent Name">
+                    </div>
+                    <div class="col-lg-2">
+                        <p>Relationship: <span style="color: red;">*</span></p>
+                        <select class="form-control" id="Relationship1" name="Relationship1" [(ngModel)]="Relationship1"
+                            placeholder="Relationship1">
+                            <option value="Select One">Select One</option>
+                            <option value="Brother">Brother</option>
+                            <option value="aughter">Daughter</option>
+                            <option value="Father">Father </option>
+                            <option value="Grand Parent">Grand Parent</option>
+                            <option value="Grand Child">Grand Child</option>
+                            <option value="Grand father">Grand Child</option>
+                            <option value="Mother">Grand Child</option>
+                            <option value="Sister">Grand Child</option>
+                            <option value="Son">Grand Child</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2">
+                        <p>Gender <span style="color: red;">*</span></p>
+                        <select class="form-control" id="Gender1" name="Gender1" [(ngModel)]="Gender1"
+                            placeholder="Gender1">
+                            <option value="Select One">Select One</option>
+                            <option value="Do Not Disclose">Do Not Disclose</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female </option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2">
+                        <p>Date Of Birth:</p>
+                        <input class="form-control" type="date" id="DateOfBirth" name="DateOfBirth"
+                            [(ngModel)]="DateOfBirth" placeholder="DateOfBirth">
+                    </div>
+                    <div class="col-lg-2">
+                        <p>Address:</p>
+                        <input class="form-control" id="Address" name="Address" [(ngModel)]="Address"
+                            placeholder="Address">
+                    </div>
+                </div><br>
+                <div class="row Details">
+                    <div class="col-lg-2">
+                        <p>Mobile Number</p>
+                        <input class="form-control" placeholder="" id="Mobile" name="Mobile" [(ngModel)]="Mobile"
+                            placeholder="Mobile">
+                    </div>
+                    <div class="col-lg-2">
+                        <p>Is Dependent</p>
+                        <input type="Checkbox" id="Is_Dependent" name="Is_Dependent" [(ngModel)]="Is_Dependent">
+                    </div>
+                    <div class="col-lg-2">
+                        <p>ID Number:</p>
+                        <input class="form-control" placeholder="" id="Id_Number" name="Id_Number"
+                            [(ngModel)]="Id_Number">
+                    </div>
+                    <div class="col-lg-2">
+                        <p>IS Child Adopted:</p>
+                        <input type="checkbox" id="Is_Child_Adopted" name="Is_Child_Adopted"
+                            [(ngModel)]="Is_Child_Adopted">
+                    </div>
+                    <div class="col-lg-2">
+                        <p>Race:</p>
+                        <select class="form-control" id="Race" name="Race" [(ngModel)]="Race">
+                            <option value="Select One">Select One</option>
+                            <option value="Caucasian">Caucasian</option>
+                            <option value="Chinese">Chinese</option>
+                            <option value="Indian">Indian </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row Details">
+
+                </div> <br>
+                <div class="row Details">
+                    <div class="col-lg-2">
+                        <p>CitizenShip:</p>
+                        <select class="form-control" id="CitizenShip" name="CitizenShip" [(ngModel)]="CitizenShip">
+                            <option value="Select One">Select One</option>
+                            <option value="Afghan">Afghan</option>
+                            <option value="Algeria">Algeria</option>
+                            <option value="American">American </option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2">
+                        <p>Country of Birth:</p>
+                        <select class="form-control" id="Country_Of_Birth" name="Country_Of_Birth"
+                            [(ngModel)]="Country_Of_Birth">
+                            <option value="Select One">Select One</option>
+                            <option value="Caucasian">Caucasian</option>
+                            <option value="Chinese">Chinese</option>
+                            <option value="Indian">Indian </option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2">
+                        <p>Religion:</p>
+                        <select class="form-control" id="Religion" name="Religion" [(ngModel)]="Religion">
+                            <option value="Select One">Select One</option>
+                            <option value="Agnostic">Agnostic</option>
+                            <option value="Hindi">Hindu</option>
+                            <option value="Buddhism">Buddhism </option>
+                            <option value="Christinity">Christinity </option>
+                            <option value="Hindusim">Hindusim </option>
+                        </select>
+                    </div>
+                    <!-- <div class="col-lg-2">
+                            <p>Reside in Singapore:</p>
+                           <input type="checkbox">
+                        </div> -->
+                    <div class="col-lg-2">
+                        <p>Working Status:</p>
+                        <select class="form-control" id="Working_Status" name="Working_Status"
+                            [(ngModel)]="Working_Status">
+                            <option value="Select One">Select One</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                </div> <br> <br>
+
+
+
+            </div>
+        </ng-wizard-step>
+        <ng-wizard-step [title]="'Nomination Details'" [description]="''">
+            <div class="card card-padding">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p class="Employement">Nomination: </p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row Details">
+                    <div class="col-lg-2">
+                        <p>Dependant <span style="color: red;">*</span></p>
+                        <input class="form-control" id="Dependent" name="Dependent" [(ngModel)]="Dependent"
+                            placeholder="Dependent">
+                    </div>
+                    <div class="col-lg-2">
+                        <p>Percentage <span style="color: red;">*</span></p>
+                        <input class="form-control" id="Percentage" name="Percentage" [(ngModel)]="Percentage"
+                            placeholder="Percentage">
+                    </div>
+                    <div class="col-lg-2">
+                        <p>Nominee Type <span style="color: red;">*</span></p>
+                        <input class="form-control" id="NomineeType" name="NomineeType" [(ngModel)]="NomineeType">
+                    </div>
+                    <div class="col-lg-2">
+                        <p>Guardian Name</p>
+                        <input class="form-control" id="GuardianName" name="GuardianName" [(ngModel)]="GuardianName">
+                    </div>
+                    <div class="col-lg-2">
+                        <p>Guardian Relationship</p>
+                        <select class="form-control" id="GuardianRelationship" name="GuardianRelationship"
+                            [(ngModel)]="GuardianRelationship">
+                            <option value="Select One">Select One</option>
+                            <option value="Brother">Brother</option>
+                            <option value="Daughter">Daughter</option>
+                            <option value="Father">Father </option>
+                            <option value="Grand Parent">Grand Parent</option>
+                            <option value="Grand Child">Grand Child</option>
+                            <option value="Grand father">Grand Child</option>
+                            <option value="Mother">Grand Child</option>
+                            <option value="Sister">Grand Child</option>
+                            <option value="Son">Grand Child</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2"></div>
+                </div><br> <br>
+
+
+
+            </div>
+        </ng-wizard-step>
+        <ng-wizard-step [title]="'Employment Details'" [description]="''">
+            <div class="card card-padding">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p class="Employement">Employment Details: </p><br>
+                    </div>
+                </div>
+                <hr>
+                <div class="row Details">
+                    <div class="col-lg-2">
+                        <p>Company Name <span style="color: red;">*</span></p>
+                        <input class="form-control" placeholder="Comapany Name" id="ComapanyName" name="ComapanyName"
+                            [(ngModel)]="ComapanyName">
+                    </div>
+                    <div class="col-lg-2">
+                        <p>Title <span style="color: red;">*</span></p>
+                        <input class="form-control" placeholder="" id="Title" name="Title" [(ngModel)]="Title">
+                    </div>
+                    <div class="col-lg-2">
+                        <p>Start Date <span style="color: red;">*</span></p>
+                        <input class="form-control" type="date" id="StartDate" name="StartDate" [(ngModel)]="StartDate">
+                    </div>
+                    <div class="col-lg-2">
+                        <p>End Date<span style="color: red;">*</span></p>
+                        <input class="form-control" type="date" id="EndDate" name="EndDate" [(ngModel)]="EndDate">
+                    </div>
+                    <div class="col-lg-2">
+                        <p>Salary</p>
+                        <input class="form-control" placeholder="" id="Salary" name="Salary" [(ngModel)]="Salary">
+                    </div>
+
+                    <div class="col-lg-2"></div>
+                </div><br>
+                <div class="row Details">
+                    <div class="col-lg-2">
+                        <p>Current Employer</p>
+                        <input type="checkbox" id="CurrentEmployer" name="CurrentEmployer"
+                            [(ngModel)]="CurrentEmployer">
+                    </div>
+                </div> <br>
+
+
+
+
+
+            </div>
+        </ng-wizard-step>
+        <ng-wizard-step [title]="'Education Details'" [description]="''">
+            <div class="card">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label class="edudetails">Education Details : <span style="font-weight: 100;">
+
+                            </span></label>
+                    </div>
+                </div>
+                <hr>
+                <div class="row leavereq">
+
+                    <div class="col-md-2">
+                        <label>Education Type:<span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-md-2">
+                        <label>Qualification:<span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-md-2">
+                        <p>Name of Qualification:<span style="color: red;">*</span></p>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Branch:<span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Institution Name:<span style="color: red;">*</span></label>
+                    </div>
+
+                </div>
+                <div class="row leavereq">
+
+                    <div class="col-md-2">
+                        <div class="dropdown">
+                            <select class="form-control inputfield" placeholder="" id="EducationType"
+                                name="EducationType" [(ngModel)]="EducationType">
+                                <option value="Select">Select One</option>
+                                <option value="Diploma">Diploma</option>
+                                <option value="Diploma & Certificate">Diploma & Certificate</option>
+                                <option value="Equivalent Course">Graduation/Equivalent Training</option>
+                                <option value="Others">Others</option>
+                                <option value="Post Graduation">Post Graduation</option>
+                                <option value="Pre-Matriculation">Pre-Matriculation</option>
+                                <option value="Under Graduation">Under Graduation</option>
+                                <option value="X/Equivalent">X/Equivalent</option>
+                                <option value="XII/Equivalent course">XII/Equivalent Training</option>
+                                <option value="Xth Class">Xth Class</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="" id="Qualification" name="Qualification"
+                            [(ngModel)]="Qualification">
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="" id="NameOfQualification"
+                            name="NameOfQualification" [(ngModel)]="NameOfQualification">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" placeholder="" placeholder="" id="Branch" name="Branch"
+                            [(ngModel)]="Branch">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" placeholder="" id="InstitutionName"
+                            name="InstitutionName" [(ngModel)]="InstitutionName">
+                    </div>
+                </div>
+                <br>
+                <div class="row leavereq">
+
+                    <div class="col-md-2">
+                        <label>Country:<span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-md-2">
+                        <label>Score Type:</label>
+                    </div>
+                    <div class="col-md-2">
+                        <p>Grade:</p>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Start Date:<span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label>End Date:<span style="color: red;">*</span></label>
+                    </div>
+
+                </div>
+                <div class="row leavereq">
+
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="" id="Country" name="Country"
+                            [(ngModel)]="Country">
+                    </div>
+                    <div class="col-md-2">
+                        <div class="dropdown">
+                            <select class="form-control inputfield" id="ScoreType" name="ScoreType"
+                                [(ngModel)]="ScoreType">
+                                <option value="Select">Select One</option>
+                                <option value="GPA">GPA</option>
+                                <option value="Grade">Grade</option>
+                                <option value="Percentage">Percentage</option>
+                                <option value="Result Awaited">Result Awaited</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" id="Grade" name="Grade" [(ngModel)]="Grade">
+                    </div>
+                    <div class="col-md-3">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <input type="Date" class="form-control" id="StartDateMonth" name="StartDateMonth"
+                                    [(ngModel)]="StartDateMonth">
+                                <!-- <div class="dropdown">
+                                    <select class="form-control inputfield" id="StartDateMonth" name="StartDateMonth"
+                                    [(ngModel)]="StartDateMonth">
+                                        <option value="Month">Month</option>
+                                        <option value="01">January</option>
+                                        <option value="02">February</option>
+                                        <option value="03">March</option>
+                                        <option value="04">April</option>
+                                        <option value="05">May</option>
+                                        <option value="06">June</option>
+                                        <option value="07">July</option>
+                                        <option value="08">August</option>
+                                        <option value="09">September</option>
+                                        <option value="10">October</option>
+                                        <option value="11">November</option>
+                                        <option value="12">December</option>
+                                    </select>
+                                </div> -->
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <input type="Date" class="form-control" id="EndDateMonth" name="EndDateMonth"
+                                    [(ngModel)]="EndDateMonth">
+                                <!-- <div class="dropdown">
+                                    <select class="form-control inputfield" id="EndDateMonth" name="EndDateMonth"
+                                    [(ngModel)]="EndDateMonth">
+                                        <option value="Month">Month</option>
+                                        <option value="01">January</option>
+                                        <option value="02">February</option>
+                                        <option value="03">March</option>
+                                        <option value="04">April</option>
+                                        <option value="05">May</option>
+                                        <option value="06">June</option>
+                                        <option value="07">July</option>
+                                        <option value="08">August</option>
+                                        <option value="09">September</option>
+                                        <option value="10">October</option>
+                                        <option value="11">November</option>
+                                        <option value="12">December</option>
+                                    </select>
+                                </div> -->
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+            </div>
+        </ng-wizard-step>
+
+        <ng-wizard-step [title]="'Bank Details'" [description]="''">
+            <div class="card">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label class="edudetails">Bank Details : <span style="font-weight: 100;">
+
+                            </span></label>
+                    </div>
+                </div>
+                <hr>
+                <div class="row leavereq">
+
+                    <div class="col-md-2">
+                        <label>Name of Bank:<span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-md-2">
+                        <label>Account Holder Name:<span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-md-2">
+                        <p>*Bank Account Number:<span style="color: red;">*</span></p>
+                    </div>
+                </div>
+                <div class="row leavereq">
+                    <div class="col-md-2">
+                        <div class="dropdown">
+                            <select class="form-control inputfield" id="NameOfBank" name="NameOfBank"
+                                [(ngModel)]="NameOfBank">
+                                <option value="Select">Select One</option>
+                                <option value="Bank of Singapore">Bank of Singapore</option>
+                                <option value="Bank of Philliphins Islands">Bank of Philliphins Islands</option>
+                                <option value="Central Bank of India">Central Bank of India</option>
+                                <option value="DBS Bank Limited">DBS Bank Limited</option>
+                                <option value="HDFC">HDFC</option>
+                                <option value="OCBC Bank">OCBC Bank</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="AccountHolderName" id="AccountHolderName"
+                            name="AccountHolderName" [(ngModel)]="AccountHolderName">
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="BankAccountNumber" id="BankAccountNumber"
+                            name="BankAccountNumber" [(ngModel)]="BankAccountNumber">
+                    </div>
+                </div>
+                <br>
+
+
+            </div>
+        </ng-wizard-step>
+        <ng-wizard-step [title]="'ID Details'" [description]="''">
+            <div class="card">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label class="edudetails">ID Details : <span style="font-weight: 100;">
+
+                            </span></label>
+                    </div>
+                </div>
+                <hr>
+                <div class="row leavereq">
+
+                    <div class="col-md-2">
+                        <label>ID Type:<span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-md-2">
+                        <label>Number:<span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-md-2">
+                        <p>Name on Document:</p>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Issue Date:</label>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Expiry Date:</label>
+                    </div>
+
+                </div>
+                <div class="row leavereq">
+
+                    <div class="col-md-2">
+                        <div class="dropdown">
+                            <select class="form-control inputfield" id="IDType" name="IDType" [(ngModel)]="IDType">
+                                <option value="Select">Select One</option>
+                                <option value="AMFI">AMFI</option>
+                                <option value="Driving License">Driving License</option>
+                                <option value="HKID Number">HKID Number</option>
+                                <option value="Others">Others</option>
+                                <option value="Passport Number">Passport Number</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="" id="Number" name="Number"
+                            [(ngModel)]="Number">
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" id="NameOnDocument" name="NameOnDocument"
+                            [(ngModel)]="NameOnDocument">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="date" class="form-control" id="IssueDate" name="IssueDate" [(ngModel)]="IssueDate">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="date" class="form-control" id="ExpiryDate" name="ExpiryDate"
+                            [(ngModel)]="ExpiryDate">
+                    </div>
+                </div>
+                <br>
+                <div class="row leavereq">
+
+                    <div class="col-md-2">
+                        <label>Issuing Authority:</label>
+                    </div>
+                    <div class="col-md-2">
+                        <label>Place of Issue:</label>
+                    </div>
+
+                </div>
+                <div class="row leavereq">
+
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="" id="IssuingAuthority"
+                            name="IssuingAuthority" [(ngModel)]="IssuingAuthority">
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" id="PlaceOfIssue" name="PlaceOfIssue"
+                            [(ngModel)]="PlaceOfIssue">
+                    </div>
+                </div>
+                <br>
+
+
+            </div>
+
+        </ng-wizard-step>
+        <ng-wizard-step [title]="'Visa Details'" [description]="''">
+            <div class="card">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label class="edudetails">Visa Details : <span style="font-weight: 100;">
+
+                            </span></label>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="row leavereq">
+
+                    <div class="col-md-2">
+                        <label>Visa Type:<span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-md-2">
+                        <label>Visa Number:<span style="color: red;">*</span></label>
+                    </div>
+
+                    <div class="col-md-2">
+                        <label>Visa Issue Date:</label>
+                    </div>
+                    <div class="col-md-2">
+                        <label>Visa Expiry Date:</label>
+                    </div>
+                    <div class="col-md-2">
+
+                    </div>
+
+                </div>
+                <div class="row leavereq">
+
+                    <div class="col-md-2">
+                        <div class="dropdown">
+                            <select class="form-control inputfield" id="VisaType" name="VisaType"
+                                [(ngModel)]="VisaType">
+                                <option value="Select">Select One</option>
+                                <option value="F1">F1</option>
+                                <option value="H1">H1</option>
+                                <option value="B1">B1</option>
+                                <option value="B2">B2</option>
+                                <option value="others">Others</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="" id="VisaNumber" name="VisaNumber"
+                            [(ngModel)]="VisaNumber">
+                    </div>
+                    <div class="col-md-2">
+                        <input type="date" class="form-control" placeholder="" id="VisaIssueDate" name="VisaIssueDate"
+                            [(ngModel)]="VisaIssueDate">
+                    </div>
+                    <div class="col-md-2">
+                        <input type="date" class="form-control" placeholder="" id="VisaExpiryDate" name="VisaExpiryDate"
+                            [(ngModel)]="VisaExpiryDate">
+                    </div>
+                    <div class="col-md-2">
+
+
+                    </div>
+                </div>
+                <br>
+                <br>
+
+
+
+            </div>
+        </ng-wizard-step>
+        <ng-wizard-step [title]="'Salary Details'" [description]="''">
+            <div class="card">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label class="edudetails">Salary Details : <span style="font-weight: 100;">
+
+                            </span></label>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="row leavereq">
+
+                    <div class="col-md-2">
+                        <label>Employee Name :<span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-md-2">
+                        <label>Grade:<span style="color: red;">*</span></label>
+                    </div>
+
+                    <div class="col-md-2">
+                        <label>Designation:</label>
+                    </div>
+                    <div class="col-md-2">
+                        <label>Pay Rate Type:</label>
+                    </div>
+                    <div class="col-md-2">
+                        <label>Pay Structure:</label>
+                    </div>
+
+                </div>
+                <div class="row leavereq">
+
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="" id="EmployeeName" name="EmployeeName"
+                            [(ngModel)]="EmployeeName">
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="" id="Grade" name="Grade"
+                            [(ngModel)]="Grade">
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="" id="Designation" name="Designation"
+                            [(ngModel)]="Designation">
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="" id="PayRateType" name="PayRateType"
+                            [(ngModel)]="PayRateType">
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="" id="PayStructure" name="PayStructure"
+                            [(ngModel)]="PayStructure">
+
+                    </div>
+                </div>
+                <br>
+                <div class="row leavereq">
+
+                    <div class="col-md-2">
+                        <label>Effective From Date :<span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-md-2">
+                        <label>Reason:<span style="color: red;">*</span></label>
+                    </div>
+
+
+
+                </div>
+                <br>
+                <div class="row leavereq">
+
+                    <div class="col-md-2">
+                        <input type="date" class="form-control" placeholder="" id="EffectiveFromDate"
+                            name="EffectiveFromDate" [(ngModel)]="EffectiveFromDate">
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="" id="Reason" name="Reason"
+                            [(ngModel)]="Reason">
+                    </div>
+
+                </div>
+                <br>
+
+
+
+            </div>
+            <br />
+            <br />
+            <div class="row">
+                <div class="col-lg-5"></div>
+                <div class="col-lg-1">
+                    <button type="button" class="form-control  cancel" *ngIf="ID!=undefined" (click)="Update()">Update</button>
+                    <button class="form-control  cancel" (click)="Save()" *ngIf="ID==undefined">Submit</button> 
+                </div>
+                <div class="col-lg-1">
+                    <button class="form-control  cancel">Cancel</button>
+                </div>
+            </div><br>
+
+
+        </ng-wizard-step>
+
+
+
+    </ng-wizard>
+
+</div>

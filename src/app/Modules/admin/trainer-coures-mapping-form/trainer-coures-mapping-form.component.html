@@ -1,0 +1,74 @@
+<div class="container-fluid">
+  
+    <div class="row">
+        <div class="col-lg-10">
+            <p class="headings">Trainer and Training Mapping </p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="row leavereq">
+            <div class="col-lg-3">
+                <p class="newFont" style="color:#0C275A">Trainer Name <span style="color: red;">*</span></p>
+            </div>
+            <div class="col-lg-3">
+                <p class="newFont" style="color:#0C275A">Training Name <span style="color: red;">*</span></p>
+            </div>
+            <div class="col-lg-3">
+                <p class="newFont" style="color:#0C275A">Start Date <span style="color: red;">*</span> </p>
+            </div>
+            <div class="col-lg-3">
+                <p class="newFont" style="color:#0C275A">End Date<span style="color: red;">*</span> </p>
+            </div>
+        </div>
+        <div class="row leavereq">
+            <div class="col-lg-3">
+                <select class="form-control" name="cars" id="Duration" [(ngModel)]="TrainerID" (change)="getTrainerID($event)">
+                    <option style="color:#0C275A" value="0">Select Trainer Name</option>
+                    <option  style="color:#0C275A" *ngFor="let details of trainerlist"  value="{{details.id}}">{{details.name}}</option>
+                </select>
+            </div>
+            <div class="col-lg-3">
+                <select class="form-control" name="cars" id="Duration" [(ngModel)]="CourseID" (change)="getCourseID($event)">
+                    <option value="0">Select Training Name</option>
+                    <option  *ngFor="let details of CourseList"  value="{{details.id}}">{{details.name}}</option>
+                </select>
+            </div>
+            <div class="col-lg-3">
+                <input type="date" class="form-control inputfield" placeholder="Start Date" [(ngModel)]="StartDate" name="StartDate" min="{{maxdate}}">
+            </div>
+            <div class="col-lg-3">
+                <input type="date" class="form-control inputfield" placeholder="End Date" [(ngModel)]="EndDate" name="EndDate"  (change)="endingdatealert($event)">
+            </div>
+        </div><br>
+        <div class="row leavereq ">
+            <div class="col-lg-3">
+                <p>Batch Name<span style="color: red;">*</span></p>
+            </div>
+            <div class="col-lg-4">
+                <p>Allowed Students per Batch<span style="color: red;">*</span></p>
+            </div>
+        </div>
+        <div class="row leavereq ">
+            <div class="col-md-3">
+                <select class="form-control" name="cars" id="Duration" [(ngModel)]="BatchName" (change)="getBatchName($event)">
+                    <option value="0">Select Batch Name</option>
+                    <option  *ngFor="let details of BatchList"  value="{{details.id}}">{{details.batchName}}</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <input class="form-control inputfield" placeholder="Allowed Students per Batch" [(ngModel)]="AllowedStudents">
+            </div>
+        </div>
+        <br>    
+        <div class="row">
+            <div class="col-lg-9"></div>
+            <div class="col-lg-1">
+                <button class="form-control cancel"  *ngIf=" id==undefined" (click)="Submit()">Save</button>    
+             <button class="form-control cancel"  *ngIf=" id!=undefined" (click)="Update()">Update</button>   
+            </div>
+            <div class="col-lg-1">
+                <button class="form-control  cancel" (click)="cancel()">Cancel</button>
+            </div>
+        </div><br>
+    </div> <br>
+</div>

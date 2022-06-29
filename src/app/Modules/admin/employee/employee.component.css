@@ -1,0 +1,245 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover {
+    text-decoration: 3px solid rgb(72, 83, 238) underline;
+    color: rgb(72, 83, 238);
+  }
+  /* .card {
+    background-color: white;
+  }
+  
+  .card-padding {
+    padding: 1%;
+  } */
+  .table {
+    border-radius: 5px;
+  }
+  
+  .Heading {
+    padding-left: 15px;
+    font-size: 14px;
+    font-weight: bold;
+    color: black;
+    text-decoration-line: underline;
+  }
+  
+  .button {
+    text-transform: uppercase;
+    font-weight: initial;
+    text-shadow: initial;
+    letter-spacing: 0.5px;
+    background-color: #3247d5;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    width: 40%;
+    float: right;
+    margin-right: 15px;
+    font-size: 15px;
+    font-weight: bold;
+  }
+  
+  .edit {
+    width: 85%;
+    border: none;
+    background-color: #2f87cc;
+    text-align: center;
+    border-radius: 16px;
+    color: white;
+    margin-top: 6px;
+  }
+  
+  .FilterClass {
+    padding-left: 15px;
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+  }
+  
+  .View {
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+  }
+  
+  
+  
+  .HrLine {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  .form-control {
+    font-size: 15px;
+    font-weight: bold;
+  }
+  .newFont {
+    font-size: 15px;
+    font-weight: bold;
+  }
+  
+  .img {
+    width: 25px;
+    height: 10%;
+  }
+  .img:hover {
+    background-color: chartreuse;
+    color: white;
+  }
+  .imgcancel {
+    width: 25px;
+    height: 10%;
+  }
+  .imgcancel:hover {
+    background-color: red;
+    color: white;
+  }
+  
+  .SelectData {
+    text-align: center;
+  }
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 52px;
+    height: 27px;
+  }
+  
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196f3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196f3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  
+   
+  .table{
+    border-radius: 5px;
+   
+  }
+  th,td{
+    border: 1px #404040;
+    border-collapse: collapse;
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+  /* .card {
+    padding: 20px;
+    width: 100%;
+    background: #ffffff;
+    box-shadow: 1px 1px 15px 3px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+  } */
+  
+  .card {
+    width: 100%;
+    background: #ffffff;
+    box-shadow: 1px 1px 15px 3px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+  }
+  
+  .Heading {
+    padding-left: 15px;
+    font-size: 20px;
+    color: #3247d5;
+    font-family: "Poppins";
+  }
+  .head {
+    font-family: "Poppins";
+  }
+  .FilterClass {
+    padding-left: 15px;
+  }
+  .count {
+    text-align: right;
+    padding-right: 10px;
+  }
+  
+  .edit {
+    width: 50%;
+    border: none;
+    background: #3247d5;
+    text-align: center;
+    border-radius: 6px;
+    color: white;
+    margin-top: 6px;
+    padding: 5px;
+  }
+  
+  .show{
+    font-size: 15px;
+    color:#3247D5;
+  }
+  
+  .NoResultShow {
+    color: #0c275a;
+    font-size: 19px;
+  
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    margin-left: 38px;
+  }
+  

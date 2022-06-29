@@ -1,0 +1,86 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-10">
+            <p class="headings">Trainer Details</p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="row leavereq" style="color: #0C275A">
+
+            <div class="col-lg-2">
+                <p class="newFont">Trainer Name <span style="color: red;">*</span></p>
+            </div>
+            <div class="col-lg-2">
+                <p class="newFont">Phone Number <span style="color: red;">*</span></p>
+            </div>
+            <div class="col-lg-2">
+                <p class="newFont">Email ID <span style="color: red;">*</span></p>
+            </div>
+            <div class="col-lg-3">
+                <p class="newFont">Address <span style="color: red;">*</span> </p>
+            </div>
+            <div class="col-lg-2">
+                <p class="newFont">Year of Experience<span style="color: red;">*</span> </p>
+            </div>
+        </div>
+        <div class="row leavereq">
+            <div class="col-lg-2">
+                <input class="form-control inputfield" placeholder="Trainer Name" [(ngModel)]="TrainerName">
+            </div>
+            <div class="col-lg-2">
+                <input class="form-control inputfield" placeholder="Phone Number" [(ngModel)]="PhoneNumber" onkeypress="return /[0-9]/i.test(event.key)"
+                maxlength="12">
+            </div>
+            <div class="col-lg-2">
+                <input class="form-control inputfield" placeholder="Email ID" [(ngModel)]="EmailID">
+            </div>
+            <div class="col-lg-3">
+                <textarea class="form-control inputfield" placeholder="Address" [(ngModel)]="Address"></textarea>
+            </div>
+            <div class="col-lg-2">
+                <input class="form-control inputfield" placeholder="Year of Experience" [(ngModel)]="YearOfExperience">
+            </div>
+        </div>
+        <div class="row leavereq" style="color: #0C275A">
+
+            <div class="col-lg-2">
+                <p class="newFont">Resume<span style="color: red;">*</span></p>
+            </div>
+            <div class="col-lg-4">
+                <p class="newFont">Skills and Technology <span style="color: red;">*</span></p>
+            </div>
+            <div class="col-lg-2">
+                <p class="newFont">Trainer Fee <span style="color: red;">*</span></p>
+            </div>
+        </div>
+        <div class="row leavereq">
+            <div class="col-md-2">
+                <ngx-dropzone (change)="onSelect($event)" style="height: 60px;" [(ngModel)]="Company_logo" accept="application/pdf">
+                    <ngx-dropzone-label>Drop it here!</ngx-dropzone-label>
+                    <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                        <ngx-dropzone-label  >{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                    </ngx-dropzone-preview>
+                </ngx-dropzone>
+            </div>
+            <div class="col-md-4">
+                <textarea class="form-control inputfield" placeholder="Skills and Technology..." rows="4" [(ngModel)]="SkillsAndTechnology"></textarea>
+            </div>
+            <div class="col-md-2">
+                <input class="form-control inputfield" placeholder="Trainer Fee/Training " [(ngModel)]="TrainerFeePerCourse">
+            </div>
+        </div>
+        <br> 
+        <div class="row">
+            <div class="col-lg-9"></div>
+            <div class="col-lg-1">
+                <button class="form-control cancel" *ngIf="id==undefined" (click)="Submit()">Save</button>
+                <button class="form-control cancel" *ngIf="id!= undefined" (click)="Update()">Update</button>
+                <!-- <button class="form-control button1"  *ngIf="id==null || id==undefined" (click)="Save()">Save</button>    
+             <button class="form-control button1"  *ngIf="id!=null || id!=undefined" (click)="Update()">Update</button>    -->
+            </div>
+            <div class="col-lg-1"> 
+                <button class="form-control cancel"  routerLink="/#/Trainer" (click)="Cancel()">Cancel</button>
+            </div>
+        </div><br>
+    </div> <br>
+</div>

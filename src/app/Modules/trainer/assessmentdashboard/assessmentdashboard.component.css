@@ -1,0 +1,185 @@
+.Job{
+    color:gray;
+    padding-left: 10px;
+    font-size: 18px;
+    padding-top: 20px;
+    font-weight: 400;
+  }
+  .search{
+    margin-left: 10px;
+  }
+  
+  .newFont{
+   
+    color:black;
+    width:100%;
+    vertical-align: middle;
+  }
+
+ .card {
+  width: 100%;
+  background: #ffffff;
+  box-shadow: 1px 1px 15px 3px rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+}
+
+ /* td{
+  background-color: white
+} */
+
+  /* .head{
+  background-color: #02CFFF ;
+  color:white;
+  font-size: 12px;
+ 
+  } */
+  .FilterClass{
+  padding-left: 15px;
+  }
+  .count{
+  text-align: right;
+  padding-right: 10px;;
+  }
+  .table{
+    border-radius: 10px;
+   
+  }
+
+  
+  .button1{
+    padding:5px;
+    border-radius: 5px;
+    color:white;
+    background-color: #3247D5;
+    border:none;
+    width:92%;
+
+  }
+
+  .button2{
+    padding:5px;
+    border-radius: 5px;
+    color:white;
+    background-color: #2F87CC;
+    border:none;
+    width:100%;
+   
+   
+
+  }
+  
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover {
+    text-decoration: 3px solid rgb(72, 83, 238) underline;
+    color:   rgb(72, 83, 238)
+  }
+  .button{
+    text-transform: uppercase;
+  font-weight: initial;
+  text-shadow: initial;
+  letter-spacing: 0.5px;
+  background-color:#2F87CC ;
+  color:white;
+  border-radius: 5px;
+  border:none;
+  padding: 5px;
+  width:40%;
+  float: right;
+  margin-right: 15px;
+  font-size: 15px;
+  font-weight: bold;
+  }
+ 
+  .FilterClass{
+    padding-left: 15px;
+  }  
+  .Text{
+    font-size: 18px;
+  }
+
+  .NoResultShow {
+    color: #0c275a;
+    font-size: 19px;
+  
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    margin-left: 38px;
+  }
+  .pdfimg{
+    width:100px;
+    height: auto;
+}
+.photo{
+  width: 100px;
+  height: auto;
+}
+.video{
+  width:35%;
+  height:auto;
+  text-align: center;
+}
+.file{
+  width:35%;
+  height:auto;
+  text-align: center;
+}
+  
+.Dashboard{
+  color:#3247D5;
+  font-size: 20px;
+}
+
+.scroll{
+  overflow-x: scroll;
+  overflow-y: scroll;
+}
+
+.add{
+  width:60%;
+  background-color: #3247D5;
+  color:white;
+  border:none;
+  border-radius: 5px;
+}
+.Heading{
+  color:#3247D5;
+  font-size: 20px; 
+}
+
+.addbutton{   
+  color:white;
+  background-color: #3247D5;
+  border:none;
+  border-radius: 5px;
+  height:40px;
+
+}
+
+
+.button{
+  color:white;
+  background-color: #3247D5;
+  border:none;
+  border-radius: 5px;
+  width: 100px;
+}

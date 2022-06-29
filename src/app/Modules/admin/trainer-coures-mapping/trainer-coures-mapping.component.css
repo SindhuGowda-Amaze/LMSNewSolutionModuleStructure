@@ -1,0 +1,134 @@
+.Job{
+    color:gray;
+    padding-left: 10px;
+    font-size: 18px;
+    padding-top: 20px;
+    font-weight: 400;
+  }
+  .search{
+    margin-left: 10px;
+  }
+  
+  .newFont{
+   
+    color:black;
+    width:100%;
+    vertical-align: middle;
+  }
+
+  .Heading{
+  padding-left: 15px;
+  font-size: 20px;
+  color:black;
+  }
+  .head{
+  background-color:#02CFFF ;
+  color:white;
+  font-family: 'Poppins';
+  font-size: 15px;
+ padding:5px;
+  }
+  .FilterClass{
+  padding-left: 15px;
+  }
+  .count{
+  text-align: right;
+  padding-right: 10px;;
+  }
+  .table{
+    border-radius: 5px;
+   
+  }
+  th,td{
+    border: 1px #404040;
+    border-collapse: collapse;
+  }
+  
+  .button1{
+    padding:5px;
+    border-radius: 5px;
+    color:white;
+    background-color: #3247D5;
+    border:none;
+    width:100%;
+
+  }
+
+  .button2{
+    padding:5px;
+    border-radius: 5px;
+    color:white;
+    background-color: #3247D5;
+    border:none;
+    width:100%;
+   
+   
+
+  }
+  
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover {
+    text-decoration: 3px solid rgb(72, 83, 238) underline;
+    color:   rgb(72, 83, 238)
+  }
+  .button{
+    text-transform: uppercase;
+  font-weight: initial;
+  text-shadow: initial;
+  letter-spacing: 0.5px;
+  background-color:#3247D5 ;
+  color:white;
+  border-radius: 5px;
+  border:none;
+  padding: 5px;
+  width:40%;
+  float: right;
+  margin-right: 15px;
+  font-size: 15px;
+  font-weight: bold;
+  }
+ 
+  .FilterClass{
+    padding-left: 15px;
+  }  
+  .Text{
+    font-size: 18px;
+  }
+
+  .NoResultShow {
+    color: #0c275a;
+    font-size: 19px;
+  
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    margin-left: 38px;
+  }
+  .card{
+    width:100%;
+   background: #FFFFFF;
+   box-shadow: 1px 1px 15px 3px rgba(0, 0, 0, 0.12);
+   border-radius: 12px;
+  }
+  .newtext{
+    color:#0C275A;
+  }

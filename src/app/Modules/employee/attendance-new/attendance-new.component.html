@@ -1,0 +1,55 @@
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-lg-10">
+            <p class="headings">Attendance Details</p>
+        </div>
+        <div class="col-lg-2">
+            <p class="count">Count: {{Attendance.length}}</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <br>
+        <div class="row FilterClass ">
+            <div class="col-lg-1">
+                <p class="filter" style="margin-left: 15px;">Filter By </p>
+            </div>
+            <div class="col-lg-5">
+                <input type="search" class="form-control search" placeholder="Search" [(ngModel)]="search">
+            </div>
+        </div> <br>
+    </div> <br>
+ <br>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table class="table" *ngIf="(Attendance | filter: search).length > 0; else noResults">
+                            <thead>
+                                <tr>
+                                    <th *ngIf="roleid!=2">Employee Name</th>
+                                    <th>Login Date</th>
+                                    <th>Punch In Time</th>
+                                    <th>Punch Out Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let details of Attendance | filter: search">
+                                    <td *ngIf="roleid!=2">{{userName}}</td>
+                                    <td>{{details.loginDate}}</td>
+                                    <td>{{details.loginTime}}</td>
+                                    <td>{{details.logoutDate}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <ng-template #noResults>
+                            <p class="NoResultShow"> No results found </p>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

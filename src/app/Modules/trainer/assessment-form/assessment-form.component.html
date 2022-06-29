@@ -1,0 +1,196 @@
+<div class="container-fluid">
+    <div class="row">     
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-4">
+                    <p class="course Heading" >Assessment Details </p>
+                </div>
+                <div class="col-lg-8"></div>
+            </div>
+      
+            <div class="card">
+                <div class="row head">
+                    <div class="col-lg-2">
+                        <p>Training Name</p>
+                    </div>
+                    <div class="col-lg-2">
+                        <p>Topic Name</p>
+                    </div>
+                    <div class="col-lg-2">
+                        <p>Question Type</p>
+                    </div>
+                    <div class="col-lg-3">
+                        <p>Question</p>
+                    </div>            
+                    <!-- <div class="col-lg-2">
+                        <p>Assessment Name</p>
+                    </div> -->
+                </div>
+                <div class="row head">
+                    <div class="col-lg-2">
+                        <select class="form-control" name="id" id="id" [(ngModel)]="courseid" (change)="getcourseid($event)">
+                            <option value="0">Select Training</option>
+                            <option *ngFor="let details of CourseList" value="{{details.id}}">{{details.name}}</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2">
+                        <select class="form-control" name="id" id="id" [(ngModel)]="chapterid">
+                            <option value="0">Select Topic</option>
+                            <option *ngFor="let details of ChapterList" value="{{details.id}}">{{details.name}}</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2">
+                        <select class="form-control" [(ngModel)]="questionid" name="questionid">
+                            <option value="0">Select Question Type</option>
+                            <option *ngFor="let details of QuestionList" value="{{details.id}}">{{details.type}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3">
+                        <textarea class="form-control" placeholder="Question.." [(ngModel)]="Question"></textarea>
+                    </div>
+                   
+                    <!-- <div class="col-lg-2">
+                        <input class="form-control" placeholder="Assessment Name" [(ngModel)]="AssessmentName">
+                     </div>                  -->
+                </div> <br>
+                <div class="row head">
+                    <div class="col-lg-2" *ngIf="questionid==1">
+                        <p>Option1</p>
+                    </div>
+                    <div class="col-lg-2" *ngIf="questionid==1">
+                        <p>Option2</p>
+                    </div>
+                    <div class="col-lg-2" *ngIf="questionid==1">
+                        <p>Option3</p>
+                    </div>
+                    <div class="col-lg-2" *ngIf="questionid==1">
+                        <p>Option4</p>
+                    </div>
+                    <div class="col-lg-2">
+                        <p>Weightage</p>
+                    </div>
+                    <div class="col-lg-2" *ngIf="questionid==1 || questionid==2">
+                        <p>Correct Answer</p>
+                    </div>                
+                </div>
+                <div class="row head">
+                    <div class="col-lg-2" *ngIf="questionid==1">
+                        <input class="form-control" placeholder="a" [(ngModel)]="Option1" name="Option1">
+                    </div>
+                    <div class="col-lg-2" *ngIf="questionid==1">
+                        <input class="form-control" placeholder="b" [(ngModel)]="Option2" name="Option2">
+                    </div>
+                    <div class="col-lg-2" *ngIf="questionid==1">
+                        <input class="form-control" placeholder="c" [(ngModel)]="Option3" name="Option3">
+                    </div>
+                    <div class="col-lg-2" *ngIf="questionid==1">
+                        <input class="form-control" placeholder="d" [(ngModel)]="Option4" name="Option4">
+                    </div>
+                    <div class="col-lg-2">
+                        <input class="form-control" placeholder="Weightage" [(ngModel)]="Weightage">
+                    </div>
+                    <div class="col-lg-6"  *ngIf="questionid==2">
+                        <ckeditor id="CorrectAnswer" name="CorrectAnswer" [(ngModel)]="CorrectAnswer"
+                            data="<p>Enter Answer Here !</p>"></ckeditor>                           
+                    
+                    </div>
+                    <div class="col-lg-2"  *ngIf="questionid==1">                    
+                        <select class="form-control"  (change)="getCorrectAnswer($event)" >
+                            <option value="0">Select Options</option>
+                            <option value="A">Option1</option>
+                            <option value="B">Option2</option>
+                            <option value="C">Option3</option>
+                            <option value="D">Option4</option>
+                        </select>
+                    </div>
+
+                 
+                </div><br>
+                <div class="row">
+                    <div class="col-lg-10"></div>
+                    <div class="col-lg-1">
+                        <button class="form-control cancel" *ngIf="id== undefined" (click)="ADd()">Add</button>
+                        <button class="form-control cancel" *ngIf="id!= undefined" (click)="update()">Update</button>
+                    </div>
+                    <div class="col-lg-1">
+                        <button class="form-control cancel" (click)="cancel()">Cancel</button>
+                    </div>
+                </div>
+                <br>
+                <div class="row" *ngIf="tablecout==1">
+                    <div class="col-lg-12 scroll">
+                        <table class="table" *ngIf="questionid==1">
+                            <thead>
+                                <tr class="head">
+                                    <!-- <th>Training Name</th>
+                                    <th>Topic Name</th> -->
+                                    <th>QuestionType</th>
+                                    <th>Question</th>
+                                    <th>Option1</th>
+                                    <th>Option2</th>
+                                    <th>Option3</th>
+                                    <th>Option4</th>
+                                    <th>Correct Answer</th>
+                                    <th>Weightage</th>
+                                    <!-- <th>Actions</th> -->
+                                </tr>
+                            <tr *ngFor="let details of assessmenrArray">
+                                <td>
+                                    <p *ngIf="details.QuestionID==2">Subjective</p>
+                                    <p *ngIf="details.QuestionID==1">Objective</p>
+                                </td>
+                                <td>{{details.Question}}</td>
+                             
+                                <td>{{details.Option1}}</td>
+                                <td>{{details.Option2}}</td>
+                                <td>{{details.Option3}}</td>
+                                <td>{{details.Option4}}</td>
+                                <td>{{details.CorrectAnswer}}</td>
+                                <td>{{details.weightage}}</td>
+                                <!-- <td></td> -->
+                               
+                            </tr>
+                            </thead>
+                        </table>
+
+                        <table class="table" *ngIf="questionid==2">
+                            <thead>
+                                <tr class="head">
+                                    <!-- <th>Training Name</th>
+                                    <th>Topic Name</th> -->
+                                    <th>QuestionType</th>
+                                    <th>Question</th>
+                                    
+                                    <th>Correct Answer</th>
+                                    <th>Weightage</th>
+                                    <!-- <th>Actions</th> -->
+                                </tr>
+                            <tr *ngFor="let details of assessmenrArray">
+                                <td>
+                                    <p *ngIf="details.QuestionID==2">Subjective</p>
+                                    <p *ngIf="details.QuestionID==1">Objective</p>
+                                </td>
+                                <td>{{details.Question}}</td>
+                             
+                                
+                                <td [innerHTML]="CorrectAnswer"></td>
+                                <td>{{details.weightage}}</td>
+                                <!-- <td></td> -->
+                               
+                            </tr>
+                            </thead>
+                        </table>
+                        
+                    </div>
+                </div><br>
+                <div class="row" *ngIf="tablecout==1">
+                    <div class="col-lg-5"></div>
+                    <div class="col-lg-1">
+                        <button class="form-control cancel" (click)="save()">Save</button>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

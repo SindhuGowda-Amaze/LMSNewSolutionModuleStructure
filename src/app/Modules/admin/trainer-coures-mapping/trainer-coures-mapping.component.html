@@ -1,0 +1,77 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-10">
+            <p class="headings">Trainer and Training</p>
+        </div>
+        <div class="col-lg-2">
+            <p class="count">Count: {{count}}</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <br>
+        <div class="row FilterClass ">
+            <div class="col-lg-1">
+                <p class="filter">Filter By</p>
+            </div>
+            <div class="col-lg-6">
+                <input type="search" class="form-control search" placeholder="Search for Name.." [(ngModel)]="search"
+                    name="search">
+            </div>
+            <div class="col-lg-1"></div>
+        </div><br>
+    </div> <br>
+    <div class="row">
+        <div class="col-lg-9"></div>
+        <div class="col-lg-3">
+            <button class="addnew" routerLink="/TrainerCourseMappingForm">Add</button>
+        </div>
+    </div> <br>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="table" *ngIf="(Trainerdetails | filter: search).length > 0; else noResults ">
+                    <thead>
+                        <tr>
+                            <th>Trainer Name</th>
+                            <th>Training Name</th>
+                            <th>Email Id</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Batch Name</th>
+                            <th>Allowed Students per Batch</th>
+                            <th>Actions</th>
+                        </tr>
+                        <tr *ngFor="let details of Trainerdetails|filter:search">
+                            <td style="color:#0C275A">{{details.trainerName}}</td>
+                            <td style="color:#0C275A">{{details.courseName}}</td>
+                            <td style="color:#0C275A">{{details.email}}</td>
+                            <td style="color:#0C275A">{{details.startDate|date}}</td>
+                            <td style="color:#0C275A">{{details.endDate|date}}</td>
+                            <td style="color:#0C275A">{{details.batchName}}</td>
+                            <td style="color:#0C275A">{{details.noOfStudentsEnrolled}}</td>
+                            <td  style="width:100px">
+
+                                <!-- <button class="edit" (click)="edit(details.id)">Edit</button>
+                                <br> <br>
+                                <button class="edit" (click)="Ondelete(details.id)">Delete</button> -->
+
+                                <img src="assets/Images/Edit_ICON.png" alt="Edit_ICON" style="width:20px;"
+                                (click)="edit(details.id)"> &nbsp;&nbsp;
+
+                                <img src="assets/Images/Delete_ICON.png" alt="Delete_ICON"
+                                (click)="Ondelete(details.id)" style="width:20px;">
+                            </td>
+                        </tr>
+                    </thead>
+                </table>
+                <ng-template #noResults>
+                    <p class="NoResultShow"> Results not found </p>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+
+</div>

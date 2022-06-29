@@ -1,0 +1,155 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-10">
+            <p class="headings">Training Dashboard</p>
+        </div>
+        <div class="col-lg-2" >
+            <p class="count">Count: {{count}}</p>
+        </div>
+    </div>
+  
+    <div class="card">
+        <br>
+    <div class="row FilterClass ">
+        <div class="col-lg-1">
+            <p class="filter">Filter By </p>
+        </div>
+        <div class="col-lg-3">
+            <select  class="form-control "  id="Duration" (change)="getcategoryid($event)" >
+                <option class="FilterClass"  value="0">Select Category</option>
+                <option class="FilterClass" *ngFor="let cat  of categorylist" value="{{cat.id}}">{{cat.name}}</option>
+            </select>
+            <!-- <select  class="form-control "  id="Duration" (change)="getcategoryid($event)" >
+                <option class="FilterClass"  value="0">Select Category</option>
+                <option class="FilterClass" *ngFor="let cat  of categorylist" value="{{cat.id}}">{{cat.name}}</option>
+            </select> -->
+        </div>
+        <div class="col-lg-5">
+                <input type="search" class="form-control search" placeholder="Search for Training"  [(ngModel)]="search">
+        </div>
+    </div><br>
+</div> <br>
+    <div class="row">
+        <div class="col-lg-9"></div>
+        <div class="col-lg-3">
+            <button class="addnew" routerLink="/Course">Add</button>
+        </div>
+    </div> <br>
+
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                    <table class="table"  *ngIf="(result | filter: search).length > 0; else noResults">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Training Name</th>
+                            <th>Description</th>
+                            <th>Photo</th>
+                            <th>Duration</th>
+                            <th>Fee</th>
+                            <th>Entry Criteria</th>
+                            <th>Exit Criteria</th>
+                            <th>Actions</th>
+                        </tr>
+                        <tr  *ngFor="let details of result | filter: search">
+                            <td>{{details.category}}</td>
+                            <td>{{details.name}}</td>
+                            <!-- <td>{{details.description}}</td> -->
+                            <td>
+                                <span  
+                                [innerHTML]="details.coursedescription"></span>
+                                  <span style="color:#3247D5;    float: right;
+                                 "
+                                  data-toggle="modal"
+                                  data-target="#exampleModal3" (click)="view(details.description)">....View More</span>
+                            </td>
+
+                            <td>
+                                <img (click)="clickonimage(details.photo)"  data-toggle="modal" data-target="#exampleModal"
+                                 src="{{details.photo}}" width="50%" height="auto">
+                            </td>
+                            <td>{{details.duration}}</td>
+                            <td>{{details.fee}}</td>
+                            <td>{{details.entryCriteria}}</td>
+                            <td>{{details.exitCriteria}}</td>
+                            <td style="width:100px">
+                                <!-- <button class="edit" (click)="Update(details.id)">Edit</button> <br> <br>
+                                <button class="edit" (click)="Ondelete(details.id)">Delete</button> -->
+
+                                <img src="assets/Images/Edit_ICON.png" alt="Edit_ICON" style="width:20px; height:auto"
+                                (click)="Update(details.id)"> &nbsp;&nbsp;
+
+                                <img src="assets/Images/Delete_ICON.png" alt="Delete_ICON"
+                                (click)="Ondelete(details.id)" style="width:20px; height:auto" >
+                            </td>
+                        </tr>
+                    </thead>
+                </table>
+                <ng-template #noResults>
+                    <p class="NoResultShow"> Results not found </p>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-lg" role="document">
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Image</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-lg-8" >
+                <br>
+                <img src="{{image}}" style="width:100%;height:auto;">
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+    </div>
+</div>
+</div>
+</div>
+
+
+<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-lg" role="document">
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="font-size: 19px;color:#3247D5">Description</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-lg-12" style="color:#0C275A ;font-size: 13px;">
+                <p [innerHTML]="description"></p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="col-lg-9"></div>
+        <!-- <div class="col-lg-3">
+            <button type="button" class="btn btn-secondary button" data-dismiss="modal">Close</button>
+        </div> -->
+
+    </div>
+</div>
+</div>
+</div>

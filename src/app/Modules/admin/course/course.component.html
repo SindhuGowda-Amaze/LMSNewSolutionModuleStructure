@@ -1,0 +1,153 @@
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-lg-2">
+            <p class="headings">Training Details </p>
+        </div>
+        <div class="col-lg-8"></div>
+    </div>
+    <!-- <hr> -->
+    <div class="card">
+        <div class="row head">
+            <div class="col-lg-2">
+                <p>Category</p>
+            </div>
+            <div class="col-lg-2">
+                <p>Training Name</p>
+            </div>
+
+            <div class="col-lg-2">
+                <p>Photo</p>
+            </div>
+            <div class="col-lg-2">
+                <p>Training type</p>
+            </div>
+            <div class="col-lg-2">
+                <p>Duration</p>
+            </div>
+            <div class="col-lg-2">
+                <p>Fees</p>
+            </div>
+
+        </div><br>
+        <div class="row ">
+            <div class="col-lg-2">
+                <!-- name="categoryName" [(ngModel)]="categoryName"  -->
+
+                <select class="form-control" id="categoryid" name="categoryid" [(ngModel)]="categoryid"
+                    (change)="GetCategoryid($event)">
+                    <option value="0">Select Category</option>
+                    <option *ngFor="let details of categoryList" value="{{details.id}}">
+                        {{details.name}}</option>
+                </select>
+            </div>
+            <div class="col-lg-2">
+                <input class="form-control" placeholder="Name" [(ngModel)]="name">
+            </div>
+
+            <div class="col-lg-2">
+                <ngx-dropzone (change)="onSelect($event)" style="width:100% ;height: auto; text-align: center;">
+                    <ngx-dropzone-label>Please Attach Photo!</ngx-dropzone-label>
+                    <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                    </ngx-dropzone-preview>
+                </ngx-dropzone>
+                <img src="{{Course_Photo}}" data-toggle="modal1" data-target="#exampleModal1"
+                style="width: 100px;height:auto">
+               
+            </div>
+            <div class="col-lg-2">
+                <!-- name="categoryName" [(ngModel)]="categoryName"  -->
+                <select class="form-control" (change)="GetTrainingType($event)" id="trainingType" name="trainingType"
+                    [(ngModel)]="trainingType">
+                    <option value="0">Select Type</option>
+                    <option value="1">Internal online</option>
+                    <option value="2">External online</option>
+                    <option value="3">Class Room Taining</option>
+
+                </select>
+            </div>
+            <div class="col-lg-2">
+                <input class="form-control" placeholder="Duration" [(ngModel)]="duration">
+            </div>
+            <div class="col-lg-2">
+                <input class="form-control" placeholder="0" [(ngModel)]="fee">
+            </div>
+
+
+        </div> <br>
+
+        <div class="row ">
+            <div class="col-lg-2" *ngIf="trainingType==2">
+                <p>Training Link</p>
+            </div>
+            <div class="col-lg-2" *ngIf="trainingType==2">
+                <p>UserName</p>
+            </div>
+            <div class="col-lg-2" *ngIf="trainingType==2">
+                <p>Password</p>
+            </div>
+            <div class="col-lg-3" *ngIf="trainingType==3">
+                <p>Venue</p>
+            </div>
+        </div>
+
+        <div class="row ">
+            <div class="col-lg-2" *ngIf="trainingType==2">
+                <input class="form-control" placeholder="link" [(ngModel)]="trainingLink" name="trainingLink">
+            </div>
+            <div class="col-lg-2" *ngIf="trainingType==2">
+                <input class="form-control" placeholder="Username" [(ngModel)]="userName" name="userName">
+            </div>
+            <div class="col-lg-2" *ngIf="trainingType==2">
+                <input class="form-control" placeholder="Password" [(ngModel)]="password" name="password">
+            </div>
+            <div class="col-lg-3" *ngIf="trainingType==3">
+                <textarea class="form-control" placeholder="Venue" rows="5" [(ngModel)]="venue" name="venue"></textarea>
+                <!-- <input class="form-control" placeholder="Venue" [(ngModel)]="venue" name="venue"> -->
+            </div>
+
+        </div><br>
+
+
+
+        <div class="row">
+            <div class="col-lg-3">
+                <p>Course Description</p>
+            </div>
+
+            <div class="col-lg-4">
+                <p>Entry Criteria</p>
+            </div>
+            <div class="col-lg-4">
+                <p>Exit Criteria</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <textarea class="form-control" placeholder="Description" rows="5" [(ngModel)]="description"></textarea>
+            </div>
+
+            <div class="col-lg-4">
+                <textarea class="form-control" placeholder="Entry Criteria" rows="5"
+                    [(ngModel)]="entryCriteria"></textarea>
+
+            </div>
+            <div class="col-lg-4">
+                <textarea class="form-control" placeholder="Exit Criteria" rows="5"
+                    [(ngModel)]="exitCriteria"></textarea>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col-lg-9"></div>
+            <div class="col-lg-1">
+                <!-- <button class="form-control button1">Save</button> -->
+                <button class="form-control cancel" *ngIf="id==undefined" (click)="Save()">Save</button>
+                <button class="form-control cancel" *ngIf="id!=undefined" (click)="Update()">Update</button>
+            </div>
+            <div class="col-lg-1">
+                <button class="form-control  cancel " (click)="cancel()">Cancel</button>
+            </div>
+        </div>
+
+    </div>

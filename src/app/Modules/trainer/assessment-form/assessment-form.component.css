@@ -1,0 +1,54 @@
+.card{
+
+    padding:15px;
+    box-shadow: 1px 1px 15px 3px rgba(0, 0, 0, 0.12);
+}
+.button
+{
+    border: none;
+    width:80%;
+    height:auto;
+    border-radius: 5px;
+    background-color: #2f87cc;
+    color:white;
+    font-size: 15px;
+}
+.course{
+    font-size: 15px;
+}
+
+.button1{
+
+    margin-top: 6px;
+ 
+  }
+.button2{
+    padding:5px;
+    border-radius: 5px;
+    color:white;
+    background-color: #2F87CC;
+    border:none;
+    width:80%;
+    }
+.head{
+    font-size: 14px;
+    font-family: 'Poppins'
+}
+.header{
+    font-size: 12px;
+}
+
+.Heading{
+    padding-left: 15px;
+    font-size: 20px;
+    color: #3247D5; font-family: 'Poppins';
+    }
+    
+  .header{
+    background-color: #dee2e6;
+    color:#404040;
+    font-family: 'Poppins';
+    font-size: 12px;
+   padding:5px;
+
+  }

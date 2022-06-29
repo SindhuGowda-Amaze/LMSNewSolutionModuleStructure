@@ -1,0 +1,143 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-10">
+                    <p class="headings">Assessment Dashboard</p>
+                </div>
+                <div class="col-lg-2">
+                    <p class="count">
+                        Count: {{count}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card">
+    <br>
+    <div class="row FilterClass ">
+        <div class="col-lg-1">
+            <p class="filter">Filter By</p>
+        </div>
+        <div class="col-lg-3">
+            <select class="form-control" name="course" id="course" (change)="getcourseid($event)" [(ngModel)]="course">
+                <option value="0">Select Training</option>
+                <option style="color:#0C275A" *ngFor="let details of courselist" value="{{details.id}}">
+                    {{details.name}}</option>
+            </select>
+        </div>
+        <div class="col-lg-3">
+            <select class="form-control" name="question1" id="question1" (change)="getquestion($event)"
+                [(ngModel)]="question1">
+                <option value="0">Select Question Type</option>
+                <option style="color:#0C275A" *ngFor="let details of questiontype" value="{{details.id}}">
+                    {{details.type}}</option>
+
+            </select>
+        </div>
+        <div class="col-lg-4">
+            <input type="search" class="form-control search" placeholder="Search for Name.." [(ngModel)]="search">
+        </div>
+    </div> <br>
+</div>
+<br>
+<div class="row">
+    <div class="col-lg-10"></div>
+    <div class="col-lg-2">
+        <button class="addnew" routerLink="/AssessmentForm">Add</button>
+    </div>
+</div> <br>
+
+<div class="container-fluid">
+    <div class="row" style="height:400px; overflow-x: scroll;">
+        <div class="col-lg-12">
+            <table class="table" >
+                <thead>
+                    <tr class="head">
+                        <th>Training Name</th>
+                        <th>Topic Name</th>
+                        <th>QuestionType</th>
+                        <th>Question</th>
+                        <th>Option1</th>
+                        <th>Option2</th>
+                        <th>Option3</th>
+                        <th>Option4</th>
+                        <th style="width: 10px;">Correct Answer</th>
+                        <th>Weightage</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr class="header"
+                        *ngFor="let item of quetionlist | filter: search|paginate: { itemsPerPage: count1, currentPage: p}">
+                        <td>{{item.coursename}}</td>
+                        <td>{{item.chaptername}}</td>
+                        <td>{{item.type}}</td>
+                        <td>{{item.question}}</td>
+                        <td>{{item.option1}}</td>
+                        <td>{{item.option2}}</td>
+                        <td>{{item.option3}}</td>
+                        <td>{{item.option4}}</td>
+                        <!-- <td style="width: 10px;">{{item.correctAnswer}}</td> -->
+                        <td [innerHTML]="item.correctAnswer"></td>
+                        <td>{{item.weightage}}</td>
+                        <td>
+                            <button class="addbutton" [routerLink]="['/AssessmentForm',item.id]">Edit</button> <br>
+                            <br>
+                            <button class="addbutton" (click)="Ondelete(item.id)">Delete</button>
+                        </td>
+                        <!-- <td>
+                            <button  [routerLink]="['/Checkanswer',item.id]"  *ngIf="item.checked!=1"
+                            class="button1 btn-primary">Check
+                        </button>
+                        <button *ngIf="item.checked==1" [routerLink]="['/Checkanswer',item.id]" class="button1 btn-primary" id="show==1">View
+                        </button>
+                        </td> -->
+                    </tr>
+                </thead>
+            </table>
+            <ng-template >
+                <p class="NoResultShow" *ngIf="quetionlist.length==0"> Results not found </p>
+            </ng-template>
+        </div>
+        <div class="text-right">
+            <br>
+            <pagination-controls (pageChange)="p = $event" class="poppinns"></pagination-controls>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<div id="enroll2" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="text-align: center;">
+            <div class="modal-header" style="text-align: center;">
+                <h4 class="modal-title">Training And Trainerlist</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row" style="text-align: center; width: 100%;">
+                    <div class="col-lg-12">
+                        <table style="width: 100%;">
+                            <tr>
+
+                            </tr> <br>
+                            <tr>
+
+                            </tr>
+                        </table>
+                    </div>
+
+                </div> <br>
+            </div>
+            <div class="modal-footer">
+                <hr>
+                <!-- <div class="col-lg-2">
+                    <button data-dismiss="modal" class="CloseBTN">Close</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>

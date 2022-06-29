@@ -1,0 +1,263 @@
+<app-loader *ngIf="loader==true"></app-loader>
+<div class="container-fluid" style=" font-family: 'Poppins';">
+    <div class="row">
+        <div class="col-lg-10">
+            <p class="headings">Catalog</p>
+        </div>
+        <div class="col-lg-2">
+            <p class="count">Count: {{count}}</p>
+        </div>
+    </div>
+
+    <div class="uppercard">
+        <div class="row">
+
+            <div class="col-lg-1">
+                <p class="filter">Filter By</p>
+            </div>
+            <div class="col-lg-4">
+                <!-- <input class="form-control" type="search" placeholder="Search for Trainers" [(ngModel)]="search"> -->
+                <input class="form-control" type="search" placeholder="What do you want to learn?" [(ngModel)]="search">
+            </div>
+            <div class="col-lg-7">
+                <!-- <h3 class="Heading" style="padding-left:30px;">Viewing 
+                    <span style="color: black; font-weight: 600;">{{count}} </span>Results</h3> -->
+                <!-- <p class="Count">Count: {{count}} </p> -->
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="row">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h5 class="Category">Select Training Category</h5>
+                    </div>
+                </div>
+                <div class="vertical-menu VScroll">
+                    <a class="FilterBox " style="   background-color: #02cfff !important; color: white;"
+                        *ngFor="let details of categorylist"> 
+                        
+                        <input type="checkbox" value="{{details.id}}"
+                            [(ngModel)]="details.checked" name="details.checked"
+                            (change)="filtercourse(details.id)"> 
+                            
+                            {{details.name}}</a> <br>
+
+                    <button class="ShowMore" (click)="uncheck()">Clear
+                        Filter </button>
+                </div>
+            </div>
+        </div><br>
+        <div class="col-lg-9">
+            <div class="row" *ngIf="(courselist | filter: search).length > 0; else noResults">
+                <div class="row" *ngIf="show1==1">
+                    <div class="col-lg-12" style="margin-left: 52px;">
+                        <div class="row">
+                            <div class="col-lg-4" *ngFor="let details of courselist| filter : search">
+                                <div class="card1" style="background-color: white; height: 325px;width: 250px;">
+                                    <img class="card-img-top" src="{{details.photo}}" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title CardHead"><b>{{details.name}}</b><br>
+                                        </h5>
+                                        <p class="card-text CardBody">{{details.description}}</p>
+                                        <div class="card-footer card-footer__events text-muted" style="text-align: center;">
+                                            <button class="btn" data-toggle="modal" data-target="#enroll"
+                                                (click)="getcoureid(details.id)">ENROLL</button> &nbsp;&nbsp;&nbsp;
+
+                                            <button [routerLink]="['/ViewCourse',details.id]" class="btn">View
+                                                Training</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><br>
+                        </div><br><br><br>
+                    </div><br><br><br>
+                </div>
+
+                <div class="row" *ngIf="show2==1">
+                    <div class="col-lg-12" style="margin-left: 52px;">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="card1" style="background-color: white; height: 325px;width: 250px;">
+                                    <img class="card-img-top" src="/assets/Images/course1.png" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><b>Complete Digital Marketing Training </b>
+                                        </h5>
+                                        <p class="card-text">Complete Digital Marketing Training, Which includes Social
+                                            Media
+                                            SEO and Pages...</p><br>
+                                        <button class="btn" data-toggle="modal"
+                                            data-target="#enroll">ENROLL</button>&nbsp;&nbsp;
+                                        <button routerLink="/ViewCourse" class="btn">VIEW Training</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="card1" style="background-color: white; height: 325px;width: 250px;">
+                                    <img class="card-img-top" src="/assets/Images/Course9.png" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><b>Online Business Development Training</b></h5>
+                                        <p class="card-text">Online Complete Business Development Training, Which includes
+                                            BDA
+                                            & its...</p><br>
+                                        <button class="btn" data-toggle="modal"
+                                            data-target="#enroll">ENROLL</button>&nbsp;&nbsp;
+                                        <button routerLink="/ViewCourse" class="btn">VIEW Training</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="card1" style="background-color: white; height: 325px;width: 250px;">
+                                    <img class="card-img-top" src="/assets/Images/Course7.png" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><b>Digital Marketing Social Media SEO Training</b></h5>
+                                        <p class="card-text">Cpmplete Digital Marketing Social Media SEO Training, Which
+                                            includes web pages Optimization & its...</p>
+                                        <button class="btn" data-toggle="modal"
+                                            data-target="#enroll">ENROLL</button>&nbsp;&nbsp;
+                                        <button routerLink="/ViewCourse" class="btn">VIEW Training</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="card1" style="background-color: white; height: 325px;width: 250px;">
+                                    <img class="card-img-top" src="/assets/Images/Course8.png" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><b>Product Management and Marketing Training</b></h5>
+                                        <p class="card-text">Cpmplete Product Management and Marketing Training, Which
+                                            includes marketing &...</p>
+                                        <button class="btn" data-toggle="modal"
+                                            data-target="#enroll">ENROLL</button>&nbsp;&nbsp;
+                                        <button routerLink="/ViewCourse" class="btn">VIEW Training</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><br><br><br>
+                </div>
+
+                <div class="row" *ngIf="show3==1">
+                    <div class="col-lg-12" style="margin-left: 52px;">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="card1" style="background-color: white; height: 325px;width: 250px;">
+                                    <img class="card-img-top" src="assets/Images/AutoCad.jpg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><b>Auto CAD Training </b>
+                                        </h5>
+                                        <p class="card-text">Complete Auto CAD Training, Which includes All types of 2D
+                                            Drawing sketch &...</p><br>
+                                        <button class="btn" data-toggle="modal"
+                                            data-target="#enroll">ENROLL</button>&nbsp;&nbsp;
+                                        <button routerLink="/ViewCourse" class="btn">VIEW Training</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="card1" style="background-color: white; height: 325px;width: 250px;">
+                                    <img class="card-img-top" src="assets/Images/SolidEdge.jpg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><b>Solid Edge 3D Training</b></h5>
+                                        <p class="card-text">Complete Solid Edge 3D Training, Which includes All types of
+                                            3D &
+                                            2D Drawing sketch for Machine designing &...</p>
+                                        <button class="btn" data-toggle="modal"
+                                            data-target="#enroll">ENROLL</button>&nbsp;&nbsp;
+                                        <button routerLink="/ViewCourse" class="btn">VIEW Training</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="card1" style="background-color: white; height: 325px;width: 250px;">
+                                    <img class="card-img-top" src="assets/Images/3D_CAMD.jpg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><b>3D CAMD Training</b></h5>
+                                        <p class="card-text">Complete 3D CAMD Training, Which includes All types of 3D &
+                                            2D
+                                            Drawing sketchs for Robotics & Aerotrix designing...</p>
+                                        <button class="btn" data-toggle="modal"
+                                            data-target="#enroll">ENROLL</button>&nbsp;&nbsp;
+                                        <button routerLink="/ViewCourse" class="btn">VIEW Training</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><br><br><br>
+                </div>
+            </div>
+            <ng-template #noResults>
+                <p class="NoResultShow"> Results not found </p>
+            </ng-template>
+
+
+
+
+
+
+
+            <div id="enroll" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Enroll for Training</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body" *ngFor="let item of stafflist">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <label class="Text" style="font-weight: bold;">Name:</label>
+                                </div>
+                                <div class="col-lg-5">
+                                    <input class="form-control" name="name" id="name" [(ngModel)]="name"
+                                        placeholder="{{item.name}}" disabled>
+                                </div>
+                            </div> <br>
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <label class="Text" style="font-weight: bold;">Phone No:</label>
+                                </div>
+                                <div class="col-lg-5">
+                                    <input class="form-control" name="mobile" id="mobile" [(ngModel)]="mobile"
+                                        placeholder="{{item.mobile}}" disabled>
+                                </div>
+                            </div> <br>
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <label class="Text" style="font-weight: bold;">Email:</label>
+                                </div>
+                                <div class="col-lg-5">
+                                    <input class="form-control" name="emailID" id="emailID" [(ngModel)]="emailID"
+                                        placeholder="{{item.emailID}}" disabled>
+                                </div>
+                            </div> <br>
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <label class="Text" style="font-weight: bold;">Manager:</label>
+                                </div>
+                                <div class="col-lg-5">
+                                    <input class="form-control" name="emailID" id="emailID" [(ngModel)]="emailID"
+                                        placeholder="{{manageremail}}" disabled>
+                                </div>
+                            </div> <br>
+                            <div class="row">
+                                <div class="col-lg-6"></div>
+                                <div class="col-lg-2">
+                                    <button class="form-control Save"
+                                        (click)="enroll(item.name,item.mobile,item.emailID)"
+                                        data-dismiss="modal">Enroll</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <!-- <hr>
+                            <div class="col-lg-2">
+                                <button data-dismiss="modal" class="CloseBTN">Close</button>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>

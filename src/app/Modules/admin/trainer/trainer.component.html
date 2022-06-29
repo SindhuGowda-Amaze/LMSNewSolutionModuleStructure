@@ -1,0 +1,80 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-10">
+            <p class="headings">Trainer Dashboard</p>
+        </div>
+        <div class="col-lg-2">
+            <p class="count">Count: {{result.length}}</p>
+        </div>
+    </div>
+    <!-- <hr class="HrLine"> -->
+   <div class="card">
+       <br>
+    <div class="row FilterClass ">
+        <div class="col-lg-1">
+            <p class="filter">Filter By</p>
+        </div>
+        <div class="col-lg-6">
+                <input type="search" class="form-control search" [(ngModel)]="search" placeholder="Search for Name..">
+        </div>
+        <div class="col-lg-1"></div>
+    </div><br>
+</div> <br>
+    <div class="row">
+        <div class="col-lg-9"></div>
+        <div class="col-lg-3">
+            <button class="addnew" routerLink="/TrainerForm">Add</button>
+        </div>
+    </div> <br>
+  <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- <table class="table" *ngIf="(vendordetails | filter: search).length > 0; else noResults"> -->
+                    <table class="table"  *ngIf="(result | filter:search).length > 0; else noResults">
+                    <thead>
+                        <tr >
+                            <th>Name</th>
+                            <th>Phone Number</th>
+                            <th>Email Id</th>
+                            <th>Address</th>
+                            <th>Year of Experience</th>
+                            <th>Resume</th>
+                            <th>Skills and Technology</th>
+                            <th>Trainer Fee</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>    
+                        <tr  *ngFor="let details of result | filter:search">
+                            <td style="color:#0C275A">{{details.name}}</td>
+                            <td style="color:#0C275A">{{details.phoneNo}}</td>
+                            <td style="color:#0C275A">{{details.email}}</td>
+                            <td style="color:#0C275A">{{details.address}}</td>
+                            <td style="color:#0C275A">{{details.yearOfExperience}}</td>
+                            <!-- <td><img class="pdfimg" src="../../../assets/Images/pdf.jpg"></td> -->
+                            <td>
+                                <img src="assets/pdf.jpg" *ngIf="details.nopdf=='0'" style="width: 30px;" (click)="OpenPdf(details.resumeUrl)">
+                            </td>
+                            <td>{{details.skillAndTecchnology}}</td>
+                            <td>{{details.trainerFee}}</td>
+                            <td style="width:100px">
+                                <!-- <button class="edit" routerLink="/TrainerForm" [routerLink]="['/TrainerForm', details.id]">Edit</button> <br><br>
+                                <button class="edit" (click)="Ondelete(details.id)" >Delete</button> -->
+
+                                <img src="assets/Images/Edit_ICON.png" alt="Edit_ICON" style="width:20px;"
+                                routerLink="/TrainerForm" [routerLink]="['/TrainerForm', details.id]"> &nbsp;&nbsp;
+
+                                <img src="assets/Images/Delete_ICON.png" alt="Delete_ICON"
+                                (click)="Ondelete(details.id)" style="width:20px;">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <ng-template #noResults>
+                    <p class="NoResultShow"> Results not found </p>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -3,11 +3,17 @@ import { CommonModule } from '@angular/common';
 
 import { EmployeeRoutingModule } from './employee-routing.module';
 import { EmployeeComponent } from './employee.component';
+import { AttendanceNewComponent } from './attendance-new/attendance-new.component';
+import { AttendanceDetailsComponent } from './attendance-details/attendance-details.component';
+import { CatalogComponent } from './catalog/catalog.component';
 
 
 @NgModule({
   declarations: [
-    EmployeeComponent
+    EmployeeComponent,
+    AttendanceNewComponent,
+    AttendanceDetailsComponent,
+    CatalogComponent
   ],
   imports: [
     CommonModule,

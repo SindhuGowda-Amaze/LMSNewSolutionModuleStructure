@@ -3,11 +3,15 @@ import { CommonModule } from '@angular/common';
 
 import { ManagerRoutingModule } from './manager-routing.module';
 import { ManagerComponent } from './manager.component';
+import { EmployeeReportComponent } from './employee-report/employee-report.component';
+import { EmployeeAssessmentReportComponent } from './employee-assessment-report/employee-assessment-report.component';
 
 
 @NgModule({
   declarations: [
-    ManagerComponent
+    ManagerComponent,
+    EmployeeReportComponent,
+    EmployeeAssessmentReportComponent
   ],
   imports: [
     CommonModule,

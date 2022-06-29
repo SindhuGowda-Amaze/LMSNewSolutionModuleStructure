@@ -1,0 +1,110 @@
+<div class="container-fluid">
+    
+       
+    <!-- <div>
+        <p class="headings">Staff Dashboard</p>
+    </div> -->
+
+    <div class="row">
+        <div class="col-lg-10">
+            <p class="headings">Staff Dashboard</p>
+        </div>
+        <div class="col-lg-2">
+            <p class="count">Count: {{stafflist.length}}</p>
+        </div>
+    </div>
+
+
+    <div class="card">
+        <br>
+        <div class="row FilterClass">
+            <div class="col-md-1">
+                <p class="filter"> Filter By</p>
+            </div>
+            <div class="col-md-2">
+                <input class="form-control" type="date" placeholder="Duration" id="date" name="date"
+                    [(ngModel)]="date" (change)="getdate($event)" [(ngModel)]="search">
+            </div>
+            <div class="col-md-6">
+                <input class="form-control search" type="search" [(ngModel)]="search"
+                    placeholder="Search for Staff , Date of joining or Role">
+            </div>
+        </div>
+        <br>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-9">
+            <p class="show">SHOWING <span style="color: black;">{{stafflist.length}}</span>&nbsp;RESULTS
+            </p>
+        </div>
+        <div class="col-md-3">
+            <button class=" addnew" routerLink="/EmployeeForm">Add Staff</button>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-12">
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table" *ngIf="(stafflist | filter: search).length > 0; else noResults">
+                <thead>
+                    <tr>
+                        <th>Employee Id</th>
+                        <th>Employee Name</th>
+                        <th>Role</th>
+                        <th>Phone Number</th>
+                        <th>Email</th>
+                        <th>Date Of Joining</th>
+                        <th>Manager</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of stafflist|filter:search">
+                        <td>000{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.role}}</td>
+                        <td>{{item.mobile}}</td>
+                        <td>{{item.emailID}}</td>
+                        <td>{{item.joiningDate|date}}</td>
+                        <td>
+                            <p class="tabletext" *ngIf="item.manager==null">
+                                NA
+                            </p>
+                            <p class="tabletext" *ngIf="item.manager!=null">
+                                {{item.manager}}
+                            </p>
+                        </td>
+                        <td>
+                            <!-- <button class="edit" [routerLink]="['/EmployeeForm',item.id]">Edit</button>
+                            &nbsp;&nbsp;&nbsp;
+                            <button class=" edit">Delete</button>&nbsp; -->
+
+                            <img src="assets/Images/Edit_ICON.png" alt="Edit_ICON" style="width:20px;"
+                                [routerLink]="['/EmployeeForm',item.id]">
+                            &nbsp;&nbsp;
+
+                            <img src="assets/Images/Delete_ICON.png" alt="Delete_ICON"
+                                (click)="Ondelete(item.id)" style="width:20px">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <ng-template #noResults>
+                <p class="NoResultShow"> No results found </p>
+            </ng-template>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+<br />
+<br />
+<br />

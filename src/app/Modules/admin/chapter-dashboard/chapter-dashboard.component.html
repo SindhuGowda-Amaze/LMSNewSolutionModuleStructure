@@ -1,0 +1,193 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-10">
+            <p class="headings">Topic Dashboard</p>
+        </div>
+        <div class="col-lg-2">
+            <p class="count">Count: {{coursedetails.length}}</p>
+        </div>
+    </div>
+    <!-- <hr class="HrLine"> -->
+    <div class="card">
+        <br>
+        <div class="row FilterClass ">
+            <div class="col-lg-1">
+                <p class="filter">Filter By</p>
+            </div>
+            <div class="col-lg-3">
+                <select class="form-control" name="cars" id="Duration" (change)="getcourseid($event)">
+                    <option value="0">Select Training</option>
+                    <option style="color:#0C275A" *ngFor="let details of courselist" value="{{details.id}}">
+                        {{details.name}}</option>
+                    <!-- <option style="color:#0C275A" *ngFor="let details of coursedetails" value="{{details.id}}">
+                        {{details.courseName}}</option> -->
+                </select>
+            </div>
+            <div class="col-lg-5">
+                <input type="search" class="form-control search" placeholder="Search for Name.." [(ngModel)]="search">
+            </div>
+        </div><br>
+    </div> <br>
+    <div class="row">
+        <div class="col-lg-9"></div>
+        <div class="col-lg-3">
+            <button class="addnew" routerLink="/Chapter">Add</button>
+        </div>
+    </div> <br>
+</div>
+    <div class="container-fluid">
+        <div class="row scroll">
+            <div class="col-lg-12">
+                <table class="table" *ngIf="(coursedetails | filter: search).length > 0; else noResults">
+                    <thead>
+                        <tr>
+                            <th>Training Name</th>
+                            <th>Topic Name</th>
+                            <th>Description</th>
+                            <th style="width:15%">Topic Photo</th>
+                            <th>Attachment</th>
+                            <th>Topic Text</th>
+                            <th>Actions</th>
+                        </tr>
+                        <tr *ngFor="let details of coursedetails | filter: search">
+                            <td>{{details.courseName}}</td>
+                            <td>{{details.name}}</td>
+                            <td style="height:20px">{{details.shortdescription}}
+                                <span style="color:#3247D5" (click)="view(details.description)" data-toggle="modal"
+                                    data-target="#exampleModal3">...View more</span>
+                            </td>
+                            <td><img src="{{details.chapterPhoto}}" data-toggle="modal" data-target="#exampleModal2"
+                                    (click)="Showimage(details.chapterPhoto)" style="width:100px">
+                            </td>
+                            <td><img class="pdfimg" src="assets/Images/image.png" style="width: 20px;"
+                                    data-toggle="modal" data-target="#exampleModal"
+                                    (click)="ShowAttachments(details.id)">
+
+                            <td>
+                                <span  
+                                [innerHTML]="details.chapterdescription"></span>
+                                  <span style="color:#3247D5;    float: right;
+                                  margin-block: -18px;"
+                                  data-toggle="modal"
+                                  data-target="#exampleModal3" (click)="view(details.chapterText)">....View More</span>
+                            </td>
+                            <td style="width:100px">
+                                <!-- <button class="edit" (click)="edit(details.id)">Edit</button> <br> <br>
+                                <button class="edit" (click)="Ondelete(details.id)">Delete</button> -->
+
+                                <img src="assets/Images/Edit_ICON.png" alt="Edit_ICON" style="width:20px;"
+                                [routerLink]="['/Chapter',details.id]"> &nbsp;
+
+                                <img src="assets/Images/Delete_ICON.png" alt="Delete_ICON"
+                                    (click)="Ondelete(details.id)" style="width:20px;">
+                            </td>
+                        </tr>
+                    </thead>
+                </table>
+                <ng-template #noResults>
+                    <p class="NoResultShow"> Results not found </p>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Attachments</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-3" *ngFor="let attchments of Attachmentlist">
+                        <br>
+                        <img src="{{attchments.photo}}" *ngIf="attchments.attachmentType=='Image'"
+                            (click)="openAttchments(attchments.photo)" style="width: 171px; height: 117px;">
+                           
+                        <img src="assets/Images/pdf.png" *ngIf="attchments.attachmentType=='Pdf'"
+                            (click)="openAttchments(attchments.photo)" style="width: 171px; height: 117px;">
+                        <img src="assets/Images/word.png" *ngIf="attchments.attachmentType=='Document'"
+                            (click)="openAttchments(attchments.photo)" style="width: 171px; height: 117px;">
+                        <img src="assets/Images/files.png" *ngIf="attchments.attachmentType=='Ppt'"
+                            (click)="openAttchments(attchments.photo)" style="width: 171px; height: 117px;">
+                        <video controls style="height: 100px;width: 50%;" *ngIf="attchments.attachmentType=='video'"
+                            (click)="openAttchments(attchments.photo)">
+                            <source src="{{attchments.photo}}" (click)="openAttchments(attchments.photo)"
+                                type="video/mp4">
+                            <source src="{{attchments.photo}}" (click)="openAttchments(attchments.photo)"
+                                type="video/ogg">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="col-lg-9"></div>
+                <div class="col-lg-3">
+                    <button type="button" class="btn btn-secondary button" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Image</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <br>
+                        <img src="{{photo}}" style="width:100%;height:auto;">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="b" data-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" style="font-size: 19px;color:#3247D5">Description</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12" style="color:#0C275A ;font-size: 13px;">
+                        <p [innerHTML]="description"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="col-lg-9"></div>
+                <!-- <div class="col-lg-3">
+                    <button type="button" class="btn btn-secondary button" data-dismiss="modal">Close</button>
+                </div> -->
+
+            </div>
+        </div>
+    </div>
+</div>

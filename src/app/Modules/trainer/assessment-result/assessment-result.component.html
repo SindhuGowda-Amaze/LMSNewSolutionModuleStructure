@@ -1,0 +1,188 @@
+<div class="container-fluid" style="padding-left: 20px; background-color: white;">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>Java Programming</h1>
+            <hr>
+        </div>
+    </div>
+    <div class="row ">
+        <!-- <div class="col-lg-12">
+            <h6>Assessment Result</h6>
+        </div> -->
+        <p style="font-size: 22px; margin-left: 20px;">Assessment Result</p><br>
+    </div><br>
+    <div class="row"></div>
+    <div class="row">
+        <div class="col-lg-5"></div>
+        <div class="col-lg-4">
+            <p style="margin-left:15px; font-size: 18px;"><u>Your Objective type Test Result </u></p>
+        </div>
+    </div> <br>
+    <div class="row">
+        <div class="col-lg-12">
+            <table>
+                <tr>
+
+                    <th>Employee Name</th>
+                    <th>Training Name</th>
+                    <th>Topic Name</th>
+                    <th>Assessment Date</th>
+                    <th>No. Of Questions</th>
+                    <th>Correct Answers</th>
+                    <th>Wrong Answers</th>
+                    <th>Obtained Marks</th>
+                    <th>Final Result</th>
+                   
+                </tr>
+                <tr>
+                    <td>{{staffanme}} </td>
+                    <td>{{CourseName}}</td>
+                    <td>{{Chaptername}}</td>
+                    <td>{{date|date}} </td>
+                    <td>{{Totalmarks}}</td>
+                    <td>{{correctAnswers}}</td>
+                    <td>{{wronganswers}}</td>
+                    <td>{{ObtainedMarks}}</td>
+                    <td>{{TestResult}}</td>
+                </tr>
+            </table>
+        </div>
+        <!-- <div class="col-lg-4"></div>
+        <div class="col-lg-2">
+            <p style="margin-left:15px;">Employee Name {{staffanme}} </p>
+        </div>
+        <div class="col-lg-1">
+            <input class="form-control">
+        </div> -->
+    </div><br>
+    <!-- <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-2">
+            <p style="margin-left:15px;">Course Name {{CourseName}}</p>
+        </div>
+        <div class="col-lg-2">
+            <input class="form-control" placeholder="Java Programming">
+        </div>
+    </div><br>
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-2">
+            <p style="margin-left:15px;">Topic Name {{Chaptername}}</p>
+        </div>
+        <div class="col-lg-2">
+            <input class="form-control" placeholder="Oops Concept">
+        </div>
+    </div> <br>
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-2">
+            <p style="margin-left:15px;">Assessment Date {{date|date}} </p>
+        </div>
+        <div class="col-lg-2">
+            <input class="form-control" placeholder="18-01-2022">
+        </div>
+    </div><br>
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-2">
+            <p style="margin-left:15px;">No. Of Questions {{Totalmarks}} </p>
+        </div>
+        <div class="col-lg-2">
+            <input class="form-control" placeholder="15">
+        </div>
+    </div><br>
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-2">
+            <p style="margin-left:15px;">Correct Answers {{Totalmarks}}</p>
+        </div>
+        <div class="col-lg-2">
+            <input class="form-control" placeholder="10">
+        </div>
+    </div> <br>
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-2">
+            <p style="margin-left:15px;">Wrong Answers {{Totalmarks}}</p>
+        </div>
+        <div class="col-lg-2">
+            <input class="form-control" placeholder="5">
+        </div>
+    </div><br>
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-2">
+            <p style="margin-left:15px;">Final Result {{TestResult}}</p>
+        </div>
+        <div class="col-lg-2">
+            <input class="form-control" placeholder="Pass">
+        </div>
+    </div> -->
+    <!-- <div class="row">
+        <div class="col-lg-3">
+            <div class="card card1">
+                <img class="image" src="../../../assets/Images/certificate.jpg">
+                <h4 style="text-align: center;">CONGRATES</h4>
+                <p style="text-align: center;">You have successfully submitted your inputs.</p>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <H4>Percentage</H4>
+            <hr>
+            <H4>Obtained Marks</H4>
+            <hr>
+            <H4>Total Marks</H4>
+            <hr>
+        </div>
+        <div class="col-lg-2">
+            <H4>80%</H4>
+            <hr>
+            <H4>80</H4>
+            <hr>
+            <H4>100</H4>
+            <hr>
+        </div>
+    </div> -->
+    <hr>
+    <!-- <p>Your Subjective type test result: <span style="color: red;">Pending!!!!!</span></p><br> -->
+    <button data-toggle="collapse" (click)="getdetailslist()" data-target="#demo" class="button">view Answered
+        Sheet</button><br>
+    <br>
+    <div class="row rowwidth" id="demo" class="collapse">
+        <div class="row">
+            <div class="col-lg-12">
+                <table>
+                    <tr>
+                        <th>Question</th>
+                        <th>Correct Answer</th>
+                        <th>User Answer</th>
+                        <th>Weightage</th>
+
+                    </tr>
+                    <tr *ngFor="let list of detailslist">
+                        <td>{{list.question}}</td>
+                        <td>{{list.correctAnswer}}</td>
+                        <td>{{list.userAnswer}}</td>
+                        <td>{{list.weightage}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <!-- <div class="col-lg-8 colwidth" *ngFor="let item of detailslist">
+            <p>Q1. {{item.question}}</p> <br>
+            <p>Correct Answer {{item.correctAnswer}}</p> <br>
+            <p>User Answer {{item.userAnswer}}</p>
+        </div> -->
+    </div>
+</div>
+<hr>
+<div class="row" style="padding: 20px; ">
+    <div class="col-lg-2">
+        <button class="form-control button" routerLink="/StartMyCourse">Training Content</button>
+    </div>
+    <div class="col-lg-9"></div>
+    <div class="col-lg-1">
+        <button class="form-control button" routerLink="/MyCourseDashboard">Finish</button>
+    </div>
+</div>
+<br>
