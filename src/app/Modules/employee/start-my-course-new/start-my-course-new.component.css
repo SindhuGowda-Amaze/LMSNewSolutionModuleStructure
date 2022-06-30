@@ -1,0 +1,86 @@
+.card{
+  background: #FFFFFF;
+  box-shadow: 1px 1px 15px 3px rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  }
+  
+  .chapter{
+      font-size: 19px;
+      text-align: center;
+      background-color: #3247D5;
+      color:white;
+      border-radius: 5px;
+      margin-top: 10px;
+      width:100%;
+      height:50px;
+  }
+  .image{
+      height: 100px;
+      width:98%;
+      margin-left:15px;
+      border-radius: 10px;
+  }
+  .name{
+      text-align: center;
+      font-size: 16px;
+      font-style: bold;
+      color:#0C275A;
+      width:100%;
+      border-bottom: 2px solid silver;
+  }
+  .Assesment{
+      text-align: center;
+      background-color: #3247D5;
+      color:white;
+      border-radius: 5px;
+      height:40px;
+      margin-top: 10px;
+      font-size: 19px;
+  }
+  .chapterimage{
+      height: 100px;
+      width:98%;
+      margin-left:15px;
+      border-radius: 10px;
+  }
+  .label{
+      font-size: 19px;
+      margin-left: 15px;
+  
+  }
+  .Certificate{
+      background-color: #3247D5;
+      color:white;
+      text-align: center;
+      width:100%;
+      height:40px;
+      border-radius: 5px;
+      border:none;
+  }
+  .border{
+      border-bottom: 2px solid silver;
+      color:#0C275A;
+      font-size: 13px;
+      font-style: bold;
+  }
+  .color{
+      background-color: #3247D5;
+      color:white;
+      font-size: 19px;
+      border-radius: 5px;
+  }
+  
+  
+  
+  span.cls_003{font-family:Times,serif;font-size:56.0px;color:rgb(85,79,76);font-weight:normal;font-style:normal;text-decoration: none}
+  div.cls_003{font-family:Times,serif;font-size:56.0px;color:rgb(85,79,76);font-weight:normal;font-style:normal;text-decoration: none}
+  span.cls_004{font-family:Times,serif;font-size:29.5px;color:rgb(190,139,68);font-weight:normal;font-style:normal;text-decoration: none}
+  div.cls_004{font-family:Times,serif;font-size:29.5px;color:rgb(190,139,68);font-weight:normal;font-style:normal;text-decoration: none}
+  span.cls_002{font-family:Times,serif;font-size:14.1px;color:rgb(54,50,49);font-weight:normal;font-style:normal;text-decoration: none}
+  div.cls_002{font-family:Times,serif;font-size:14.1px;color:rgb(54,50,49);font-weight:normal;font-style:normal;text-decoration: none}
+  span.cls_005{font-family:Times,serif;font-size:70.6px;color:rgb(152,140,131);font-weight:normal;font-style:normal;text-decoration: none}
+  div.cls_005{font-family:Times,serif;font-size:70.6px;color:rgb(152,140,131);font-weight:normal;font-style:normal;text-decoration: none}
+  span.cls_006{font-family:Arial,serif;font-size:12.0px;color:rgb(37,36,34);font-weight:normal;font-style:normal;text-decoration: none}
+  div.cls_006{font-family:Arial,serif;font-size:12.0px;color:rgb(37,36,34);font-weight:normal;font-style:normal;text-decoration: none}
+  span.cls_007{font-family:Times,serif;font-size:22.5px;color:rgb(85,79,76);font-weight:normal;font-style:normal;text-decoration: none}
+  div.cls_007{font-family:Times,serif;font-size:22.5px;color:rgb(85,79,76);font-weight:normal;font-style:normal;text-decoration: none}

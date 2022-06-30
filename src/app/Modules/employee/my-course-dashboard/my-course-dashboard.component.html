@@ -1,0 +1,345 @@
+<!-- <app-loader *ngIf="loader==true"></app-loader> -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="card1" style="background-color: black; height:290px;width: 290px; border-radius: 10px;">
+                <div class="front">
+                    <br>
+                    <div class="row title_outer1">
+                        <div class="col-lg-3" style="margin-left: 10px;">
+                            <img src="assets/Images/default_user.jpg" style="width:200% ; border-radius: 10px;">
+                        </div>
+                    </div> <br>
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <h1 class="cardlabel"
+                                style="color: white;font-size: 22px;margin-top: 0px; margin-left: 10px;"
+                                *ngFor="let item of stafflist">
+                                {{item.name}}</h1>
+                            <h4 style="color:white; margin-left: 10px;">Happy Learning!!
+                            </h4>
+                        </div>
+                    </div><br><br>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card1" style="background-color: white; height:290px;width: 290px; border-radius: 10px;">
+                <img class="card-img-top" style="width: 95%; height: 125px; margin-left: 7px; margin-top: 5px;"
+                     src="{{latestcoursedetails.photo}}" alt="Not yet assigned">
+                     
+                     <img *ngIf="show==0" class="card-img-top" style="width: 95%; height: 125px; margin-left: 7px; margin-top: 5px;"
+                     src="assets/Images/125.png" alt="Not yet assigned"> 
+                <div class="card-body">
+                    <div class="row">
+                        <p class="lastassigned">Last Assigned</p> <br>
+                        <div class="row">
+                            <p *ngIf="lastassigned=='1'" class="coursename"><b>{{latestcoursedetails.name}}</b></p>
+                            <p *ngIf="lastassigned=='0'" class="coursename"><b>No Assigned Trainings Yet</b></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <progress id="file" value="0" max="100" style="width:100%;height:15px;">0%</progress>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card1" style="background-color: white; height:290px;width: 290px; border-radius: 10px;">
+                <div class="front">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <br>
+                            <p class="text-center CARDHead">Training</p>
+                            <br>
+                            <div class="row" >
+                                <div class="col-lg-4">
+                                    <button type="button" class="btn btn-danger"
+                                        style="margin-left: 15px;">{{empcountlist.notstarted}}</button><br>
+                                    <p class="text-center CARDHead3"><b>Not Started</b></p>
+                                </div>
+                                <div class="col-lg-4">
+                                    <button type="button" class="btn btn-light"
+                                        style="margin-left: 15px;">{{empcountlist.inprogress}}</button><br>
+                                    <p class="text-center CARDHead3"><b>In progress</b></p>
+                                </div>
+                                <div class="col-lg-4">
+                                    <button type="button" class="btn btn-success"
+                                        style="margin-left: 15px;">{{empcountlist.completed}}</button><br>
+                                    <p class="text-center CARDHead3"><b>Completed</b></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <br>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <p class="text-center CARDHead2">Assessment</p>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <button type="button" class="btn btn-danger"
+                                        style="margin-left: 15px;">{{countlist.myTotaolAssementCount}}</button><br>
+                                    <p class="text-center CARDHead3"><b>Not Started</b></p>
+                                </div>
+                                <div class="col-lg-4">
+                                    <button type="button" class="btn btn-light"
+                                        style="margin-left: 15px;">{{countlist.myInprogressAssesments}}</button><br>
+                                    <p class="text-center CARDHead3"><b>In progress</b></p>
+                                </div>
+                                <div class="col-lg-4">
+                                    <button type="button" class="btn btn-success"
+                                        style="margin-left: 15px;">{{countlist.myCompletedAssesments}}</button><br>
+                                    <p class="text-center CARDHead3"><b>Completed</b></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card1" style="background-color: white; height:290px;width: 290px; border-radius: 10px;">
+                <div class="front">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <br>
+                            <p class="text-center CARDHead">Learning Path</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <p class="text-center CARDHead2">Assigned {{countlist.myTotaolAssementCount}}</p>
+                        </div>
+                    </div> <br>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <button type="button" class="btn btn-danger">{{countlist.myTotaolAssementCount}}</button><br>
+                            <p class="text-center CARDHead3" style="    margin-left: -10px;"><b>Not Started</b></p>
+                        </div>
+                        <div class="col-lg-4">
+                            <button type="button" class="btn btn-light">{{countlist.myInprogressAssesments}}</button><br>
+                            <p class="text-center CARDHead3" style="    margin-left: -10px;"><b>In progress</b></p>
+                        </div>
+                        <div class="col-lg-4">
+                            <button type="button" class="btn btn-success">{{countlist.myCompletedAssesments}}</button><br>
+                            <p class="text-center CARDHead3" style="    margin-left: -10px;"><b>Completed</b></p>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-lg-1">
+                            <br>
+                            <button type="button" class="btn CARDHead2" style="text-decoration: underline;"
+                                routerLink="/LearningPathDashboard">
+                                <b>View more</b> </button><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <br>
+    <div class="row">
+        <div class="col-lg-8 View ">
+            <ul>
+                <li [ngClass]="{'underlinetext': show=='1'}"><a class="active" style="color: #0c275a;"
+                        (click)="Showcards(1)">
+                        <ul>All</ul>
+                    </a></li>
+                <li [ngClass]="{'underlinetext': show=='2'}"><a class="active" style="color: #0c275a;"
+                        (click)="Showcards(2)">Enrolled Training
+                    </a></li>
+                <li [ngClass]="{'underlinetext': show=='3'}"><a class="active" style="color: #0c275a;"
+                        (click)="Showcards(3)">New Training</a>
+                </li>
+                <li [ngClass]="{'underlinetext': show=='4'}"><a class="active" style="color: #0c275a;"
+                        (click)="Showcards(4)">Completed
+                        Training</a></li>
+            </ul>
+        </div>
+        <div class="col-lg-4">
+            <input style="margin-top: 10px;" class="form-control" placeholder="Search" [(ngModel)]="search">
+        </div>
+    </div> <br><br>
+</div>
+
+
+<!-- <div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3" *ngFor="let details of coursedetails | filter:search ">
+            <div class="card">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <img style="width:286px; height:160; " src="{{details.photo}}">
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <p class="name2" style="overflow-y: auto;height: 25px;">{{details.name}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <p style="font-size: 13px;">Start Date</p>
+                        </div>
+                        <div class="col-lg-6">
+                            <p style="font-size: 13px;">End Date </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">{{details.startDate}}</div>
+                        <div class="col-lg-6">{{details.endDate}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <progress id="file" value="0" max="100" style="width:100%;height:15px;">0%</progress>
+                        </div>
+                    </div><br>
+                    <div class="row" style="text-align: center;">
+                        <div class="col-lg-12">
+                            <button class="edit1" [routerLink]="['/StartMyCourse',details.id]"
+                                *ngIf="show==2||show==1">Start
+                                Training</button>
+                            <button class="edit1" data-toggle="modal" data-target="#enroll" *ngIf="show==3"
+                                (click)="getcourseid(details.id)">
+                                Enroll</button>
+                            <button class="edit1" *ngIf="show==4" (click)="getcourseid(details.id)">
+                                Completed</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><br>
+</div> <br><br> -->
+
+
+
+ <div class="container-fluid">
+    <div class="row">
+        <div class="row" *ngIf="(coursedetails | filter: search).length > 0; else noResults">
+            <br>
+            <div class="col-lg-3" *ngFor="let details of coursedetails | filter:search ">
+                <div class="card1" style="background-color: white; height:330px;width:290px;border-radius: 10px;">
+                    <div class="front">
+                        <br>
+                        <div class="row" style="margin-top: -15px; margin-left: -15px; margin-right: 0px;">
+                            <div class="col-lg-12">
+                                <img style="width: 106%; height: 125px; overflow-y: hidden;" src="{{details.photo}}">
+                            </div>
+                        </div><br>
+                        <div class="row" style="overflow-y: auto;height:20px">
+                            <div class="col-lg-12">
+                                <p class="name2">{{details.name}}</p>
+                            </div>
+                        </div> <br>
+                        <div class="row" style="height: 7px">
+                            <div class="col-lg-6">
+                                <p style="font-size: 13px;">Start Date</p>
+                                <p >{{details.startDate}}</p>
+                            </div>
+                            <div class="col-lg-6" >
+                                <p style="font-size: 13px;">End Date </p>
+                                <p>{{details.endDate}}</p>
+                            </div>                        
+                        </div>   <br><br>                
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <progress id="file" value="0" max="100" style="width:100%;height:15px;">0%</progress>
+                            </div>
+                        </div>
+                        <div class="row" style="text-align: center;margin-top: 0px;">
+                            <div class="col-lg-12">
+                                <button class="edit" [routerLink]="['/StartMyCourseNew',details.id]"
+                                    *ngIf="details.enrollid!=0&&details.notStarted==0" (click)="getenrollid(details.enrollid)">Start
+                                    Training</button>    
+                                    <button class="edit" [routerLink]="['/StartMyCourseNew',details.id]"
+                                    *ngIf="details.enrollid!=0&&details.notStarted==1&&details.completed==0" (click)="getenrollid(details.enrollid)">Open
+                                    </button>                            
+                                <button class="edit" data-toggle="modal" data-target="#enroll" *ngIf="details.enrollid=='0'&&details.completed==0"
+                                    (click)="getcourseid(details.id)"> &nbsp;&nbsp;
+                                    Enroll</button>
+
+                                    <button class="edit" 
+                                    *ngIf="details.completed==1" (click)="getenrollid(details.enrollid)"  [routerLink]="['/CourseCertificateNew',details.id]">Completed
+                                    </button> 
+                                <!-- <button class="Button1" *ngIf="show==4" (click)="getcourseid(details.id)">
+                                    Completed</button> -->
+                            </div>
+                        </div>
+                    </div>
+                </div><br><br>
+        </div>
+    </div>
+</div> 
+<ng-template #noResults>
+    <p class="NoResultShow"> No results found  </p>
+</ng-template>
+</div> 
+<div id="enroll" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Enroll for Training</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" *ngFor="let item of stafflist">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="Text" style="font-weight: bold;">Name:</label>
+                    </div>
+                    <div class="col-lg-5">
+                        <input class="form-control" name="name" id="name" [(ngModel)]="name" placeholder="{{item.name}}"
+                            disabled>
+                    </div>
+                </div> <br>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="Text" style="font-weight: bold;">Phone No:</label>
+                    </div>
+                    <div class="col-lg-5">
+                        <input class="form-control" name="mobile" id="mobile" [(ngModel)]="mobile"
+                            placeholder="{{item.mobile}}" disabled>
+                    </div>
+                </div> <br>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="Text" style="font-weight: bold;">Email:</label>
+                    </div>
+                    <div class="col-lg-5">
+                        <input class="form-control" name="emailID" id="emailID" [(ngModel)]="emailID"
+                            placeholder="{{item.emailID}}" disabled>
+                    </div>
+                </div> <br>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="Text" style="font-weight: bold;">Manager:</label>
+                    </div>
+                    <div class="col-lg-5">
+                        <input class="form-control" name="emailID" id="emailID" [(ngModel)]="emailID"
+                            placeholder="{{manageremail}}" disabled>
+                    </div>
+                </div> <br>
+                <div class="row">
+                    <div class="col-lg-7"></div>
+                    <div class="col-lg-2">
+                        <button class="form-control Save" (click)="enroll(item.name,item.mobile,item.emailID)"
+                            data-dismiss="modal">Enroll</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <!-- <hr>
+                <div class="col-lg-2">
+                    <button data-dismiss="modal" class="form-control CloseBTN">Close</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>

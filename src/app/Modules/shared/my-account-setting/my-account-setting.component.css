@@ -1,0 +1,36 @@
+.card{
+    background-color: white;
+}
+.Text{
+    font-size: 13px;
+    font-family:'Poppins';
+    color:black;
+    padding-left:15px;
+}
+.Text1{
+    font-size: 15px;
+    font-family:'Poppins';
+    color:gray;
+    padding-left:15px;
+    font-size: 12px;
+}
+.Account{
+    font-size: 20px;
+    padding-top: 20px;
+}
+.form-control{
+    background-color: white;
+    border-top: black;
+}
+.Change{
+    color:#2F87CC;
+    float: right;
+    padding-right: 27px;
+}
+.Accountsetting{
+    padding-left: 14px;
+    font-size: 22px;
+}
+.drop{
+    padding-right: 37px;
+}

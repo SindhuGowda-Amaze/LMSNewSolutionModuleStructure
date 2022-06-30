@@ -1,0 +1,104 @@
+.BackBTN {
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    background-color: #030a0f;
+    border: none;
+    float: right;
+    cursor: pointer;
+  }
+  
+  .ViewCertificate {
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    background-color: #030a0f;
+    border: none;
+    margin-left: 200px;
+  }
+  
+  .HRline {
+    border-top: 1.5px solid #ddd9d9;
+  }
+  
+  .card{
+    padding: 20px;
+  }
+  .VScroll {
+    height: 650px;
+    background-color: white;
+    overflow-y: scroll;
+    overflow-x:hidden;
+   
+  }
+  
+  .vertical-menu a {
+    background-color: #eee;
+    color: black;
+    display: block;
+    padding: 12px;
+    text-decoration: none;
+  }
+  
+  .vertical-menu a:hover {
+    background-color: #ccc;
+  }
+  
+  .vertical-menu a.active {
+    background-color: black;
+    color: white;
+  }
+  
+  .ShowMore {
+    padding: 8px;
+    border-radius: 5px;
+    color: white;
+    background-color: #030a0f;
+    border: none;
+    margin-left: 100px;
+  }
+  .ShowMore1 {
+    padding: 8px;
+    border-radius: 5px;
+    color: white;
+    background-color: #030a0f;
+    border: none;
+    margin-left: 100px;
+    width: 150px;
+  }
+  .ShowMore2 {
+    padding: 8px;
+    border-radius: 5px;
+    color: white;
+    background-color: #dee2e4;
+    border: none;
+    width: 150px;
+    margin-top: 10px;
+  }
+  
+  .AssResults {
+    margin-bottom: 10px;
+  }
+  .underlinetext{
+    background-color: grey;
+  }
+  
+  .newbutton{
+  border-radius: 5px;
+   color: #FFFFFF;
+   font-size: 13px;
+   margin-left:140px
+  }
+  
+  .newbutton1{
+    border-radius: 5px;
+   color: #FFFFFF;
+   font-size: 13px;
+   margin-left:120px;
+   margin-top: 0px;
+  }
+  
+  .icon{
+    width: 32px;
+    padding-top: 10px
+  }

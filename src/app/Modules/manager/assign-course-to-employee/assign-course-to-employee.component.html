@@ -1,0 +1,77 @@
+<div class="container-fluid">
+    <div class="row">
+        <br>     
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-10">
+                    <p class="headings">Assign Training To Employee </p>
+                </div>
+            </div>
+            <div class="card">
+                <br>
+                <div class="row leavereq">
+                    <div class="col-lg-3">
+                        <p class="newFont">Employee Name <span style="color: red;">*</span></p>
+                    </div>
+                    <div class="col-lg-2">
+                        <p class="newFont">Training <span style="color: red;">*</span></p>
+                    </div>
+                </div>
+                <div class="row leavereq">
+                    <div class="col-md-3">
+                        <select class="form-control" name="name123" id="name123" [(ngModel)]="name123"  (change)="getdata($event)">
+                            <option value="0">Select Employee Name</option>
+                            <option *ngFor="let details of stafflist" value="{{details.id}}">{{details.name}}</option> 
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <select class="form-control" name="courseid" id="courseid" [(ngModel)]="courseid" >
+                            <option value="0">Select Training</option>
+                            <option *ngFor="let details of courselist" value="{{details.id}}" (change)="getdata(details)">{{details.name}}</option>
+                        </select>
+                    </div>
+                </div>
+              
+              
+                <div class="row">
+                    <div class="col-lg-9"></div>
+                    <div class="col-lg-1" >
+                        <button class="form-control cancel" *ngIf="id==null || id==undefined" (click)="enroll()">Assign</button>
+                        <button class="form-control cancel"  *ngIf="id!=null || id!=undefined" (click)="Update()">Update</button>   
+                    </div>
+                    <div class="col-lg-1">
+                        <button class="form-control cancel" (click)="Cancel()">Cancel</button>
+                    </div>
+                </div><br>
+            </div> <br>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Here</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-10"></div>
+                    <div class="col-lg-2">
+                        <button type="button" class="cancel" (click)="edit()" data-dismiss="modal">Update</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
