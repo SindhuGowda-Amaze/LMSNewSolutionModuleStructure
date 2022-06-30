@@ -1,0 +1,168 @@
+<div class="container-fluid card">
+    <div class="container-fluid">
+        <div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h5 style="text-align: center;text-transform: uppercase; color:#3247D5;font-size: 19px;"><b><u>
+                                Assessment</u></b>
+                    </h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <!-- <h6 style="text-align: left;"><b>Time Allowed : 60 Min</b></h6> -->
+                </div>
+                <div class="col-lg-3">
+                </div>
+                <div class="col-lg-3">
+                    <!-- <label id="timeleft" style="font-size: 18px; margin-left: 38px;"><b>Time left : </b></label> -->
+                    <label style="font-size: 18px;" id="demo"></label>
+                </div>
+            </div>
+
+            <br>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h5 style="float:left;color:#3247D5"><b>General Instructions:</b></h5>
+                    <br>
+                    <p style="color:#0C275A ;font-size: 13px;">
+                        <b [innerHtml]="generalinstructions"></b>
+                        <!-- <b>
+                            <br>
+                            1 . DO NOT REFRESH THE PAGE
+                            <br>
+                            2 . Figures provided in this test are drawn to scale unless otherwise indicated.
+                            <br>
+                            3 . All figures lie in a plane unless otherwise indicated.
+                            <br>
+                            4 . Unless otherwise indicated, the domain of a given function f is the set of all real
+                            numbers x for which f of x is a real number.
+                        </b> -->
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <br>
+    <div class="row" *ngIf="startTest=='0'">
+        <div class="col-lg-12">
+            <h3>
+                <marquee direction="left" style="color: red;" scrollamount="20"><b>Please Click on Start Test To Start
+                        The Test..(Do Not Refresh The Page).</b></marquee>
+            </h3>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <p style="text-align: center;margin-left: 20px;"><button type="button" class="form-control starttest"
+                        *ngIf="startTest=='0'" (click)="startTestContainer()">Start Test</button></p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container-fluid" *ngIf="show=='1' && startTest=='1'">
+        <div class="row">
+            <div class="col-lg-10"></div>
+            <div class="col-lg-2">
+                <p>Total no of Question: {{count}}<br>Total Marks: {{totalmarks}}</p>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row" style="background: #3247D5;
+                color: white; border-radius: 10px;">
+                    <div class="col-lg-2" style="text-align: center;">
+                        <p style="font-size:19px; margin-top: 12px;">Question No.</p>
+                    </div>
+                    <div class="col-lg-9">
+                        <p style="font-size:19px;  margin-top: 12px;">Question</p>
+                    </div>
+                    <div class="col-lg-1" style="text-align: center;">
+                        <p style="font-size: 19px;  margin-top: 12px;">Marks</p>
+                    </div>
+                </div>
+                <br>
+                <div class="row" *ngFor="let list of questionList;index as i" style="margin-bottom: 20px;">
+                    <div class="col-lg-2" style="text-align: center; color:#0C275A ">
+                        <p> {{i+1}}
+                        </p>
+                    </div>
+                    <div class="col-lg-9">
+                        <div style="font-size:13px;margin-bottom: 10px; color:#0C275A"><b>{{list.question}}</b></div>
+                        <div class="row" *ngIf="list.questionID==1">
+                            <div class="col-lg-6">
+                                <div class="inputoption">
+                                    <input type="radio" value="{{list.id+'$@'+list.option1}}"
+                                        name="{{list.id+'$@'+list.Option1}}" id="{{list.id+'$@'+list.Option1}}"
+                                        [(ngModel)]='list.userAnswer'>&nbsp;
+                                    <div [innerHtml]="list.option1"></div>
+                                </div>
+                                <div class="inputoption ">
+                                    <input type="radio" value="{{list.id+'$@'+list.option2}}" name="{{list.id+'$@'+list.option2}}"
+                                        id="{{list.id+'$@'+list.option2}}" [(ngModel)]='list.userAnswer'>
+                                    &nbsp;
+                                    <div [innerHtml]="list.option2"></div>
+                                </div>
+                            </div> <br>
+                            <div class="col-lg-6">
+                                <div class="inputoption ">
+                                    <input type="radio" value="{{list.id+'$@'+list.option3}}" name="{{list.id+'$@'+list.option3}}"
+                                        id="{{list.id+'$@'+list.option3}}" [(ngModel)]='list.userAnswer'>&nbsp;
+                                    <div [innerHtml]="list.option3"></div>
+
+                                </div>
+                                <div class="inputoption ">
+                                    <input type="radio" value="{{list.id+'$@'+list.option4}}" name="{{list.id+'$@'+list.option4}}"
+                                        id="{{list.id+'$@'+list.option4}}" [(ngModel)]='list.userAnswer'>&nbsp;
+                                    <div [innerHtml]="list.option4"></div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="list.questionID==2">
+                            <div class="col-lg-12">
+                                <ckeditor id="list.userAnswer" name="list.userAnswer" [(ngModel)]="list.userAnswer"
+                                    data="<p>Enter Answer Here !</p>"></ckeditor>
+                                <!-- <ckeditor [editor]="Editor" [(ngModel)]='list.userAnswer'></ckeditor> -->
+                                <br>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-1" style="text-align: center;">
+                        <p> {{list.weightage}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</div>
+<br>
+<div class="row" *ngIf="show=='1' && startTest=='1'">
+    <div class="col-lg-4">
+    </div>
+    <div class="col-lg-4" style="text-align: center;">
+        <button type="button" class=" btn-success cancel" (click)="submitAnswer()">Submit</button>&nbsp;&nbsp;
+        <button class=" btn-danger cancel" [routerLink]="['/StartMyCourseNew',courseid]">Cancel</button>
+    </div>
+    <div class="col-lg-4">
+    </div>
+</div>
+<!-- </div> -->
+
+
+<!-- </div> -->
+<br>
+<!-- </div> -->

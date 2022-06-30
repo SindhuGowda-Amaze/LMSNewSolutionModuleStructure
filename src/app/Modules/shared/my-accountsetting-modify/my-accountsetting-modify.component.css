@@ -1,0 +1,60 @@
+.card{
+    background-color: white;
+}
+.Text{
+    font-size: 12px;
+    font-family:'Poppins';
+    color:black;
+    padding-left:15px;
+}
+.Text1{
+    font-size: 12px;
+    font-family:'Poppins';
+    color:gray;
+    padding-left:12px;
+}
+.Account{
+    font-size: 20px;
+    padding-top: 20px;
+}
+.form-control{
+    background-color: white;
+}
+.Change{
+    color:#3247d5;
+    float: right;
+    padding-right: 27px;
+}
+.password{
+    padding-left: 28px;
+    font-size: 15px;
+}
+.button{
+    text-transform: uppercase;
+    font-weight: initial;
+    text-shadow: initial;
+    font-family: 'Poppins';
+    letter-spacing: 0.5px;
+    background-color:#3247d5 ;
+    color:white;
+    border-radius: 5px;
+    border:none;
+    padding: 5px;
+    margin-left: 30px;
+    width: 30%;
+}
+.Space{
+    padding-left: 30px;
+    font-size: 12px;
+}
+.Paragraph{
+    padding-left: 40px;
+    font-size: 12px;
+}
+.MyAccount{
+    padding-left: 15px;
+    font-size: 30px;
+}
+.span{
+    color: red;
+}

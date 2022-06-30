@@ -1,0 +1,78 @@
+<div class="container-fluid">
+    
+        
+    <!-- <div class="row">
+        <div class="col-lg-12">
+            <p class="headings">Submitted Tests</p><br>
+        </div>
+    </div> -->
+
+    <div class="row">
+        <div class="col-lg-10">
+            <p class="headings">Test Submitted </p>
+        </div>
+        <div class="col-lg-2">E
+            <p class="count">Count: {{count}}</p>
+        </div>
+    </div>
+
+
+    <div class="card"><br>
+        <div class="row">
+            <div class="col-lg-1" style="margin-left: 10px;">
+                <p class="filter">Filter By</p>
+            </div>
+            <div class="col-lg-3">
+                <input type="date" class="form-control search" placeholder="Search"  id="date" name="date" [(ngModel)]="date" (change)="getdate($event)">
+            </div>
+            <div class="col-lg-3">
+                <input class="form-control search" placeholder="Search" [(ngModel)]="search" (ngModelChange)="filterSubmittedEmployee()">
+            </div>
+            <div class="col-lg-3">
+            </div>
+            <div class="col-lg-3"></div>
+            <div class="col-lg-2">
+            </div>
+        </div> <br>
+    </div><br>
+    <div class="row">
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table" *ngIf="(result | filter: search).length > 0; else noResults">
+                <thead>
+                    <tr>
+                        <th>Employee Name</th>
+                        <th>Phone No</th>
+                        <th>Email</th>
+                        <th>Training</th>
+                        <th>Topic</th>
+                        <th>Submitted Date</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr *ngFor="let details of result|filter:search">
+                        <td>{{details.staffname}}</td>
+                        <td>{{details.phoneNo}}</td>
+                        <td>{{details.emailID}}</td>
+                        <td>{{details.coursename}}</td>
+                        <td>{{details.chaptername}}</td>
+                        <td>{{details.modifiedDate|date}}</td>
+                        <td>
+                            <button  [routerLink]="['/Checkanswer',details.id]"  *ngIf="details.checked!=1"
+                                class="button1 btn-primary">Check
+                            </button>
+                            <button *ngIf="details.checked==1" [routerLink]="['/Checkanswer',details.id]" class="button1 btn-primary" id="show==1">View
+                            </button>
+
+                        </td>
+                    </tr>
+                </thead>
+            </table>
+            <ng-template #noResults>
+                <p class="NoResultShow">Results not found </p>
+            </ng-template>
+        </div>
+    </div>
+
+
+</div>

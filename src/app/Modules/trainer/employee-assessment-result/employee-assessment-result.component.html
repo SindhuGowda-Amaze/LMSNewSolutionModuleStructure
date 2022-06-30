@@ -1,0 +1,254 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-10">
+            <p class="headings">Employee Assessment </p>
+        </div>
+        <div class="col-lg-2">
+            <p class="count">Count: {{detailslist.length}}</p>
+        </div>
+    </div>
+
+    <div class="card"><br>
+        <div class="row">
+            <div class="col-lg-1" style="margin-left: 10px;">
+                <p class="filter">Filter By</p>
+            </div>
+            <!-- <div class="col-lg-3">
+                <input type="date" class="form-control search" placeholder="Search" [(ngModel)]="date">
+            </div> -->
+            <div class="col-lg-4">
+                <input class="form-control search" placeholder="Search" [(ngModel)]="search">
+            </div>
+            <div class="col-lg-3">
+            </div>
+            <div class="col-lg-3"></div>
+            <div class="col-lg-2">
+            </div>
+        </div> <br>
+    </div><br>
+    <div class="row">
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table" *ngIf="(detailslist | filter: search).length > 0; else noResults">
+                <thead>
+                    <tr>
+                        <th>Employee Name</th>
+                        <th>Training Name</th>
+                        <th>Topic Name</th>
+                        <!-- <th>Assigned Date </th> -->
+                        <th>Actions</th>
+                    </tr>
+
+                    <tr *ngFor="let details of detailslist|filter:search">
+                        <td>{{details.staffname}}</td>
+                        <td>{{details.coursename}}</td>
+                        <td>{{details.chaptername}}</td>
+                        <!-- <td>{{details.assignedDate}}</td> -->
+                        <td>
+                            <button class="check" (click)="Check(details.id)" *ngIf="details.checked==0">Check</button>
+                            <button *ngIf="details.checked==1"  [routerLink]="['/Checkanswer',details.id]" class="add" id="show==1">View
+                            </button>
+                            <!-- <button *ngIf="details.checked==1&&Checkid==1" [routerLink]="['/AssesmentDetails',details.courseID,details.userID]" class="add" id="show==1">View
+                            </button> -->
+
+                            <!-- <button *ngIf="details.checked==1&&Checkid==1" [routerLink]="['/AssesmentDetails',details.courseID,details.userID]" class="add" id="show==1">View
+                            </button> -->
+                        </td>
+                        <!-- <td>{{details.assignedDate}}</td>
+                        <td>{{details.startDate}}</td>
+                        <td>{{details.endDate}}</td>
+                        <td>{{details.obtainedMarks/details.totalmarks
+                            *100 | number : '1.2-2'}} %</td> -->
+                        <!-- <td>
+                            <button class="viewcertificate" data-toggle="modal" data-target="#Certificate"
+                                (click)="view(details.staffname,details.coursename)">View Certificate</button>
+                        </td> -->
+                    </tr>
+                </thead>
+            </table>
+            <ng-template #noResults>
+                <p class="NoResultShow">Results not found </p>
+            </ng-template>
+        </div>
+    </div>
+
+
+</div>
+
+
+<!-- 
+ <div class="modal" id="myModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Test Details</h4>
+                <button (click)="getdetailslist1()" data-toggle="modal" data-target="#Certificate"
+                    class="btn btn-primary button2">View Certificate
+                </button><br>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table>
+                            <tr>
+                                <th>Training Name</th>
+                                <th>Topic Name</th>
+                                <th>Total Marks</th>
+                                <th>Obtained Marks</th>
+                                <th>Result</th>
+
+                            </tr>
+                            <tr *ngFor="let list of detailslist">
+                                <td>{{list.coursename}}</td>
+                                <td>{{list.chaptername}}</td>
+                                <td>{{list.totalmarks}}</td>
+                                <td>{{list.obtainedMarks}}</td>
+                                <td>{{list.testResult}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<!-- 
+ <div class="modal" id="Certificate">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Allote Certificate</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-3">Training</div>
+                    <div class="col-lg-4">
+                        <select class="form-control" name="courseID" [(ngModel)]="courseID">
+                            <option value="0">Training Name</option>
+                            <option *ngFor="let details of courselist" value="{{details.id}}">{{details.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-3">Total Marks</div>
+                    <div class="col-lg-4">
+                        <input type="text" id="TotalMarks" name="TotalMarks" [(ngModel)]="TotalMarks"
+                            placeholder="Total Marks" class="form-control">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-3">Marks Obtained</div>
+                    <div class="col-lg-4">
+                        <input type="text" id="MarksObtained" name="MarksObtained" [(ngModel)]="MarksObtained"
+                            placeholder="Marks Obtained" class="form-control">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-4">
+                        <button  class="btn btn-primary ">Allote Certificate
+                        </button><br>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<!-- 
+ <div class="modal" id="myModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Test Details</h4>
+                <button (click)="getdetailslist1()" data-toggle="modal" data-target="#Certificate"
+                    class="btn btn-primary button2">View Certificate
+                </button><br>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table>
+                            <tr>
+                                <th>Training Name</th>
+                                <th>Topic Name</th>
+                                <th>Total Marks</th>
+                                <th>Obtained Marks</th>
+                                <th>Result</th>
+                            </tr>
+                            <tr *ngFor="let list of detailslist">
+                                <td>{{list.coursename}}</td>
+                                <td>{{list.chaptername}}</td>
+                                <td>{{list.totalmarks}}</td>
+                                <td>{{list.obtainedMarks}}</td>
+                                <td>{{list.testResult}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+
+
+
+
+
+<div class="modal" id="Certificate">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- <div class="modal-header">
+                <h4 class="modal-title"> Certificate</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div> -->
+            <div id="downloadaplication"
+                style="position:absolute;left:50%;margin-left:-421px;top:0px;width:842px;height:595px;border-style:outset;overflow:hidden;background-color: white;">
+                <div style="position:absolute;left:300.76px;top:84.60px" class="cls_002"><span class="cls_002">Learning
+                        And Development </span></div>
+                <div style="position:absolute;left:225.12px;top:162.60px" class="cls_003"><span
+                        class="cls_003">CERTIFICATE OF COMPLETION</span></div>
+                <div style="position:absolute;left:355.68px;top:252.52px" class="cls_004"><span
+                        class="cls_004">Presented to</span></div>
+                <div style="position:absolute;left:350.40px;top:283.88px" class="cls_005"><span
+                        class="cls_005">{{Staff}}</span></div>
+                <div style="position:absolute;left:257.04px;top:336.24px;" class="cls_006"><span
+                        class="cls_0061">{{Course}}</span></div>
+                <div style="position:absolute;left:379.68px;top:430.80px" class="cls_006"><span class="cls_006">Provided
+                        by</span></div>
+                <div style="position:absolute;left:380.68px;top:450.32px" class="cls_007"><span
+                        class="cls_007">Amaze</span>
+                </div>
+                <div style="position:absolute;left:383.76px;top:481.44px" class="cls_006"><span class="cls_006">
+                        JAN 2022</span></div>
+                <div class="row">
+                    <div class="col-lg-10"></div>
+                    <div class="col-lg-2">
+                        <button
+                            style="background-color: #3247D5;color:white;border-radius: 5px;border:none;margin-top: 10px;"
+                            (click)="download()">Download</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="cancel" data-dismiss="modal">Close</button>
+            </div>
+        </div>

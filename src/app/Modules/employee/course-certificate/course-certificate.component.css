@@ -1,0 +1,51 @@
+.card1{
+    margin: 10px;
+    background-color: whitesmoke(83, 84, 85);
+    color: black;
+}
+button{
+    padding:5px;
+    border-radius: 5px;
+    color:white;
+    background-color: #030a0f;
+    border:none;
+    float: right;
+    margin-bottom: 10px;
+    margin-right: 40px;
+}
+.close{
+    background-color:transparent;
+    color: black;
+}
+.chapter{
+   
+    text-decoration: none;
+    margin: 20px;
+}
+.image{
+    width: 10%;
+    height: 20%;
+}
+.certificate{
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+}
+
+
+
+
+
+
+span.cls_003{font-family:Poppins;font-size:56.0px;color:rgb(85,79,76);font-weight:normal;font-style:normal;text-decoration: none}
+div.cls_003{font-family:Poppins;font-size:56.0px;color:rgb(85,79,76);font-weight:normal;font-style:normal;text-decoration: none}
+span.cls_004{font-family:Poppins;font-size:29.5px;color:rgb(190,139,68);font-weight:normal;font-style:normal;text-decoration: none}
+div.cls_004{font-family:Poppins;font-size:29.5px;color:rgb(190,139,68);font-weight:normal;font-style:normal;text-decoration: none}
+span.cls_002{font-family:Poppins;font-size:14.1px;color:rgb(54,50,49);font-weight:normal;font-style:normal;text-decoration: none}
+div.cls_002{font-family:Poppins;font-size:14.1px;color:rgb(54,50,49);font-weight:normal;font-style:normal;text-decoration: none}
+span.cls_005{font-family:Poppins;font-size:25px;color:rgb(152,140,131);font-weight:normal;font-style:normal;text-decoration: none}
+div.cls_005{font-family:Poppins;font-size:25px;color:rgb(152,140,131);font-weight:normal;font-style:normal;text-decoration: none}
+span.cls_006{font-family:Poppins;font-size:16px;color:rgb(37,36,34);font-weight:normal;font-style:normal;text-decoration: none}
+div.cls_006{font-family:Poppins;font-size:16px;color:rgb(37,36,34);font-weight:normal;font-style:normal;text-decoration: none}
+span.cls_007{font-family:Poppins;font-size:22.5px;color:rgb(85,79,76);font-weight:normal;font-style:normal;text-decoration: none}
+div.cls_007{font-family:Poppins;font-size:22.5px;color:rgb(85,79,76);font-weight:normal;font-style:normal;text-decoration: none}

@@ -1,0 +1,155 @@
+span.cls_002 {
+    font-family: Times, serif;
+    font-size: 21.1px;
+    color: blue;
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+  }
+  div.cls_002 {
+    font-family: Times, serif;
+    font-size: 21.1px;
+    color: blue;
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+  }
+  span.cls_003 {
+    font-family: Times, serif;
+    font-size: 27.1px;
+    color: blue;
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+  }
+  div.cls_003 {
+    font-family: Times, serif;
+    font-size: 27.1px;
+    color: blue;
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+  }
+  span.cls_004 {
+    font-family: Times, serif;
+    font-size: 17.1px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+  }
+  div.cls_004 {
+    font-family: Times, serif;
+    font-size: 17.1px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+  }
+  span.cls_005 {
+    font-family: Times, serif;
+    font-size: 31.1px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+  }
+  div.cls_005 {
+    font-family: Times, serif;
+    font-size: 31.1px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+  }
+  span.cls_006 {
+    font-family: Times, serif;
+    font-size: 12.1px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+  }
+  div.cls_006 {
+    font-family: Times, serif;
+    font-size: 12.1px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+  }
+  span.cls_007 {
+    font-family: Times, serif;
+    font-size: 22.1px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+  }
+  div.cls_007 {
+    font-family: Times, serif;
+    font-size: 22.1px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+  }
+  span.cls_0061 {
+    font-family: Times, serif;
+    font-size: 24px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+  }
+  div.cls_0061 {
+    font-family: Times, serif;
+    font-size: 24px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+  }
+  
+  .viewcertificate {
+    border-radius: 5px;
+    border: none;
+    background-color: #3247d5;
+    color: white;
+  }
+  
+  .NoResultShow {
+    color: #0c275a;
+    font-size: 19px;
+  
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    margin-left: 38px;
+  }
+  
+  .card {
+    width: 100%;
+    background: #ffffff;
+    box-shadow: 1px 1px 15px 3px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+  }
+  
+  .count {
+    text-align: right;
+    padding-right: 10px;
+  }
+  .check{
+    background-color: #3247d5;
+    color:white;
+    border-radius: 5px;
+    border:none;
+  }
+  
+  .add{
+    background-color: #3247d5;
+   color:white;
+   border-radius: 5px;
+   border:none;
+   
+  }

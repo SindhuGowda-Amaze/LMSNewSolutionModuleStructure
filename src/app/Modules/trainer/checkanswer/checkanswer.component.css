@@ -1,0 +1,22 @@
+.question{
+    color:#0C275A;
+    font-size: 13px;
+    font-style: bold;
+}
+.submit{
+    color:white;
+    background-color: #3247D5;
+    border-radius: 5px;
+    border:none;
+}
+.close{  
+    border-radius: 5px;
+    border:none;
+}
+.submit1{
+    color:white;
+    background-color: #3247D5;
+    border-radius: 5px;
+    border:none;
+    margin-left: 100px;
+}

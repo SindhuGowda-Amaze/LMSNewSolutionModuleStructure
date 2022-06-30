@@ -7,6 +7,8 @@ import { AssessmentFormComponent } from './assessment-form/assessment-form.compo
 import { AssessmentResultComponent } from './assessment-result/assessment-result.component';
 import { AssessmentdashboardComponent } from './assessmentdashboard/assessmentdashboard.component';
 import { SharedModule } from '../shared/shared.module';
+import { CheckanswerComponent } from './checkanswer/checkanswer.component';
+import { EmployeeAssessmentResultComponent } from './employee-assessment-result/employee-assessment-result.component';
 
 
 @NgModule({
@@ -14,7 +16,9 @@ import { SharedModule } from '../shared/shared.module';
     TrainerComponent,
     AssessmentFormComponent,
     AssessmentResultComponent,
-    AssessmentdashboardComponent
+    AssessmentdashboardComponent,
+    CheckanswerComponent,
+    EmployeeAssessmentResultComponent
   ],
   imports: [
     CommonModule,
