@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+
 import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
@@ -16,6 +16,7 @@ import { TrainerCouresMappingFormComponent } from './trainer-coures-mapping-form
 import { EmployeeComponent } from './employee/employee.component';
 import { EmployeeFormComponent } from './employee-form/employee-form.component';
 import { SharedModule } from '../shared/shared.module';
+import { NgModule } from '@angular/core';
 
 
 @NgModule({
