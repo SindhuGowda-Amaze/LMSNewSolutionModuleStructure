@@ -219,6 +219,7 @@ loader:any
           if(this.categorylist[i].id==value)
           {
             debugger
+            
           }
           else{
             this.categorylist[i]["checked"]=false;
