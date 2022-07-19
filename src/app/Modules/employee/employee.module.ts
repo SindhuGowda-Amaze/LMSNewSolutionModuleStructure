@@ -7,6 +7,13 @@ import { AttendanceNewComponent } from './attendance-new/attendance-new.componen
 import { AttendanceDetailsComponent } from './attendance-details/attendance-details.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { SharedModule } from '../shared/shared.module';
+import { ViewCourseComponent } from './view-course/view-course.component';
+import { TakeAssessmentComponent } from './take-assessment/take-assessment.component';
+import { StartMyCourseNewComponent } from './start-my-course-new/start-my-course-new.component';
+import { StartMyCourseComponent } from './start-my-course/start-my-course.component';
+import { MyCourseDashboardComponent } from './my-course-dashboard/my-course-dashboard.component';
+import { CourseCertificateComponent } from './course-certificate/course-certificate.component';
+import { SubmitedtestsComponent } from './submitedtests/submitedtests.component';
 
 
 @NgModule({
@@ -14,7 +21,14 @@ import { SharedModule } from '../shared/shared.module';
     EmployeeComponent,
     AttendanceNewComponent,
     AttendanceDetailsComponent,
-    CatalogComponent
+    CatalogComponent,
+    ViewCourseComponent,
+    TakeAssessmentComponent,
+    StartMyCourseNewComponent,
+    StartMyCourseComponent,
+    MyCourseDashboardComponent,
+    CourseCertificateComponent,
+    SubmitedtestsComponent
   ],
   imports: [
     CommonModule,

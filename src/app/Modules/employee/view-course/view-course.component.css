@@ -1,0 +1,63 @@
+.card1{
+    background-color:#F3F8FF;
+    color: #0C275A ; 
+}
+button{
+    padding:10px;
+    border-radius: 5px;
+    color:white;
+    background-color: #3247D5;
+    border:none;
+    float: right;
+    margin-bottom: 5px;
+    margin-right: 200px;
+    width: 60%;
+}
+.close{
+    background-color:transparent;
+    color: black;
+}
+.chapter{
+   
+    text-decoration: none;
+    margin-bottom: 20px;
+    text-align: justify;
+    
+    
+}
+.image{
+    width: 10%;
+    height: 20%;
+}
+.Save {
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    background-color: #3247D5;
+    border: none;
+    float: right;
+    margin-bottom: 10px;
+    margin-right: 40px;
+    width:100%;
+  }
+/* 
+  .CloseBTN {
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    background-color: #030a0f;
+    border: none;
+    float: right;
+    width:100%;
+  } */
+  .card2{
+    margin: 10px;
+    background-color: 
+    #F3F8FF;
+}
+
+
+.sample{
+  font-size: 19px;
+  text-align: center;
+}

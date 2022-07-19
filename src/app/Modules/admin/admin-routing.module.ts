@@ -1,5 +1,7 @@
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { AdminComponent } from './admin.component';
 import { CategoryDashboardComponent } from './category-dashboard/category-dashboard.component';
 import { CategoryFormComponent } from './category-form/category-form.component';
@@ -7,6 +9,8 @@ import { ChapterDashboardComponent } from './chapter-dashboard/chapter-dashboard
 import { ChapterComponent } from './chapter/chapter.component';
 import { CourseDashboardComponent } from './course-dashboard/course-dashboard.component';
 import { CourseComponent } from './course/course.component';
+import { EmployeeFormComponent } from './employee-form/employee-form.component';
+import { EmployeeComponent } from './employee/employee.component';
 import { TrainerCouresMappingFormComponent } from './trainer-coures-mapping-form/trainer-coures-mapping-form.component';
 import { TrainerCouresMappingComponent } from './trainer-coures-mapping/trainer-coures-mapping.component';
 import { TrainerFormComponent } from './trainer-form/trainer-form.component';
@@ -33,6 +37,11 @@ const routes: Routes = [{ path: '', component: AdminComponent },
 {path:'TrainerCouresMapping',component:TrainerCouresMappingComponent},
 {path:'TrainerCouresMappingForm',component:TrainerCouresMappingFormComponent},
 {path:'TrainerCouresMappingForm/:id',component:TrainerCouresMappingFormComponent},
+
+{path:'Employee',component:EmployeeComponent},
+{path:'EmployeeForm',component:EmployeeFormComponent},
+{path:'EmployeeForm/:id',component:EmployeeFormComponent},
+
 
 
 

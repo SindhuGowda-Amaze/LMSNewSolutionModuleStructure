@@ -1,0 +1,77 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-10">
+            <p class="headings">Certificate</p>
+        </div>
+        <div class="col-lg-2">
+            <p class="count">Count:{{count}} </p>
+        </div>
+    </div>
+    <div class="card">
+        <br>
+        <div class="row FilterClass ">
+            <div class="col-lg-1">
+                <p class="filter">Filter By</p>
+            </div>
+            <div class="col-lg-3">
+                <select class="form-control" id="Duration" (change)=" getcourseid($event)">
+                    <option value="0" >Select Training</option>
+                    <option style="color:#0C275A" *ngFor="let details of courseList" value="{{details.id}}" >{{details.name}}</option>
+                </select>
+            </div>
+            <div class="col-lg-2">
+                <input type="search" class="form-control search" placeholder="Search for Name.." [(ngModel)]="search"
+                    name="search" (ngModelChange)="filterNameOfCerticate()">
+            </div>
+            <div class="col-lg-2">
+                <input type="date" class="form-control" id="date" name="date" [(ngModel)]="date">
+            </div>
+        </div><br>
+    </div>
+      <br>
+      <div class="row">
+          <div class="col-lg-10"></div>
+      </div>
+     <br>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <table id="download" class="table" *ngIf="(employeereportlist | filter: search|filter:date).length > 0; else noResults">
+                    <thead>
+                        <tr>
+                            <th>Training name</th>
+                            <th>Topic Name</th>
+                            <th>Start Date</th>
+                            <th>Completion Date</th>
+                            <th>Trainer Name</th>
+                            <th>Percentage</th>
+                            <th>Certificate</th>
+                        </tr>
+                        <tr *ngFor="let details of employeereportlist|filter :search">
+                            <td style="color:#0C275A">{{details.coursename}}</td>
+                            <td style="color:#0C275A">{{details.chaptername}}</td>
+                            <td style="color:#0C275A">{{details.startDate|date}}</td>
+                            <td style="color:#0C275A">{{details.endDate|date}}</td>
+                            <td style="color:#0C275A">{{details.trainer}}</td>
+                            <td> {{details.obtainedMarks/details.totalmarks
+                                *100 | number : '1.2-2'}} % </td>
+                            <td style="color:#0C275A">
+                                <button class="Button"
+                                [routerLink]="['/CourseCertificateNew',details.id]">View</button>
+                            </td>
+                            
+                        </tr>
+                    </thead>
+                </table>
+                <ng-template #noResults>
+                    <p class="NoResultShow"> Results not found </p>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
