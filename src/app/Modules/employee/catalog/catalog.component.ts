@@ -213,13 +213,15 @@ loader:any
       data => {
         debugger
         this.courselist = data.filter(x => x.categoryID == value);
+        console.log(this.courselist)
         this.count = this.courselist.length;
         for(let i=0;i<this.categorylist.length;i++)
         {
           if(this.categorylist[i].id==value)
+
           {
             debugger
-            
+
           }
           else{
             this.categorylist[i]["checked"]=false;
