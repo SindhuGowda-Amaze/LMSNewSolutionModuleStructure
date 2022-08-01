@@ -11,24 +11,7 @@ export class ChapterDashboardComponent implements OnInit {
 
   coursedetails: any;
   search: any;
-
-  constructor(private LearningService: LearningService) { }
   courselist: any;
-
-  ngOnInit(): void {
-    this.GetChapter();
-    this.GetCourse();
-  }
-
-  public GetCourse() {
-    debugger
-    this.LearningService.GetCourseDropdown().subscribe(
-      data => {
-        debugger
-        this.courselist = data;
-      })
-  }
-
   dummcoursedetails: any;
   id: any;
   courseName: any;
@@ -36,18 +19,70 @@ export class ChapterDashboardComponent implements OnInit {
   description: any;
   chapterPhoto: any;
   chapterText: any;
+  files: File[] = [];
+  currentUrl:any;
+  Attachmentlist: any;
+  constructor(private LearningService: LearningService) { }
+ 
+
+  ngOnInit(): void {
+    this.currentUrl = window.location.href;
+    this.GetChapter();
+    this.GetCourse();
+  }
+
+  public GetCourse() {
+    debugger
+    this.LearningService.GetCourseDropdown()
+    .subscribe({
+      next: data => {
+        debugger
+        this.courselist = data;
+      }, error: (err) => {
+        Swal.fire('Issue in GetCourseDropdown');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+    
+  }
+
+
 
   public GetChapter() {
     debugger
-    this.LearningService.GetChapter().subscribe(data => {
-      debugger
+    this.LearningService.GetChapter()
+    
+    .subscribe({
+      next: data => {
+        debugger
       this.coursedetails = data;
       this.dummcoursedetails = data;
-      debugger
+      }, error: (err) => {
+        Swal.fire('Issue in Getting Expenses List Web');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
+
   }
 
-  files: File[] = [];
 
   onSelect(event: any) {
     console.log(event);
@@ -83,7 +118,19 @@ export class ChapterDashboardComponent implements OnInit {
       confirmButtonText: 'OK'
     }).then((result) => {
       if (result.value == true) {
-        this.LearningService.DeleteChapter(id).subscribe(
+        this.LearningService.DeleteChapter(id)
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        .subscribe(
       data => {
         debugger
         this.GetChapter();
@@ -95,14 +142,30 @@ export class ChapterDashboardComponent implements OnInit {
     });
   }
 
-  Attachmentlist: any;
+
 
   ShowAttachments(id: any) {
     debugger
-    this.LearningService.GetChapterAttachmentByChapterID(id).subscribe(data => {
-      debugger
+    this.LearningService.GetChapterAttachmentByChapterID(id)
+    .subscribe({
+      next: data => {
+        debugger
       this.Attachmentlist = data;
+      }, error: (err) => {
+        Swal.fire('Issue in GetChapterAttachmentByChapterID');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
+  
   }
 
   openAttchments(photo: any) {

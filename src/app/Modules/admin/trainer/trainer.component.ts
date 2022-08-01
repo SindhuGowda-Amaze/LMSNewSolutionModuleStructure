@@ -14,8 +14,10 @@ export class TrainerComponent implements OnInit {
   search: any;
   id: any;
   result: any;
+  currentUrl:any;
 
   ngOnInit(): void {
+    this.currentUrl = window.location.href;
 
     this.GetTrainer();
     this.ActivatedRoute.params.subscribe(params => {
@@ -29,11 +31,28 @@ export class TrainerComponent implements OnInit {
 
   public GetTrainer() {
     debugger
-    this.LearningService.GetTrainer().subscribe(
-      data => {
+    this.LearningService.GetTrainer()
+    
+    .subscribe({
+      next: data => {
         debugger
         this.result = data;
-      })
+      }, error: (err) => {
+        Swal.fire('Issue in GetTrainer');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+    
+
   }
 
   public Ondelete(id:any) {
@@ -47,12 +66,27 @@ export class TrainerComponent implements OnInit {
       confirmButtonText: 'OK'
     }).then((result) => {
       if (result.value == true) {
-    this.LearningService.DeleteTrainer(id).subscribe(
-      data => {
+    this.LearningService.DeleteTrainer(id)
+    
+    .subscribe({
+      next: data => {
         debugger
         this.GetTrainer();
+      }, error: (err) => {
+        Swal.fire('Issue in DeleteTrainer');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
       }
-    )
+    })
+  
     Swal.fire('Successfully Deleted...!');
     this.ngOnInit();
       }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LearningService } from 'src/app/Pages/Services/learning.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-employee',
@@ -15,8 +16,12 @@ export class EmployeeComponent implements OnInit {
   term: any;
   search: any;
   id: any;
+  date: any;
+  currentUrl:any;
 
   ngOnInit(): void {
+    this.GetMyDetails();
+    this.currentUrl = window.location.href;
 
     // this.GetMyDetails();
     // this.ActivatedRoute.params.subscribe(params => {
@@ -30,20 +35,59 @@ export class EmployeeComponent implements OnInit {
     // this.GetMyDetails();
     debugger
 
-    this.LearningService.GetMyDetails().subscribe(data => {
-      debugger
-      this.stafflist = data;
-    });
+  
   }
 
-  date: any;
+  GetMyDetails(){
+
+    this.LearningService.GetMyDetails()
+    
+    .subscribe({
+      next: data => {
+        debugger
+      this.stafflist = data;
+      }, error: (err) => {
+        Swal.fire('Issue in GetMyDetails');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+    
+  }
+
+
   public getdate(event: any) {
     debugger
     this.date = event.target.value;
-    this.LearningService.GetMyDetails().subscribe(data => {
-      debugger
+    this.LearningService.GetMyDetails()
+    
+    .subscribe({
+      next: data => {
+        debugger
       this.stafflist = data.filter(x => x.filterdate == this.date);
-    });
+      }, error: (err) => {
+        Swal.fire('Issue in GetMyDetails');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+    
   }
 
   // public Ondelete(id:any) {

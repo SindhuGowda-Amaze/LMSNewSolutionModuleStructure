@@ -27,8 +27,15 @@ export class CourseComponent implements OnInit {
   exitCriteria: any;
   trainingType: any;
   updatephoto:any;
+  currentUrl:any;
+  Course_Photo: any;
+  files: File[] = [];
+  categoryList: any;
 
   ngOnInit(): void {
+
+    this.currentUrl = window.location.href;
+
     this.categoryid = 0;
     this.categoryName = 0;
     this.trainingType = 0;
@@ -45,8 +52,9 @@ export class CourseComponent implements OnInit {
   }
 
    public GetCourse() {
-    this.LearningService.GetCourse().subscribe(
-      data => {
+    this.LearningService.GetCourse()
+    .subscribe({
+      next: data => {
         debugger
         this.result = data.filter(x => x.id == this.id);
         this.updatephoto = this.result[0].updatephoto;
@@ -63,8 +71,21 @@ export class CourseComponent implements OnInit {
         this.password = this.result[0].password;
         this.venue = this.result[0].venue;
         this.trainingType = this.result[0].trainingType;
+      }, error: (err) => {
+        Swal.fire('Issue in GetCourse');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
       }
-    )
+    })
+    
   }
 
   GetCategoryid(even: any) {
@@ -73,13 +94,27 @@ export class CourseComponent implements OnInit {
     // this.categoryName = even.name
     this.categoryid = even.target.value;
 
-    this.LearningService.GetCategoryMaster().subscribe(
-      data => {
+    this.LearningService.GetCategoryMaster()
+    .subscribe({
+      next: data => {
         debugger
         let temp: any = data.filter(x => x.id == this.categoryid);
         this.categoryName = temp[0].name;
-      })
-
+      }, error: (err) => {
+        Swal.fire('Issue in GetCategoryMaster');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+    
   }
 
   GetTrainingType(even: any) {
@@ -99,7 +134,6 @@ export class CourseComponent implements OnInit {
         // "categoryName": this.categoryName,
         "name": this.name,
         "description": this.description,
-        
         "photo": this.Course_Photo,
         "duration": this.duration,
         "fee":this.fee,
@@ -112,13 +146,29 @@ export class CourseComponent implements OnInit {
         "venue": this.venue,
         "trainingType": this.trainingType
       };
-      this.LearningService.InsertCourse(json).subscribe(
-        data => {
+      this.LearningService.InsertCourse(json)
+      
+      .subscribe({
+        next: data => {
           debugger
           let id = data;
           Swal.fire("Saved Successfully");
           location.href = "#/CourseDashboard"
-        })
+        }, error: (err) => {
+          Swal.fire('Issue in InsertCourse');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.LearningService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+      
     }
   }
 
@@ -166,33 +216,60 @@ export class CourseComponent implements OnInit {
    
     
 
-    this.LearningService.UpdateCourse(json).subscribe(
-      data => {
+    this.LearningService.UpdateCourse(json)
+    .subscribe({
+      next: data => {
         debugger
         let result = data;
         Swal.fire("Updated Successfully");
         location.href = "#/CourseDashboard";
-      })
+      }, error: (err) => {
+        Swal.fire('Issue in UpdateCourse');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+    
+
   }
 
-
-  categoryList: any
   public GetCategoryMaster() {
     debugger
-    this.LearningService.GetCategoryMaster().subscribe(
-      data => {
+    this.LearningService.GetCategoryMaster()
+    .subscribe({
+      next: data => {
         debugger
         this.categoryList = data;
-      })
+      }, error: (err) => {
+        Swal.fire('Issue in GetCategoryMaster');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+    
   }
 
 
   cancel() {
     location.href = "#/CourseDashboard";
   }
-  Course_Photo: any;
 
-  files: File[] = [];
   onSelect(event: { addedFiles: any; }) {
     debugger
     console.log(event);
@@ -210,11 +287,28 @@ export class CourseComponent implements OnInit {
 
   public uploadattachments() {
     debugger
-    this.LearningService.AttachmentsUpload(this.files).subscribe(res => {
-      debugger
-      this.Course_Photo = res;
+    this.LearningService.AttachmentsUpload(this.files)
+    .subscribe({
+      next: data => {
+        debugger
+      this.Course_Photo = data;
       Swal.fire("Attachment Uploaded");
+      }, error: (err) => {
+        Swal.fire('Issue in AttachmentsUpload');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
+    
+
   }
 
 
