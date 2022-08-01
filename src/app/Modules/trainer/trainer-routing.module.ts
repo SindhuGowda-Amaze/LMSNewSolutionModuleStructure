@@ -12,7 +12,11 @@ const routes: Routes = [{ path: '', component: TrainerComponent },
 {path:'AssessmentResult',component:AssessmentResultComponent},
 {path:'Assessmentdashboard',component:AssessmentdashboardComponent},
 {path:'MyAccountSetting',component:CheckanswerComponent},
-{path:'EmployeeAssessmentResult',component:EmployeeAssessmentResultComponent}
+{path:'EmployeeAssessmentResult',component:EmployeeAssessmentResultComponent},
+{path:'Checkanswer',component:CheckanswerComponent},
+{path:'Checkanswer/:id',component:CheckanswerComponent},
+
+
 
 
 
