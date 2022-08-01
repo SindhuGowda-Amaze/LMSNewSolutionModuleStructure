@@ -15,6 +15,7 @@ import Swal from 'sweetalert2';
 import { ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
 
+
 @Component({
   selector: 'app-employee-form',
   templateUrl: './employee-form.component.html',
@@ -1149,7 +1150,7 @@ export class EmployeeFormComponent implements OnInit {
     .subscribe({
       next: data => {
         debugger
-      
+      Swal.fire('Saved SucessFully')
       }, error: (err) => {
         Swal.fire('Issue in InsertEducationDetails');
         // Insert error in Db Here//
