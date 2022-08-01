@@ -101,7 +101,7 @@ export class EmployeeAssessmentResultComponent implements OnInit {
 
 
   Check(id:any){
-    location.href="#/Checkanswer/"+id;
+    location.href="/Trainer/Checkanswer/"+id;
   }
  
   download(){

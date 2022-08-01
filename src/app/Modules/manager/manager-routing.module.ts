@@ -14,6 +14,9 @@ const routes: Routes = [{ path: '', component: ManagerComponent },
 {path:'EmployeeReport',component:EmployeeReportComponent},
 {path:'AssignCourseDashboard',component:AssignCourseDashboardComponent},
 {path:'AssignCourseToEmployee',component:AssignCourseToEmployeeComponent},
+{path:'AssignCourseToEmployee/:id',component:AssignCourseToEmployeeComponent},
+
+
 {path:'CertificateDashboard',component:CertificateDashboardComponent},
 {path:'FinalResult',component:FinalResultComponent},
 {path:'MangerDashboard',component:MangerDashboardComponent}

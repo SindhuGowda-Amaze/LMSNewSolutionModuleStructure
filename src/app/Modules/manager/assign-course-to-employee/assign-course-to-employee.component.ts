@@ -72,7 +72,7 @@ export class AssignCourseToEmployeeComponent implements OnInit {
   }
 
   Cancel() {
-    location.href = "#/AssignCourseDashboard";
+    location.href = "/Manager/AssignCourseDashboard";
   }
   // public getcoureid(id: any) {
   //   this.staffId = id
