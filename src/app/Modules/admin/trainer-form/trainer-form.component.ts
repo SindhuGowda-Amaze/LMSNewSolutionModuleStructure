@@ -14,18 +14,21 @@ export class TrainerFormComponent implements OnInit {
 
   id: any;
   result: any;
-
   TrainerName: any;
   PhoneNumber: any;
   EmailID: any;
   Address: any;
   YearOfExperience: any;
-  // Resume:any;
   Company_logo: any;
   SkillsAndTechnology: any;
   TrainerFeePerCourse: any;
+  files: File[] = [];
+  currentUrl:any;
 
   ngOnInit(): void {
+
+    this.currentUrl = window.location.href;
+
     this.ActivatedRoute.params.subscribe(params => {
       this.id = params['id'];
       if (this.id != undefined && this.id != null) {
@@ -34,9 +37,12 @@ export class TrainerFormComponent implements OnInit {
     })
   }
 
+
+
   GetTrainer() {
-    this.LearningService.GetTrainer().subscribe(
-      data => {
+    this.LearningService.GetTrainer()
+    .subscribe({
+      next: data => {
         debugger
         this.result = data;
         this.result = this.result.filter((x: { id: any; }) => x.id == Number(this.id));
@@ -48,8 +54,21 @@ export class TrainerFormComponent implements OnInit {
         this.Company_logo = this.result[0].resume;
         this.SkillsAndTechnology = this.result[0].skillAndTecchnology;
         this.TrainerFeePerCourse = this.result[0].trainerFee;
+      }, error: (err) => {
+        Swal.fire('Issue in GetTrainer');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
       }
-    )
+    })
+    
   }
 
   Submit() {
@@ -71,13 +90,28 @@ export class TrainerFormComponent implements OnInit {
         "SkillAndTecchnology": this.SkillsAndTechnology,
         "TrainerFee": this.TrainerFeePerCourse
       };
-      this.LearningService.InsertTrainer(json).subscribe(
-        data => {
+      this.LearningService.InsertTrainer(json)
+      
+      .subscribe({
+        next: data => {
           debugger
           let id = data;
           Swal.fire("Successfully Saved...!");
           location.href = "#/Trainer"
-        })
+        }, error: (err) => {
+          Swal.fire('Issue in InsertTrainer');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.LearningService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
     }
    
   }
@@ -96,18 +130,33 @@ export class TrainerFormComponent implements OnInit {
       "TrainerFee": this.TrainerFeePerCourse
     };
 
-    this.LearningService.UpdateTrainer(json).subscribe(
-      data => {
+    this.LearningService.UpdateTrainer(json)
+    
+    .subscribe({
+      next: data => {
         debugger
         let result = data;
         Swal.fire("Successfully Updated...!");
         location.href = "#/Trainer";
-      })
+      }, error: (err) => {
+        Swal.fire('Issue in UpdateTrainer');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+    
   }
 
 
 
-  files: File[] = [];
   onSelect(event: { addedFiles: any; }) {
     debugger
     console.log(event);
@@ -122,11 +171,28 @@ export class TrainerFormComponent implements OnInit {
   }
   public uploadattachments() {
     debugger
-    this.LearningService.AttachmentsUpload(this.files).subscribe(res => {
-      debugger
-      this.Company_logo = res;
-      Swal.fire("Attachment Uploaded");
+    this.LearningService.AttachmentsUpload(this.files)
+    
+    .subscribe({
+      next: data => {
+        debugger
+        this.Company_logo = data;
+        Swal.fire("Attachment Uploaded");
+      }, error: (err) => {
+        Swal.fire('Issue in AttachmentsUpload');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
+    
   }
 
   Cancel() {

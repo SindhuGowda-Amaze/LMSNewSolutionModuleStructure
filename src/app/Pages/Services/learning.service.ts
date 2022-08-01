@@ -806,7 +806,13 @@ export class LearningService {
        this.host1 + "/Master/DeleteSupportTickets?ID=" + ID);
    }
  
- 
+   public InsertExceptionLogs(data: any) {
+    debugger;
+    this.url = this.host + '/Master/InsertExceptionLogs';
+    return this.http.post(this.url, data);
+
+  }
+
  
  
  

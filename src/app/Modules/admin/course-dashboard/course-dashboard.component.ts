@@ -20,9 +20,18 @@ export class CourseDashboardComponent implements OnInit {
   courseid:any;
   categoryid:any;
   dummresult:any;
-  
+  currentUrl:any;
   coursedetails:any;
+  files: File[] = [];
+  categorylist:any;
+  description:any;
+  dummcoursedetails:any;
+  image:any;
+  categorydetails:any;
+  
   ngOnInit(): void {
+
+    this.currentUrl = window.location.href;
     this.GetCourse() ;
     this.GetCategoryMaster();
 
@@ -30,30 +39,62 @@ export class CourseDashboardComponent implements OnInit {
 
   public GetCourse() {
     debugger
-    this.LearningService.GetCourse().subscribe(
-      data => {
+    this.LearningService.GetCourse()
+    
+    .subscribe({
+      next: data => {
         debugger
         this.result = data;
         this.dummresult = data;
         this.count = this.result.length;
-      
-      })
+      }, error: (err) => {
+        Swal.fire('Issue in GetCourse');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+    
+    
   }
 
-
-  categorylist:any;
   public GetCategoryMaster() {
     debugger
-    this.LearningService.GetCategoryMaster().subscribe(
-      data => {
+    this.LearningService.GetCategoryMaster()
+    
+    .subscribe({
+      next: data => {
+        debugger
         debugger
         this.result1 = data;
         this.categorylist=data;
         this.categorydetails=data;
-      })
+      }, error: (err) => {
+        Swal.fire('Issue in GetCategoryMaster');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+    
+    
   }
 
-  files: File[] = [];
+
 
   onSelect(event:any) {
     console.log(event);
@@ -72,12 +113,28 @@ export class CourseDashboardComponent implements OnInit {
   }
   public GetChapter() {
     debugger
-    this.LearningService.GetChapter().subscribe(data => {
-      debugger
-      this.coursedetails = data;
-      this.dummcoursedetails = data;
-      debugger
+    this.LearningService.GetChapter()
+    .subscribe({
+      next: data => {
+        debugger
+        this.coursedetails = data;
+        this.dummcoursedetails = data;
+      }, error: (err) => {
+        Swal.fire('Issue in GetChapter');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
+    
+
   }
 
   public Ondelete(id:any) {
@@ -91,19 +148,35 @@ export class CourseDashboardComponent implements OnInit {
       confirmButtonText: 'OK'
     }).then((result) => {
       if (result.value == true) {
-        this.LearningService.DeleteCourse(id).subscribe(
-      data => {
-        debugger
+        this.LearningService.DeleteCourse(id)
+        
+        .subscribe({
+          next: data => {
+            debugger
         this.GetCourse();
-      }
-    )
+          }, error: (err) => {
+            Swal.fire('Issue in DeleteCourse');
+            // Insert error in Db Here//
+            var obj = {
+              'PageName': this.currentUrl,
+              'ErrorMessage': err.error.message
+            }
+            this.LearningService.InsertExceptionLogs(obj).subscribe(
+              data => {
+                debugger
+              },
+            )
+          }
+        })
+        
+ 
     Swal.fire('Successfully Deleted...!');
     this.ngOnInit();
       }
     });
   }
 
-  dummcoursedetails:any;
+
   getcourseid(even: any) {
     this.courseid = even.target.value;
     if (even.target.value != 0) {
@@ -115,8 +188,6 @@ export class CourseDashboardComponent implements OnInit {
     }
   }
 
-
-  categorydetails:any;
   getcategoryid(even:any){
     debugger
     this.categoryid=even.target.value;
@@ -129,13 +200,13 @@ export class CourseDashboardComponent implements OnInit {
     }
   }
 
-   image:any
+  
   clickonimage(photo:any){
    this.image=photo;
   }
  
 
-  description:any;
+
   view(desc:any){
     this.description=desc;
     

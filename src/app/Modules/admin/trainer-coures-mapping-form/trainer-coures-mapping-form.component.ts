@@ -14,33 +14,28 @@ export class TrainerCouresMappingFormComponent implements OnInit {
   result:any;
   CourseList:any;
   BatchList:any;
-
-
   EmailID:any;
   StartDate:any;
   EndDate:any;
   BatchName:any;
   AllowedStudents:any;
   maxdate: any;
-  constructor(public LearningService:LearningService, public ActivatedRoute:ActivatedRoute) { }
   trainerlist:any;
+  currentUrl: any;
+  trainerName:any;
+  courseName:any;
+  TrainerID:any
+  CourseID:any;
+  constructor(public LearningService:LearningService, public ActivatedRoute:ActivatedRoute) { }
+  
   ngOnInit(): void {
+    
+    this.currentUrl = window.location.href;
+    
     this.TrainerID = 0;
     this.CourseID = 0;
     this.maxdate = new Date().toISOString().split("T")[0];
- 
-
-   
     this.GetBatch();
-    
-    // this.ActivatedRoute.params.subscribe(params => {
-    //   debugger
-    //   this.id = params["id"];
-    //   if (this.id != null && this.id != undefined) {
-    //     this.GetTrainer();
-    //   }
-    // })
-
     this.ActivatedRoute.params.subscribe(params => {
       debugger
       this.id = params["id"];
@@ -49,40 +44,16 @@ export class TrainerCouresMappingFormComponent implements OnInit {
       }
     })
     this.GetTrainerCourseMapping();
+    this.GetUnmappedCourseDropdown();
+    this.GetUnmappedTrainer();
     this.TrainerID=0;
     this.CourseID=0;
     
     this.BatchName=0;
     // this.GetCourse();
-    if(this.id==undefined || this.id==null){
-    this.LearningService.GetUnmappedCourseDropdown().subscribe(
-      data => {
-        debugger
-        this.CourseList = data
-      })
-    }
-    else{
-      this.LearningService.GetCourseDropdown().subscribe(
-        data => {
-          debugger
-          this.CourseList = data
-        })
-    }
+   
 
-    if(this.id==undefined || this.id==null){
-      this.LearningService.GetUnmappedTrainer().subscribe(
-        data => {
-          debugger
-          this.trainerlist = data.filter(x=>x.id!=this.TrainerID);
-        })
-      }
-      else{
-        this.LearningService.GetTrainer().subscribe(
-          data => {
-            debugger
-            this.trainerlist = data
-          })
-      }
+  
     // this.ActivatedRoute.params.subscribe(params => {
     //   debugger
     //   this.id = params["id"];
@@ -95,6 +66,107 @@ export class TrainerCouresMappingFormComponent implements OnInit {
     // this.BatchName=0;
   }
 
+  public GetUnmappedCourseDropdown(){
+
+  if(this.id==undefined || this.id==null){
+    this.LearningService.GetUnmappedCourseDropdown()
+    
+    .subscribe({
+      next: data => {
+        debugger
+        this.CourseList = data
+      }, error: (err) => {
+        Swal.fire('Issue in GetUnmappedCourseDropdown');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+    
+
+    }
+    else{
+      this.LearningService.GetCourseDropdown()
+      .subscribe({
+        next: data => {
+          debugger
+          this.CourseList = data
+        }, error: (err) => {
+          Swal.fire('Issue in Getting Expenses List Web');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.LearningService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+      
+    }
+
+  }
+
+
+  public GetUnmappedTrainer(){
+  if(this.id==undefined || this.id==null){
+    this.LearningService.GetUnmappedTrainer()
+    .subscribe({
+      next: data => {
+        debugger
+        this.trainerlist = data.filter(x=>x.id!=this.TrainerID);
+      }, error: (err) => {
+        Swal.fire('Issue in GetUnmappedTrainer');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+    
+    }
+    else{
+      this.LearningService.GetTrainer()
+      
+      .subscribe({
+        next: data => {
+          debugger
+          this.trainerlist = data
+        }, error: (err) => {
+          Swal.fire('Issue in GetTrainer');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.LearningService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+    
+    }
+
+  }
+
   public endingdatealert(even: any) {
     this.EndDate= even.target.value;
     if(this.EndDate < this.StartDate || this.EndDate < this.StartDate){
@@ -102,24 +174,38 @@ export class TrainerCouresMappingFormComponent implements OnInit {
       this.EndDate=0
     }
   }
-  trainerName:any;
-  courseName:any;
+
 
   GetTrainerCourseMapping() {
-    this.LearningService.GetTrainerCourseMapping().subscribe(
-    data => {
-    debugger
-    this.result = data;
-		this.result=this.result.filter((x: { id: any; })=>x.id==Number(this.id));
-    this.TrainerID=this.result[0].trainerID;
-    this.CourseID=this.result[0].courseID;
-		// this.EmailID=this.result[0].emailID;
-		this.StartDate=this.result[0].startDate;
-    this.EndDate=this.result[0].endDate;
-    this.BatchName=this.result[0].batchID;
-    this.AllowedStudents=this.result[0].noOfStudentsEnrolled;
+    this.LearningService.GetTrainerCourseMapping()
+    
+    .subscribe({
+      next: data => {
+        debugger
+        this.result = data;
+        this.result=this.result.filter((x: { id: any; })=>x.id==Number(this.id));
+        this.TrainerID=this.result[0].trainerID;
+        this.CourseID=this.result[0].courseID;
+        // this.EmailID=this.result[0].emailID;
+        this.StartDate=this.result[0].startDate;
+        this.EndDate=this.result[0].endDate;
+        this.BatchName=this.result[0].batchID;
+        this.AllowedStudents=this.result[0].noOfStudentsEnrolled;
+      }, error: (err) => {
+        Swal.fire('Issue in GetTrainerCourseMapping');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
       }
-    ) 
+    })
+    
   }
 
   Submit(){
@@ -138,13 +224,27 @@ export class TrainerCouresMappingFormComponent implements OnInit {
        "batchID": this.BatchName,
        "noOfStudentsEnrolled": this.AllowedStudents   
     };
-    this.LearningService.InsertTrainerCourseMapping(json).subscribe(
-      data => {
+    this.LearningService.InsertTrainerCourseMapping(json)
+    .subscribe({
+      next: data => {
         debugger
         let trainerlist = data;
         Swal.fire("Saved Successfully");
         location.href="#/TrainerCourseMapping";
-      })
+      }, error: (err) => {
+        Swal.fire('Issue in InsertTrainerCourseMapping');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
   }
   }
 
@@ -162,16 +262,30 @@ export class TrainerCouresMappingFormComponent implements OnInit {
       "noOfStudentsEnrolled": this.AllowedStudents         
       };
     
-      this.LearningService.UpdateTrainerCourseMapping(json).subscribe(
-        data => {
-        debugger
+      this.LearningService.UpdateTrainerCourseMapping(json)
+      
+      .subscribe({
+        next: data => {
+          debugger
         let result = data;
         Swal.fire("Successfully Updated...!");
         location.href="#/TrainerCourseMapping";
+        }, error: (err) => {
+          Swal.fire('Issue in UpdateTrainerCourseMapping');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.LearningService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
       })
   }
 
-  CourseID:any;
   getCourseID(even:any)
   {
     debugger
@@ -194,14 +308,29 @@ export class TrainerCouresMappingFormComponent implements OnInit {
   }
   public GetBatch() {
     debugger
-    this.LearningService.GetBatch().subscribe(
-      data => {
+    this.LearningService.GetBatch()
+    
+    .subscribe({
+      next: data => {
         debugger
         this.BatchList = data;
-      })
+      }, error: (err) => {
+        Swal.fire('Issue in GetBatch');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+  
   }
 
-TrainerID:any
   getTrainerID(even:any)
   {
     debugger

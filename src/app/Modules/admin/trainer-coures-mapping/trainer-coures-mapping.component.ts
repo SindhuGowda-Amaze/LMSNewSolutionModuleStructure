@@ -12,22 +12,39 @@ export class TrainerCouresMappingComponent implements OnInit {
 
   search:any;
   count:any;
+  Trainerdetails:any;
+  currentUrl: any;
   
     constructor(private ActivatedRoute: ActivatedRoute, private LearningService: LearningService) { }
   
     ngOnInit(): void {
       this.GetTrainerCourseMappingDashboard();
     }
-    Trainerdetails:any;
+    
   
     public GetTrainerCourseMappingDashboard() {
       debugger
-      this.LearningService.GetTrainerCourseMappingDashboard().subscribe(
-        data => {
+      this.LearningService.GetTrainerCourseMappingDashboard()
+      .subscribe({
+        next: data => {
           debugger
           this.Trainerdetails = data;
           this.count = this.Trainerdetails.length;
-        })
+        }, error: (err) => {
+          Swal.fire('Issue in GetTrainerCourseMappingDashboard');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.LearningService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+    
     }
   
     edit(id: any) {
@@ -46,12 +63,29 @@ export class TrainerCouresMappingComponent implements OnInit {
         confirmButtonText: 'OK'
       }).then((result) => {
         if (result.value == true) {
-      this.LearningService.DeleteTrainerCourseMapping(id).subscribe(
-        data => {
+      this.LearningService.DeleteTrainerCourseMapping(id)
+      
+      
+      .subscribe({
+        next: data => {
           debugger
           this.GetTrainerCourseMappingDashboard();
+        }, error: (err) => {
+          Swal.fire('Issue in DeleteTrainerCourseMapping');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.LearningService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
-      )
+      })
+      
+  
       Swal.fire('Successfully Deleted...!');
       this.ngOnInit();
         }
