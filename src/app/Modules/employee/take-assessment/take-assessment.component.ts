@@ -23,6 +23,8 @@ export class TakeAssessmentComponent implements OnInit {
   userAnswer: any;
   marks: any;
   show: any;
+  correctansers:any;
+  wrongansers:any;
   //private future: Date;
   // private futureString: string;
   // private diff: number;
@@ -43,15 +45,20 @@ export class TakeAssessmentComponent implements OnInit {
   emailID: any;
   testtype:any;
   testResponseID1:any;
+  courseid:any;
+  chapterid:any;
+  currentUrl:any;
   constructor(private AmazeService: LearningService, private ActivatedRoute: ActivatedRoute, private elementRef: ElementRef,public router:Router) {
   }
-  courseid:any;
+  
   ngOnInit(): void {
+    this.currentUrl = window.location.href;
     this.userid = sessionStorage.getItem('userid');
     this.marks = 0;
     this.show = 1;
     this.message = "";
    // this.GetUsers();
+    this.GetAssessments();
     this.startTest=0;
   //  this.future = new Date(this.futureString);
     // this.activatedroute.params.subscribe(params => {
@@ -78,23 +85,70 @@ export class TakeAssessmentComponent implements OnInit {
 
        if(this.testtype==1){
         
-        this.AmazeService.GetTestResponse().subscribe(data => {
-          debugger
-  let temp:any=data.filter(x=>x.userID==sessionStorage.getItem('userid')&&x.courseID== this.courseid&&x.chapterID==this.chapterid);
-  this.testResponseID1=temp[0].id;
-           })
+     
        }
 
-       this.AmazeService.GetAssessments().subscribe(data => {
-        debugger
-        this.generalinstructions=data[0].generalInstructions
-
-         })
-       debugger
      }
      )
   }
-  chapterid:any;
+
+
+ public  GetTestResponse(){
+  this.AmazeService.GetTestResponse()
+  
+  .subscribe({
+    next: data => {
+      debugger
+let temp:any=data.filter(x=>x.userID==sessionStorage.getItem('userid')&&x.courseID== this.courseid&&x.chapterID==this.chapterid);
+this.testResponseID1=temp[0].id;
+    }, error: (err) => {
+      Swal.fire('Issue in GetTestResponse');
+      // Insert error in Db Here//
+      var obj = {
+        'PageName': this.currentUrl,
+        'ErrorMessage': err.error.message
+      }
+      this.AmazeService.InsertExceptionLogs(obj).subscribe(
+        data => {
+          debugger
+        },
+      )
+    }
+  })
+  
+  
+
+
+  }
+
+ public  GetAssessments(){
+  this.AmazeService.GetAssessments()
+  
+  .subscribe({
+    next: data => {
+      debugger
+      this.generalinstructions=data[0].generalInstructions
+    }, error: (err) => {
+      Swal.fire('Issue in GetAssessments');
+      // Insert error in Db Here//
+      var obj = {
+        'PageName': this.currentUrl,
+        'ErrorMessage': err.error.message
+      }
+      this.AmazeService.InsertExceptionLogs(obj).subscribe(
+        data => {
+          debugger
+        },
+      )
+    }
+  })
+  
+
+
+
+  }
+
+
   public validateohone() {
     if (this.PhoneNumber.length < 10) {
       this.invalidphone = 0;
@@ -125,19 +179,36 @@ export class TakeAssessmentComponent implements OnInit {
   public startTestContainer() {
     debugger
     this.startTest = 1;
-    this.AmazeService.GetAssessments().subscribe(data => {
-      debugger
-      this.questionList = data;
-      this.totalmarks=0;
-     let tempquetin = this.questionList.filter((x: { chapterID: any; courseID:any}) => x.chapterID == this.chapterid && x.courseID==this.courseid);
-    this.questionList=this.shuffleArray(tempquetin);
-      for (let i=0;i<this.questionList.length;i++){
+    this.AmazeService.GetAssessments()
+    .subscribe({
+      next: data => {
         debugger
-      
-        this.totalmarks= this.totalmarks + this.questionList[i].weightage;
+        this.questionList = data;
+        this.totalmarks=0;
+       let tempquetin = this.questionList.filter((x: { chapterID: any; courseID:any}) => x.chapterID == this.chapterid && x.courseID==this.courseid);
+      this.questionList=this.shuffleArray(tempquetin);
+        for (let i=0;i<this.questionList.length;i++){
+          debugger
+        
+          this.totalmarks= this.totalmarks + this.questionList[i].weightage;
+        }
+        this.count = this.questionList.length;
+      }, error: (err) => {
+        Swal.fire('Issue in GetAssessments');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.AmazeService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
       }
-      this.count = this.questionList.length;
     })
+    
+
     //this.changeReloadBit();
     // var callDuration = this.elementRef.nativeElement.querySelector('#time');
     // this.startTimer(callDuration);
@@ -204,8 +275,7 @@ export class TakeAssessmentComponent implements OnInit {
   }
 
   // public submitAnswer(){}
-  correctansers:any;
-  wrongansers:any
+
   public submitAnswer() {
     debugger;
     let notansred:any=0;
@@ -258,24 +328,66 @@ export class TakeAssessmentComponent implements OnInit {
         'wronganswers':this.wrongansers,
   
       }
-      this.AmazeService.InsertTestResponse(Entityy).subscribe(data => {
-        debugger
-        this.testResponseID = data;
-        if(this.testResponseID==10){
-          Swal.fire('You Already took this Test');
-          this.ngOnInit();
-        }else{
-
-          if(this.testtype==1){
-
-            this.AmazeService.DeleteTestResponseDetails(this.testResponseID1).subscribe(data => {
-              debugger
+      this.AmazeService.InsertTestResponse(Entityy)
+      .subscribe({
+        next: data => {
+          debugger
+          this.testResponseID = data;
+          if(this.testResponseID==10){
+            Swal.fire('You Already took this Test');
+            this.ngOnInit();
+          }else{
+  
+            if(this.testtype==1){
+  
+              this.AmazeService.DeleteTestResponseDetails(this.testResponseID1)
+              
+              .subscribe({
+                next: data => {
+                  debugger
+                  for (var i = 0; i < this.questionList.length; i++) {
+                    var ett = {
+                      'QuestionID': this.questionList[i].id,
+                      'CorrectAnswer': this.questionList[i].correctAnswer,
+                      'UserAnswer': this.questionList[i].userAnswer.split("$@")[1],
+                      'TestResponseID': this.testResponseID1,
+                      'ObtainedMarks':  this.questionList[i].correctAnswer==this.questionList[i].userAnswer.split("$@")[1]?this.questionList[i].weightage:0
+                    }
+                    this.AmazeService.InsertTestResponseDetails(ett).subscribe(data => {
+                    });
+                  }
+                  // Swal.fire('You have submited test successfully...');
+                 
+                  this.show = 0;
+                  this.startTest = "";
+                //  this.router.navigate(['/AssessmentResult', this.testResponseID]);
+                // this.router.navigate(['#/MyCourseDashboard']);
+                 location.href="#/MyCourseDashboard";
+               
+                  // .filter(x => x.checked == 1);
+                }, error: (err) => {
+                  Swal.fire('Issue in DeleteTestResponseDetails');
+                  // Insert error in Db Here//
+                  var obj = {
+                    'PageName': this.currentUrl,
+                    'ErrorMessage': err.error.message
+                  }
+                  this.AmazeService.InsertExceptionLogs(obj).subscribe(
+                    data => {
+                      debugger
+                    },
+                  )
+                }
+              })
+            
+  
+            }else{
               for (var i = 0; i < this.questionList.length; i++) {
                 var ett = {
                   'QuestionID': this.questionList[i].id,
                   'CorrectAnswer': this.questionList[i].correctAnswer,
                   'UserAnswer': this.questionList[i].userAnswer.split("$@")[1],
-                  'TestResponseID': this.testResponseID1,
+                  'TestResponseID': this.testResponseID,
                   'ObtainedMarks':  this.questionList[i].correctAnswer==this.questionList[i].userAnswer.split("$@")[1]?this.questionList[i].weightage:0
                 }
                 this.AmazeService.InsertTestResponseDetails(ett).subscribe(data => {
@@ -287,37 +399,27 @@ export class TakeAssessmentComponent implements OnInit {
               this.startTest = "";
             //  this.router.navigate(['/AssessmentResult', this.testResponseID]);
             // this.router.navigate(['#/MyCourseDashboard']);
-             location.href="#/Employee/MyCourseDashboard";
-           
-              // .filter(x => x.checked == 1);
-            });
-            
-
-          }else{
-            for (var i = 0; i < this.questionList.length; i++) {
-              var ett = {
-                'QuestionID': this.questionList[i].id,
-                'CorrectAnswer': this.questionList[i].correctAnswer,
-                'UserAnswer': this.questionList[i].userAnswer.split("$@")[1],
-                'TestResponseID': this.testResponseID,
-                'ObtainedMarks':  this.questionList[i].correctAnswer==this.questionList[i].userAnswer.split("$@")[1]?this.questionList[i].weightage:0
-              }
-              this.AmazeService.InsertTestResponseDetails(ett).subscribe(data => {
-              });
+             location.href="#/MyCourseDashboard";
             }
-            // Swal.fire('You have submited test successfully...');
-           
-            this.show = 0;
-            this.startTest = "";
-          //  this.router.navigate(['/AssessmentResult', this.testResponseID]);
-          // this.router.navigate(['#/MyCourseDashboard']);
-           location.href="#/MyCourseDashboard";
-          }
+            
           
-        
+          }
+        }, error: (err) => {
+          Swal.fire('Issue in Getting Expenses List Web');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.AmazeService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
-       
       })
+      
+
     }
 
   
