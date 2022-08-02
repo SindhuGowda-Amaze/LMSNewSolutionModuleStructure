@@ -153,7 +153,7 @@ export class CourseComponent implements OnInit {
           debugger
           let id = data;
           Swal.fire("Saved Successfully");
-          location.href = "#/CourseDashboard"
+          location.href = "#/Admin/CourseDashboard"
         }, error: (err) => {
           Swal.fire('Issue in InsertCourse');
           // Insert error in Db Here//
@@ -267,7 +267,7 @@ export class CourseComponent implements OnInit {
 
 
   cancel() {
-    location.href = "#/CourseDashboard";
+    location.href = "/Admin/CourseDashboard";
   }
 
   onSelect(event: { addedFiles: any; }) {

@@ -109,7 +109,7 @@ export class CourseDashboardComponent implements OnInit {
 
   Update(id:any){
     
-        location.href="#/Course/"+id;
+        location.href="/Admin/Course/"+id;
   }
   public GetChapter() {
     debugger

@@ -49,7 +49,7 @@ export class TrainerCouresMappingComponent implements OnInit {
   
     edit(id: any) {
       debugger
-      location.href = "#/TrainerCourseMappingForm/" + id;
+      location.href = "/Admin/TrainerCouresMappingForm/" + id;
     }
     
     public Ondelete(id:any) {

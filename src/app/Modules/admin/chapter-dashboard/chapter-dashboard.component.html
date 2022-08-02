@@ -31,7 +31,7 @@
     <div class="row">
         <div class="col-lg-9"></div>
         <div class="col-lg-3">
-            <button class="addnew" routerLink="/Chapter">Add</button>
+            <button class="addnew" routerLink="/Admin/Chapter">Add</button>
         </div>
     </div> <br>
 </div>
@@ -76,7 +76,7 @@
                                 <button class="edit" (click)="Ondelete(details.id)">Delete</button> -->
 
                                 <img src="assets/Images/Edit_ICON.png" alt="Edit_ICON" style="width:20px;"
-                                [routerLink]="['/Chapter',details.id]"> &nbsp;
+                                [routerLink]="['/Admin/Chapter',details.id]"> &nbsp;
 
                                 <img src="assets/Images/Delete_ICON.png" alt="Delete_ICON"
                                     (click)="Ondelete(details.id)" style="width:20px;">

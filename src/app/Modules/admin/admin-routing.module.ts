@@ -18,7 +18,7 @@ import { TrainerFormComponent } from './trainer-form/trainer-form.component';
 import { TrainerComponent } from './trainer/trainer.component';
 
 const routes: Routes = [{ path: '', component: AdminComponent },
-{path:'CategoryForm',component:CategoryFormComponent},
+{path:'CategoryForm/:id',component:CategoryFormComponent},
 {path:'CategoryDashboard',component:CategoryDashboardComponent},
 {path:'CategoryDashboard/:id',component:CategoryDashboardComponent},
 

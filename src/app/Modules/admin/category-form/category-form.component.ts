@@ -77,7 +77,7 @@ export class CategoryFormComponent implements OnInit {
         let id = data;
         if (data != 0) {
           Swal.fire('Saved Successfully');
-          location.href = '#/CategoryDashboard';
+          location.href = '#/Admin/CategoryDashboard';
         } else {
           Swal.fire('Name Already Exists');
         }
@@ -130,6 +130,6 @@ export class CategoryFormComponent implements OnInit {
   }
 
   Cancel() {
-    location.href = '#/CategoryDashboard';
+    location.href = '/Admin/CategoryDashboard';
   }
 }

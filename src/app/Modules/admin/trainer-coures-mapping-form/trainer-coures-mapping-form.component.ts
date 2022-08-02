@@ -341,6 +341,6 @@ export class TrainerCouresMappingFormComponent implements OnInit {
  
 
   cancel() {
-    location.href = "#/TrainerCourseMapping";
+    location.href = "/Admin/TrainerCouresMapping";
   }
 }

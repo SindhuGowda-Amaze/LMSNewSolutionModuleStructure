@@ -23,7 +23,7 @@
     <div class="row">
         <div class="col-lg-10"></div>
         <div class="col-lg-2">
-            <button class="addnew" routerLink="/CategoryForm">Add</button>
+            <button class="addnew" routerLink="/Admin/CategoryForm">Add</button>
         </div>
     </div> <br>
 
@@ -49,7 +49,7 @@
                                 <button class="actionbuttons" (click)="Ondelete(details.id)">Delete</button> -->
 
                                 <img src="assets/Images/Edit_ICON.png" alt="Edit_ICON" style="width:20px;"
-                                routerLink="/CategoryForm" [routerLink]="['/CategoryForm', details.id]"> &nbsp;&nbsp;
+                                routerLink="/CategoryForm" [routerLink]="['/Admin/CategoryForm', details.id]"> &nbsp;&nbsp;
 
                                 <img src="assets/Images/Delete_ICON.png" alt="Delete_ICON"
                                 (click)="Ondelete(details.id)" style="width:20px;">

@@ -23,7 +23,7 @@
     <div class="row">
         <div class="col-lg-9"></div>
         <div class="col-lg-3">
-            <button class="addnew" routerLink="/TrainerForm">Add</button>
+            <button class="addnew" routerLink="/Admin/TrainerForm">Add</button>
         </div>
     </div> <br>
   <div class="container-fluid">
@@ -62,7 +62,7 @@
                                 <button class="edit" (click)="Ondelete(details.id)" >Delete</button> -->
 
                                 <img src="assets/Images/Edit_ICON.png" alt="Edit_ICON" style="width:20px;"
-                                routerLink="/TrainerForm" [routerLink]="['/TrainerForm', details.id]"> &nbsp;&nbsp;
+                               [routerLink]="['/Admin/TrainerForm', details.id]"> &nbsp;&nbsp;
 
                                 <img src="assets/Images/Delete_ICON.png" alt="Delete_ICON"
                                 (click)="Ondelete(details.id)" style="width:20px;">

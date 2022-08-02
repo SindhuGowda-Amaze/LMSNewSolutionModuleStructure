@@ -195,7 +195,7 @@ export class TrainerFormComponent implements OnInit {
     
   }
 
-  Cancel() {
-    location.href = "#/Trainer";
-  }
-}
+//   Cancel() {
+//     location.href = "#/Trainer";
+//   }
+ }

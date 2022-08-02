@@ -13,7 +13,7 @@
         </a>
 
 
-        <a *ngIf="roleid=='4'" routerLink="Admin/ChapterDashboard" class="tablinks" (click)="highlight($event)"
+        <a *ngIf="roleid=='4'" routerLink="/Admin/ChapterDashboard" class="tablinks" (click)="highlight($event)"
             (click)="chapterdashboard()">
             <img src="assets/Images/New folder/chapter.png" style="width:13% ;margin-right: 17px;"
                 [ngClass]="active != 'Chapter' ? 'Active1' : 'Active2'" />
@@ -118,7 +118,7 @@
                 <span [ngClass]="active == 'course' ? 'Active1' : 'Active3'"> TRAINING </span>
 
             </a>
-            <a routerLink="/ChapterDashboard" class="tablinks" (click)="highlight($event)" (click)="chapter()">
+            <a routerLink="/Admin/ChapterDashboard" class="tablinks" (click)="highlight($event)" (click)="chapter()">
                 <img src="assets/Images/1 (1).png" style="width:13% ;margin-right: 17px;"
                     [ngClass]="active == 'chapter' ? 'Active1' : 'Active2'" />
                 <img [ngClass]="active != 'chapter' ? 'Active1' : 'Active2'" src="assets/Images/New folder/1 (1)1.png"
@@ -135,7 +135,7 @@
                 &nbsp;
                 <span [ngClass]="active == 'trainer' ? 'Active1' : 'Active3'"> TRAINER </span>
             </a>
-            <a routerLink="Admin/TrainerCourseMapping" class="tablinks" (click)="highlight($event)"
+            <a routerLink="/Admin/TrainerCouresMapping" class="tablinks" (click)="highlight($event)"
                 (click)="assigntrainer()">
                 <img src="assets/Images/people.png" style="width:13% ;margin-right: 17px;"
                     [ngClass]="active == 11 ? 'Active1' : 'Active2'" />
@@ -144,7 +144,7 @@
                 &nbsp;
                 <span [ngClass]="active == 11 ? 'Active1' : 'Active3'"> ASSIGN TRAINER </span>
             </a>
-            <a routerLink="Admin/Employee" class="tablinks" (click)="highlight($event)" (click)="employee()">
+            <a routerLink="/Admin/Employee" class="tablinks" (click)="highlight($event)" (click)="employee()">
                 <img src="assets/Images/people.png" style="width:13% ;margin-right: 17px;"
                     [ngClass]="active == 'employee' ? 'Active1' : 'Active2'" />
                 <img [ngClass]="active != 'employee' ? 'Active1' : 'Active2'"

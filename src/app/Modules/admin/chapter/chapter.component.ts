@@ -133,7 +133,7 @@ export class ChapterComponent implements OnInit {
     }
 
   Cancel() {
-    location.href = "#/ChapterDashboard";
+    location.href = "/Admin/ChapterDashboard";
   }
 
 
