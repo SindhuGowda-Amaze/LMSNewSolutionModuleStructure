@@ -9,8 +9,6 @@ import Swal from 'sweetalert2';
   styleUrls: ['./learning-path-dashboard.component.css']
 })
 export class LearningPathDashboardComponent implements OnInit {
-
-  constructor(private ActivatedRoute: ActivatedRoute, private LearningService: LearningService) { }
   search: any;
   id: any;
   result: any;
@@ -24,8 +22,13 @@ export class LearningPathDashboardComponent implements OnInit {
   lastassigned: any;
   show:any;
   loader: any;
+  currentUrl:any;
+
+  constructor(private ActivatedRoute: ActivatedRoute, private LearningService: LearningService) { }
 
   ngOnInit(): void {
+
+    this.currentUrl = window.location.href;
     this.loader = false;
     this.roleid = sessionStorage.getItem('roleid');
     this.userid = sessionStorage.getItem('userid')
@@ -45,20 +48,51 @@ export class LearningPathDashboardComponent implements OnInit {
 
   public GetEmployee() {
     debugger
-    this.LearningService.GetEmployee().subscribe(
-      data => {
+    this.LearningService.GetEmployee()
+    
+    .subscribe({
+      next: data => {
         debugger
         this.result = data;
-      })
+      }, error: (err) => {
+        Swal.fire('Issue in GetEmployee');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+
   }
 
   public GetCourse() {
     debugger
-    this.LearningService.GetCourse().subscribe(
-      data => {
+    this.LearningService.GetCourse()
+    .subscribe({
+      next: data => {
         debugger
         this.result1 = data;
-      })
+      }, error: (err) => {
+        Swal.fire('Issue in GetCourse');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+
   }
 
   // public GetTrainerCourseMapping() {
@@ -72,41 +106,102 @@ export class LearningPathDashboardComponent implements OnInit {
 
   public GetTrainerCourseMapping() {
     debugger
-    this.LearningService.GetTrainerCourseMappingDashboard().subscribe(
-      data => {
+    this.LearningService.GetTrainerCourseMappingDashboard()
+    .subscribe({
+      next: data => {
         debugger
         this.result2 =  data.filter(x => x.staffID == this.userid && x.status == 'Manager Approved');
-      })
+      }, error: (err) => {
+        Swal.fire('Issue in GetTrainerCourseMappingDashboard');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+
+
   }
 
   public GetTrainerCourseMappingForProgress() {
     debugger
-    this.LearningService.GetCourse().subscribe(
-      data => {
+    this.LearningService.GetCourse()
+    .subscribe({
+      next: data => {
         debugger
         this.result3 = data.filter((x: { staffID: any; completed: number; enrollid: number; notStarted:number;}) => 
         x.completed != 1 && x.enrollid != 0&&x.notStarted!=0);
         console.log("result3",this.result3)
-        
-      })
+      }, error: (err) => {
+        Swal.fire('Issue in GetCourse');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
     }
 
     public GetTrainerCourseMappingForCompleted() {
       debugger
-      this.LearningService.GetTestResponse().subscribe(
-        data => {
+      this.LearningService.GetTestResponse()
+      .subscribe({
+        next: data => {
           debugger
           this.result4 = data.filter(x => x.completed == 1 && x.enrollid != 0 && x.staffID == this.userid);
-        })
+        }, error: (err) => {
+          Swal.fire('Issue in GetTestResponse');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.LearningService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+
       }
 
   public GetApproveCourse() {
     debugger
-    this.LearningService.GetApproveCourse(this.userid).subscribe(data => {
-      debugger
-      this.result2 = data.filter(x => x.completed == 0 && x.enrollid != 0 && x.staffid==this.userid);
-      console.log("result2",this.result2)
+    this.LearningService.GetApproveCourse(this.userid)
+    
+    .subscribe({
+      next: data => {
+        debugger
+        this.result2 = data.filter(x => x.completed == 0 && x.enrollid != 0 && x.staffid==this.userid);
+        console.log("result2",this.result2)
+      }, error: (err) => {
+        Swal.fire('Issue in GetApproveCourse');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
+
   }
 
   enroll(){

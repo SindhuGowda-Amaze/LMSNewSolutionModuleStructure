@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 // import { jsPDF } from "jspdf";
 // import html2canvas from 'html2canvas';
 import * as XLSX from 'xlsx';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-employee-report',
@@ -13,12 +14,7 @@ import * as XLSX from 'xlsx';
 export class EmployeeReportComponent implements OnInit {
 
   constructor(private LearningService:LearningService,private ActivatedRoute:ActivatedRoute ) { }
-  userid:any
-  ngOnInit(): void {
-    this.userid = sessionStorage.getItem('userid');
-    this.GetTrainerReport();
-    this.GetDepartmentMaster();
-  }
+  userid:any;
   search:any;
   dummemployeereportlist: any;
   traininglist: any;
@@ -29,15 +25,42 @@ export class EmployeeReportComponent implements OnInit {
   dumdeptlist: any
   departmentlist: any;
   reportlist: any;
+  currentUrl:any;
+
+  ngOnInit(): void {
+    
+ this.currentUrl = window.location.href;
+
+
+    this.userid = sessionStorage.getItem('userid');
+    this.GetTrainerReport();
+    this.GetDepartmentMaster();
+  }
 
    public GetTrainerReport(){
      debugger
-     this.LearningService.GetTrainerReport(0,0).subscribe(data=>{
-       this.employeereportlist=data.filter(x=>x.staffID== this.userid )
-       this.dummemployeereportlist=data;
-       this.traininglist=data;
-     }
-      )
+     this.LearningService.GetTrainerReport(0,0)
+     .subscribe({
+      next: data => {
+        debugger
+        this.employeereportlist=data.filter(x=>x.staffID== this.userid )
+        this.dummemployeereportlist=data;
+        this.traininglist=data;
+      }, error: (err) => {
+        Swal.fire('Issue in GetTrainerReport');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+
    }
 
 
@@ -60,11 +83,28 @@ export class EmployeeReportComponent implements OnInit {
 
   public GetDepartmentMaster(){
     debugger
-    this.LearningService.GetDepartmentMaster().subscribe(
-      data => {
+    this.LearningService.GetDepartmentMaster()
+    
+    .subscribe({
+      next: data => {
         debugger
         this.departmentlist = data;
-      })
+      }, error: (err) => {
+        Swal.fire('Issue in GetDepartmentMaster');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+    
+
   }
 
   getdepartmentid(even:any){

@@ -6,48 +6,60 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-my-accountsetting-modify',
   templateUrl: './my-accountsetting-modify.component.html',
-  styleUrls: ['./my-accountsetting-modify.component.css']
+  styleUrls: ['./my-accountsetting-modify.component.css'],
 })
 export class MyAccountsettingModifyComponent implements OnInit {
-
-  constructor(public LearningService: LearningService, public router: Router) { }
   confirmpassword: any;
   newpassword: any;
   Currentpassword: any;
-  Currentpwd:any;
-  pwd:any;
-  roleid:any;
+  Currentpwd: any;
+  pwd: any;
+  roleid: any;
+  curpassvaild: any;
+  currentUrl: any;
+  passvaild: any;
+
+  constructor(public LearningService: LearningService, public router: Router) {}
 
   ngOnInit(): void {
+    this.currentUrl = window.location.href;
     this.roleid = sessionStorage.getItem('roleid');
     this.passvaild = true;
     this.curpassvaild = true;
-   
-
   }
-  
-  curpassvaild: any;
-   public checkcurpassword(event: any) {
-    debugger
-    this.Currentpwd = event.target.value;
-    this.LearningService.GetMyDetails().subscribe(data => {
-      debugger
-      let temp: any = data.filter(x => x.id == sessionStorage.getItem('userid'));
-       this.Currentpassword = temp[0].password;
 
+  public checkcurpassword(event: any) {
+    debugger;
+    this.Currentpwd = event.target.value;
+    this.LearningService.GetMyDetails()
+    .subscribe({
+      next: (data) => {
+        debugger;
+        let temp: any = data.filter(
+          (x) => x.id == sessionStorage.getItem('userid')
+        );
+        this.Currentpassword = temp[0].password;
+      },
+      error: (err) => {
+        Swal.fire('Issue in GetMyDetails');
+        // Insert error in Db Here//
+        var obj = {
+          PageName: this.currentUrl,
+          ErrorMessage: err.error.message,
+        };
+        this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+          debugger;
+        });
+      },
     });
     if (this.Currentpassword === this.Currentpwd) {
       this.curpassvaild = true;
     } else {
       this.curpassvaild = false;
     }
-
   }
-
-
-  passvaild: any;
   public checkpassword(event: any) {
-    debugger
+    debugger;
     this.confirmpassword = event.target.value;
 
     if (this.newpassword === this.confirmpassword) {
@@ -55,49 +67,74 @@ export class MyAccountsettingModifyComponent implements OnInit {
     } else {
       this.passvaild = false;
     }
-
   }
 
   public Updatepassword() {
-    debugger
-    if (this.newpassword == undefined || this.newpassword == null || this.newpassword == '' || this.confirmpassword == undefined || this.confirmpassword == null || this.confirmpassword == '') {
-      Swal.fire("Please fill Mandatory Fields");
+    debugger;
+    if (
+      this.newpassword == undefined ||
+      this.newpassword == null ||
+      this.newpassword == '' ||
+      this.confirmpassword == undefined ||
+      this.confirmpassword == null ||
+      this.confirmpassword == ''
+    ) {
+      Swal.fire('Please fill Mandatory Fields');
     } else {
       var entity = {
-
         ID: sessionStorage.getItem('userid'),
         Password: this.confirmpassword,
+      };
+      if (this.roleid == 4) {
+        this.LearningService.UpdateTrainerPassword(entity)
+        .subscribe({
+          next: (data) => {
+            debugger;
+            Swal.fire('Updated Successfully');
+            this.Currentpassword = '';
+            this.newpassword = '';
+            this.confirmpassword = '';
+            this.ngOnInit();
+          },
+          error: (err) => {
+            Swal.fire('Issue in UpdateTrainerPassword');
+            // Insert error in Db Here//
+            var obj = {
+              PageName: this.currentUrl,
+              ErrorMessage: err.error.message,
+            };
+            this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+              debugger;
+            });
+          },
+        });
+      } else {
+        this.LearningService.UpdatePassword(entity).subscribe({
+          next: (data) => {
+            Swal.fire('Updated Successfully');
+            this.Currentpassword = '';
+            this.newpassword = '';
+            this.confirmpassword = '';
+            this.ngOnInit();
+          },
+          error: (err) => {
+            Swal.fire('Issue in UpdatePassword');
+            // Insert error in Db Here//
+            var obj = {
+              PageName: this.currentUrl,
+              ErrorMessage: err.error.message,
+            };
+            this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+              debugger;
+            });
+          },
+        });
       }
-      if(this.roleid==4){
-        this.LearningService.UpdateTrainerPassword(entity).subscribe(data => {
-          Swal.fire("Updated Successfully");
-          this.Currentpassword='';
-          this.newpassword = '';
-          this.confirmpassword = ''
-          this.ngOnInit();
-        })
-      }
-      else{
-        this.LearningService.UpdatePassword(entity).subscribe(data => {
-          Swal.fire("Updated Successfully");
-          this.Currentpassword='';
-          this.newpassword = '';
-          this.confirmpassword = ''
-          this.ngOnInit();
-        })
-      
-      }
-     
     }
-
-
-
   }
 
   public Cancel() {
-    debugger
-    location.href = "#/MyAccountSetting";
-    
+    debugger;
+    location.href = '#/MyAccountSetting';
   }
-
 }
