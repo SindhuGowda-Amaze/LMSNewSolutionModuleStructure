@@ -2,7 +2,7 @@
     <div class="col-md-2 sidenav" style="height: 100vh;margin-top: 75px;position: fixed;">
 
         <a *ngIf="roleid=='1'||roleid=='2'" class="tablinks" (click)="highlight($event)" (click)="Dashboard()"
-            routerLink="/Dashboard">
+            routerLink="/Admin/Dashboard">
             <!-- <i class="fa fa-users dashboard" ></i> &nbsp; -->
             <img src="assets/Images/people.png" style="width:13% ;margin-right: 17px;"
                 [ngClass]="active == 2 ? 'Active1' : 'Active2'" />
