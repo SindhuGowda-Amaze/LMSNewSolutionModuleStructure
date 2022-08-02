@@ -184,12 +184,10 @@ export class EmployeeFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
     this.currentUrl = window.location.href;
     debugger;
     this.GetRoleType();
     this.GetMyDetails();
-
     this.ActivatedRoute.params.subscribe((params) => {
       debugger;
       this.ID = params['id'];
@@ -313,12 +311,9 @@ export class EmployeeFormComponent implements OnInit {
           (this.EffectiveFromDate = ' '),
           (this.Reason = ' ');
       } else {
-        this.LearningService.GetMyDetails()
-        
-        .subscribe({
+        this.LearningService.GetMyDetails().subscribe({
           next: data => {
-            debugger
-           
+            debugger          
           this.leavelist = data.filter((x) => x.id == this.ID);
           (this.Title = this.leavelist[0].title),
             (this.Name = this.leavelist[0].name),
@@ -373,8 +368,7 @@ export class EmployeeFormComponent implements OnInit {
         
 
 
-        this.LearningService.GetPositionDetails()
-        .subscribe({
+        this.LearningService.GetPositionDetails().subscribe({
           next: data => {
             debugger
             this.leavelist = data.filter((x) => x.staffId == this.ID);
@@ -411,9 +405,7 @@ export class EmployeeFormComponent implements OnInit {
         
   
 
-        this.LearningService.GetMyAddressDetails()
-        
-        .subscribe({
+        this.LearningService.GetMyAddressDetails().subscribe({
           next: data => {
             this.leavelist = data.filter((x) => x.staffId == this.ID);
             (this.AddressType = this.leavelist[0].addressType),
@@ -461,11 +453,9 @@ export class EmployeeFormComponent implements OnInit {
         })
         
 
-        this.LearningService.GetDependentDetails()
-        .subscribe({
+        this.LearningService.GetDependentDetails().subscribe({
           next: data => {
-            debugger
-          
+            debugger         
             this.leavelist = data.filter((x) => x.staffId == this.ID);
             (this.DependentName = this.leavelist[0].dependentName),
               (this.Relationship1 = this.leavelist[0].relationship),
@@ -499,8 +489,7 @@ export class EmployeeFormComponent implements OnInit {
             )
           }
         })
-        this.LearningService.GetNomination()
-        .subscribe({
+        this.LearningService.GetNomination().subscribe({
           next: data => {
             debugger
             this.leavelist = data.filter((x) => x.staffId == this.ID);
@@ -524,8 +513,7 @@ export class EmployeeFormComponent implements OnInit {
             )
           }
         })
-        this.LearningService.GetEmploymentDetails()
-        .subscribe({
+        this.LearningService.GetEmploymentDetails().subscribe({
           next: data => {
             this.leavelist = data.filter((x) => x.staffId == this.ID);
             (this.ComapanyName = this.leavelist[0].comapanyName),
@@ -554,15 +542,8 @@ export class EmployeeFormComponent implements OnInit {
             )
           }
         })
-        
-        
-        
-        
-
-
-        this.LearningService.GetEducationDetails()
-        
-        .subscribe({
+      
+        this.LearningService.GetEducationDetails().subscribe({
           next: data => {
             debugger;
 
@@ -608,13 +589,10 @@ export class EmployeeFormComponent implements OnInit {
         
  
 
-        this.LearningService.GetBankDetails()
-        
-        .subscribe({
+        this.LearningService.GetBankDetails().subscribe({
           next: data => {
             debugger;
-
-            this.leavelist = data.filter((x) => x.staffId == this.ID);
+             this.leavelist = data.filter((x) => x.staffId == this.ID);
             (this.NameOfBank = this.leavelist[0].nameOfBank),
               (this.AccountHolderName = this.leavelist[0].accountHolderName),
               (this.BankAccountNumber = this.leavelist[0].bankAccountNumber);
@@ -633,12 +611,9 @@ export class EmployeeFormComponent implements OnInit {
           }
         })
 
-        this.LearningService.GetID_Details()
-        
-        .subscribe({
+        this.LearningService.GetID_Details().subscribe({
           next: data => {
             debugger;
-
             this.leavelist = data.filter((x) => x.staffId == this.ID);
             (this.IDType = this.leavelist[0].idType),
               (this.Number = this.leavelist[0].number),
@@ -669,11 +644,9 @@ export class EmployeeFormComponent implements OnInit {
         })
         
 
-        this.LearningService.GetVisaDetails()
-        .subscribe({
+        this.LearningService.GetVisaDetails().subscribe({
           next: data => {
             debugger;
-
             this.leavelist = data.filter((x) => x.staffId == this.ID);
             (this.VisaType = this.leavelist[0].visaType),
               (this.VisaNumber = this.leavelist[0].visaNumber),
@@ -701,9 +674,7 @@ export class EmployeeFormComponent implements OnInit {
         })
         
 
-        this.LearningService.GetSalaryDetails()
-        
-        .subscribe({
+        this.LearningService.GetSalaryDetails().subscribe({
           next: data => {
             debugger
             this.leavelist = data.filter((x) => x.staffId == this.ID);
@@ -736,8 +707,7 @@ export class EmployeeFormComponent implements OnInit {
   }
 
   public GetRoleType() {
-    this.LearningService.GetRoleType()
-    .subscribe({
+    this.LearningService.GetRoleType().subscribe({
       next: data => {
         debugger;
         this.RoleTypeList = data;
@@ -758,9 +728,7 @@ export class EmployeeFormComponent implements OnInit {
   }
 
   public GetMyDetails() {
-    this.LearningService.GetMyDetails()
-    
-    .subscribe({
+    this.LearningService.GetMyDetails().subscribe({
       next: data => {
         debugger;
       this.supervisorlist = data;
@@ -819,9 +787,7 @@ export class EmployeeFormComponent implements OnInit {
 
   public uploadattachments() {
     debugger;
-    this.LearningService.AttachmentsUpload(this.files)
-    
-    .subscribe({
+    this.LearningService.AttachmentsUpload(this.files).subscribe({
       next: data => {
         debugger;
       this.Company_logo = data;
@@ -897,9 +863,7 @@ export class EmployeeFormComponent implements OnInit {
       Is_Color_Blind: this.Is_Color_Blind,
       DOB: this.DOB,
     };
-    this.LearningService.InsertMyDetails(eb)
-    
-    .subscribe({
+    this.LearningService.InsertMyDetails(eb).subscribe({
       next: data => {
         debugger
         this.StaffID = data;
@@ -1017,7 +981,6 @@ export class EmployeeFormComponent implements OnInit {
 
   public SaveDependantDetails() {
     debugger;
-
     var eb = {
       DependentName: this.DependentName,
       Relationship: this.Relationship,
@@ -1036,10 +999,8 @@ export class EmployeeFormComponent implements OnInit {
       Request_Type: this.Request_Type,
       StaffID: this.StaffID,
     };
-    this.LearningService.InsertDependentDetails(eb)
-    .subscribe({
-      next: data => {
-      
+    this.LearningService.InsertDependentDetails(eb).subscribe({
+      next: data => { 
       },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Expenses List Web');
         // Insert error in Db Here//
@@ -1054,13 +1015,10 @@ export class EmployeeFormComponent implements OnInit {
         )
       }
     })
-    
-
   }
 
   public SaveNomination() {
     debugger;
-
     var eb = {
       Dependent: this.Dependent,
       Percentage: this.Percentage,
@@ -1069,11 +1027,9 @@ export class EmployeeFormComponent implements OnInit {
       GuardianRelationship: this.GuardianRelationship,
       StaffID: this.StaffID,
     };
-    this.LearningService.InsertNomination(eb)
-    .subscribe({
+    this.LearningService.InsertNomination(eb).subscribe({
       next: data => {
         debugger
-       
       },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in InsertNomination');
         // Insert error in Db Here//
@@ -1093,7 +1049,6 @@ export class EmployeeFormComponent implements OnInit {
 
   public SaveEmployment() {
     debugger;
-
     var eb = {
       ComapanyName: this.ComapanyName,
       Title: this.Title,
@@ -1103,12 +1058,9 @@ export class EmployeeFormComponent implements OnInit {
       CurrentEmployer: this.CurrentEmployer,
       StaffID: this.StaffID,
     };
-    this.LearningService.InsertEmploymentDetails(eb)
-    
-    .subscribe({
+    this.LearningService.InsertEmploymentDetails(eb).subscribe({
       next: data => {
-        debugger
-      
+        debugger     
       },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in InsertEmploymentDetails');
         // Insert error in Db Here//
@@ -1129,7 +1081,6 @@ export class EmployeeFormComponent implements OnInit {
 
   public SaveEducation() {
     debugger;
-
     var eb = {
       EducationType: this.EducationType,
       Qualification: this.Qualification,
@@ -1145,9 +1096,7 @@ export class EmployeeFormComponent implements OnInit {
       EndDateYear: this.EndDateMonth,
       StaffID: this.StaffID,
     };
-    this.LearningService.InsertEducationDetails(eb)
-    
-    .subscribe({
+    this.LearningService.InsertEducationDetails(eb).subscribe({
       next: data => {
         debugger
       Swal.fire('Saved SucessFully')
@@ -1170,7 +1119,6 @@ export class EmployeeFormComponent implements OnInit {
 
   public SaveIdDetails() {
     debugger;
-
     var eb = {
       IDType: this.IDType,
       Number: this.Number,
@@ -1181,12 +1129,9 @@ export class EmployeeFormComponent implements OnInit {
       PlaceOfIssue: this.PlaceOfIssue,
       StaffID: this.StaffID,
     };
-    this.LearningService.InsertID_Details(eb)
-    
-    .subscribe({
+    this.LearningService.InsertID_Details(eb).subscribe({
       next: data => {
-        debugger
-        
+        debugger       
       },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in InsertID_Details');
         // Insert error in Db Here//
@@ -1208,19 +1153,15 @@ export class EmployeeFormComponent implements OnInit {
 
   public SaveBankDetails() {
     debugger;
-
     var eb = {
       NameOfBank: this.NameOfBank,
       AccountHolderName: this.AccountHolderName,
       BankAccountNumber: this.BankAccountNumber,
       StaffID: this.StaffID,
     };
-    this.LearningService.InsertBankDetails(eb)
-    
-    .subscribe({
+    this.LearningService.InsertBankDetails(eb).subscribe({
       next: data => {
-        debugger
-       
+        debugger      
       },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in InsertBankDetails');
         // Insert error in Db Here//
@@ -1240,7 +1181,6 @@ export class EmployeeFormComponent implements OnInit {
 
   public SaveVisaDetails() {
     debugger;
-
     var eb = {
       VisaType: this.VisaType,
       VisaNumber: this.VisaNumber,
@@ -1248,12 +1188,9 @@ export class EmployeeFormComponent implements OnInit {
       VisaExpiryDate: this.VisaExpiryDate,
       StaffID: this.StaffID,
     };
-    this.LearningService.InsertVisaDetails(eb)
-    
-    .subscribe({
+    this.LearningService.InsertVisaDetails(eb).subscribe({
       next: data => {
-        debugger
-      
+        debugger    
       },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in InsertVisaDetails');
         // Insert error in Db Here//
@@ -1267,14 +1204,11 @@ export class EmployeeFormComponent implements OnInit {
           },
         )
       }
-    })
-    
- 
+    })   
   }
 
   public SaveSalaryDetails() {
     debugger;
-
     var eb1 = {
       EmployeeName: this.EmployeeName,
       Grade: this.Grade,
@@ -1285,12 +1219,9 @@ export class EmployeeFormComponent implements OnInit {
       Reason: this.Reason,
       StaffID: this.StaffID,
     };
-    this.LearningService.InsertSalaryDetails(eb1)
-    
-    .subscribe({
+    this.LearningService.InsertSalaryDetails(eb1).subscribe({
       next: data => {
-        debugger
-       
+        debugger  
       },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in InsertSalaryDetails');
         // Insert error in Db Here//
@@ -1309,10 +1240,8 @@ export class EmployeeFormComponent implements OnInit {
 
   public SaveAddressDetails() {
     debugger;
-
     var eb = {
       AddressType: this.AddressType,
-
       FindPlace: this.FindPlace,
       AddressLine1: this.AddressLine1,
       AddressLine2: this.AddressLine2,
@@ -1357,15 +1286,12 @@ export class EmployeeFormComponent implements OnInit {
       }
     })
   }
-
   public getRoleType(event: any) {
     debugger;
     this.RoleType = event.target.value;
   }
-
   public SavePositionDetails() {
     debugger;
-
     var eb = {
       EmployeeCode: this.EmployeeCode,
       OfficialEmail: this.OfficialEmail,
@@ -1382,11 +1308,8 @@ export class EmployeeFormComponent implements OnInit {
       EmployeeName: this.EmployeeName,
       StaffID: this.StaffID,
     };
-    this.LearningService.InsertPositionDetails(eb)
-    
-    .subscribe({
-      next: data => {
-       
+    this.LearningService.InsertPositionDetails(eb).subscribe({
+      next: data => {  
       },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in InsertPositionDetails');
         // Insert error in Db Here//
@@ -1406,7 +1329,6 @@ export class EmployeeFormComponent implements OnInit {
 
   public UpdateDependentDetails() {
     debugger;
-
     var eb = {
       ID: this.StaffID,
       DependentName: this.DependentName,
@@ -1425,12 +1347,10 @@ export class EmployeeFormComponent implements OnInit {
       Working_Status: this.Working_Status,
       Request_Type: this.Request_Type,
     };
-    this.LearningService.UpdateDependentDetails(eb)
-    
+    this.LearningService.UpdateDependentDetails(eb) 
     .subscribe({
       next: data => {
-        debugger
- 
+        debugger 
       },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in UpdateDependentDetails');
         // Insert error in Db Here//
@@ -1458,12 +1378,9 @@ export class EmployeeFormComponent implements OnInit {
       GuardianName: this.GuardianName,
       GuardianRelationship: this.GuardianRelationship,
     };
-    this.LearningService.UpdateNomination(eb)
-    
-    .subscribe({
+    this.LearningService.UpdateNomination(eb).subscribe({
       next: data => {
-        debugger
-        
+        debugger       
       },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in UpdateNomination');
         // Insert error in Db Here//

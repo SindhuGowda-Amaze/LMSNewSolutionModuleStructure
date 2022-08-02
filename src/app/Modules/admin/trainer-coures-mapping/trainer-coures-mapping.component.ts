@@ -10,18 +10,17 @@ import Swal from 'sweetalert2';
 })
 export class TrainerCouresMappingComponent implements OnInit {
 
-  search:any;
+  
+  
+    constructor(private ActivatedRoute: ActivatedRoute, private LearningService: LearningService) { }
+    search:any;
   count:any;
   Trainerdetails:any;
   currentUrl: any;
   
-    constructor(private ActivatedRoute: ActivatedRoute, private LearningService: LearningService) { }
-  
     ngOnInit(): void {
       this.GetTrainerCourseMappingDashboard();
     }
-    
-  
     public GetTrainerCourseMappingDashboard() {
       debugger
       this.LearningService.GetTrainerCourseMappingDashboard()

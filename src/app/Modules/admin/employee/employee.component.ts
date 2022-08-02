@@ -40,9 +40,7 @@ export class EmployeeComponent implements OnInit {
 
   GetMyDetails(){
 
-    this.LearningService.GetMyDetails()
-    
-    .subscribe({
+    this.LearningService.GetMyDetails().subscribe({
       next: data => {
         debugger
       this.stafflist = data;
@@ -67,9 +65,7 @@ export class EmployeeComponent implements OnInit {
   public getdate(event: any) {
     debugger
     this.date = event.target.value;
-    this.LearningService.GetMyDetails()
-    
-    .subscribe({
+    this.LearningService.GetMyDetails().subscribe({
       next: data => {
         debugger
       this.stafflist = data.filter(x => x.filterdate == this.date);

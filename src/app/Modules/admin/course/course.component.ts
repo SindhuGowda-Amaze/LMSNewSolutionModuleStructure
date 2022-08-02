@@ -52,8 +52,7 @@ export class CourseComponent implements OnInit {
   }
 
    public GetCourse() {
-    this.LearningService.GetCourse()
-    .subscribe({
+    this.LearningService.GetCourse().subscribe({
       next: data => {
         debugger
         this.result = data.filter(x => x.id == this.id);
@@ -94,8 +93,7 @@ export class CourseComponent implements OnInit {
     // this.categoryName = even.name
     this.categoryid = even.target.value;
 
-    this.LearningService.GetCategoryMaster()
-    .subscribe({
+    this.LearningService.GetCategoryMaster().subscribe({
       next: data => {
         debugger
         let temp: any = data.filter(x => x.id == this.categoryid);
@@ -146,9 +144,7 @@ export class CourseComponent implements OnInit {
         "venue": this.venue,
         "trainingType": this.trainingType
       };
-      this.LearningService.InsertCourse(json)
-      
-      .subscribe({
+      this.LearningService.InsertCourse(json).subscribe({
         next: data => {
           debugger
           let id = data;
@@ -216,13 +212,12 @@ export class CourseComponent implements OnInit {
    
     
 
-    this.LearningService.UpdateCourse(json)
-    .subscribe({
+    this.LearningService.UpdateCourse(json).subscribe({
       next: data => {
         debugger
         let result = data;
         Swal.fire("Updated Successfully");
-        location.href = "#/CourseDashboard";
+        location.href = "/Admin/CourseDashboard";
       },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in UpdateCourse');
         // Insert error in Db Here//
@@ -243,8 +238,7 @@ export class CourseComponent implements OnInit {
 
   public GetCategoryMaster() {
     debugger
-    this.LearningService.GetCategoryMaster()
-    .subscribe({
+    this.LearningService.GetCategoryMaster().subscribe({
       next: data => {
         debugger
         this.categoryList = data;
@@ -287,8 +281,7 @@ export class CourseComponent implements OnInit {
 
   public uploadattachments() {
     debugger
-    this.LearningService.AttachmentsUpload(this.files)
-    .subscribe({
+    this.LearningService.AttachmentsUpload(this.files).subscribe({
       next: data => {
         debugger
       this.Course_Photo = data;

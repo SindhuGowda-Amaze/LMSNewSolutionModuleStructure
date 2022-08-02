@@ -39,9 +39,7 @@ export class CourseDashboardComponent implements OnInit {
 
   public GetCourse() {
     debugger
-    this.LearningService.GetCourse()
-    
-    .subscribe({
+    this.LearningService.GetCourse().subscribe({
       next: data => {
         debugger
         this.result = data;
@@ -67,9 +65,7 @@ export class CourseDashboardComponent implements OnInit {
 
   public GetCategoryMaster() {
     debugger
-    this.LearningService.GetCategoryMaster()
-    
-    .subscribe({
+    this.LearningService.GetCategoryMaster().subscribe({
       next: data => {
         debugger
         debugger
@@ -113,8 +109,7 @@ export class CourseDashboardComponent implements OnInit {
   }
   public GetChapter() {
     debugger
-    this.LearningService.GetChapter()
-    .subscribe({
+    this.LearningService.GetChapter().subscribe({
       next: data => {
         debugger
         this.coursedetails = data;
@@ -148,9 +143,7 @@ export class CourseDashboardComponent implements OnInit {
       confirmButtonText: 'OK'
     }).then((result) => {
       if (result.value == true) {
-        this.LearningService.DeleteCourse(id)
-        
-        .subscribe({
+        this.LearningService.DeleteCourse(id).subscribe({
           next: data => {
             debugger
         this.GetCourse();
@@ -176,13 +169,10 @@ export class CourseDashboardComponent implements OnInit {
       }
     });
   }
-
-
   getcourseid(even: any) {
     this.courseid = even.target.value;
     if (even.target.value != 0) {
-      this.coursedetails = this.dummcoursedetails.filter((x: { courseID: any; }) => x.courseID == this.courseid)
-      
+      this.coursedetails = this.dummcoursedetails.filter((x: { courseID: any; }) => x.courseID == this.courseid)     
     }
     else{
       this.GetCourse();
@@ -205,18 +195,9 @@ export class CourseDashboardComponent implements OnInit {
   clickonimage(photo:any){
    this.image=photo;
   }
- 
-
-
   view(desc:any){
     this.description=desc;
     
   }
-  
-
-
-
-
-
-
+ 
 }
