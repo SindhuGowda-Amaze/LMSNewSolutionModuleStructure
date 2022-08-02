@@ -251,7 +251,7 @@
             <span [ngClass]="active == 'result' ? 'Active1' : 'Active3'"> RESULTS </span>
 
         </a>
-        <a *ngIf="roleid==4" routerLink="/FinalResult" class="tablinks" (click)="highlight($event)" (click)="results()">
+        <a *ngIf="roleid==4" routerLink="Manager/FinalResult" class="tablinks" (click)="highlight($event)" (click)="results()">
             <img src="assets/Images/1 (1).png" style="width:13% ;margin-right: 17px;"
                 [ngClass]="active == 'result' ? 'Active1' : 'Active2'" />
             <img [ngClass]="active != 'result' ? 'Active1' : 'Active2'" src="assets/Images/New folder/1 (1)1.png"
