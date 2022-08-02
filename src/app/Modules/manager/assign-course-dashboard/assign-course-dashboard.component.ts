@@ -6,72 +6,101 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-assign-course-dashboard',
   templateUrl: './assign-course-dashboard.component.html',
-  styleUrls: ['./assign-course-dashboard.component.css']
+  styleUrls: ['./assign-course-dashboard.component.css'],
 })
 export class AssignCourseDashboardComponent implements OnInit {
-
-  constructor(private ActivatedRoute: ActivatedRoute, private LearningService: LearningService) { }
+  constructor(
+    private ActivatedRoute: ActivatedRoute,
+    private LearningService: LearningService
+  ) {}
 
   search: any;
   id: any;
   assignList: any;
   count: any;
-  userid:any;
-  dummassignList:any
+  userid: any;
+  dummassignList: any;
+  currentUrl: any;
+
   ngOnInit(): void {
+    this.currentUrl = window.location.href;
     this.GetEnroll();
     this.userid = sessionStorage.getItem('userid');
   }
-public GetEnroll(){
-  this.LearningService.GetEnroll().subscribe(
-    data => {
-      debugger
-      // this.result = data.filter(x => x.manager == this.manager );
-      // this.result = data.filter(x => x.status == 'Manager Assigned' );
-      this.assignList =  data.filter(x => x.type == 'Manager Assign'&& x.manager == this.userid)
-       this.dummassignList=this.assignList;
-      this.count = this.assignList.length;
-    })
+
+  public GetEnroll() {
+    this.LearningService.GetEnroll().subscribe({
+      next: (data) => {
+        debugger;
+        // this.result = data.filter(x => x.manager == this.manager );
+        // this.result = data.filter(x => x.status == 'Manager Assigned' );
+        this.assignList = data.filter(
+          (x) => x.type == 'Manager Assign' && x.manager == this.userid
+        );
+        this.dummassignList = this.assignList;
+        this.count = this.assignList.length;
+      },
+      error: (err) => {
+        Swal.fire('Issue in GetEnroll');
+        // Insert error in Db Here//
+        var obj = {
+          PageName: this.currentUrl,
+          ErrorMessage: err.error.message,
+        };
+        this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+          debugger;
+        });
+      },
+    });
+  }
+
+  public Ondelete(ID: any) {
+    Swal.fire({
+      title: 'Are You Sure ',
+      text: 'Do you want to delete the Selected Record',
+      showCloseButton: true,
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'OK',
+    }).then((result) => {
+      if (result.value == true) {
+        this.LearningService.DeleteEnroll(ID).subscribe({
+          next: (data) => {
+            debugger;
+            this.GetEnroll();
+          },
+          error: (err) => {
+            Swal.fire('Issue in DeleteEnroll');
+            // Insert error in Db Here//
+            var obj = {
+              PageName: this.currentUrl,
+              ErrorMessage: err.error.message,
+            };
+            this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+              debugger;
+            });
+          },
+        });
+        Swal.fire('Successfully Deleted...!');
+        this.ngOnInit();
+      }
+    });
+  }
+
+  edit(ID: any) {
+    debugger;
+    location.href = '#/AssignCourseToEmployee/' + ID;
+  }
+
+  public filterAssignTraining() {
+    debugger;
+    let searchCopy = this.search.toLowerCase();
+    this.assignList = this.dummassignList.filter(
+      (x: { employeeName: string }) =>
+        x.employeeName.toLowerCase().includes(searchCopy)
+    );
+    this.count = this.assignList.length;
+    // location.reload();
+  }
 }
-
-public Ondelete(ID:any) {
-  Swal.fire({
-    title: 'Are You Sure ',
-    text: "Do you want to delete the Selected Record",
-    showCloseButton: true,
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'OK'
-  }).then((result) => {
-    if (result.value == true) {
-      this.LearningService.DeleteEnroll(ID).subscribe(
-    data => {
-      debugger
-      this.GetEnroll();
-    }
-  )
-  Swal.fire('Successfully Deleted...!');
-  this.ngOnInit();
-    }
-  });
-}
-
-edit(ID: any) {
-  debugger
-  location.href = "#/AssignCourseToEmployee/" + ID;
-}
-
-public filterAssignTraining() {
-  debugger
-  let searchCopy = this.search.toLowerCase();
-  this.assignList = this.dummassignList.filter((x: { employeeName: string}) => (x.employeeName.toLowerCase().includes(searchCopy)));
-  this.count = this.assignList.length;
-  // location.reload();
-}
-
-}
-
-
-
-
