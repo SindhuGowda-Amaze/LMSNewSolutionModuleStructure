@@ -11,6 +11,7 @@ import { AssignCourseDashboardComponent } from './assign-course-dashboard/assign
 import { AssignCourseToEmployeeComponent } from './assign-course-to-employee/assign-course-to-employee.component';
 import { CertificateDashboardComponent } from './certificate-dashboard/certificate-dashboard.component';
 import { MangerDashboardComponent } from './manger-dashboard/manger-dashboard.component';
+import { TraineeReportComponent } from './trainee-report/trainee-report.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { MangerDashboardComponent } from './manger-dashboard/manger-dashboard.co
     AssignCourseDashboardComponent,
     AssignCourseToEmployeeComponent,
     CertificateDashboardComponent,
-    MangerDashboardComponent
+    MangerDashboardComponent,
+    TraineeReportComponent
   ],
   imports: [
     CommonModule,

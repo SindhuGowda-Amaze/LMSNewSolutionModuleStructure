@@ -1,0 +1,92 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-10">
+            <p class="headings">Trainee Report Dashboard</p>
+        </div>
+        <div class="col-lg-2">
+            <p class="count">Count:{{employeereportlist.length}} </p>
+        </div>
+    </div>
+    <div class="card">
+        <br>
+        <div class="row FilterClass ">
+            <div class="col-lg-1">
+                <p class="filter">Filter By</p>
+            </div>
+            <div class="col-lg-3">
+                <select class="form-control" id="Duration" (change)=" getcourseid($event)">
+                    <option value="0" >Select Training</option>
+                    <option style="color:#0C275A" *ngFor="let details of traininglist" value="{{details.courseName}}" >{{details.courseName}}</option>
+                </select>
+            </div>
+            <div class="col-lg-2">
+                <input type="search" class="form-control search" placeholder="Search for Name.." [(ngModel)]="search"
+                    name="search">
+            </div>
+            <div class="col-lg-2">
+                <input type="date" class="form-control" name="date" id="date" [(ngModel)]="date">
+                <!-- <p *ngIf="date!=(employeereportlist.length)">Data not found</p> -->
+            </div>
+        </div><br>
+    </div>
+      <br>
+      <div class="row">
+          <div class="col-lg-10"></div>
+          <div class="col-lg-2">
+              <button class="Button" (click)="exportexcel()">Export To Excel</button>
+          </div>
+      </div>
+     <br>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <table id="download" class="table" *ngIf="(employeereportlist | filter: search).length > 0; else noResults">
+                    <thead>
+                        <tr>
+                            <th>Employee ID</th>
+                            <th>Employee Name</th>
+                            <th>Position</th>
+                            <th *ngIf="roleid==3">Trainer Name</th>
+                            <!-- <th *ngIf="roleid==4">Manager Name</th> -->
+                            <th>Training name</th>
+                            <th>Topic Name</th>
+                            <th>Start Date</th>
+                            <th>Completion Date</th>
+                            <th>Percentage(%)</th>
+                            <th>Status</th>
+                        </tr>
+                        <tr *ngFor="let details of employeereportlist|filter :search|filter:date">
+                            <td style="color:#0C275A">{{details.staffID}}</td>
+                            <td style="color:#0C275A">{{details.employeeName}}</td>
+                            <td style="color:#0C275A">{{details.role}}</td>
+                            <td style="color:#0C275A"  *ngIf="roleid==3">{{details.trainer}}</td>
+                            <!-- <td style="color:#0C275A"  *ngIf="roleid==4">{{details.manager}}</td> -->
+                            <td style="color:#0C275A">{{details.courseName}}</td>
+                            <td style="color:#0C275A">{{details.chapterName}}</td>
+                            <td style="color:#0C275A">{{details.modifiedDate|date}}</td>
+                            <td style="color:#0C275A">{{details.completiondate|date}}</td>
+                            <td>
+                                <p>{{details.obtainedMarks/details.totalmarks
+                                    *100 | number : '1.2-2'}} </p>
+                                <!-- <p  *ngIf="details.obtainedMarks/details.totalmarks==0 || details.obtainedMarks/details.totalmarks==null">NA</p> </td> -->
+                            <td style="color:#0C275A">
+                                <!-- <p  *ngIf="details.obtainedMarks/details.totalmarks==0 || details.obtainedMarks/details.totalmarks==null">On Going</p> -->
+                                <p  *ngIf="employeereportlist.completed!=1"  >On Going</p>
+
+                                <button class="Button" *ngIf="employeereportlist.completed==1"   [routerLink]="['/CourseCertificateNew',details.id]">View Certificate</button>
+                            </td>
+                            
+                        </tr>
+                    </thead>
+                </table>
+                <ng-template #noResults>
+                    <p class="NoResultShow"> Results not found </p>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
