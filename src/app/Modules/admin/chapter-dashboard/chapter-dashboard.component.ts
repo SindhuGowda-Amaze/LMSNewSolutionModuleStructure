@@ -5,10 +5,9 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-chapter-dashboard',
   templateUrl: './chapter-dashboard.component.html',
-  styleUrls: ['./chapter-dashboard.component.css']
+  styleUrls: ['./chapter-dashboard.component.css'],
 })
 export class ChapterDashboardComponent implements OnInit {
-
   coursedetails: any;
   search: any;
   courselist: any;
@@ -20,10 +19,9 @@ export class ChapterDashboardComponent implements OnInit {
   chapterPhoto: any;
   chapterText: any;
   files: File[] = [];
-  currentUrl:any;
+  currentUrl: any;
   Attachmentlist: any;
-  constructor(private LearningService: LearningService) { }
- 
+  constructor(private LearningService: LearningService) {}
 
   ngOnInit(): void {
     this.currentUrl = window.location.href;
@@ -32,57 +30,47 @@ export class ChapterDashboardComponent implements OnInit {
   }
 
   public GetCourse() {
-    debugger
-    this.LearningService.GetCourseDropdown()
-    .subscribe({
-      next: data => {
-        debugger
+    debugger;
+    this.LearningService.GetCourseDropdown().subscribe({
+      next: (data) => {
+        debugger;
         this.courselist = data;
-      },error: (err: { error: { message: any; }; }) => {
+      },
+      error: (err: { error: { message: any } }) => {
         Swal.fire('Issue in GetCourseDropdown');
         // Insert error in Db Here//
         var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
-        }
-        this.LearningService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
-    
+          PageName: this.currentUrl,
+          ErrorMessage: err.error.message,
+        };
+        this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+          debugger;
+        });
+      },
+    });
   }
 
-
-
   public GetChapter() {
-    debugger
-    this.LearningService.GetChapter()
-    
-    .subscribe({
-      next: data => {
-        debugger
-      this.coursedetails = data;
-      this.dummcoursedetails = data;
-      },error: (err: { error: { message: any; }; }) => {
+    debugger;
+    this.LearningService.GetChapter().subscribe({
+      next: (data) => {
+        debugger;
+        this.coursedetails = data;
+        this.dummcoursedetails = data;
+      },
+      error: (err: { error: { message: any } }) => {
         Swal.fire('Issue in Getting Expenses List Web');
         // Insert error in Db Here//
         var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
-        }
-        this.LearningService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
-
+          PageName: this.currentUrl,
+          ErrorMessage: err.error.message,
+        };
+        this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+          debugger;
+        });
+      },
+    });
   }
-
 
   onSelect(event: any) {
     console.log(event);
@@ -95,11 +83,11 @@ export class ChapterDashboardComponent implements OnInit {
   }
 
   public PreviewVideo() {
-    window.open('assets/Images/Java_Course.mp4')
+    window.open('assets/Images/Java_Course.mp4');
   }
 
   public PreviewPPT() {
-    window.open('assets/Images/JAVA_PPT.ppt')
+    window.open('assets/Images/JAVA_PPT.ppt');
   }
 
   // edit(id: any) {
@@ -107,93 +95,70 @@ export class ChapterDashboardComponent implements OnInit {
   //   location.href = "#/Chapter/" + id;
   // }
 
-  public Ondelete(id:any) {
+  public Ondelete(id: any) {
     Swal.fire({
       title: 'Are You Sure ',
-      text: "Do you want to delete the Selected Record",
+      text: 'Do you want to delete the Selected Record',
       showCloseButton: true,
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'OK'
+      confirmButtonText: 'OK',
     }).then((result) => {
       if (result.value == true) {
-        this.LearningService.DeleteChapter(id)
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        .subscribe(
-      data => {
-        debugger
-        this.GetChapter();
-      }
-    )
-    Swal.fire('Successfully Deleted...!');
-    this.ngOnInit();
+        this.LearningService.DeleteChapter(id).subscribe((data) => {
+          debugger;
+          this.GetChapter();
+        });
+        Swal.fire('Successfully Deleted...!');
+        this.ngOnInit();
       }
     });
   }
 
-
-
   ShowAttachments(id: any) {
-    debugger
-    this.LearningService.GetChapterAttachmentByChapterID(id)
-    .subscribe({
-      next: data => {
-        debugger
-      this.Attachmentlist = data;
-      },error: (err: { error: { message: any; }; }) => {
+    debugger;
+    this.LearningService.GetChapterAttachmentByChapterID(id).subscribe({
+      next: (data) => {
+        debugger;
+        this.Attachmentlist = data;
+      },
+      error: (err: { error: { message: any } }) => {
         Swal.fire('Issue in GetChapterAttachmentByChapterID');
         // Insert error in Db Here//
         var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
-        }
-        this.LearningService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
-  
+          PageName: this.currentUrl,
+          ErrorMessage: err.error.message,
+        };
+        this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+          debugger;
+        });
+      },
+    });
   }
 
   openAttchments(photo: any) {
-    window.open(photo, "_blank")
+    window.open(photo, '_blank');
   }
   courseid: any;
 
   getcourseid(even: any) {
     this.courseid = even.target.value;
     if (even.target.value != 0) {
-      this.coursedetails = this.dummcoursedetails.filter((x: { courseID: any; }) => x.courseID == this.courseid)
-    }
-    else{
+      this.coursedetails = this.dummcoursedetails.filter(
+        (x: { courseID: any }) => x.courseID == this.courseid
+      );
+    } else {
       this.GetChapter();
     }
   }
 
-  photo:any;
-  Showimage(chapterPhoto:any){
-    this.photo=chapterPhoto;
-
+  photo: any;
+  Showimage(chapterPhoto: any) {
+    this.photo = chapterPhoto;
   }
 
-  view(desc:any){
-    this.description=desc;
-    
+  view(desc: any) {
+    this.description = desc;
   }
-
-
-
 }

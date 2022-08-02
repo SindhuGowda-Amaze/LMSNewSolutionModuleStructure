@@ -58,7 +58,7 @@ export class EmployeeAssessmentResultComponent implements OnInit {
           (x) => x.supervisor == sessionStorage.getItem('userid')
         );
       },
-      error: (err) => {
+      error: (err: { error: { message: any } }) => {
         Swal.fire('Issue in GetMyDetails');
         // Insert error in Db Here//
         var obj = {
@@ -82,7 +82,7 @@ export class EmployeeAssessmentResultComponent implements OnInit {
         this.dummemployeedetails = data;
         this.count = this.result.length;
       },
-      error: (err) => {
+      error: (err: { error: { message: any } }) => {
         Swal.fire('Issue in GetEnroll');
         // Insert error in Db Here//
         var obj = {
@@ -110,7 +110,7 @@ export class EmployeeAssessmentResultComponent implements OnInit {
 
         // .filter(x => x.checked == 1);
       },
-      error: (err) => {
+      error: (err: { error: { message: any } }) => {
         Swal.fire('Issue in GetTestResponsenew');
         // Insert error in Db Here//
         var obj = {
@@ -131,7 +131,7 @@ export class EmployeeAssessmentResultComponent implements OnInit {
         debugger;
         this.courselist = data;
       },
-      error: (err) => {
+      error: (err: { error: { message: any } }) => {
         Swal.fire('Issue in GetApproveCourse');
         // Insert error in Db Here//
         var obj = {

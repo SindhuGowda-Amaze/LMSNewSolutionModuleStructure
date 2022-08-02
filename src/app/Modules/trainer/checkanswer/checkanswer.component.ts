@@ -19,6 +19,13 @@ export class CheckanswerComponent implements OnInit {
   useranssheet: any;
   roleid: any;
   currentUrl: any;
+  finalresult: any;
+  Totalmarks: any;
+  ObtainedMarks: any;
+  userSubAnswer: any;
+  testResult: any;
+  Marks: any;
+  total2: any;
   ngOnInit(): void {
     this.currentUrl = window.location.href;
     this.roleid = sessionStorage.getItem('roleid');
@@ -77,11 +84,7 @@ export class CheckanswerComponent implements OnInit {
 
     this.UpdateResult();
   }
-  finalresult: any;
-  Totalmarks: any;
-  ObtainedMarks: any;
-  userSubAnswer: any;
-  testResult: any;
+
   public UpdateResult() {
     debugger;
     this.AmazeService.GetTestResponseDetails().subscribe({
@@ -154,7 +157,6 @@ export class CheckanswerComponent implements OnInit {
     this.userSubAnswer = div.textContent || div.innerText || '';
   }
 
-  Marks: any;
   public GetTestResponse() {
     debugger;
     this.AmazeService.GetTestResponse().subscribe({
@@ -175,7 +177,7 @@ export class CheckanswerComponent implements OnInit {
       },
     });
   }
-  total2: any;
+
   public updatemarks(list: any) {
     debugger;
     this.total2 = 0;
