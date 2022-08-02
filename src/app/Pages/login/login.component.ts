@@ -112,7 +112,7 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('roleid', '1');
           sessionStorage.setItem('userid', temp[0].id);
           sessionStorage.setItem("clickname", "Admin Dashboard")
-          this.router.navigate(['/Dashboard']).then(() => {
+          this.router.navigate(['/Admin/Dashboard']).then(() => {
             location.reload();
             this.loader=false;
           });
@@ -226,7 +226,7 @@ export class LoginComponent implements OnInit {
         }
 
 
-        
+
       })
 
     }

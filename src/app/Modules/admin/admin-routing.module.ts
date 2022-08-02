@@ -1,6 +1,7 @@
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 
 import { AdminComponent } from './admin.component';
 import { CategoryDashboardComponent } from './category-dashboard/category-dashboard.component';
@@ -41,7 +42,7 @@ const routes: Routes = [{ path: '', component: AdminComponent },
 {path:'Employee',component:EmployeeComponent},
 {path:'EmployeeForm',component:EmployeeFormComponent},
 {path:'EmployeeForm/:id',component:EmployeeFormComponent},
-
+{ path: 'Dashboard', component: AdminDashboardComponent },
 
 
 

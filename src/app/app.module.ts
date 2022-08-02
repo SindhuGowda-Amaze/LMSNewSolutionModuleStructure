@@ -11,6 +11,7 @@ import { SharedModule } from './Modules/shared/shared.module';
 import { DatePipe } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { CKEditorModule } from 'ckeditor4-angular';
+import { AdminDashboardComponent } from './Modules/admin/admin-dashboard/admin-dashboard.component';
 
 
 
@@ -20,7 +21,8 @@ import { CKEditorModule } from 'ckeditor4-angular';
     FooterComponent,
     HeaderComponent,
     SidebarComponent,
-    LoginComponent
+    LoginComponent,
+    AdminDashboardComponent
   ],
   imports: [
     BrowserModule,

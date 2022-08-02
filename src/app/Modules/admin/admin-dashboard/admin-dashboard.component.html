@@ -1,0 +1,319 @@
+<p>admin-dashboard works!</p>
+<div class="container-fluid">
+    <br>
+    <!-- <div *ngIf="temp=='1'"> <app-AppComponent></app-AppComponent></div> -->
+    <div class="row" style="margin-left: 10px;">
+        <div class="row">         
+            <div class="col-lg-3">
+                <div class="card1"  (click)="flip1($event)">
+                    <div class="back">
+                        <br>
+                        <div class="row" style="overflow: auto;height: 230px;">
+                            <p style="margin-left: 20px; font-size: 17px;font-style: bold;">Training List</p>
+                            <div class="col-lg-12 card-header"
+                                *ngFor="let details of coursedetails">
+                                <span class="chaptername">{{details.name}}</span>
+                            </div>
+                        </div>
+                        <hr class="new4">
+                        <div class="backflip">
+                            <!-- <button class="bcakbtn">BACK</button> -->
+                            <button class="clickbutton1" routerLink="/MyCourseDashboard">View My Training</button>
+                        </div>
+                    </div>
+                    <div class="front">
+                        <br>
+                        <div class="row title_outer1 top">
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-1">
+                                <p class="fa fa-calendar calend"  aria-hidden="true">
+                                </p>
+                            </div>
+                            <div class="col-lg-9">
+                                <p class="font">Trainings</p>
+                            </div>
+                        </div><br><br>
+                        <div class="row">
+                            <div class="col-lg-4"></div>
+                            <div class="col-lg-4">
+                                <h6 class="Number">{{countlist.courseCount}}</h6>
+                            </div>
+                            <div class="col-lg-4"></div>
+                        </div><br><br><br>
+                        <button class="clickbutton1">VIEW DETAILS</button>
+                    </div>
+                </div>
+            </div>
+      
+            <div class="col-lg-3">
+                <div class="card1" style="background-color: white; height: 325px;width: 275px;">
+                    <div class="front">
+                        <br>
+                        <div class="row title_outer1 top1">
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-1">
+                                <i class="fa fa-calendar calend" aria-hidden="true"></i>
+                            </div>
+                            <div class="col-lg-9">
+                                <p class="font">Topics</p>
+                            </div>
+                        </div><br><br>
+                        <div class="row">
+                            <div class="col-lg-4"></div>
+                            <div class="col-lg-4" style="text-align: center;">
+                                <h6 class="Number">{{countlist.chapterCount}}</h6>
+                            </div>
+                            <div class="col-lg-4"></div>
+                        </div><br><br><br>
+                        <button class="clickbutton1" data-toggle="modal" data-target="#enroll">VIEW DETAILS</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="card1" style="background-color: white; height: 325px;width: 275px;">
+                    <div class="front">
+                        <br>
+                        <div class="row title_outer1 top2">
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-1">
+                                <i class="fa fa-calendar calend"  aria-hidden="true"></i>
+                            </div>
+                            <div class="col-lg-9">
+                                <p class="font">Assessments</p>
+                            </div>
+                        </div><br><br>
+                        <div class="row">
+                            <div class="col-lg-4"></div>
+                            <div class="col-lg-4" style="text-align: center;">
+                                <h6 class="Number">{{countlist.assessmentsCount}}</h6>
+                            </div>
+                            <div class="col-lg-4"></div>
+                        </div><br><br><br>
+                        <button class="clickbutton1" data-toggle="modal" data-target="#enroll1">VIEW
+                            DETAILS</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3" *ngIf="showenrolment=='1'">
+                <div class="card1" style="background-color: white;  height: 325px;width: 275px;">
+                    <div class="front">
+                        <br>
+                        <div class="row title_outer1 top3">
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-1">
+                                <i class="fa fa-calendar calend" aria-hidden="true"></i>
+                            </div>
+                            <div class="col-lg-9">
+                                <p class="font">Enrollments</p>
+                            </div>
+                        </div><br><br>
+                        <div class="row">
+                            <div class="col-lg-4"></div>
+                            <div class="col-lg-4" style="text-align: center;">
+                                <h6 class="Number">{{countlist.enrollCount}}</h6>
+                            </div>
+                            <div class="col-lg-4"></div>
+                        </div><br><br><br>
+                        <button class="clickbutton1" data-toggle="modal" data-target="#enroll2">
+                            VIEW DETAILS</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3" *ngIf="showenrolment=='0'">
+                <div class="card1">
+                    <div class="front">
+                        <br>
+                        <div class="row title_outer1 top4">
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-1">
+                                <i class="fa fa-calendar calend" style="color:white" aria-hidden="true"></i>
+                            </div>
+                            <div class="col-lg-9">
+                                <p class="font">Trainers</p>
+                            </div>
+                        </div><br><br>
+                        <div class="row">
+                            <div class="col-lg-4"></div>
+                            <div class="col-lg-4" style="text-align: center;">
+                                <h6 class="Number">{{countAssignTrainer}}</h6>
+                            </div>
+                            <div class="col-lg-4"></div>
+                        </div><br><br><br>
+                        <button class="clickbutton1" data-toggle="modal"
+                            data-target="#enroll3">VIEW
+                            DETAILS</button>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+
+    </div><br><br><br>
+    <div class="row" style="margin-left: 10px;" *ngIf="showenrolment=='1'">
+        <div class="col-lg-10">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="card1">
+                        <div class="front">
+                            <br>
+                            <div class="row title_outer1 top4">
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-1">
+                                    <i class="fa fa-calendar calend" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-lg-9">
+                                    <p class="font">Assigned Trainers</p>
+                                </div>
+                            </div><br><br>
+                            <div class="row">
+                                <div class="col-lg-4"></div>
+                                <div class="col-lg-4" style="text-align: center;">
+                                    <p class="Number">{{countAdminTrainercourse}}</p>
+                                </div>
+                                <div class="col-lg-4"></div>
+                            </div><br>
+                            <button class="clickbutton1" data-toggle="modal"
+                                data-target="#enroll3">VIEW DETAILS</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div><br><br><br>
+</div>
+
+
+
+
+
+<div id="enroll" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="text-align:left;">
+            <div class="modal-header">
+                <h4 class="modal-title">Training And Topic List</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row" style="margin-left: 0px;">
+                    <div class="col-lg-12">
+                        <table style="width: 100%;">
+                            <tr style="font-size: 16px;">
+                                <th>Training Name </th>
+                                <th>Topic Name </th>
+                            </tr>
+                            <tr *ngFor="let details of chapterlist" style="text-align: left;"> 
+                                <td style="text-align: left;">{{details.courseName}}</td>
+                                <td style="text-align: left;">{{details.chapterName}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <hr>
+                <!-- <div class="col-lg-2">
+                    <button data-dismiss="modal" class="CloseBTN">Close</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="enroll1" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="text-align: left;">
+            <div class="modal-header" style="text-align: left;">
+                <h4 class="modal-title">Topic And Assesment List</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row" style="margin-left: 0px;">
+                    <div class="col-lg-12">
+                        <table style="width: 100%;">
+                            <tr style="font-size: 16px;">
+                                <th>Topic Name</th>
+                                <th>Assesment Name</th>
+                            </tr>
+                            <tr *ngFor="let details of assesmentlist" style="text-align: left;">
+                                <td style="text-align: left;">{{details.chapterName}}</td>
+                                <td style="text-align: left;">{{details.assesmentName}}</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="enroll2" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="text-align: left;">
+            <div class="modal-header" style="text-align: left;">
+                <h4 class="modal-title">Enrollments</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row" style="margin-left: 0px;">
+                    <div class="col-lg-12">
+                        <table style="width: 100%;">
+                            <tr style="font-size: 16px;">
+                                <th>Employee Name</th>
+                                <th>Trainer Name</th>
+                                <th>Training Name</th>
+                            </tr>
+                            <tr *ngFor="let details of trainerlist" style="text-align: left;">
+                                <td style="text-align: left;">{{details.staffName}}</td>
+                                <td style="text-align: left;">{{details.trainerName}}</td>
+                                <td style="text-align: left;">{{details.courseName}}</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="enroll3" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="text-align: left;">
+            <div class="modal-header" style="text-align: left;">
+                <h4 class="modal-title">Assign Trainer List</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row" style="margin-left: 0px;">
+                    <div class="col-lg-12">
+                        <table style="width: 100%;">
+                            <tr style="font-size: 16px;">
+                                <th>Trainer Name</th>
+                                <th>Training Name</th>
+                            </tr>
+                            <tr *ngFor="let details of Assigntrainerlist" style="text-align: left;">
+                                <td style="text-align: left;">{{details.trainerName}}</td>
+                                <td style="text-align: left;">{{details.courseName}}</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>
