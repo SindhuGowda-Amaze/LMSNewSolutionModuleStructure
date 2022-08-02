@@ -17,31 +17,21 @@ export class MyCourseDashboardComponent implements OnInit {
   managlist: any;
   manageremail: any;
   loader: any;
+  coursedetails: any;
+  result: any;
+  trainerCourseMapList: any;
+
   ngOnInit(): void {
     this.loader = false;
     this.manager = sessionStorage.getItem('manager')
     this.userid = sessionStorage.getItem('userid')
     // this.GetTrainerCourseMapping();
     this.GetEmpcoursecounts();
-
-
-
-     this.Showcards(2);
-      this.LearningService.GetMyDetails().subscribe(data => {
-        debugger
-        this.stafflist = data.filter(x => x.id == this.userid);
-        this.managlist = data.filter(x=>x.id==this.manager)    
-        this.manageremail=this.managlist[0].emailID
-
-      });
-
+    this.Showcards(2);
     this.show=2;
-
-
     this.GetAllCounts();
     this.Showcards(2);
-
-
+    this.GetMyDetails();
     // this.loader=true
     // debugger
     // this.LearningService.GetTrainerCourseMapping().subscribe(data => {
@@ -53,9 +43,19 @@ export class MyCourseDashboardComponent implements OnInit {
 
   }
 
-  coursedetails: any;
-  result: any;
-  trainerCourseMapList: any;
+ public GetMyDetails(){
+
+  this.LearningService.GetMyDetails().subscribe(data => {
+    debugger
+    this.stafflist = data.filter(x => x.id == this.userid);
+    this.managlist = data.filter(x=>x.id==this.manager)    
+    this.manageremail=this.managlist[0].emailID
+
+  });
+
+
+  }
+
 
   // public GetTrainerCourseMapping() {
   //   this.loader=true;

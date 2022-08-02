@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LearningService } from 'src/app/Pages/Services/learning.service';
 import { ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-attendance-new',
@@ -8,9 +9,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./attendance-new.component.css']
 })
 export class AttendanceNewComponent implements OnInit {
-
- 
-  constructor(private ActivatedRoute: ActivatedRoute, private LearningService: LearningService) { }
   search: any;
   id: any;
   result: any;
@@ -18,9 +16,13 @@ export class AttendanceNewComponent implements OnInit {
   roleid: any;
   userid: any;
   userName: any;
+  Attendance: any;
+  currentUrl:any;
+  constructor(private ActivatedRoute: ActivatedRoute, private LearningService: LearningService) { }
+
   ngOnInit(): void {
 
-
+    this.currentUrl = window.location.href;
     this.roleid = sessionStorage.getItem('roleid');
     this.userid = sessionStorage.getItem('userid');
     this.userName = sessionStorage.getItem('UserName');
@@ -33,11 +35,13 @@ export class AttendanceNewComponent implements OnInit {
   
 
 
-  Attendance: any;
+;
   public GetAttendance_New() {
     debugger
-    this.LearningService.GetAttendance_New().subscribe(
-      data => {
+    this.LearningService.GetAttendance_New()
+    
+    .subscribe({
+      next: data => {
         debugger
         if(this.roleid==4){
           this.Attendance = data.filter(x => x.trainerID == this.userid);
@@ -45,8 +49,22 @@ export class AttendanceNewComponent implements OnInit {
         else{
           this.Attendance = data.filter(x => x.empID == this.userid);
         }
-       
-      })
+      }, error: (err) => {
+        Swal.fire('Issue in GetAttendance_New');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+    
+
   }
 
 
