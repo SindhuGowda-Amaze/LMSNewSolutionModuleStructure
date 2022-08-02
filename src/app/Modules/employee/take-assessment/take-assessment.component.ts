@@ -362,7 +362,7 @@ this.testResponseID1=temp[0].id;
                   this.startTest = "";
                 //  this.router.navigate(['/AssessmentResult', this.testResponseID]);
                 // this.router.navigate(['#/MyCourseDashboard']);
-                 location.href="#/MyCourseDashboard";
+                 location.href="/Employee/MyCourseDashboard";
                
                   // .filter(x => x.checked == 1);
                 }, error: (err) => {
