@@ -356,7 +356,7 @@ export class EmployeeFormComponent implements OnInit {
             )),
             (this.RoleType = this.leavelist[0].type),
             (this.Supervisor = this.leavelist[0].supervisor);
-          }, error: (err) => {
+          },error: (err: { error: { message: any; }; }) => {
             Swal.fire('Issue in GetMyDetails');
             // Insert error in Db Here//
             var obj = {
@@ -394,7 +394,7 @@ export class EmployeeFormComponent implements OnInit {
               )),
               (this.ConfirmationStatus = this.leavelist[0].confirmationStatus),
               (this.EmployeeName = this.leavelist[0].employeeName);
-          }, error: (err) => {
+          },error: (err: { error: { message: any; }; }) => {
             Swal.fire('Issue in GetPositionDetails');
             // Insert error in Db Here//
             var obj = {
@@ -445,7 +445,7 @@ export class EmployeeFormComponent implements OnInit {
                 this.leavelist[0].emergencyContact_EmailID),
               (this.EmergencyContact_Address =
                 this.leavelist[0].emergencyContact_Address);
-          }, error: (err) => {
+          },error: (err: { error: { message: any; }; }) => {
             Swal.fire('Issue in GetMyAddressDetails');
             // Insert error in Db Here//
             var obj = {
@@ -485,7 +485,7 @@ export class EmployeeFormComponent implements OnInit {
               (this.Religion = this.leavelist[0].religion),
               (this.Working_Status = this.leavelist[0].working_Status),
               (this.Request_Type = this.leavelist[0].request_Type);
-          }, error: (err) => {
+          },error: (err: { error: { message: any; }; }) => {
             Swal.fire('Issue in GetDependentDetails');
             // Insert error in Db Here//
             var obj = {
@@ -510,7 +510,7 @@ export class EmployeeFormComponent implements OnInit {
               (this.GuardianName = this.leavelist[0].guardianName),
               (this.GuardianRelationship =
                 this.leavelist[0].guardianRelationship);
-          }, error: (err) => {
+          },error: (err: { error: { message: any; }; }) => {
             Swal.fire('Issue in GetNomination');
             // Insert error in Db Here//
             var obj = {
@@ -540,7 +540,7 @@ export class EmployeeFormComponent implements OnInit {
               )),
               (this.Salary = this.leavelist[0].salary),
               (this.CurrentEmployer = this.leavelist[0].currentEmployer);
-          }, error: (err) => {
+          },error: (err: { error: { message: any; }; }) => {
             Swal.fire('Issue in Getting Expenses List Web');
             // Insert error in Db Here//
             var obj = {
@@ -591,7 +591,7 @@ export class EmployeeFormComponent implements OnInit {
                 this.leavelist[0].endDateYear,
                 'yyyy-MM-dd'
               ));
-          }, error: (err) => {
+          },error: (err: { error: { message: any; }; }) => {
             Swal.fire('Issue in GetEducationDetails');
             // Insert error in Db Here//
             var obj = {
@@ -618,7 +618,7 @@ export class EmployeeFormComponent implements OnInit {
             (this.NameOfBank = this.leavelist[0].nameOfBank),
               (this.AccountHolderName = this.leavelist[0].accountHolderName),
               (this.BankAccountNumber = this.leavelist[0].bankAccountNumber);
-          }, error: (err) => {
+          },error: (err: { error: { message: any; }; }) => {
             Swal.fire('Issue in GetBankDetails');
             // Insert error in Db Here//
             var obj = {
@@ -653,7 +653,7 @@ export class EmployeeFormComponent implements OnInit {
               )),
               (this.IssuingAuthority = this.leavelist[0].issuingAuthority),
               (this.PlaceOfIssue = this.leavelist[0].placeOfIssue);
-          }, error: (err) => {
+          },error: (err: { error: { message: any; }; }) => {
             Swal.fire('Issue in GetID_Details');
             // Insert error in Db Here//
             var obj = {
@@ -685,7 +685,7 @@ export class EmployeeFormComponent implements OnInit {
                 this.leavelist[0].visaExpiryDate,
                 'yyyy-MM-dd'
               ));
-          }, error: (err) => {
+          },error: (err: { error: { message: any; }; }) => {
             Swal.fire('Issue in GetVisaDetails');
             // Insert error in Db Here//
             var obj = {
@@ -717,7 +717,7 @@ export class EmployeeFormComponent implements OnInit {
                 'yyyy-MM-dd'
               )),
               (this.Reason = this.leavelist[0].reason);
-          }, error: (err) => {
+          },error: (err: { error: { message: any; }; }) => {
             Swal.fire('Issue in GetSalaryDetails');
             // Insert error in Db Here//
             var obj = {
@@ -741,7 +741,7 @@ export class EmployeeFormComponent implements OnInit {
       next: data => {
         debugger;
         this.RoleTypeList = data;
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetRoleType');
         // Insert error in Db Here//
         var obj = {
@@ -764,7 +764,7 @@ export class EmployeeFormComponent implements OnInit {
       next: data => {
         debugger;
       this.supervisorlist = data;
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetMyDetails');
         // Insert error in Db Here//
         var obj = {
@@ -826,7 +826,7 @@ export class EmployeeFormComponent implements OnInit {
         debugger;
       this.Company_logo = data;
       alert('Attachment Uploaded');
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in AttachmentsUpload');
         // Insert error in Db Here//
         var obj = {
@@ -914,7 +914,7 @@ export class EmployeeFormComponent implements OnInit {
         this.SaveSalaryDetails();
         this.SaveAddressDetails();
         this.SavePositionDetails();
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in InsertMyDetails');
         // Insert error in Db Here//
         var obj = {
@@ -998,7 +998,7 @@ export class EmployeeFormComponent implements OnInit {
         this.UpdateSalaryDetails();
         this.UpdateMyAddressDetails();
         this.UpdatePositionDetails();
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Expenses List Web');
         // Insert error in Db Here//
         var obj = {
@@ -1040,7 +1040,7 @@ export class EmployeeFormComponent implements OnInit {
     .subscribe({
       next: data => {
       
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Expenses List Web');
         // Insert error in Db Here//
         var obj = {
@@ -1074,7 +1074,7 @@ export class EmployeeFormComponent implements OnInit {
       next: data => {
         debugger
        
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in InsertNomination');
         // Insert error in Db Here//
         var obj = {
@@ -1109,7 +1109,7 @@ export class EmployeeFormComponent implements OnInit {
       next: data => {
         debugger
       
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in InsertEmploymentDetails');
         // Insert error in Db Here//
         var obj = {
@@ -1151,7 +1151,7 @@ export class EmployeeFormComponent implements OnInit {
       next: data => {
         debugger
       Swal.fire('Saved SucessFully')
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in InsertEducationDetails');
         // Insert error in Db Here//
         var obj = {
@@ -1187,7 +1187,7 @@ export class EmployeeFormComponent implements OnInit {
       next: data => {
         debugger
         
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in InsertID_Details');
         // Insert error in Db Here//
         var obj = {
@@ -1221,7 +1221,7 @@ export class EmployeeFormComponent implements OnInit {
       next: data => {
         debugger
        
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in InsertBankDetails');
         // Insert error in Db Here//
         var obj = {
@@ -1254,7 +1254,7 @@ export class EmployeeFormComponent implements OnInit {
       next: data => {
         debugger
       
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in InsertVisaDetails');
         // Insert error in Db Here//
         var obj = {
@@ -1291,7 +1291,7 @@ export class EmployeeFormComponent implements OnInit {
       next: data => {
         debugger
        
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in InsertSalaryDetails');
         // Insert error in Db Here//
         var obj = {
@@ -1342,7 +1342,7 @@ export class EmployeeFormComponent implements OnInit {
         debugger;
       Swal.fire('Saved successfully.');
       this.router.navigate(['/Staffdashboard']);
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Expenses List Web');
         // Insert error in Db Here//
         var obj = {
@@ -1387,7 +1387,7 @@ export class EmployeeFormComponent implements OnInit {
     .subscribe({
       next: data => {
        
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in InsertPositionDetails');
         // Insert error in Db Here//
         var obj = {
@@ -1431,7 +1431,7 @@ export class EmployeeFormComponent implements OnInit {
       next: data => {
         debugger
  
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in UpdateDependentDetails');
         // Insert error in Db Here//
         var obj = {
@@ -1464,7 +1464,7 @@ export class EmployeeFormComponent implements OnInit {
       next: data => {
         debugger
         
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in UpdateNomination');
         // Insert error in Db Here//
         var obj = {
@@ -1499,7 +1499,7 @@ export class EmployeeFormComponent implements OnInit {
       next: data => {
         debugger
        
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in UpdateEmploymentDetails');
         // Insert error in Db Here//
         var obj = {
@@ -1541,7 +1541,7 @@ export class EmployeeFormComponent implements OnInit {
       next: data => {
         debugger
       
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in UpdateEducationDetails');
         // Insert error in Db Here//
         var obj = {
@@ -1577,7 +1577,7 @@ export class EmployeeFormComponent implements OnInit {
       next: data => {
         debugger
         
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in UpdateID_Details');
         // Insert error in Db Here//
         var obj = {
@@ -1608,7 +1608,7 @@ export class EmployeeFormComponent implements OnInit {
       next: data => {
         debugger
        
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in UpdateBankDetails');
         // Insert error in Db Here//
         var obj = {
@@ -1641,7 +1641,7 @@ export class EmployeeFormComponent implements OnInit {
       next: data => {
         debugger
        
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in UpdateVisaDetails');
         // Insert error in Db Here//
         var obj = {
@@ -1677,7 +1677,7 @@ export class EmployeeFormComponent implements OnInit {
       next: data => {
         debugger
        
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in UpdateSalaryDetails');
         // Insert error in Db Here//
         var obj = {
@@ -1729,7 +1729,7 @@ export class EmployeeFormComponent implements OnInit {
         debugger;
       Swal.fire('Saved successfully.');
       this.router.navigate(['/Staffdashboard']);
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in UpdateMyAddressDetails');
         // Insert error in Db Here//
         var obj = {
@@ -1772,7 +1772,7 @@ export class EmployeeFormComponent implements OnInit {
         debugger
         Swal.fire('Updated Successfully');
         this.router.navigate(['/Employeedashboard']);
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in UpdatePositionDetails');
         // Insert error in Db Here//
         var obj = {

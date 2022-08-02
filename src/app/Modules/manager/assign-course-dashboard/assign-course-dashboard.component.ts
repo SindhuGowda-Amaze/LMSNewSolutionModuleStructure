@@ -40,7 +40,7 @@ export class AssignCourseDashboardComponent implements OnInit {
         this.dummassignList = this.assignList;
         this.count = this.assignList.length;
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetEnroll');
         // Insert error in Db Here//
         var obj = {
@@ -70,7 +70,7 @@ export class AssignCourseDashboardComponent implements OnInit {
             debugger;
             this.GetEnroll();
           },
-          error: (err) => {
+         error: (err: { error: { message: any; }; }) => {
             Swal.fire('Issue in DeleteEnroll');
             // Insert error in Db Here//
             var obj = {

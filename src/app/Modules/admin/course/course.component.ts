@@ -71,7 +71,7 @@ export class CourseComponent implements OnInit {
         this.password = this.result[0].password;
         this.venue = this.result[0].venue;
         this.trainingType = this.result[0].trainingType;
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetCourse');
         // Insert error in Db Here//
         var obj = {
@@ -100,7 +100,7 @@ export class CourseComponent implements OnInit {
         debugger
         let temp: any = data.filter(x => x.id == this.categoryid);
         this.categoryName = temp[0].name;
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetCategoryMaster');
         // Insert error in Db Here//
         var obj = {
@@ -154,7 +154,7 @@ export class CourseComponent implements OnInit {
           let id = data;
           Swal.fire("Saved Successfully");
           location.href = "#/Admin/CourseDashboard"
-        }, error: (err) => {
+        },error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in InsertCourse');
           // Insert error in Db Here//
           var obj = {
@@ -223,7 +223,7 @@ export class CourseComponent implements OnInit {
         let result = data;
         Swal.fire("Updated Successfully");
         location.href = "#/CourseDashboard";
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in UpdateCourse');
         // Insert error in Db Here//
         var obj = {
@@ -248,7 +248,7 @@ export class CourseComponent implements OnInit {
       next: data => {
         debugger
         this.categoryList = data;
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetCategoryMaster');
         // Insert error in Db Here//
         var obj = {
@@ -293,7 +293,7 @@ export class CourseComponent implements OnInit {
         debugger
       this.Course_Photo = data;
       Swal.fire("Attachment Uploaded");
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in AttachmentsUpload');
         // Insert error in Db Here//
         var obj = {

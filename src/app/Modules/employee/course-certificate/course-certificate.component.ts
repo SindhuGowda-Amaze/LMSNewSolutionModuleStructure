@@ -45,7 +45,7 @@ export class CourseCertificateComponent implements OnInit {
           (x) => x.employeeID == sessionStorage.getItem('userid')
         );
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetCertification');
         // Insert error in Db Here//
         var obj = {
@@ -104,7 +104,7 @@ export class CourseCertificateComponent implements OnInit {
         debugger;
         this.certificate = data.filter((x) => x.courseID == this.courseid);
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetEnrollCourseCertificate');
         // Insert error in Db Here//
         var obj = {

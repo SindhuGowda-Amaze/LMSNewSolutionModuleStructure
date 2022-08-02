@@ -37,7 +37,7 @@ export class TrainerComponent implements OnInit {
       next: data => {
         debugger
         this.result = data;
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetTrainer');
         // Insert error in Db Here//
         var obj = {
@@ -72,7 +72,7 @@ export class TrainerComponent implements OnInit {
       next: data => {
         debugger
         this.GetTrainer();
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in DeleteTrainer');
         // Insert error in Db Here//
         var obj = {

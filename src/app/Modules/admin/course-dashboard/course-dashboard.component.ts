@@ -47,7 +47,7 @@ export class CourseDashboardComponent implements OnInit {
         this.result = data;
         this.dummresult = data;
         this.count = this.result.length;
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetCourse');
         // Insert error in Db Here//
         var obj = {
@@ -76,7 +76,7 @@ export class CourseDashboardComponent implements OnInit {
         this.result1 = data;
         this.categorylist=data;
         this.categorydetails=data;
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetCategoryMaster');
         // Insert error in Db Here//
         var obj = {
@@ -119,7 +119,7 @@ export class CourseDashboardComponent implements OnInit {
         debugger
         this.coursedetails = data;
         this.dummcoursedetails = data;
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetChapter');
         // Insert error in Db Here//
         var obj = {
@@ -154,7 +154,8 @@ export class CourseDashboardComponent implements OnInit {
           next: data => {
             debugger
         this.GetCourse();
-          }, error: (err) => {
+          },
+          error: (err: { error: { message: any; }; }) => {
             Swal.fire('Issue in DeleteCourse');
             // Insert error in Db Here//
             var obj = {

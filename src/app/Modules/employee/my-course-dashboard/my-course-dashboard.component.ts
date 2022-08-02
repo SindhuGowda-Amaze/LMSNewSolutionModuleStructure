@@ -63,7 +63,7 @@ export class MyCourseDashboardComponent implements OnInit {
         this.managlist = data.filter((x) => x.id == this.manager);
         this.manageremail = this.managlist[0].emailID;
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetMyDetails');
         // Insert error in Db Here//
         var obj = {
@@ -134,7 +134,7 @@ export class MyCourseDashboardComponent implements OnInit {
               x.completed != 1 && x.enrollid == 0
           );
         },
-        error: (err) => {
+       error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in GetTrainerCourseMapping');
           // Insert error in Db Here//
           var obj = {
@@ -155,7 +155,7 @@ export class MyCourseDashboardComponent implements OnInit {
               x.completed == 1 && x.enrollid != 0 && x.staffID == this.userid
           );
         },
-        error: (err) => {
+       error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in GetCourse');
           // Insert error in Db Here//
           var obj = {
@@ -195,7 +195,7 @@ export class MyCourseDashboardComponent implements OnInit {
           // this.show=1
         }
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetApproveCourse');
         // Insert error in Db Here//
         var obj = {
@@ -215,7 +215,7 @@ export class MyCourseDashboardComponent implements OnInit {
         debugger;
         this.testresponse = data;
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetTestResponse');
         // Insert error in Db Here//
         var obj = {
@@ -235,7 +235,7 @@ export class MyCourseDashboardComponent implements OnInit {
         debugger;
         this.coursedetails = data.filter((x) => x.staffID == this.userid);
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetCourse');
         // Insert error in Db Here//
         var obj = {
@@ -288,7 +288,7 @@ export class MyCourseDashboardComponent implements OnInit {
               Swal.fire('Already Enrolled');
             }
           },
-          error: (err) => {
+         error: (err: { error: { message: any; }; }) => {
             Swal.fire('Issue in InsertEnroll');
             // Insert error in Db Here//
             var obj = {
@@ -313,7 +313,7 @@ export class MyCourseDashboardComponent implements OnInit {
         debugger;
         this.countlist = data[0];
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetAllCounts');
         // Insert error in Db Here//
         var obj = {
@@ -335,7 +335,7 @@ export class MyCourseDashboardComponent implements OnInit {
         debugger;
         this.empcountlist = data[0];
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetEmpcoursecounts');
         // Insert error in Db Here//
         var obj = {
@@ -356,7 +356,7 @@ export class MyCourseDashboardComponent implements OnInit {
         debugger;
         this.empcountlist = data[0];
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in UpdateEmpCoursedetails');
         // Insert error in Db Here//
         var obj = {

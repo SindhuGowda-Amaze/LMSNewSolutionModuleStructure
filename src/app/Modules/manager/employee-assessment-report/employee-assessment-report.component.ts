@@ -50,7 +50,7 @@ export class EmployeeAssessmentReportComponent implements OnInit {
         this.dummemployeereportlist = data;
         this.traininglist = data;
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetTrainerReport');
         // Insert error in Db Here//
         var obj = {
@@ -88,7 +88,7 @@ export class EmployeeAssessmentReportComponent implements OnInit {
         debugger;
         this.departmentlist = data;
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetDepartmentMaster');
         // Insert error in Db Here//
         var obj = {

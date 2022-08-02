@@ -82,7 +82,7 @@ export class StartMyCourseNewComponent implements OnInit {
           ).subscribe((data) => {});
         }
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetChapterListByEmployeeID');
         // Insert error in Db Here//
         var obj = {
@@ -156,7 +156,7 @@ export class StartMyCourseNewComponent implements OnInit {
           }
         }
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetChapterAttachmentByChapterID');
         // Insert error in Db Here//
         var obj = {

@@ -101,7 +101,7 @@ export class TakeAssessmentComponent implements OnInit {
       debugger
 let temp:any=data.filter(x=>x.userID==sessionStorage.getItem('userid')&&x.courseID== this.courseid&&x.chapterID==this.chapterid);
 this.testResponseID1=temp[0].id;
-    }, error: (err) => {
+    },error: (err: { error: { message: any; }; }) => {
       Swal.fire('Issue in GetTestResponse');
       // Insert error in Db Here//
       var obj = {
@@ -128,7 +128,7 @@ this.testResponseID1=temp[0].id;
     next: data => {
       debugger
       this.generalinstructions=data[0].generalInstructions
-    }, error: (err) => {
+    },error: (err: { error: { message: any; }; }) => {
       Swal.fire('Issue in GetAssessments');
       // Insert error in Db Here//
       var obj = {
@@ -193,7 +193,7 @@ this.testResponseID1=temp[0].id;
           this.totalmarks= this.totalmarks + this.questionList[i].weightage;
         }
         this.count = this.questionList.length;
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetAssessments');
         // Insert error in Db Here//
         var obj = {
@@ -365,7 +365,7 @@ this.testResponseID1=temp[0].id;
                  location.href="#/MyCourseDashboard";
                
                   // .filter(x => x.checked == 1);
-                }, error: (err) => {
+                },error: (err: { error: { message: any; }; }) => {
                   Swal.fire('Issue in DeleteTestResponseDetails');
                   // Insert error in Db Here//
                   var obj = {
@@ -404,7 +404,7 @@ this.testResponseID1=temp[0].id;
             
           
           }
-        }, error: (err) => {
+        },error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in Getting Expenses List Web');
           // Insert error in Db Here//
           var obj = {

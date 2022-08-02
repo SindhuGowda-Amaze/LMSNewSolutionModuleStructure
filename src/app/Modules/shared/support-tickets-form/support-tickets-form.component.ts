@@ -73,7 +73,7 @@ export class SupportTicketsFormComponent implements OnInit {
           (this.screenShot[0] = this.ticketlist[0].screenShot),
           (this.comments = this.ticketlist[0].comment);
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetSupportTickets');
         // Insert error in Db Here//
         var obj = {
@@ -105,7 +105,7 @@ export class SupportTicketsFormComponent implements OnInit {
         console.log('data', this.screenShot);
         this.files.length = 0;
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in AttachmentsUploadsss');
         // Insert error in Db Here//
         var obj = {
@@ -181,7 +181,7 @@ export class SupportTicketsFormComponent implements OnInit {
           this.prority = '';
           this.comments = '';
         },
-        error: (err) => {
+       error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in InsertSupportTickets');
           // Insert error in Db Here//
           var obj = {
@@ -211,7 +211,7 @@ export class SupportTicketsFormComponent implements OnInit {
 
           Swal.fire('Updated Successfully');
         },
-        error: (err) => {
+       error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in InsertAttachment');
           // Insert error in Db Here//
           var obj = {
@@ -255,7 +255,7 @@ export class SupportTicketsFormComponent implements OnInit {
         this.comments = '';
         location.href = '/Shared/SupportTicketsDashboard';
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in UpdateSupportTickets');
         // Insert error in Db Here//
         var obj = {

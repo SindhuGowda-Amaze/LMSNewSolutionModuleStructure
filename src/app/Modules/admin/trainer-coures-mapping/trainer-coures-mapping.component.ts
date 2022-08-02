@@ -30,7 +30,7 @@ export class TrainerCouresMappingComponent implements OnInit {
           debugger
           this.Trainerdetails = data;
           this.count = this.Trainerdetails.length;
-        }, error: (err) => {
+        },error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in GetTrainerCourseMappingDashboard');
           // Insert error in Db Here//
           var obj = {
@@ -70,7 +70,7 @@ export class TrainerCouresMappingComponent implements OnInit {
         next: data => {
           debugger
           this.GetTrainerCourseMappingDashboard();
-        }, error: (err) => {
+        },error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in DeleteTrainerCourseMapping');
           // Insert error in Db Here//
           var obj = {

@@ -38,7 +38,7 @@ export class ChapterDashboardComponent implements OnInit {
       next: data => {
         debugger
         this.courselist = data;
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetCourseDropdown');
         // Insert error in Db Here//
         var obj = {
@@ -66,7 +66,7 @@ export class ChapterDashboardComponent implements OnInit {
         debugger
       this.coursedetails = data;
       this.dummcoursedetails = data;
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Expenses List Web');
         // Insert error in Db Here//
         var obj = {
@@ -151,7 +151,7 @@ export class ChapterDashboardComponent implements OnInit {
       next: data => {
         debugger
       this.Attachmentlist = data;
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetChapterAttachmentByChapterID');
         // Insert error in Db Here//
         var obj = {

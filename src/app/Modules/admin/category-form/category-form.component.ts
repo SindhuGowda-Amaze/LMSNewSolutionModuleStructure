@@ -44,7 +44,7 @@ export class CategoryFormComponent implements OnInit {
       );
       this.Name = this.result[0].name;
       this.Description = this.result[0].description;
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting CategoryMaster');
         // Insert error in Db Here//
         var obj = {
@@ -113,7 +113,7 @@ export class CategoryFormComponent implements OnInit {
       let result = data;
       Swal.fire('Successfully Updated...!');
       location.href = '#/CategoryDashboard';
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in UpdateCategoryMaster');
         // Insert error in Db Here//
         var obj = {

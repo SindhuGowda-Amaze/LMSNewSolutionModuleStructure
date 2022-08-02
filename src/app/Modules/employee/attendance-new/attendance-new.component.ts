@@ -49,7 +49,7 @@ export class AttendanceNewComponent implements OnInit {
         else{
           this.Attendance = data.filter(x => x.empID == this.userid);
         }
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetAttendance_New');
         // Insert error in Db Here//
         var obj = {

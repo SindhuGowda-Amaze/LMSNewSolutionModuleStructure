@@ -88,7 +88,7 @@ export class CatalogComponent implements OnInit {
         this.manageremail = this.managlist[0].emailID;
         this.Emplist = data.filter((x) => x.id == this.userid);
         this.emplyphn = this.Emplist[0].phoneNo;
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetMyDetails');
         // Insert error in Db Here//
         var obj = {
@@ -141,7 +141,7 @@ export class CatalogComponent implements OnInit {
             let id = data;
             location.href = '#/Catalog';
           },
-          error: (err) => {
+         error: (err: { error: { message: any; }; }) => {
             Swal.fire('Issue in InsertEnroll');
             // Insert error in Db Here//
             var obj = {
@@ -211,7 +211,7 @@ export class CatalogComponent implements OnInit {
         // this.categorylist3 = data.slice(3, 4);
         // this.categorylist4 = data.slice(4, 5);
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetCategoryMaster');
         // Insert error in Db Here//
         var obj = {
@@ -234,7 +234,7 @@ export class CatalogComponent implements OnInit {
         this.courselist = data;
         this.count = this.courselist.length;
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetCoursesByUserID');
         // Insert error in Db Here//
         var obj = {
@@ -280,7 +280,7 @@ export class CatalogComponent implements OnInit {
           }
         }
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetCoursesByUserID');
         // Insert error in Db Here//
         var obj = {

@@ -40,7 +40,7 @@ export class MyAccountsettingModifyComponent implements OnInit {
         );
         this.Currentpassword = temp[0].password;
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetMyDetails');
         // Insert error in Db Here//
         var obj = {
@@ -96,7 +96,7 @@ export class MyAccountsettingModifyComponent implements OnInit {
             this.confirmpassword = '';
             this.ngOnInit();
           },
-          error: (err) => {
+         error: (err: { error: { message: any; }; }) => {
             Swal.fire('Issue in UpdateTrainerPassword');
             // Insert error in Db Here//
             var obj = {
@@ -117,7 +117,7 @@ export class MyAccountsettingModifyComponent implements OnInit {
             this.confirmpassword = '';
             this.ngOnInit();
           },
-          error: (err) => {
+         error: (err: { error: { message: any; }; }) => {
             Swal.fire('Issue in UpdatePassword');
             // Insert error in Db Here//
             var obj = {

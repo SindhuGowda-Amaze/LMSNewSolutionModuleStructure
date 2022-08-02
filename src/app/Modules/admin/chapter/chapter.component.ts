@@ -76,7 +76,7 @@ export class ChapterComponent implements OnInit {
       next: data => {
         debugger
         this.Attachmentlist = data;
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting ChapterAttachmentByChapterID');
         // Insert error in Db Here//
         var obj = {
@@ -116,7 +116,7 @@ export class ChapterComponent implements OnInit {
         this.assessmentName=this.result[0].assesmentName,
         this.generalInstructions=this.result[0].generalInstructions
     
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetChapter');
         // Insert error in Db Here//
         var obj = {
@@ -161,7 +161,7 @@ export class ChapterComponent implements OnInit {
         this.Attachment.push(this.file);
         console.log("Attchaments",this.Attachment);
         Swal.fire("Attachment Uploaded");
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting AttachmentsUpload');
         // Insert error in Db Here//
         var obj = {
@@ -186,7 +186,7 @@ export class ChapterComponent implements OnInit {
       next: data => {
         debugger
         this.courselist = data;
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetCourseDropdown');
         // Insert error in Db Here//
         var obj = {
@@ -241,7 +241,7 @@ export class ChapterComponent implements OnInit {
           let result = data;
           Swal.fire("Updated Successfully ...!");
           location.href="#/ChapterDashboard";
-        }, error: (err) => {
+        },error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in UpdateChapter');
           // Insert error in Db Here//
           var obj = {
@@ -285,7 +285,7 @@ export class ChapterComponent implements OnInit {
           this.insertAttchmentFiles()
           Swal.fire("Saved Successfully");
           location.href = "#/ChapterDashboard"
-        }, error: (err) => {
+        },error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in InsertChapter');
           // Insert error in Db Here//
           var obj = {
@@ -317,7 +317,7 @@ export class ChapterComponent implements OnInit {
         next: data => {
           debugger
          
-        }, error: (err) => {
+        },error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in InsertChapterAttachment');
           // Insert error in Db Here//
           var obj = {
@@ -360,7 +360,7 @@ export class ChapterComponent implements OnInit {
         debugger
         this.ChapterPhoto = data;
         Swal.fire("Attachment Uploaded");
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in AttachmentsUpload');
         // Insert error in Db Here//
         var obj = {
@@ -399,7 +399,7 @@ export class ChapterComponent implements OnInit {
             debugger
           this.Attachmentlist = data;
           this.files1=[];
-          }, error: (err) => {
+          },error: (err: { error: { message: any; }; }) => {
             Swal.fire('Issue in GetChapterAttachmentByChapterID');
             // Insert error in Db Here//
             var obj = {
@@ -414,7 +414,7 @@ export class ChapterComponent implements OnInit {
           }
         })
       
-        }, error: (err) => {
+        },error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in ChapterAttachmentByChapterID');
           // Insert error in Db Here//
           var obj = {
@@ -459,7 +459,7 @@ export class ChapterComponent implements OnInit {
               next: data => {
                 debugger
               this.Attachmentlist = data;
-              }, error: (err) => {
+              },error: (err: { error: { message: any; }; }) => {
                 Swal.fire('Issue in GetChapterAttachmentByChapterID');
                 // Insert error in Db Here//
                 var obj = {
@@ -474,7 +474,7 @@ export class ChapterComponent implements OnInit {
               }
             })
              
-          }, error: (err) => {
+          },error: (err: { error: { message: any; }; }) => {
             Swal.fire('Issue in InsertChapterAttachment');
             // Insert error in Db Here//
             var obj = {
@@ -518,7 +518,7 @@ export class ChapterComponent implements OnInit {
       this.photourl = data;
       console.log("Attchaments",this.Attachment);
       Swal.fire("Attachment Uploaded");
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in AttachmentsUpload');
         // Insert error in Db Here//
         var obj = {

@@ -75,7 +75,7 @@ export class TrainerCouresMappingFormComponent implements OnInit {
       next: data => {
         debugger
         this.CourseList = data
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetUnmappedCourseDropdown');
         // Insert error in Db Here//
         var obj = {
@@ -98,7 +98,7 @@ export class TrainerCouresMappingFormComponent implements OnInit {
         next: data => {
           debugger
           this.CourseList = data
-        }, error: (err) => {
+        },error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in Getting Expenses List Web');
           // Insert error in Db Here//
           var obj = {
@@ -125,7 +125,7 @@ export class TrainerCouresMappingFormComponent implements OnInit {
       next: data => {
         debugger
         this.trainerlist = data.filter(x=>x.id!=this.TrainerID);
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetUnmappedTrainer');
         // Insert error in Db Here//
         var obj = {
@@ -148,7 +148,7 @@ export class TrainerCouresMappingFormComponent implements OnInit {
         next: data => {
           debugger
           this.trainerlist = data
-        }, error: (err) => {
+        },error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in GetTrainer');
           // Insert error in Db Here//
           var obj = {
@@ -191,7 +191,7 @@ export class TrainerCouresMappingFormComponent implements OnInit {
         this.EndDate=this.result[0].endDate;
         this.BatchName=this.result[0].batchID;
         this.AllowedStudents=this.result[0].noOfStudentsEnrolled;
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetTrainerCourseMapping');
         // Insert error in Db Here//
         var obj = {
@@ -231,7 +231,7 @@ export class TrainerCouresMappingFormComponent implements OnInit {
         let trainerlist = data;
         Swal.fire("Saved Successfully");
         location.href="#/TrainerCourseMapping";
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in InsertTrainerCourseMapping');
         // Insert error in Db Here//
         var obj = {
@@ -270,7 +270,7 @@ export class TrainerCouresMappingFormComponent implements OnInit {
         let result = data;
         Swal.fire("Successfully Updated...!");
         location.href="#/TrainerCourseMapping";
-        }, error: (err) => {
+        },error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in UpdateTrainerCourseMapping');
           // Insert error in Db Here//
           var obj = {
@@ -314,7 +314,7 @@ export class TrainerCouresMappingFormComponent implements OnInit {
       next: data => {
         debugger
         this.BatchList = data;
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetBatch');
         // Insert error in Db Here//
         var obj = {

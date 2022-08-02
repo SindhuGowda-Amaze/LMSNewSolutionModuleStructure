@@ -46,7 +46,7 @@ export class EmployeeComponent implements OnInit {
       next: data => {
         debugger
       this.stafflist = data;
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetMyDetails');
         // Insert error in Db Here//
         var obj = {
@@ -73,7 +73,7 @@ export class EmployeeComponent implements OnInit {
       next: data => {
         debugger
       this.stafflist = data.filter(x => x.filterdate == this.date);
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetMyDetails');
         // Insert error in Db Here//
         var obj = {

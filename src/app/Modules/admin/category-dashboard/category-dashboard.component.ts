@@ -40,7 +40,7 @@ export class CategoryDashboardComponent implements OnInit {
         this.result = data;
         this.count = this.result.length;
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting CategoryMaster');
         // Insert error in Db Here//
         var obj = {
@@ -71,7 +71,7 @@ export class CategoryDashboardComponent implements OnInit {
             debugger;
             this.GetCategoryMaster();
           },
-          error: (err) => {
+         error: (err: { error: { message: any; }; }) => {
             Swal.fire('Issue in Getting DeleteCategoryMaster');
             // Insert error in Db Here//
             var obj = {

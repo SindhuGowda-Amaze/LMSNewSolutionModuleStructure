@@ -43,7 +43,7 @@ export class FinalResultComponent implements OnInit {
           this.Marks = data;
         }
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetTestResponsenew');
         // Insert error in Db Here//
         var obj = {

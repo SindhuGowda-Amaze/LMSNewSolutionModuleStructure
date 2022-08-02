@@ -68,7 +68,7 @@ export class MangerDashboardComponent implements OnInit {
         this.employeeList = data;
         this.count = this.result.length;
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Enroll');
         // Insert error in Db Here//
         var obj = {
@@ -123,7 +123,7 @@ export class MangerDashboardComponent implements OnInit {
         });
         this.Showcards(1);
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in UpdateErollmentStatusApproved');
         // Insert error in Db Here//
         var obj = {
@@ -158,7 +158,7 @@ export class MangerDashboardComponent implements OnInit {
         });
         this.Showcards(3);
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in UpdateErollmentStatusRejected');
         // Insert error in Db Here//
         var obj = {
@@ -196,7 +196,7 @@ export class MangerDashboardComponent implements OnInit {
           );
           this.count = this.result.length;
         },
-        error: (err) => {
+       error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in GetEnroll');
           // Insert error in Db Here//
           var obj = {
@@ -221,7 +221,7 @@ export class MangerDashboardComponent implements OnInit {
           );
           this.count = this.result.length;
         },
-        error: (err) => {
+       error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in GetEnroll');
           // Insert error in Db Here//
           var obj = {
@@ -246,7 +246,7 @@ export class MangerDashboardComponent implements OnInit {
           );
           this.count = this.result.length;
         },
-        error: (err) => {
+       error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in GetEnroll');
           // Insert error in Db Here//
           var obj = {

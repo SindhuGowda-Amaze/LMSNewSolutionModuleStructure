@@ -72,7 +72,7 @@ export class StartMyCourseComponent implements OnInit {
         this.ShowAttachments(this.coursedetails[0].id);
         this.show = 1;
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Expenses List Web');
         // Insert error in Db Here//
         var obj = {
@@ -142,7 +142,7 @@ export class StartMyCourseComponent implements OnInit {
           }
         }
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetChapterAttachmentByChapterID');
         // Insert error in Db Here//
         var obj = {

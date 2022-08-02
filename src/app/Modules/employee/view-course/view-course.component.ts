@@ -11,15 +11,6 @@ import Swal from 'sweetalert2'
 export class ViewCourseComponent implements OnInit {
   sanitizer: any;
   chapterphoto: any;
-
-  constructor(private ActivatedRoute: ActivatedRoute, private LearningService: LearningService) { }
-
-  courseid: any;
-  userid:any;
-  manager:any;
-  stafflist:any;
-  count: any;
-
   Attachmentlist: any;
   dummAttachmentlist: any;
   showvideo: any;
@@ -34,7 +25,31 @@ export class ViewCourseComponent implements OnInit {
   manageremail:any;
   Emplist:any;
   emplyphn:any;
+  courseid: any;
+  userid:any;
+  manager:any;
+  stafflist:any;
+  count: any;
+  currentUrl:any;
+  attachmentId:any;
+  domSanitizer: any;
+  ppt: any;
+  coursedetails: any;
+  course:any
+  name:any;
+  mobile:any;
+  emailID:any;
+  rowno: any;
+  showchapter:any;
+  chapterdetails: any;
+
+  constructor(private ActivatedRoute: ActivatedRoute, private LearningService: LearningService) { }
+
   ngOnInit(): void {
+
+    
+ this.currentUrl = window.location.href;
+
     this.loader=false
     this.userid = sessionStorage.getItem('userid')
     this.manager = sessionStorage.getItem('manager')
@@ -47,16 +62,8 @@ export class ViewCourseComponent implements OnInit {
       this.show = 1
     })
 
+    this.GetMyDetails();
 
-   
-    this.LearningService.GetMyDetails().subscribe(data => {
-      debugger
-      this.stafflist = data.filter(x => x.id == this.userid);
-      this.managlist = data.filter(x=>x.id==this.manager)    
-      this.manageremail=this.managlist[0].emailID
-      this.Emplist = data.filter(x=>x.id==this.userid)
-      this.emplyphn = this.Emplist[0].phoneNo
-    });
   }
   // enroll() {
   //   Swal.fire({
@@ -79,6 +86,38 @@ export class ViewCourseComponent implements OnInit {
   //     }
   //   })
   // }
+
+ public GetMyDetails(){
+
+
+   
+  this.LearningService.GetMyDetails()
+  .subscribe({
+    next: data => {
+      debugger
+      this.stafflist = data.filter(x => x.id == this.userid);
+      this.managlist = data.filter(x=>x.id==this.manager)    
+      this.manageremail=this.managlist[0].emailID
+      this.Emplist = data.filter(x=>x.id==this.userid)
+      this.emplyphn = this.Emplist[0].phoneNo
+    },  error: (err: { error: { message: any; }; })=> {
+      Swal.fire('Issue in Getting Expenses List Web');
+      // Insert error in Db Here//
+      var obj = {
+        'PageName': this.currentUrl,
+        'ErrorMessage': err.error.message
+      }
+      this.LearningService.InsertExceptionLogs(obj).subscribe(
+        data => {
+          debugger
+        },
+      )
+    }
+  })
+  }
+
+
+
   public flip1(event: { currentTarget: any; }) {
     debugger
     var element = event.currentTarget;
@@ -101,7 +140,7 @@ export class ViewCourseComponent implements OnInit {
     
   //   window.open(vedioUrl, "_blank")
   // }
-attachmentId:any;
+
   ShowAttachments(id: any) {
     debugger
     this.showvideo = 0;
@@ -111,9 +150,11 @@ attachmentId:any;
     this.showPpt = 0;
     this.attachmentId =id;
 
-    this.LearningService.GetChapterAttachmentByChapterID(id).subscribe(data => {
-
-      debugger
+    this.LearningService.GetChapterAttachmentByChapterID(id)
+    
+    .subscribe({
+      next: data => {
+        debugger
       this.Attachmentlist = data;
       this.dummAttachmentlist = data;
       this.show = 1
@@ -139,8 +180,20 @@ attachmentId:any;
           this.showPpt = 1
         }
       }
+      },  error: (err: { error: { message: any; }; })=> {
+        Swal.fire('Issue in GetChapterAttachmentByChapterID');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
-
   }
 
 
@@ -194,8 +247,7 @@ attachmentId:any;
     }
     location.reload();
   }
-  domSanitizer: any;
-  ppt: any
+
   public PreviewPPT(photo: any) {
     this.show = 4;
   //  this.chapterphoto = "https://docs.google.com/gvie" + photo;
@@ -274,38 +326,65 @@ attachmentId:any;
     location.reload();
   }
 
-  chapterdetails: any;
+
 
   public GetChapter() {
     this.loader=true
     debugger
-    this.LearningService.GetChapter().subscribe(
-      data => {
+    this.LearningService.GetChapter()
+    .subscribe({
+      next: data => {
         debugger
         this.chapterdetails = data.filter(x => x.courseID == this.courseid);
         this.count = this.chapterdetails.length;
         this.ShowAttachments(this.chapterdetails[0].id)
         this.show = 1
+      },  error: (err: { error: { message: any; }; })=> {
+        Swal.fire('Issue in GetChapter');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+    
 
-      })
       this.loader=false
   }
 
-  coursedetails: any;
 
   public GetTrainerCourseMapping() {
     this.loader=true
     debugger
-    this.LearningService.GetTrainerCourseMapping().subscribe(data => {
-      debugger
-      this.coursedetails = data.filter(x => x.courseID == this.courseid);
-      debugger
+    this.LearningService.GetTrainerCourseMapping()
+    .subscribe({
+      next: data => {
+        debugger
+        this.coursedetails = data.filter(x => x.courseID == this.courseid);
+      },  error: (err: { error: { message: any; }; })=> {
+        Swal.fire('Issue in GetTrainerCourseMapping');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
+
     this.loader=false
   }
 
-  rowno: any;
-  showchapter:any;
   GetDetails(details: any) {
     debugger
     this.rowno = details.rowno;
@@ -313,10 +392,7 @@ attachmentId:any;
   }
 
   
-  course:any
-  name:any;
-  mobile:any;
-  emailID:any;
+
   enroll(name:any, mobile:any,emailID:any){
     Swal.fire({
       title: 'Enroll Confirmation',
@@ -342,13 +418,29 @@ attachmentId:any;
             "email":emailID  ,
             "type":'Request to Manager'
           };
-          this.LearningService.InsertEnroll(json).subscribe(
-            data => {
+          this.LearningService.InsertEnroll(json)
+          
+          .subscribe({
+            next: data => {
               debugger
               let id = data;
               // Swal.fire("Saved Successfully");
             location.href="#/Catalog"
-            })
+            },  error: (err: { error: { message: any; }; })=> {
+              Swal.fire('Issue in InsertEnroll');
+              // Insert error in Db Here//
+              var obj = {
+                'PageName': this.currentUrl,
+                'ErrorMessage': err.error.message
+              }
+              this.LearningService.InsertExceptionLogs(obj).subscribe(
+                data => {
+                  debugger
+                },
+              )
+            }
+          })
+          
         Swal.fire(
           'Request Sent',
           'Your request has been sent to manager for Approval',

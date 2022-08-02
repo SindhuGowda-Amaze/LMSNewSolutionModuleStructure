@@ -52,7 +52,7 @@ export class TraineeReportComponent implements OnInit {
         this.dummemployeereportlist = data;
         this.traininglist = data;
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetTrainerReport');
         // Insert error in Db Here//
         var obj = {
@@ -92,7 +92,7 @@ export class TraineeReportComponent implements OnInit {
         this.count = this.departmentlist.length;
         console.log('this.departmentlist.length', this.count);
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetDepartmentMaster');
         // Insert error in Db Here//
         var obj = {

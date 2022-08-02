@@ -61,7 +61,7 @@ export class AssignCourseToEmployeeComponent implements OnInit {
         this.courselist = data;
         this.count = this.courselist.length;
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Expenses List Web');
         // Insert error in Db Here//
         var obj = {
@@ -91,7 +91,7 @@ export class AssignCourseToEmployeeComponent implements OnInit {
         // this.mobile=this.stafflist[0].phoneNo
         // this.emailID=this.stafflist[0].emailID
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetMyDetails');
         // Insert error in Db Here//
         var obj = {

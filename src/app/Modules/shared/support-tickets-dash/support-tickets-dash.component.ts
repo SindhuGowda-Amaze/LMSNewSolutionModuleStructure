@@ -35,7 +35,7 @@ export class SupportTicketsDashComponent implements OnInit {
         );
         this.count = this.ticketlist.length;
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetSupportTickets');
         // Insert error in Db Here//
         var obj = {
@@ -57,7 +57,7 @@ export class SupportTicketsDashComponent implements OnInit {
         debugger;
         this.attachmentlist = data.filter((x) => x.ticketID == id);
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetSupportAttachment');
         // Insert error in Db Here//
         var obj = {
@@ -88,7 +88,7 @@ export class SupportTicketsDashComponent implements OnInit {
             Swal.fire('Deleted Successfully');
             location.reload();
           },
-          error: (err) => {
+         error: (err: { error: { message: any; }; }) => {
             Swal.fire('Issue in DeleteSupportTickets');
             // Insert error in Db Here//
             var obj = {

@@ -54,7 +54,7 @@ export class LearningPathDashboardComponent implements OnInit {
       next: data => {
         debugger
         this.result = data;
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetEmployee');
         // Insert error in Db Here//
         var obj = {
@@ -78,7 +78,7 @@ export class LearningPathDashboardComponent implements OnInit {
       next: data => {
         debugger
         this.result1 = data;
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetCourse');
         // Insert error in Db Here//
         var obj = {
@@ -111,7 +111,7 @@ export class LearningPathDashboardComponent implements OnInit {
       next: data => {
         debugger
         this.result2 =  data.filter(x => x.staffID == this.userid && x.status == 'Manager Approved');
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetTrainerCourseMappingDashboard');
         // Insert error in Db Here//
         var obj = {
@@ -138,7 +138,7 @@ export class LearningPathDashboardComponent implements OnInit {
         this.result3 = data.filter((x: { staffID: any; completed: number; enrollid: number; notStarted:number;}) => 
         x.completed != 1 && x.enrollid != 0&&x.notStarted!=0);
         console.log("result3",this.result3)
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetCourse');
         // Insert error in Db Here//
         var obj = {
@@ -161,7 +161,7 @@ export class LearningPathDashboardComponent implements OnInit {
         next: data => {
           debugger
           this.result4 = data.filter(x => x.completed == 1 && x.enrollid != 0 && x.staffID == this.userid);
-        }, error: (err) => {
+        },error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in GetTestResponse');
           // Insert error in Db Here//
           var obj = {
@@ -187,7 +187,7 @@ export class LearningPathDashboardComponent implements OnInit {
         debugger
         this.result2 = data.filter(x => x.completed == 0 && x.enrollid != 0 && x.staffid==this.userid);
         console.log("result2",this.result2)
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetApproveCourse');
         // Insert error in Db Here//
         var obj = {

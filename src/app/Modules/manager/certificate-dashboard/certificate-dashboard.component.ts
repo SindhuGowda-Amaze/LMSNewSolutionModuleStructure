@@ -46,7 +46,7 @@ export class CertificateDashboardComponent implements OnInit {
         debugger;
         this.courseList = data;
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetCourseDropdown');
         // Insert error in Db Here//
         var obj = {
@@ -71,7 +71,7 @@ export class CertificateDashboardComponent implements OnInit {
         this.employeeFilterReportList = this.employeereportlist;
         this.count = this.employeereportlist.length;
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetTestResponse');
         // Insert error in Db Here//
         var obj = {
@@ -109,7 +109,7 @@ export class CertificateDashboardComponent implements OnInit {
         debugger;
         this.departmentlist = data;
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetDepartmentMaster');
         // Insert error in Db Here//
         var obj = {

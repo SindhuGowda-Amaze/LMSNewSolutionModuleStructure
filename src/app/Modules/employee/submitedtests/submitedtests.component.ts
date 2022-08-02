@@ -34,7 +34,7 @@ export class SubmitedtestsComponent implements OnInit {
         this.resultemployee = this.result;
         this.count = this.result.length;
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetTestResponsenew');
         // Insert error in Db Here//
         var obj = {
@@ -66,7 +66,7 @@ export class SubmitedtestsComponent implements OnInit {
         );
         this.count = this.result.length;
       },
-      error: (err) => {
+     error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetTestResponsenew');
         // Insert error in Db Here//
         var obj = {

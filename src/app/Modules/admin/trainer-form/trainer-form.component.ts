@@ -54,7 +54,7 @@ export class TrainerFormComponent implements OnInit {
         this.Company_logo = this.result[0].resume;
         this.SkillsAndTechnology = this.result[0].skillAndTecchnology;
         this.TrainerFeePerCourse = this.result[0].trainerFee;
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetTrainer');
         // Insert error in Db Here//
         var obj = {
@@ -98,7 +98,7 @@ export class TrainerFormComponent implements OnInit {
           let id = data;
           Swal.fire("Successfully Saved...!");
           location.href = "#/Trainer"
-        }, error: (err) => {
+        },error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in InsertTrainer');
           // Insert error in Db Here//
           var obj = {
@@ -138,7 +138,7 @@ export class TrainerFormComponent implements OnInit {
         let result = data;
         Swal.fire("Successfully Updated...!");
         location.href = "#/Trainer";
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in UpdateTrainer');
         // Insert error in Db Here//
         var obj = {
@@ -178,7 +178,7 @@ export class TrainerFormComponent implements OnInit {
         debugger
         this.Company_logo = data;
         Swal.fire("Attachment Uploaded");
-      }, error: (err) => {
+      },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in AttachmentsUpload');
         // Insert error in Db Here//
         var obj = {
