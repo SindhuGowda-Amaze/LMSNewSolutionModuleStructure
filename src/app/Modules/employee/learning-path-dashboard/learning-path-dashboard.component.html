@@ -1,0 +1,181 @@
+
+<div class="container-fluid">
+    <div class="card">
+        <br>
+        <div class="row">
+            <div class="col-lg-2"  *ngIf="roleid!=2">
+                <P class="filter2" >Employee Name:</P>
+            </div>
+            <div class="col-lg-3"  *ngIf="roleid!=2">
+ 
+             <select  class="form-control" >
+                 <option class="FilterClass"  value="0">Select Employee Name</option>
+                 <option class="FilterClass" *ngFor="let details of result" value="{{details.name}}">{{details.name}}</option>
+             </select>
+            
+ 
+            </div>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-2">
+                <p class="filter2">Year:</p>
+            </div>
+            <div class="col-lg-3">
+             <select  class="form-control "  id="Duration" >
+                 <option class="FilterClass"  value="0">Select Year</option>
+                 <option class="FilterClass" >2022</option>
+                 <option class="FilterClass" >2021</option>
+                 <option class="FilterClass" >2020</option>
+                 <option class="FilterClass" >2019</option>
+             </select>
+            </div>
+        </div><br><br>
+ 
+        <div class="row">
+         <div class="col-lg-1" ></div>
+         <div class="col-lg-2" >
+             <button type="button" class="btn btn-danger" data-toggle="modal"
+             data-target="#enroll">Assigned</button>
+         </div>
+     </div><br><br><br>
+ 
+     <div class="row">
+         <div class="col-lg-1" ></div>
+         <div class="col-lg-2" >
+             <button type="button" class="btn btn-light" data-toggle="modal"
+             data-target="#enroll2">In Progress</button>
+         </div>
+     </div><br><br><br>
+ 
+     <div class="row">
+         <div class="col-lg-1" ></div>
+         <div class="col-lg-2" >
+             <button type="button" class="btn btn-success" data-toggle="modal"
+             data-target="#enroll3">Completed</button>
+         </div>
+     </div><br><br><br>
+ 
+        <div class="VerticalGreyLine1">
+        </div>
+        <div class="VerticalGreyLine2">
+        </div>
+    </div>
+ </div>
+ 
+ 
+ <div id="enroll" class="modal fade" role="dialog">
+     <div class="modal-dialog modal-lg">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <h4 class="modal-title PopUpCard">Assigned for Trainings</h4>
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+             </div>
+             <div class="modal-body">
+                  
+                     <div class="row">
+                         <div class="col-lg-12">
+                             <table style="width: 100%;">
+                                 <thead>
+                                     <tr>
+                                         <th></th>
+                                         <th>Trainer Name</th>
+                                         <th>Training Name</th>
+                                     </tr>
+                                 </thead>
+                                 <tbody>
+                                     <tr *ngFor="let details1 of result2">
+                                         <td></td>
+                                         <td style="font-size: 15px;" >{{details1.trainerName}}</td>
+                                         <td style="font-size: 15px;" >{{details1.courseName}}</td>
+                                     </tr>
+                                 </tbody>
+                             </table>
+                         </div>
+                     </div>
+             </div>
+             <div class="modal-footer">
+             </div>
+         </div>
+     </div>
+ </div>
+ 
+ <div id="enroll2" class="modal fade" role="dialog">
+     <div class="modal-dialog modal-lg">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <h4 class="modal-title PopUpCard">In Progress Trainings</h4>
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+             </div>
+             <div class="modal-body">
+                 
+                     <div class="row">
+                         <div class="col-lg-12">
+                             <table style="width: 100%;">
+                                 <thead>
+                                     <tr>
+                                         <th></th>
+                                         <th>Trainer Name</th>
+                                         <th>Training Name</th>
+                                     </tr>
+                                 </thead>
+                                 <tbody>
+                                     <tr *ngFor="let details1 of result3">
+                                         <td></td>
+                                         <td style="font-size: 15px;" >{{details1.trainerName}}</td>
+                                         <td style="font-size: 15px;" >{{details1.name}}</td>
+                                     </tr>
+                                 </tbody>
+                             </table>
+                         </div>
+                     </div>
+             </div>
+             <div class="modal-footer">
+             </div>
+         </div>
+     </div>
+ </div>
+ 
+ <div id="enroll3" class="modal fade" role="dialog">
+     <div class="modal-dialog modal-lg">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <h4 class="modal-title PopUpCard">Completed Trainings</h4>
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+             </div>
+             <div class="modal-body">
+                     <div class="row">
+                         <div class="col-lg-12">
+                             <table style="width: 100%;">
+                                 <thead>
+                                     <tr>
+                                         <th></th>
+                                         <th>Training Name</th>
+                                         <th>Topic Name</th>
+                                         <th>Trainer Name</th>
+                                         <th>Assigned Date</th>
+                                         <th>Start Date</th>
+                                         <th>End Date</th>
+                                         <th>Percentage</th>
+                                     </tr>
+                                 </thead>
+                                 <tbody>
+                                     <tr *ngFor="let details1 of result4">
+                                         <td>&nbsp;</td>
+                                         <td style="font-size: 15px;">{{details1.coursename}}</td>
+                                         <td style="font-size: 15px;">{{details1.chaptername}}</td>
+                                         <td style="font-size: 15px;">{{details1.trainer}}</td>
+                                         <td style="font-size: 15px;">{{details1.assignedDate}}</td>
+                                         <td style="font-size: 15px;">{{details1.startDate}}</td>
+                                         <td style="font-size: 15px;">{{details1.endDate}}</td>
+                                         <td style="font-size: 15px;">{{details1.obtainedMarks/details1.totalmarks
+                                             *100 | number : '1.2-2'}} %</td>
+                                     </tr>
+                                 </tbody>
+                             </table>
+                         </div>
+                     </div>
+             </div>
+             <div class="modal-footer">
+             </div>
+         </div>
+     </div>
+ </div>

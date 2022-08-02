@@ -40,8 +40,8 @@
                 <img class="icon" style="height:30px;width:30px" *ngIf="details.attachmentType=='video'"
                     src="assets/Images/Video_lcon.png" alt="video_icon" (click)="PreviewVideo(details.photo)">
                     
-                <img class="icon" style="height:30px;width:30px" *ngIf="details.attachmentType=='Pdf'"
-                    src="assets/pdf.jpg" alt="video_icon" (click)="PreviewPdf(details.photo)">
+                <!-- <img class="icon" style="height:30px;width:30px" *ngIf="details.attachmentType=='Pdf'"
+                    src="assets/pdf.jpg" alt="video_icon" (click)="PreviewPdf(details.photo)"> -->
 
                 <img class="icon" style="height:30px;width:30px" *ngIf="details.attachmentType=='Image'"
                     src="assets/Images/image.png" alt="video_icon" (click)="PreviewIMG(details.photo)">
@@ -75,19 +75,19 @@
             <div class="list-group" style="overflow-y:auto;height:230px;">
                 <button type="button" class="list-group-item list-group-item-action border"
                     *ngFor="let details of coursedetails" (click)="getcoursedetails(details)"
-                    [routerLink]="['/TakeAssessment',details.courseID,details.id]">{{details.assesmentName}}
+                    [routerLink]="['/Employee/TakeAssessment',details.courseID,details.id]">{{details.assesmentName}}
 
                     <p style="display: inline;">
                         <label style="    font-family: 'Poppins';
                         color: blue;" *ngIf="details.obtainedMarks!=null">{{details.obtainedMarks/details.totalmarks
                             *100 | number : '1.2-2'}} %</label><br>
                         <button class="btn btn-sm btn-primary newbutton" *ngIf="details.teststatus=='nottaken'"
-                            [routerLink]="['/TakeAssessment',details.courseID,details.id,0]" id="id" name="id"> Take
+                            [routerLink]="['/Employee/TakeAssessment',details.courseID,details.id,0]" id="id" name="id"> Take
                             Assessment</button>
                             <button class="btn btn-sm btn-danger newbutton" *ngIf="details.teststatus=='Subjective Result Pending'"
                              id="id" name="id"> Pending Result</button>
                         <button class="btn btn-sm btn-danger newbutton1" *ngIf="details.teststatus=='Failed'"
-                            [routerLink]="['/TakeAssessment',details.courseID,details.id,1]" id="id" name="id">&#10006;
+                            [routerLink]="['/Employee/TakeAssessment',details.courseID,details.id,1]" id="id" name="id">&#10006;
                             Retake
                             Assessment</button>
                         <button class="btn btn-sm btn-success newbutton" *ngIf="details.teststatus=='Passed'" id="id"

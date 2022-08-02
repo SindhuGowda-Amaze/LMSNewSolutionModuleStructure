@@ -148,8 +148,8 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('roleid', '2');
           sessionStorage.setItem("clickname", "Employee Dashboard")
           this.Insertattdnace(this.result.id)
-          // location.href = "/Dashboard";
-          // this.loader = false;
+          location.href = "#/Employee/MyCourseDashboard";
+          this.loader = false;
         }
         else {
 
@@ -179,7 +179,7 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('role', 'Manager');
           sessionStorage.setItem('roleid', '3');
           sessionStorage.setItem("clickname", "Manager Dashboard")
-          location.href = "#/ManagerDashboard";
+          location.href = "#/Manager/ManagerDashboard";
           this.Insertattdnace(this.result.id)
           // location.reload();
           // this.loader = false;
@@ -213,7 +213,7 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('role', 'Trainer');
           sessionStorage.setItem('roleid', '4');
           sessionStorage.setItem("clickname", "Assessment Dashboard")
-          location.href = "#/Assessmentdashboard";
+          location.href = "#/Trainer/Assessmentdashboard";
           this.Insertattdnace(this.result.id)
           // location.reload();
           // this.loader = false;

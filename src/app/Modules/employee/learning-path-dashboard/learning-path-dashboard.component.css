@@ -1,0 +1,83 @@
+.card {
+    background: #ffffff;
+    box-shadow: 1px 1px 15px 3px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+  }
+  
+  .VerticalGreyLine1 {
+    width: 2px;
+    height: 16.5%;
+    border-radius: 100px;
+    position: absolute;
+    top: 43px;
+    bottom: 0;
+    background: #dad4db;
+    margin-left: 175px;
+    margin-top: 91px;
+  }
+  .VerticalGreyLine2 {
+    width: 2px;
+    height: 16.5%;
+    border-radius: 100px;
+    position: absolute;
+    top: 43px;
+    bottom: 0;
+    background: #dad4db;
+    margin-left: 175px;
+    margin-top: 187px;
+  }
+  
+  .btn-danger {
+    background-color: #fbb584;
+    border-radius: 20px;
+    border: transparent;
+    color: #0c275a;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    width: 140px;
+  }
+  
+  .btn-light {
+    background-color: #95a0e2;
+    border-radius: 20px;
+    border: transparent;
+    color: #0c275a;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    width: 140px;
+  }
+  
+  .btn-success {
+    background-color: #ff756d;
+    border-radius: 20px;
+    border: transparent;
+    color: #0c275a;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    width: 140px;
+  }
+  
+  .Save {
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    background-color: #3247d5;
+    border: none;
+    float: right;
+    margin-bottom: 10px;
+    margin-right: 40px;
+  }
+  
+  .PopUpCard {
+    font-family: Poppins;
+    font-size: 19px;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-align: left;
+    color: #3247D5;
+  }
+  

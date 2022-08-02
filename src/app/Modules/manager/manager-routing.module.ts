@@ -21,7 +21,8 @@ const routes: Routes = [{ path: '', component: ManagerComponent },
 {path:'CertificateDashboard',component:CertificateDashboardComponent},
 {path:'FinalResult',component:FinalResultComponent},
 {path:'MangerDashboard',component:MangerDashboardComponent},
-{path:'TraineeReport',component:TraineeReportComponent}
+{path:'TraineeReport',component:TraineeReportComponent},
+
 
 
 

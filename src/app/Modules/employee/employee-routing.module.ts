@@ -5,6 +5,7 @@ import { AttendanceNewComponent } from './attendance-new/attendance-new.componen
 import { CatalogComponent } from './catalog/catalog.component';
 import { CourseCertificateComponent } from './course-certificate/course-certificate.component';
 import { EmployeeComponent } from './employee.component';
+import { LearningPathDashboardComponent } from './learning-path-dashboard/learning-path-dashboard.component';
 import { MyCourseDashboardComponent } from './my-course-dashboard/my-course-dashboard.component';
 import { StartMyCourseNewComponent } from './start-my-course-new/start-my-course-new.component';
 import { StartMyCourseComponent } from './start-my-course/start-my-course.component';
@@ -16,13 +17,14 @@ const routes: Routes = [{ path: '', component: EmployeeComponent },
 {path:'AttendanceDetails',component:AttendanceDetailsComponent},
 {path:'AttendanceNew',component:AttendanceNewComponent},
 {path:'Catalog',component:CatalogComponent},
-{path:'CourseCertificate',component:CourseCertificateComponent},
+{path:'CourseCertificate/:id',component:CourseCertificateComponent},
 {path:'MyCourseDashboard',component:MyCourseDashboardComponent},
 {path:'StartMyCourse',component:StartMyCourseComponent},
-{path:'StartMyCourseNew',component:StartMyCourseNewComponent},
+{path:'StartMyCourseNew/:id',component:StartMyCourseNewComponent},
 {path:'Submitedtests',component:SubmitedtestsComponent},
-{path:'TakeAssessment',component:TakeAssessmentComponent},
-{path:'ViewCourse',component:ViewCourseComponent}
+{path:'TakeAssessment/:courseid/:chapterid/:testtype',component:TakeAssessmentComponent},
+{path:'ViewCourse/:id',component:ViewCourseComponent},
+{path:'LearningPathDashboard',component:LearningPathDashboardComponent}
 
 
 

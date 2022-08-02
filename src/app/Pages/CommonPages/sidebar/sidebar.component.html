@@ -210,8 +210,7 @@
 <span [ngClass]="active == 'myassessmentreport' ? 'Active1' : 'Active3'">  My Assessment Report </span>
 
 </a>
-
-    <a *ngIf="roleid==2" routerLink="Manager/CertificateDashboard" class="tablinks" (click)="highlight($event)"
+ <a *ngIf="roleid==2" routerLink="/Manager/CertificateDashboard" class="tablinks" (click)="highlight($event)"
     (click)="mycertificate()">
     <img src="assets/Images/online-course.png" style="width:13% ;margin-right: 17px;"
         [ngClass]="active == 'mycertificate' ? 'Active1' : 'Active2'" />
@@ -219,8 +218,8 @@
         " style="width:13%; margin-right: 17px;">
     &nbsp;
     <span [ngClass]="active == 'mycertificate' ? 'Active1' : 'Active3'">  Certificate </span>
-    <!-- <i class="fa fa-users "></i> -->
-</a>
+   <!-- <i class="fa fa-users "></i>  -->
+</a>  
 
 <a *ngIf="roleid==2" routerLink="Manager/EmployeeReport" class="tablinks" (click)="highlight($event)"
 (click)="myemployeereport()">
@@ -232,11 +231,7 @@
 <span [ngClass]="active == 'myemployeereport' ? 'Active1' : 'Active3'">  Employee Report </span>
 <!-- <i class="fa fa-users "></i> -->
 </a>
-        <a *ngIf="roleid==2" routerLink="Employee/CourseCertificate" class="tablinks" (click)="highlight($event)"
-        (click)="certificate()">
-            <i class="fa fa-users dashboard "></i>
-            &nbsp; CERTIFICATE
-        </a>
+         
         <a *ngIf="roleid==3" routerLink="Manager/AssignCourseDashboard" class="tablinks" (click)="highlight($event)"
             (click)="assigncourse()">
             <img src="assets/Images/employee.png" style="width:13% ;margin-right: 17px;"
