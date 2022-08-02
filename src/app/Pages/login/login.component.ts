@@ -148,8 +148,10 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('roleid', '2');
           sessionStorage.setItem("clickname", "Employee Dashboard")
           this.Insertattdnace(this.result.id)
-          location.href = "#/Employee/MyCourseDashboard";
-          this.loader = false;
+          this.router.navigate(['/Admin/Dashboard']).then(() => {
+            location.reload();
+            this.loader=false;
+          });
         }
         else {
 
@@ -179,10 +181,12 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('role', 'Manager');
           sessionStorage.setItem('roleid', '3');
           sessionStorage.setItem("clickname", "Manager Dashboard")
-          location.href = "#/Manager/ManagerDashboard";
-          this.Insertattdnace(this.result.id)
-          // location.reload();
-          // this.loader = false;
+          this.router.navigate(['/Manager/MangerDashboard']).then(() => {
+            location.reload();
+            this.loader=false;
+          });
+      this.Insertattdnace(this.result.id)
+      
         }
         else {
           Swal.fire('Username or Password is invalid');
@@ -213,10 +217,11 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('role', 'Trainer');
           sessionStorage.setItem('roleid', '4');
           sessionStorage.setItem("clickname", "Assessment Dashboard")
-          location.href = "#/Trainer/Assessmentdashboard";
+          this.router.navigate(['/Trainer/Assessmentdashboard']).then(() => {
+            location.reload();
+            this.loader=false;
+          });
           this.Insertattdnace(this.result.id)
-          // location.reload();
-          // this.loader = false;
         }
         else {
           Swal.fire('Username or Password is invalid');
@@ -245,10 +250,6 @@ export class LoginComponent implements OnInit {
 
   public async Insertattdnace(id: any) {
     debugger
-
-
-
-
     var entity = {
       'EmpID': id,
       'LoginDate': new Date()
@@ -260,13 +261,11 @@ export class LoginComponent implements OnInit {
           debugger
           sessionStorage.setItem('loginid', datay);
 
-          location.href = "#/Dashboard";
-          this.loader = false;
-          location.reload();
-          this.loader = false;
+          this.router.navigate(['/Admin/Dashboard']).then(() => {
+            location.reload();
+            this.loader=false;
+          });
         }
-
       })
-
   }
 }
