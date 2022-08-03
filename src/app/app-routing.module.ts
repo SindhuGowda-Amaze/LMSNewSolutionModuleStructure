@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'Trainer', loadChildren: () => import('./Modules/trainer/trainer.module').then(m => m.TrainerModule) }];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{useHash:true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
