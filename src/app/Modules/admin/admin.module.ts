@@ -17,6 +17,7 @@ import { EmployeeComponent } from './employee/employee.component';
 import { EmployeeFormComponent } from './employee-form/employee-form.component';
 import { SharedModule } from '../shared/shared.module';
 import { NgModule } from '@angular/core';
+import { CKEditorModule } from 'ckeditor4-angular';
 
 
 @NgModule({
@@ -33,12 +34,14 @@ import { NgModule } from '@angular/core';
     TrainerCouresMappingComponent,
     TrainerCouresMappingFormComponent,
     EmployeeComponent,
-    EmployeeFormComponent
+    EmployeeFormComponent,
+    
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
-    SharedModule
+    SharedModule,
+    CKEditorModule
   ]
 })
 export class AdminModule { }
