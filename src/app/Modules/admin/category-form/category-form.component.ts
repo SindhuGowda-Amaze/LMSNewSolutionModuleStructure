@@ -112,7 +112,7 @@ export class CategoryFormComponent implements OnInit {
         debugger;
       let result = data;
       Swal.fire('Successfully Updated...!');
-      location.href = '#/CategoryDashboard';
+      location.href = '#Admin/CategoryDashboard';
       },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in UpdateCategoryMaster');
         // Insert error in Db Here//

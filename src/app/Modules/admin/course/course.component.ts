@@ -217,7 +217,7 @@ export class CourseComponent implements OnInit {
         debugger
         let result = data;
         Swal.fire("Updated Successfully");
-        location.href = "/Admin/CourseDashboard";
+        location.href = "#/Admin/CourseDashboard";
       },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in UpdateCourse');
         // Insert error in Db Here//
