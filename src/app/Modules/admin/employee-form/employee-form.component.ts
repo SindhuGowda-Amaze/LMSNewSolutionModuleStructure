@@ -1707,6 +1707,6 @@ export class EmployeeFormComponent implements OnInit {
   }
 
   cancle(){
-    location.href='/Admin/Employee'
+    location.href='#/Admin/Employee'
   }
 }
