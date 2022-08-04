@@ -154,7 +154,7 @@ export class HeaderComponent implements OnInit {
 
   public accountsetting() {
     debugger
-    this.router.navigate(['/MyAccountSetting']);
+    this.router.navigate(['/Shared/MyAccountSetting']);
   }
 
 

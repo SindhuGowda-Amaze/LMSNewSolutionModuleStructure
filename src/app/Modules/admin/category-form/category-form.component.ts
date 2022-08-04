@@ -130,6 +130,6 @@ export class CategoryFormComponent implements OnInit {
   }
 
   Cancel() {
-    location.href = '/Admin/CategoryDashboard';
+    location.href = '#/Admin/CategoryDashboard';
   }
 }
