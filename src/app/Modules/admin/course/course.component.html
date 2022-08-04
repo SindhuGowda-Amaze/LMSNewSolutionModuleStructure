@@ -52,7 +52,7 @@
                         <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
                     </ngx-dropzone-preview>
                 </ngx-dropzone>
-                <img src="{{Course_Photo}}" data-toggle="modal1" data-target="#exampleModal1"
+                <img src="{{Course_Photo}}" data-toggle="modal1" data-target="#exampleModal1" *ngIf="show==true"
                 style="width: 100px;height:auto">
                
             </div>

@@ -26,11 +26,12 @@ export class CourseComponent implements OnInit {
   entryCriteria: any;
   exitCriteria: any;
   trainingType: any;
-  updatephoto:any;
-  currentUrl:any;
+  updatephoto: any;
+  currentUrl: any;
   Course_Photo: any;
   files: File[] = [];
   categoryList: any;
+  show: boolean | undefined
 
   ngOnInit(): void {
 
@@ -43,15 +44,18 @@ export class CourseComponent implements OnInit {
     this.GetCourse();
     this.ActivatedRoute.params.subscribe(params => {
       debugger
-      this.id = params["id"];
+      this.id = params['id']
       if (this.id != null && this.id != undefined) {
+        debugger
+       
+        this.show = true
         this.GetCourse();
       }
     })
 
   }
 
-   public GetCourse() {
+  public GetCourse() {
     this.LearningService.GetCourse().subscribe({
       next: data => {
         debugger
@@ -70,7 +74,7 @@ export class CourseComponent implements OnInit {
         this.password = this.result[0].password;
         this.venue = this.result[0].venue;
         this.trainingType = this.result[0].trainingType;
-      },error: (err: { error: { message: any; }; }) => {
+      }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetCourse');
         // Insert error in Db Here//
         var obj = {
@@ -84,7 +88,7 @@ export class CourseComponent implements OnInit {
         )
       }
     })
-    
+
   }
 
   GetCategoryid(even: any) {
@@ -98,7 +102,7 @@ export class CourseComponent implements OnInit {
         debugger
         let temp: any = data.filter(x => x.id == this.categoryid);
         this.categoryName = temp[0].name;
-      },error: (err: { error: { message: any; }; }) => {
+      }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetCategoryMaster');
         // Insert error in Db Here//
         var obj = {
@@ -112,7 +116,7 @@ export class CourseComponent implements OnInit {
         )
       }
     })
-    
+
   }
 
   GetTrainingType(even: any) {
@@ -123,8 +127,8 @@ export class CourseComponent implements OnInit {
     debugger
     if (this.name == undefined || this.description == undefined || this.categoryName == undefined ||
       this.Course_Photo == undefined || this.duration == undefined || this.entryCriteria ==
-      undefined || this.exitCriteria == undefined  || this.trainingType
-      == undefined||this.categoryid == undefined || this.duration=="" || this.trainingType=="") {
+      undefined || this.exitCriteria == undefined || this.trainingType
+      == undefined || this.categoryid == undefined || this.duration == "" || this.trainingType == "") {
       Swal.fire("Please fill all the fields");
     }
     else {
@@ -134,10 +138,10 @@ export class CourseComponent implements OnInit {
         "description": this.description,
         "photo": this.Course_Photo,
         "duration": this.duration,
-        "fee":this.fee,
+        "fee": this.fee,
         "entryCriteria": this.entryCriteria,
         "exitCriteria": this.exitCriteria,
-         "CategoryID": this.categoryid,
+        "CategoryID": this.categoryid,
         "trainingLink": this.trainingLink,
         "userName": this.userName,
         "password": this.password,
@@ -150,7 +154,7 @@ export class CourseComponent implements OnInit {
           let id = data;
           Swal.fire("Saved Successfully");
           location.href = "#/Admin/CourseDashboard"
-        },error: (err: { error: { message: any; }; }) => {
+        }, error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in InsertCourse');
           // Insert error in Db Here//
           var obj = {
@@ -164,13 +168,13 @@ export class CourseComponent implements OnInit {
           )
         }
       })
-      
+
     }
   }
 
   Update() {
     debugger
-    if(this.Course_Photo.includes('http://103.133.214.197/')){
+    if (this.Course_Photo.includes('http://103.133.214.197/')) {
       var json = {
         'ID': this.id,
         // "categoryName": this.categoryName,
@@ -188,9 +192,9 @@ export class CourseComponent implements OnInit {
         "venue": this.venue,
         "trainingType": this.trainingType
       };
-  
+
     }
-    else{
+    else {
       var json = {
         'ID': this.id,
         // "categoryName": this.categoryName,
@@ -209,8 +213,8 @@ export class CourseComponent implements OnInit {
         "trainingType": this.trainingType
       };
     }
-   
-    
+
+
 
     this.LearningService.UpdateCourse(json).subscribe({
       next: data => {
@@ -218,7 +222,7 @@ export class CourseComponent implements OnInit {
         let result = data;
         Swal.fire("Updated Successfully");
         location.href = "#/Admin/CourseDashboard";
-      },error: (err: { error: { message: any; }; }) => {
+      }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in UpdateCourse');
         // Insert error in Db Here//
         var obj = {
@@ -232,7 +236,7 @@ export class CourseComponent implements OnInit {
         )
       }
     })
-    
+
 
   }
 
@@ -242,7 +246,7 @@ export class CourseComponent implements OnInit {
       next: data => {
         debugger
         this.categoryList = data;
-      },error: (err: { error: { message: any; }; }) => {
+      }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetCategoryMaster');
         // Insert error in Db Here//
         var obj = {
@@ -256,7 +260,7 @@ export class CourseComponent implements OnInit {
         )
       }
     })
-    
+
   }
 
 
@@ -284,9 +288,9 @@ export class CourseComponent implements OnInit {
     this.LearningService.AttachmentsUpload(this.files).subscribe({
       next: data => {
         debugger
-      this.Course_Photo = data;
-      Swal.fire("Attachment Uploaded");
-      },error: (err: { error: { message: any; }; }) => {
+        this.Course_Photo = data;
+        Swal.fire("Attachment Uploaded");
+      }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in AttachmentsUpload');
         // Insert error in Db Here//
         var obj = {
@@ -300,7 +304,7 @@ export class CourseComponent implements OnInit {
         )
       }
     })
-    
+
 
   }
 
