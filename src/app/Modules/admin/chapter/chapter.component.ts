@@ -120,7 +120,7 @@ export class ChapterComponent implements OnInit {
   }
 
   Cancel() {
-    location.href = '/Admin/ChapterDashboard';
+    location.href = '#/Admin/ChapterDashboard';
   }
 
   onSelect1(event: any) {
