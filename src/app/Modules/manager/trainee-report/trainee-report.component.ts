@@ -80,6 +80,7 @@ export class TraineeReportComponent implements OnInit {
 
     /* save to file */
     XLSX.writeFile(wb, this.fileName);
+    // this.loader = false;
   }
 
   public GetDepartmentMaster() {

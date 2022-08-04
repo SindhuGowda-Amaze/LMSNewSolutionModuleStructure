@@ -261,7 +261,7 @@ export class CourseComponent implements OnInit {
 
 
   cancel() {
-    location.href = "/Admin/CourseDashboard";
+    location.href = "#/Admin/CourseDashboard";
   }
 
   onSelect(event: { addedFiles: any; }) {
