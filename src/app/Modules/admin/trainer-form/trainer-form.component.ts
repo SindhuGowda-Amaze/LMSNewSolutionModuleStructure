@@ -97,7 +97,7 @@ export class TrainerFormComponent implements OnInit {
           debugger
           let id = data;
           Swal.fire("Successfully Saved...!");
-          location.href = "/Admin/Trainer"
+          location.href = "#/Admin/Trainer"
         },error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in InsertTrainer');
           // Insert error in Db Here//
@@ -137,7 +137,7 @@ export class TrainerFormComponent implements OnInit {
         debugger
         let result = data;
         Swal.fire("Successfully Updated...!");
-        location.href = "/Admin/Trainer";
+        location.href = "#/Admin/Trainer";
       },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in UpdateTrainer');
         // Insert error in Db Here//
