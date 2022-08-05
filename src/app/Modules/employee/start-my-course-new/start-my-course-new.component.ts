@@ -42,10 +42,13 @@ export class StartMyCourseNewComponent implements OnInit {
   ngOnInit(): void {
     this.currentUrl = window.location.href;
     this.loader = false;
+    
+    
     this.ActivatedRoute.params.subscribe((params) => {
       debugger;
       this.courseid = params['id'];
       this.GetChapter();
+      
     });
     this.show = 1;
   }
@@ -97,7 +100,7 @@ export class StartMyCourseNewComponent implements OnInit {
 
     this.loader = false;
   }
-  getcoursedetails(details: any) {
+   public getcoursedetails(details: any) {
     this.coursename = details.courseName;
     this.chaptername = details.name;
     this.chapterdescription = details.chapterText;
