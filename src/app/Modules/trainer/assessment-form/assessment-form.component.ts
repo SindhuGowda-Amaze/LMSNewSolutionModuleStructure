@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./assessment-form.component.css'],
 })
 export class AssessmentFormComponent implements OnInit {
-  CourseList: any;
+  courseList: any;
   ChapterList: any;
   QuestionList: any;
   id: any;
@@ -143,10 +143,10 @@ export class AssessmentFormComponent implements OnInit {
   }
   public GetCourse() {
     debugger;
-    this.LearningService.GetCourse().subscribe({
+    this.LearningService.GetCourseDropdown().subscribe({
       next: (data) => {
         debugger;
-        this.CourseList = data;
+        this.courseList = data;
       },
       error: (err: { error: { message: any } }) => {
         Swal.fire('Issue in GetCourse');
