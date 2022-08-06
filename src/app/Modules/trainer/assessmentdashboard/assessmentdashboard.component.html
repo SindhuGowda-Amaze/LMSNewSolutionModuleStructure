@@ -49,9 +49,9 @@
 </div> <br>
 
 <div class="container-fluid">
-    <div class="row" style="height:400px; overflow-x: scroll;">
+    <div class="row" style="height:300px; overflow-y: scroll;">
         <div class="col-lg-12">
-            <table class="table" >
+            <table class="table" style="width: 100%;">
                 <thead>
                     <tr class="head">
                         <th>Training Name</th>
@@ -80,7 +80,7 @@
                         <td [innerHTML]="item.correctAnswer"></td>
                         <td>{{item.weightage}}</td>
                         <td>
-                            <button class="addbutton" [routerLink]="['/Trainer/AssessmentForm',item.id]">Edit</button> <br>
+                            <button class="addbutton" [routerLink]="['/Trainer/AssessmentForm',item.id]" style="width: 100%;">Edit</button> <br>
                             <br>
                             <button class="addbutton" (click)="Ondelete(item.id)">Delete</button>
                         </td>
