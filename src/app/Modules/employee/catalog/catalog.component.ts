@@ -139,7 +139,7 @@ export class CatalogComponent implements OnInit {
           next: (data) => {
             debugger;
             let id = data;
-            location.href = '/Employee/Catalog';
+            location.href = '#/Employee/Catalog';
           },
          error: (err: { error: { message: any; }; }) => {
             Swal.fire('Issue in InsertEnroll');
