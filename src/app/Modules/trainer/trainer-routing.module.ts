@@ -8,6 +8,7 @@ import { EmployeeAssessmentResultComponent } from './employee-assessment-result/
 import { TrainerComponent } from './trainer.component';
 
 const routes: Routes = [{ path: '', component: TrainerComponent },
+{path:'AssessmentForm/:id',component:AssessmentFormComponent},
 {path:'AssessmentForm',component:AssessmentFormComponent},
 {path:'AssessmentResult',component:AssessmentResultComponent},
 {path:'Assessmentdashboard',component:AssessmentdashboardComponent},

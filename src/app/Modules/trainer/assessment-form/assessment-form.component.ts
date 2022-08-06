@@ -173,9 +173,9 @@ export class AssessmentFormComponent implements OnInit {
       this.chapterid == undefined ||
       this.questionid == undefined ||
       this.Question == undefined ||
-      this.Weightage == undefined ||
-      this.CorrectAnswer == undefined ||
-      this.CorrectAnswer == ''
+      this.Weightage == undefined 
+      // this.CorrectAnswer == undefined ||
+      // this.CorrectAnswer == ''
     ) {
       Swal.fire('Please fill all the fields');
     } else {
@@ -248,7 +248,7 @@ export class AssessmentFormComponent implements OnInit {
           let id = data;
           if (data != 0) {
             Swal.fire('Saved Successfully');
-            location.href = '#/Assessmentdashboard';
+            location.href = '#Trainer/Assessmentdashboard';
           } else {
             Swal.fire('Name Already Exists');
           }
@@ -294,11 +294,11 @@ export class AssessmentFormComponent implements OnInit {
     debugger;
     this.LearningService.UpdateAssessments(entity).subscribe({
       next: (data) => {
-        debugger;
-        let id = data;
-        // this.GetAssessments();
+        // debugger;
+        // let id = data;
+        // // this.GetAssessments();
         Swal.fire('Updated Successfully!!');
-        location.href = '#/Assessmentdashboard';
+        location.href = '#Trainer/Assessmentdashboard';
       },
       error: (err: { error: { message: any } }) => {
         Swal.fire('Issue in UpdateAssessments');

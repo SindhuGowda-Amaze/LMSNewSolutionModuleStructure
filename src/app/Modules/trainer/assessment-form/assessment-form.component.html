@@ -91,8 +91,12 @@
                         <input class="form-control" placeholder="Weightage" [(ngModel)]="Weightage">
                     </div>
                     <div class="col-lg-6"  *ngIf="questionid==2">
-                        <ckeditor id="CorrectAnswer" name="CorrectAnswer" [(ngModel)]="CorrectAnswer"
-                            data="<p>Enter Answer Here !</p>"></ckeditor>                           
+                        <!-- <ckeditor id="CorrectAnswer" name="CorrectAnswer" [(ngModel)]="CorrectAnswer"
+                            data="<p>Enter Answer Here !</p>"></ckeditor>  -->
+                            
+                            <textarea id="CorrectAnswer" name="CorrectAnswer" class="form-control" [(ngModel)]="CorrectAnswer" ></textarea>
+
+
                     
                     </div>
                     <div class="col-lg-2"  *ngIf="questionid==1">                    
