@@ -36,7 +36,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <table id="download" class="table" *ngIf="(employeereportlist | filter: search|filter:date).length > 0; else noResults">
+                <table id="download" class="table" *ngIf="(uniquelist | filter: search|filter:date).length > 0; else noResults">
                     <thead>
                         <tr>
                             <th>Training name</th>
@@ -47,7 +47,7 @@
                             <th>Percentage</th>
                             <th>Certificate</th>
                         </tr>
-                        <tr *ngFor="let details of employeereportlist|filter :search">
+                        <tr *ngFor="let details of uniquelist|filter :search">
                             <td style="color:#0C275A">{{details.coursename}}</td>
                             <td style="color:#0C275A">{{details.chaptername}}</td>
                             <td style="color:#0C275A">{{details.startDate|date}}</td>

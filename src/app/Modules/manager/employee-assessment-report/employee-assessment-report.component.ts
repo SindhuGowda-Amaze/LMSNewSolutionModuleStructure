@@ -146,11 +146,12 @@ export class EmployeeAssessmentReportComponent implements OnInit {
     debugger;
     this.TrainerID = even.target.value;
   }
+  result:any;
   public GetTrainer() {
     debugger;
     this.LearningService.GetTrainer().subscribe((data) => {
       debugger;
-      this.trainerlist = data;
+      this.result = data;
     });
   }
 }

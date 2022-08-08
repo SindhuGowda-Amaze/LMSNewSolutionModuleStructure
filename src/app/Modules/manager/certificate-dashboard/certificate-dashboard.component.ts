@@ -60,6 +60,8 @@ export class CertificateDashboardComponent implements OnInit {
     });
   }
 
+  uniquelist:any;
+
   public GetTrainerReport() {
     debugger;
     this.LearningService.GetTestResponse()
@@ -67,6 +69,12 @@ export class CertificateDashboardComponent implements OnInit {
       next: (data) => {
         debugger;
         this.employeereportlist = data.filter((x) => x.userID == this.userid);
+
+        const key = 'coursename';
+        this.uniquelist = [...new Map(this.employeereportlist.map((item: { [x: string]: any; }) =>
+
+          [(item[key]), item])).values()]
+
         this.dummemployeereportlist = data;
         this.employeeFilterReportList = this.employeereportlist;
         this.count = this.employeereportlist.length;
