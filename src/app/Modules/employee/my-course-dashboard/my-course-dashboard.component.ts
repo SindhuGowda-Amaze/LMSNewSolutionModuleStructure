@@ -17,6 +17,7 @@ export class MyCourseDashboardComponent implements OnInit {
   stafflist: any;
   userid: any;
   search: any;
+  uniquelist:any;
   managlist: any;
   manageremail: any;
   loader: any;
@@ -154,6 +155,16 @@ export class MyCourseDashboardComponent implements OnInit {
             (x) =>
               x.completed == 1 && x.enrollid != 0 && x.staffID == this.userid
           );
+          const key = 'id';
+
+          this.uniquelist = [...new Map(this.coursedetails.map((item: { [x: string]: any; }) =>
+  
+            [(item[key]), item])).values()]
+
+
+
+
+
         },
        error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in GetCourse');

@@ -46,7 +46,6 @@ export class EmployeeAssessmentReportComponent implements OnInit {
     .subscribe({
       next: (data) => {
 
-
         
         debugger;
         this.employeereportlist = data.filter((x) => x.staffID == this.userid);
@@ -131,6 +130,15 @@ export class EmployeeAssessmentReportComponent implements OnInit {
       this.employeereportlist = this.dummemployeereportlist.filter(
         (x: { courseName: any }) => x.courseName == this.courseid
       );
+
+
+      const key = 'coursename';
+      this.uniquelist = [...new Map(this.employeereportlist.map((item: { [x: string]: any; }) =>
+
+        [(item[key]), item])).values()]
+
+
+
       this.count = this.employeereportlist.length;
     } else {
       this.GetTrainerReport();
@@ -151,7 +159,7 @@ export class EmployeeAssessmentReportComponent implements OnInit {
     debugger;
     this.LearningService.GetTrainer().subscribe((data) => {
       debugger;
-      this.result = data;
+      this.trainerlist = data;
     });
   }
 }
