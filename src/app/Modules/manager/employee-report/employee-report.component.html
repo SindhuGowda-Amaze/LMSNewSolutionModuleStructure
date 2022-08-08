@@ -36,7 +36,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <table id="download" class="table" *ngIf="(employeereportlist | filter: search).length > 0; else noResults">
+                <table id="download" class="table" *ngIf="(uniquelist | filter: search).length > 0; else noResults">
                     <thead>
                         <tr>
                             <th>Training name</th>
@@ -45,7 +45,7 @@
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
-                        <tr *ngFor="let details of employeereportlist|filter :search">
+                        <tr *ngFor="let details of uniquelist|filter :search">
                             <td style="color:#0C275A">{{details.courseName}}</td>
                             <td style="color:#0C275A">{{details.modifiedDate|date}}</td>
                             <td style="color:#0C275A">{{details.completiondate|date}}</td>
@@ -85,7 +85,7 @@
                                     <th>Marks %</th>
                                     <th>Status</th>
                                 </tr>
-                                <tr *ngFor="let details of employeereportlist" style="text-align: left;">
+                                <tr *ngFor="let details of uniquelist" style="text-align: left;">
                                     <td style="text-align: left;">{{details.chapterName}}</td>
                                     <td style="text-align: left;">{{details.obtainedMarks/details.totalmarks
                                         *100 | number : '1.2-2'}} </td>

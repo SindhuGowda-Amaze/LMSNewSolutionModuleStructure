@@ -36,6 +36,7 @@ export class EmployeeReportComponent implements OnInit {
     this.GetTrainerReport();
     this.GetDepartmentMaster();
   }
+  uniquelist:any;
 
    public GetTrainerReport(){
      debugger
@@ -44,6 +45,12 @@ export class EmployeeReportComponent implements OnInit {
       next: data => {
         debugger
         this.employeereportlist=data.filter(x=>x.staffID== this.userid )
+
+        const key = 'courseName';
+        this.uniquelist = [...new Map(this.employeereportlist.map((item: { [x: string]: any; }) =>
+
+          [(item[key]), item])).values()]
+
         this.dummemployeereportlist=data;
         this.traininglist=data;
       },error: (err: { error: { message: any; }; }) => {
