@@ -161,10 +161,6 @@ export class MyCourseDashboardComponent implements OnInit {
   
             [(item[key]), item])).values()]
 
-
-
-
-
         },
        error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in GetCourse');
