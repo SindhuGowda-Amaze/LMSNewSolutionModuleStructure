@@ -39,16 +39,26 @@ export class EmployeeAssessmentReportComponent implements OnInit {
     this.GetTrainerReport();
     this.GetDepartmentMaster();
   }
-
+  uniquelist:any;
   public GetTrainerReport() {
     debugger;
     this.LearningService.GetTrainerReport(0, 0)
     .subscribe({
       next: (data) => {
+
+
+        
         debugger;
         this.employeereportlist = data.filter((x) => x.staffID == this.userid);
-        this.dummemployeereportlist = data;
-        this.traininglist = data;
+
+        const key = 'chapterName';
+        this.uniquelist = [...new Map(this.employeereportlist.map((item: { [x: string]: any; }) =>
+
+          [(item[key]), item])).values()]
+
+
+        this.courselist = data;
+        this.trainerlist = data;
       },
      error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetTrainerReport');
