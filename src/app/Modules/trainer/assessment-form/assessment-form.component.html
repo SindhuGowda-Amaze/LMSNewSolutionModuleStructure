@@ -28,13 +28,13 @@
                 </div>
                 <div class="row head">
                     <div class="col-lg-2">
-                        <select class="form-control" name="id" id="id" [(ngModel)]="courseid" (change)="getcourseid($event)">
+                        <select class="form-control" name="courseid"  [(ngModel)]="courseid" (change)="getcourseid($event)">
                             <option value="0">Select Training</option>
                             <option *ngFor="let details of courseList" value="{{details.id}}">{{details.name}}</option>
                         </select>
                     </div>
                     <div class="col-lg-2">
-                        <select class="form-control" name="id" id="id" [(ngModel)]="chapterid">
+                        <select class="form-control" name="chapterid" [(ngModel)]="chapterid">
                             <option value="0">Select Topic</option>
                             <option *ngFor="let details of ChapterList" value="{{details.id}}">{{details.name}}</option>
                         </select>

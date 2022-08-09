@@ -29,6 +29,7 @@ export class SidebarComponent implements OnInit {
 
   public highlight(evt: any) {
     debugger
+   
     var i, tablinks;
     //  sessionStorage.setItem("clickname",name)
     tablinks = document.getElementsByClassName("tablinks");
@@ -37,6 +38,7 @@ export class SidebarComponent implements OnInit {
     }
 
     evt.currentTarget.className += " active";
+    this.active = 'mycourse1';
   }
 
   active: any;
@@ -46,7 +48,7 @@ export class SidebarComponent implements OnInit {
   }
 
   chapterdashboard() {
-    this.active = 'Topic';
+    this.active = 'Chapter';
     sessionStorage.setItem("clickname", "Topic  Dashboard")
   }
 
@@ -90,8 +92,8 @@ export class SidebarComponent implements OnInit {
     sessionStorage.setItem("clickname", "EMPLOYEE")
   }
 
-  mycourse() {
-    this.active = 'mycourse';
+  MyCourse() {
+    this.active = 'mycourse1';
     sessionStorage.setItem("clickname", "MY TRAINING")
   }
   mycertificate() {
