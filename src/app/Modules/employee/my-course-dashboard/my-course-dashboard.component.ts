@@ -17,7 +17,7 @@ export class MyCourseDashboardComponent implements OnInit {
   stafflist: any;
   userid: any;
   search: any;
-  uniquelist:any;
+  uniquelist:any=[];
   managlist: any;
   manageremail: any;
   loader: any;

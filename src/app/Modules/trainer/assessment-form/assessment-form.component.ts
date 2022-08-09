@@ -42,6 +42,11 @@ export class AssessmentFormComponent implements OnInit {
   show: any;
   show2: any;
   currentUrl: any;
+
+  Type: any;
+  CourseID: any;
+  ChapterID: any;
+  QuestionID: any;
   constructor(
     public LearningService: LearningService,
     public ActivatedRoute: ActivatedRoute
@@ -55,20 +60,85 @@ export class AssessmentFormComponent implements OnInit {
     this.chapterid = 0;
     this.questionid = 0;
     this.userid = sessionStorage.getItem('userid');
-    this.GetAssessments();
+    //this.GetAssessments();
     this.ActivatedRoute.params.subscribe((params) => {
       debugger;
       this.id = params['id'];
-      if (this.id != null && this.id != undefined) {
-        this.GetAssessments();
+      if (this.id == undefined) {
+        //this.GetAssessments();
       }
+      else {
+
+        this.LearningService.GetAssessments()
+
+          .subscribe({
+
+            next: data => {
+
+              debugger
+
+              this.quetionlist = data.filter(x => x.id == this.id);
+             
+              this.courseid = this.quetionlist[0].courseID;
+
+              this.chapterid = this.quetionlist[0].chapterID;
+
+              this.questionid = this.quetionlist[0].questionID;
+
+              this.Question = this.quetionlist[0].question;
+             
+              this.Option1 = this.quetionlist[0].option1;
+              
+              this.Option2 = this.quetionlist[0].option2;
+             
+              this.Option3 = this.quetionlist[0].option3;
+              
+              this.Option4 = this.quetionlist[0].option4;
+             
+              this.CorrectAnswer = this.quetionlist[0].correctAnswer;
+              
+              this.Weightage = this.quetionlist[0].weightage;
+
+  
+            },  error: (err: { error: { message: any; }; }) => {
+
+              Swal.fire('Issue in Getting GetAssessments');
+
+              // Insert error in Db Here//
+
+              var obj = {
+
+                'PageName': this.currentUrl,
+
+                'ErrorMessage': err.error.message
+
+              }
+
+              this.LearningService.InsertExceptionLogs(obj).subscribe(
+
+                data => {
+
+                  debugger
+
+                },
+
+              )
+
+            }
+
+          })
+
+      }
+
     });
+
     this.GetQuestionMaster();
     this.ActivatedRoute.params.subscribe((params) => {
       debugger;
       this.questionid = params['id'];
       if (this.questionid != null && this.questionid != undefined) {
         this.GetQuestionMaster();
+       
       }
     });
 

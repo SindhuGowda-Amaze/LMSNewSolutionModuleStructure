@@ -15,12 +15,13 @@
 
         <a *ngIf="roleid=='4'" routerLink="/Admin/ChapterDashboard" class="tablinks" (click)="highlight($event)"
             (click)="chapterdashboard()">
-            <img src="assets/Images/New folder/chapter.png" style="width:13% ;margin-right: 17px;"
-                [ngClass]="active != 'Chapter' ? 'Active1' : 'Active2'" />
-            <img [ngClass]="active == 'Chapter' ? 'Active1' : 'Active2'" src="assets/Images/chapter1.png"
-                style="width:13%; margin-right: 17px;">
+          <img src="assets/Images/online-test (3).png" style="width:13% ;margin-right: 17px;"
+                [ngClass]="active == 'Chapter' ? 'Active1' : 'Active2'" />
+            <img [ngClass]="active != 'Chapter' ? 'Active1' : 'Active2'"
+                src="assets/Images/New folder/online-test (2).png" style="width:13%; margin-right: 17px;">
             &nbsp;
-            <span [ngClass]="active == 'Chapter' ? 'Active1' : 'Active3'"> Topic</span>
+            <span [ngClass]="active == 'Chapter' ? 'Active1' : 'Active3'"> Topic </span>
+
         </a>
 
 
@@ -189,16 +190,23 @@
             &nbsp;
         </a>
 
-        <a *ngIf="roleid==2 || roleid==3" routerLink="Employee/MyCourseDashboard" class="tablinks" (click)="highlight($event)"
-        (click)="mycourse()">
-        <img src="assets/Images/online-course.png" style="width:13% ;margin-right: 17px;"
-            [ngClass]="active == 'mycourse' ? 'Active1' : 'Active2'" />
-        <img [ngClass]="active != 'mycourse' ? 'Active1' : 'Active2'" src="assets/Images/New folder/online-course1.png
+        <a *ngIf="roleid==2 || roleid==3" routerLink="Employee/MyCourseDashboard" class="tablinks"
+          (click)="MyCourse()">
+           <!-- <img src="assets/Images/online-course.png" style="width:13% ;margin-right: 17px;"
+            [ngClass]="active == 'mycourse1' ? 'Active1' : 'Active2'" />
+           <img [ngClass]="active != 'mycourse1' ? 'Active1' : 'Active2'" src="assets/Images/New folder/online-course1.png
             " style="width:13%; margin-right: 17px;">
-        &nbsp;
-        <span [ngClass]="active == 'mycourse' ? 'Active1' : 'Active3'"> My Training </span>
-        <!-- <i class="fa fa-users "></i> -->
-    </a>
+           &nbsp;
+           <span [ngClass]="active == 'mycourse1' ? 'Active1' : 'Active3'"> My Training </span> -->
+
+           <img src="assets/Images/catalogue.png" style="width:13% ;margin-right: 17px;"
+           [ngClass]="active == 'mycourse1' ? 'Active1' : 'Active2'" />
+       <img [ngClass]="active != 'mycourse1' ? 'Active1' : 'Active2'" src="assets/Images/New folder/catalogue (1).png" style="width:13%; margin-right: 17px;">
+       &nbsp;
+       <span  [ngClass]="active == 'mycourse1' ? 'Active1' : 'Active3'"> My Training </span>
+       &nbsp;
+      
+           </a>
 
     <a *ngIf="roleid==2" routerLink="Manager/EmployeeAssessmentReport" class="tablinks" (click)="highlight($event)"
 (click)="myassessmentreport()">
