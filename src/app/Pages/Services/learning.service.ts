@@ -351,9 +351,12 @@ export class LearningService {
  
    public GetTrainerCourseMapping() {
      debugger
-     let APIURL = this.baseURL + "Master/GetTrainerCourseMapping";
-     return this.http.get<any[]>(APIURL);
+    
+     return this.http.get<any[]>(
+      this.baseURL + 'Master/GetTrainerCourseMapping');
    }
+
+ 
  
    public GetEmployee() {
      debugger

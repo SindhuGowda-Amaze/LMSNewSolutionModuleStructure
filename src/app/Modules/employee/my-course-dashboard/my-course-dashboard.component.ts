@@ -44,7 +44,9 @@ export class MyCourseDashboardComponent implements OnInit {
     this.Showcards(2);
     this.show = 2;
     this.GetAllCounts();
-    this.Showcards(2);
+   
+
+
     this.GetMyDetails();
     // this.loader=true
     // debugger
@@ -112,6 +114,7 @@ export class MyCourseDashboardComponent implements OnInit {
       }
     }
   }
+
   Showcards(value: any) {
     this.loader = true;
     this.show = value;
@@ -119,10 +122,10 @@ export class MyCourseDashboardComponent implements OnInit {
       this.GetApproveCourse();
     } else if (value == 2) {
       debugger;
-      // this.LearningService.GetEnroll().subscribe(data => {
-      //   debugger
-      //   this.coursedetails = data.filter((x: { staffID: any; completed: number }) => x.completed == 0 && x.staffID == this.userid);
-      // });
+      this.LearningService.GetEnroll().subscribe(data => {
+        debugger
+        this.coursedetails = data.filter((x: { staffID: any; completed: number }) => x.completed == 0 && x.staffID == this.userid);
+      });
       this.GetApproveCourse();
     } else if (value == 3) {
       debugger;
