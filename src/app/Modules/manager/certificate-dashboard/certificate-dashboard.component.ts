@@ -152,7 +152,7 @@ export class CertificateDashboardComponent implements OnInit {
     debugger;
     this.courseid = even.target.value;
     if (even.target.value != 0) {
-      this.uniquelist = this.dummemployeereportlist.filter(
+      this.uniquelist = this.uniquelist.filter(
         (x: { coursename: any; }) =>
           x.coursename == this.courseid
       );
