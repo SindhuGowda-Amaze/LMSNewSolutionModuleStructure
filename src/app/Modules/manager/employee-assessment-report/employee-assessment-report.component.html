@@ -28,16 +28,16 @@
      <div class="row">
         <div class="col-lg-2">
             <select class="form-control"   placeholder="Training Name"  name="courseID" [(ngModel)]="courseID" (change)="getcourseid($event)">
-                <option value="0">Training Name</option>
+                <option value="0">Chapter Name</option>
                 <option *ngFor="let details of courselist" value="{{details.id}}">{{details.courseName}}</option>
             </select>
         </div>
-        <div class="col-lg-3">
+        <!-- <div class="col-lg-3">
             <select class="form-control"    placeholder="Select Trainer Name" name="cars" id="Duration" [(ngModel)]="TrainerID" (change)="getTrainerID($event)">
                 <option style="color:#0C275A" value="0">Select Trainer Name</option>
                 <option  style="color:#0C275A" *ngFor="let details of trainerlist"  value="{{details.id}}">{{details.name}}</option>
             </select>
-        </div>
+        </div> -->
      </div>
      <br>
      <br>
