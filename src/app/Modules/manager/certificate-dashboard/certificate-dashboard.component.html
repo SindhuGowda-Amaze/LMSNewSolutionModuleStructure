@@ -14,7 +14,7 @@
                 <p class="filter">Filter By</p>
             </div>
             <div class="col-lg-3">
-                <select class="form-control" id="Duration" (change)=" getcourseid($event)">
+                <select class="form-control" id="Duration" [(ngModel)]="Course" (change)="getcourseid($event)">
                     <option value="0" >Select Training</option>
                     <option style="color:#0C275A" *ngFor="let details of courseList" value="{{details.name}}" >{{details.name}}</option>
                 </select>
