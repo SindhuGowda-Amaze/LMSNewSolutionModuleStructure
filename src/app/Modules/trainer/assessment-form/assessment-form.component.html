@@ -50,9 +50,9 @@
                         <textarea class="form-control" placeholder="Question.." [(ngModel)]="Question"></textarea>
                     </div>
                    
-                    <!-- <div class="col-lg-2">
-                        <input class="form-control" placeholder="Assessment Name" [(ngModel)]="AssessmentName">
-                     </div>                  -->
+                    <div class="col-lg-2">
+                        <input class="form-control" placeholder="Assessment Name" [(ngModel)]="assessmentName">
+                     </div>               
                 </div> <br>
                 <div class="row head">
                     <div class="col-lg-2" *ngIf="questionid==1">
@@ -137,7 +137,7 @@
                                     <th>Option4</th>
                                     <th>Correct Answer</th>
                                     <th>Weightage</th>
-                                    <!-- <th>Actions</th> -->
+                                    <th>AssessmentName</th>
                                 </tr>
                             <tr *ngFor="let details of assessmenrArray">
                                 <td>
@@ -152,7 +152,7 @@
                                 <td>{{details.Option4}}</td>
                                 <td>{{details.CorrectAnswer}}</td>
                                 <td>{{details.weightage}}</td>
-                                <!-- <td></td> -->
+                                <td>{{details.assessmentName}}</td>
                                
                             </tr>
                             </thead>
