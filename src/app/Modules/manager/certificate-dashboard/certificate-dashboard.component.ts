@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./certificate-dashboard.component.css'],
 })
 export class CertificateDashboardComponent implements OnInit {
+  dummyuniqlist: any;
   constructor(
     private LearningService: LearningService,
     private ActivatedRoute: ActivatedRoute
@@ -28,11 +29,10 @@ export class CertificateDashboardComponent implements OnInit {
   dumdeptlist: any;
   departmentlist: any;
   date: any;
-  Course:any;
-  coursename:any
+  Course: any;
+  coursename: any;
   employeeFilterReportList: any;
   currentUrl: any;
-  
 
   ngOnInit(): void {
     this.currentUrl = window.location.href;
@@ -40,17 +40,16 @@ export class CertificateDashboardComponent implements OnInit {
     this.GetTrainerReport();
     this.GetDepartmentMaster();
     this.GetCourseDropdown();
-    this.Course=0
+    this.Course = 0;
   }
 
   public GetCourseDropdown() {
-    this.LearningService.GetCourseDropdown()
-    .subscribe({
+    this.LearningService.GetCourseDropdown().subscribe({
       next: (data) => {
         debugger;
         this.courseList = data;
       },
-     error: (err: { error: { message: any; }; }) => {
+      error: (err: { error: { message: any } }) => {
         Swal.fire('Issue in GetCourseDropdown');
         // Insert error in Db Here//
         var obj = {
@@ -64,27 +63,31 @@ export class CertificateDashboardComponent implements OnInit {
     });
   }
 
-  uniquelist:any;
-  Date : any
+  uniquelist: any;
+  Date: any;
 
   public GetTrainerReport() {
     debugger;
-    this.LearningService.GetTestResponse()
-    .subscribe({
+    this.LearningService.GetTestResponse().subscribe({
       next: (data) => {
         debugger;
-        this.employeereportlist = data.filter((x) => x.userID == this.userid );
+        this.employeereportlist = data.filter((x) => x.userID == this.userid);
 
         const key = 'coursename';
-        this.uniquelist = [...new Map(this.employeereportlist.map((item: { [x: string]: any; }) =>
-
-          [(item[key]), item])).values()]
-
+        this.uniquelist = [
+          ...new Map(
+            this.employeereportlist.map((item: { [x: string]: any }) => [
+              item[key],
+              item,
+            ])
+          ).values(),
+        ];
+        this.dummyuniqlist = this.uniquelist;
         this.dummemployeereportlist = data;
         this.employeeFilterReportList = this.employeereportlist;
         this.count = this.employeereportlist.length;
       },
-     error: (err: { error: { message: any; }; }) => {
+      error: (err: { error: { message: any } }) => {
         Swal.fire('Issue in GetTestResponse');
         // Insert error in Db Here//
         var obj = {
@@ -116,13 +119,12 @@ export class CertificateDashboardComponent implements OnInit {
 
   public GetDepartmentMaster() {
     debugger;
-    this.LearningService.GetDepartmentMaster()
-    .subscribe({
+    this.LearningService.GetDepartmentMaster().subscribe({
       next: (data) => {
         debugger;
         this.departmentlist = data;
       },
-     error: (err: { error: { message: any; }; }) => {
+      error: (err: { error: { message: any } }) => {
         Swal.fire('Issue in GetDepartmentMaster');
         // Insert error in Db Here//
         var obj = {
@@ -152,16 +154,13 @@ export class CertificateDashboardComponent implements OnInit {
     debugger;
     this.courseid = even.target.value;
     if (even.target.value != 0) {
-      this.uniquelist = this.uniquelist.filter(
-        (x: { coursename: any; }) =>
-          x.coursename == this.courseid
-          
+      this.uniquelist = this.dummyuniqlist.filter(
+        (x: { coursename: any }) => x.coursename == this.courseid
       );
-     
+
       this.count = this.employeereportlist.length;
     } else {
       this.GetTrainerReport();
- 
     }
   }
 
@@ -176,17 +175,24 @@ export class CertificateDashboardComponent implements OnInit {
     );
     this.count = this.employeereportlist.length;
   }
-  endDate : any
-  filterbydate(){
+  endDate: any;
+  filterbydate() {
     this.LearningService.GetTestResponse().subscribe({
-      next: data=>{
-        this.uniquelist = data.filter(x => x.startDate >= this.Date && x.endDate <= this.endDate );
+      next: (data) => {
+        this.uniquelist = data.filter(
+          (x) => x.startDate >= this.Date && x.endDate <= this.endDate
+        );
 
         const key = 'coursename';
-        this.uniquelist = [...new Map(this.uniquelist.map((item: { [x: string]: any; }) =>
-
-          [(item[key]), item])).values()]
-      }
-    })
+        this.uniquelist = [
+          ...new Map(
+            this.uniquelist.map((item: { [x: string]: any }) => [
+              item[key],
+              item,
+            ])
+          ).values(),
+        ];
+      },
+    });
   }
 }
