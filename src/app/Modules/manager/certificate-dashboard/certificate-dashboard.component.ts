@@ -28,8 +28,11 @@ export class CertificateDashboardComponent implements OnInit {
   dumdeptlist: any;
   departmentlist: any;
   date: any;
+  Course:any;
+  coursename:any
   employeeFilterReportList: any;
   currentUrl: any;
+  
 
   ngOnInit(): void {
     this.currentUrl = window.location.href;
@@ -37,6 +40,7 @@ export class CertificateDashboardComponent implements OnInit {
     this.GetTrainerReport();
     this.GetDepartmentMaster();
     this.GetCourseDropdown();
+    this.Course=0
   }
 
   public GetCourseDropdown() {
@@ -148,10 +152,11 @@ export class CertificateDashboardComponent implements OnInit {
     debugger;
     this.courseid = even.target.value;
     if (even.target.value != 0) {
-      this.employeereportlist = this.dummemployeereportlist.filter(
-        (x: { courseID: any; userID: any }) =>
-          x.courseID == this.courseid && x.userID == this.userid
+      this.uniquelist = this.uniquelist.filter(
+        (x: { coursename: any; }) =>
+          x.coursename == this.courseid
       );
+      
       this.count = this.employeereportlist.length;
     } else {
       this.GetTrainerReport();
