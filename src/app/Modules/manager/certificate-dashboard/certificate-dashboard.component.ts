@@ -155,11 +155,13 @@ export class CertificateDashboardComponent implements OnInit {
       this.uniquelist = this.uniquelist.filter(
         (x: { coursename: any; }) =>
           x.coursename == this.courseid
+          
       );
-      
+     
       this.count = this.employeereportlist.length;
     } else {
       this.GetTrainerReport();
+ 
     }
   }
 
