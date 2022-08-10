@@ -61,6 +61,7 @@ export class CertificateDashboardComponent implements OnInit {
   }
 
   uniquelist:any;
+  Date : any
 
   public GetTrainerReport() {
     debugger;
@@ -68,7 +69,7 @@ export class CertificateDashboardComponent implements OnInit {
     .subscribe({
       next: (data) => {
         debugger;
-        this.employeereportlist = data.filter((x) => x.userID == this.userid);
+        this.employeereportlist = data.filter((x) => x.userID == this.userid );
 
         const key = 'coursename';
         this.uniquelist = [...new Map(this.employeereportlist.map((item: { [x: string]: any; }) =>
@@ -167,5 +168,18 @@ export class CertificateDashboardComponent implements OnInit {
         x.trainer.toLowerCase().includes(searchCopy)
     );
     this.count = this.employeereportlist.length;
+  }
+  endDate : any
+  filterbydate(){
+    this.LearningService.GetTestResponse().subscribe({
+      next: data=>{
+        this.uniquelist = data.filter(x => x.startDate >= this.Date && x.endDate <= this.endDate );
+
+        const key = 'coursename';
+        this.uniquelist = [...new Map(this.uniquelist.map((item: { [x: string]: any; }) =>
+
+          [(item[key]), item])).values()]
+      }
+    })
   }
 }

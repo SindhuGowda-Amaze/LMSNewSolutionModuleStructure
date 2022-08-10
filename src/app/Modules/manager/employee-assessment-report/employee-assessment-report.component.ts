@@ -32,12 +32,15 @@ export class EmployeeAssessmentReportComponent implements OnInit {
   TrainerID: any;
   trainerlist: any;
   currentUrl: any;
+  value : any
 
   ngOnInit(): void {
     this.currentUrl = window.location.href;
     this.userid = sessionStorage.getItem('userid');
     this.GetTrainerReport();
     this.GetDepartmentMaster();
+    this.courseID="0"
+    this.TrainerID="0"
   }
   uniquelist:any;
   public GetTrainerReport() {
