@@ -235,6 +235,7 @@ export class AssessmentFormComponent implements OnInit {
   cancel() {
     location.href = '#/Assessmentdashboard';
   }
+  assessmentName:any;
 
   ADd() {
     debugger;
@@ -243,9 +244,9 @@ export class AssessmentFormComponent implements OnInit {
       this.chapterid == undefined ||
       this.questionid == undefined ||
       this.Question == undefined ||
-      this.Weightage == undefined 
-      // this.CorrectAnswer == undefined ||
-      // this.CorrectAnswer == ''
+      this.Weightage == undefined ||
+       this.CorrectAnswer == undefined ||
+       this.CorrectAnswer == ''
     ) {
       Swal.fire('Please fill all the fields');
     } else {
@@ -261,7 +262,7 @@ export class AssessmentFormComponent implements OnInit {
         Option4: this.Option4,
         CorrectAnswer: this.CorrectAnswer,
         weightage: this.Weightage,
-        AssessmentName: this.AssessmentName,
+        AssessmentName: this.assessmentName,
       };
 
       this.assessmenrArray.push(json);
@@ -271,7 +272,7 @@ export class AssessmentFormComponent implements OnInit {
       this.Option3 = '';
       this.Option4 = '';
       this.Weightage = '';
-      this.AssessmentName = '';
+      this.assessmentName = '';
       Swal.fire('Saved Successfully');
     }
   }
@@ -308,7 +309,7 @@ export class AssessmentFormComponent implements OnInit {
         Option4: this.assessmenrArray[i].Option4,
         CorrectAnswer: this.assessmenrArray[i].CorrectAnswer,
         weightage: this.assessmenrArray[i].weightage,
-        AssessmentName: this.assessmenrArray[i].AssessmentNames,
+        AssessmentName: this.assessmenrArray[i].assessmentName,
         // "TrainerID":this.assessmenrArray[i].TrainerID
       };
       debugger;
@@ -359,7 +360,7 @@ export class AssessmentFormComponent implements OnInit {
       Option4: this.Option4,
       CorrectAnswer: this.CorrectAnswer,
       weightage: this.Weightage,
-      AssessmentName: this.AssessmentName,
+      AssessmentName: this.assessmentName,
     };
     debugger;
     this.LearningService.UpdateAssessments(entity).subscribe({
