@@ -59,9 +59,11 @@
                             <td><img src="{{details.chapterPhoto}}" data-toggle="modal" data-target="#exampleModal2"
                                     (click)="Showimage(details.chapterPhoto)" style="width:100px">
                             </td>
-                            <td><img class="pdfimg" src="assets/Images/image.png" style="width: 20px;"
+                            <td>
+                                <img class="pdfimg" src="assets/Images/image.png" style="width: 20px;"
                                     data-toggle="modal" data-target="#exampleModal"
                                     (click)="ShowAttachments(details.id)">
+                                 
 
                             <td>
                                 <span  
@@ -122,6 +124,7 @@
                                 type="video/ogg">
                             Your browser does not support the video tag.
                         </video>
+                        <p *ngIf="attchments.photo==null">No Attachment</p>
                     </div>
                 </div>
             </div>
