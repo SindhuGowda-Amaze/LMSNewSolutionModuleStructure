@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AttendanceDetailsComponent } from './attendance-details/attendance-details.component';
 import { AttendanceNewComponent } from './attendance-new/attendance-new.component';
 import { CatalogComponent } from './catalog/catalog.component';
+import { ChatComponent } from './chat/chat.component';
 import { CourseCertificateComponent } from './course-certificate/course-certificate.component';
 import { EmployeeComponent } from './employee.component';
 import { LearningPathDashboardComponent } from './learning-path-dashboard/learning-path-dashboard.component';
@@ -12,6 +13,7 @@ import { StartMyCourseComponent } from './start-my-course/start-my-course.compon
 import { SubmitedtestsComponent } from './submitedtests/submitedtests.component';
 import { TakeAssessmentComponent } from './take-assessment/take-assessment.component';
 import { ViewCourseComponent } from './view-course/view-course.component';
+import { ViewGroupComponent } from './view-group/view-group.component';
 
 const routes: Routes = [{ path: '', component: EmployeeComponent },
 {path:'AttendanceDetails',component:AttendanceDetailsComponent},
@@ -24,8 +26,9 @@ const routes: Routes = [{ path: '', component: EmployeeComponent },
 {path:'Submitedtests',component:SubmitedtestsComponent},
 {path:'TakeAssessment/:courseid/:chapterid/:testtype',component:TakeAssessmentComponent},
 {path:'ViewCourse/:id',component:ViewCourseComponent},
-{path:'LearningPathDashboard',component:LearningPathDashboardComponent}
-
+{path:'LearningPathDashboard',component:LearningPathDashboardComponent},
+{path:'Chat/:id',component:ChatComponent},
+{ path: 'ViewGroup', component: ViewGroupComponent},
 
 
 

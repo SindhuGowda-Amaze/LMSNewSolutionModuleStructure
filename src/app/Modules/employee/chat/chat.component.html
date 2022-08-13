@@ -1,1 +1,111 @@
-<p>chat works!</p>
+<!-- <app-loader *ngIf="loader"></app-loader> -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-2">
+            <div class="inbox_people card">
+                <div class="headind_srch">
+                    <div>
+                        <label class="project-team">All Staff ({{stafflist.length}})</label>
+                        <input type="text" class="form-control rectangle2 stafftxt" [(ngModel)]="searchchat"
+                            placeholder="Search Staff" name="searchchat" />
+                        <select class="form-control rectangle2" id="Department" name="Department"
+                            [(ngModel)]="Department" (change)="filterByDepartment()">
+                            <option value="">Select Department</option>
+                            <option value="{{item.id}}" *ngFor="let item of Departmentlist">
+                                {{item.department_name}}
+                            </option>
+                        </select>
+                        <select class="form-control rectangle2" id="City" name="City" [(ngModel)]="City"
+                            (change)="filterByCitylist()">
+                            <option value="">Select City</option>
+                            <option value="{{item.id}}" *ngFor="let item of Citylist">
+                                {{item.short}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="inboxchatFiltr">
+                    <div class="inbox_chat" *ngFor="let list of stafflist | filter:searchchat">
+                        <div>
+                            <div class="chat_people row" (click)="getstaffid(list.id)">
+                                <div class="col-lg-1">
+                                </div>
+                                <img src="assets/Images/usericon.png" class="imagewidth">
+                                <div class="col-lg-5" class="imgtxtwidth">
+                                    <b> <label class="shekhar-ravjiani"> {{list.name}} </label>
+                                        <label class="shekhar-ravjiani1"> {{list.role}}</label>
+                                        <label class="shekhar-ravjiani1"> {{list.department_name}}</label>
+                                    </b>
+                                </div>
+                                <div class="col-lg-3">
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                    <br />
+                    <br />
+                    <span *ngIf="stafflist.length==0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>No Results
+                            Found</b></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-10">
+            <div id="chat">
+                <div class="container-fluid">
+                    <div class="container-fluid card chatcard">
+                        <p class="chatcardtext">You are Chating with {{staffname}}</p>
+                        <div class=" container-fluid" *ngFor="let list of messsages">
+                            <div class="incoming_msg">
+                                <label *ngIf="list.position=='left'"
+                                    class="june-01-2021-07-10left">{{list.modifiedDate|date}}
+                                    {{list.msgtime}}</label>
+                                <br>
+                                <div class="received_msg">
+                                    <p *ngIf="list.position=='left'">
+                                        {{list.name}}
+                                    </p>
+                                    <p *ngIf="list.position=='left'&& list.photoUrl=='Text'">
+                                        {{list.message}}
+                                    </p>
+                                    <img src="{{list.message}}"
+                                        *ngIf="list.position=='left'&& list.photoUrl=='Attachment'">
+                                </div>
+                            </div>
+                            <div class="outgoing_msg">
+                                <div class="sent_msg">
+                                    <label *ngIf="list.position=='right'"
+                                        class="june-01-2021-07-10">{{list.modifiedDate|date}}
+                                        {{list.msgtime}}</label>
+                                    <div>
+                                        <p *ngIf="list.position=='right'&& list.photoUrl=='Text'">
+                                            {{list.message}}
+                                        </p>
+                                        <img src="{{list.message}}"
+                                            *ngIf="list.position=='right'&& list.photoUrl=='Attachment'">
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid card newmsgcard">
+                        <div class="row newmsgrow">
+                            <div class="col-lg-8">
+                                <textarea rows="2" class="form-control newmsght" [(ngModel)]="newmsg" name="newmsg"
+                                    placeholder="Type your message"></textarea>
+                            </div>
+                            <div class="col-lg-1">
+                            </div>
+                            <div class="col-lg-2">
+                                <button type="button" class="mainsndbtn" (click)="insertchatmaster('Text')">
+                                    Send
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

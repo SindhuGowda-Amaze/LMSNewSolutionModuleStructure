@@ -816,7 +816,48 @@ export class LearningService {
 
   }
 
- 
+
+  public GetAllStaffNew() {
+    return this.http.get<any[]>(
+      this.host + "/Master/GetAllStaffNew"
+
+    );
+  }
+
+  public GetDepartment() {
+    debugger
+    let APIURL = this.host + "/Announcement/GetDepartmentMaster";
+    return this.http.get<any[]>(APIURL);
+  }
+
+  public GetCityType() {
+    return this.http.get<any[]>(
+      this.host + "/Building/GetCityType?StateID=4"
+    );
+  }
+
+  public GetChatGroupMaster() {
+    debugger;
+    this.url = this.host + "/Announcement/GetChatGroupMaster";
+    return this.http.get<any[]>(this.url);
+  }
+
+  public InsertGroupChatMaster(data: any) {
+    debugger;
+    this.url = this.host + "/Announcement/InsertChatWeb";
+    return this.http.post(this.url, data);
+  }
+
+  public InsertNotification(data: any) {
+    debugger;
+    this.url = this.host + '/User/InsertNotification';
+    return this.http.post(this.url, data);
+  }
+
+  public GetSubsidaryMaster() {
+
+    return this.http.get<any[]>(this.host + "/Announcement/GetSubsidaryMaster");
+  }
  
  
  

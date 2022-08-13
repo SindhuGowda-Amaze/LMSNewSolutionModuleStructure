@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  constructor(public router: Router) { }
 
   roleid: any;
   UserName: any;
@@ -169,6 +169,15 @@ export class SidebarComponent implements OnInit {
   SupportTickets() {
     this.active = 'SupportTickets'
     sessionStorage.setItem("clickname", "support tickets")
+  }
+
+  chat: any
+  public Chat() {
+    debugger
+    this.active = 22;
+    localStorage.setItem('Pagename', 'Chat ')
+    this.router.navigate(['/Employee/ViewGroup']);
+
   }
 
 }

@@ -16,6 +16,7 @@ import { CourseCertificateComponent } from './course-certificate/course-certific
 import { SubmitedtestsComponent } from './submitedtests/submitedtests.component';
 import { LearningPathDashboardComponent } from './learning-path-dashboard/learning-path-dashboard.component';
 import { ChatComponent } from './chat/chat.component';
+import { ViewGroupComponent } from './view-group/view-group.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { ChatComponent } from './chat/chat.component';
     CourseCertificateComponent,
     SubmitedtestsComponent,
     LearningPathDashboardComponent,
-    ChatComponent
+    ChatComponent,
+    ViewGroupComponent
   ],
   imports: [
     CommonModule,

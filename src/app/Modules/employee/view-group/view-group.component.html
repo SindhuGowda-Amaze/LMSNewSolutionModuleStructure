@@ -1,0 +1,85 @@
+<!-- <app-loader *ngIf="loader"></app-loader> -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-4">
+                    <p class="Heading">Chats</p>
+                </div>
+                <div class="col-lg-4">
+                </div>
+                <div class="col-lg-4">
+                </div>
+            </div><br>
+            <div class="card  filtercard">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <input class="form-control" id="Search" name="Search" [(ngModel)]="Search" placeholder="Search">
+                    </div>
+                    <div class="col-lg-3">
+                        <select class="form-control" id="Department" name="Department" [(ngModel)]="Department">
+                            <option value="0">Select Department </option>
+                            <option *ngFor="let role of leavelist" value="{{role.department_name}}">
+                                {{role.department_name}}</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3">
+                        <select class="form-control inputfield" id="CityID" name="CityID" [(ngModel)]="CityID">
+                            <option value="0">Select City </option>
+                            <option *ngFor="let role of Citylist" value="{{role.id}}">{{role.short}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div><br>
+            <div class="card  filtercard">
+                <div class="row searchrow">
+                    <div class="col-lg-3 space"
+                        *ngFor="let item of stafflist|filter:Search|filter:Department|filter:CityID else noResults">
+                        <div class="card staffcard" (click)="getstaffid(item)">
+                            <div class="row blovk23">
+                               
+                                <div class="col-lg-3">
+                                    <div class="profile-block">
+                                        <div class="profile-img mobile-profile-img pointer">
+                                            <span class="initial ng-star-inserted">{{item.name|slice:0:2}}</span>
+                                        </div>
+                                        <span class="mdi mdi-chevron-down"></span>
+                                      <br>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row blovk23">
+                                <div class="col-lg-12">
+                                    <table class="table-borderless ">
+                                        <tr>
+                                            <td style="background-color: white">Name : {{item.name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color: white">Position : {{item.role}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color: white">Department : {{item.department_name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color: white">Phone : {{item.mobile}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color: white">Email : {{item.personal_Email}}</td>
+                                        </tr>
+                                    </table>
+                                    <!-- <label>Name : {{item.name}}</label><br />
+                                    <label>Position : {{item.role}}</label><br>
+                                    <label>Department : {{item.department_name}}</label><br>
+                                    <label>Phone : {{item.mobile}}</label><br>
+                                    <label class="emailcol">Email : {{item.personal_Email}}</label> -->
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+                <br />
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>

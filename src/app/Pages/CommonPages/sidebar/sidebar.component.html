@@ -288,6 +288,25 @@
             <span [ngClass]="active == 'result' ? 'Active1' : 'Active3'"> RESULTS </span>
 
         </a>
+        <a *ngIf="roleid==2 || roleid==4"  class="tablinks" (click)="highlight($event)" (click)="Chat()">
+            <img src="assets/Images/1 (1).png" style="width:13% ;margin-right: 17px;"
+                [ngClass]="active == 22 ? 'Active1' : 'Active2'" />
+            <img [ngClass]="active != 22 ? 'Active1' : 'Active2'" src="assets/Images/New folder/1 (1)1.png"
+                style="width:13%; margin-right: 17px;">
+            &nbsp;
+            <span [ngClass]="active == 22 ? 'Active1' : 'Active3'"> CHAT </span>
+
+        </a>
+
+          <!-- <a (click)="Chat()" class="nonactive" (click)="openCity($event)" *ngIf="login!=1">
+
+            <img [ngClass]="active == 22 ? 'Active1' : 'Active2'" src="assets/64/ATTENDANCE/Chat.png" class="admin" />
+            <img [ngClass]="active != 22 ? 'Active1' : 'Active2'" src="assets/Images/64_GREY/64/ATTENDANCE/Chat.png"
+                class="admin" />
+            &nbsp; <span [ngClass]="active == 22 ? 'Active1' : 'Active3'"> Chat
+            </span>
+          
+        </a> -->
         <!-- <a *ngIf="roleid==3" routerLink="Employee/Submitedtests" class="tablinks" (click)="highlight($event)"
             (click)="testsubmit()">
             <img src="assets/Images/homework (1).png" style="width:13% ;margin-right: 17px;"
