@@ -15,6 +15,7 @@ import { MyCourseDashboardComponent } from './my-course-dashboard/my-course-dash
 import { CourseCertificateComponent } from './course-certificate/course-certificate.component';
 import { SubmitedtestsComponent } from './submitedtests/submitedtests.component';
 import { LearningPathDashboardComponent } from './learning-path-dashboard/learning-path-dashboard.component';
+import { ChatComponent } from './chat/chat.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { LearningPathDashboardComponent } from './learning-path-dashboard/learni
     MyCourseDashboardComponent,
     CourseCertificateComponent,
     SubmitedtestsComponent,
-    LearningPathDashboardComponent
+    LearningPathDashboardComponent,
+    ChatComponent
   ],
   imports: [
     CommonModule,
