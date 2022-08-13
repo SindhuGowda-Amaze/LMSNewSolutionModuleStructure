@@ -104,6 +104,10 @@ export class SidebarComponent implements OnInit {
     this.active = 'myemployeereport';
     sessionStorage.setItem("clickname", "EMPLOYEE REPORT")
   }
+  mylearningpath() {
+    this.active = 'mylearningpath';
+    sessionStorage.setItem("clickname", "LEARNING PATH")
+  }
   myassessmentreport() {
     this.active = 'myassessmentreport';
     sessionStorage.setItem("clickname", "MY ASSESSMENT REPORT")
@@ -115,6 +119,11 @@ export class SidebarComponent implements OnInit {
   catalog() {
     this.active = 'catalogue';
     sessionStorage.setItem("clickname", "CATALOG")
+  }
+
+  enrolledtraining() {
+    this.active = 'enrolledtraining';
+    sessionStorage.setItem("clickname", "ENROLLED TRAINING")
   }
 
   certificate() {

@@ -18,6 +18,9 @@ export class AttendanceNewComponent implements OnInit {
   userName: any;
   Attendance: any;
   currentUrl:any;
+  employeeID:any;
+  trainer:any;
+  noofhrs:any;
   constructor(private ActivatedRoute: ActivatedRoute, private LearningService: LearningService) { }
 
   ngOnInit(): void {

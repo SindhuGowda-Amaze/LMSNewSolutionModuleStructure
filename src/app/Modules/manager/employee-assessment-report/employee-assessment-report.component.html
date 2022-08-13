@@ -47,20 +47,23 @@
                 <table id="download" class="table" *ngIf="(uniquelist | filter: search).length > 0; else noResults">
                     <thead>
                         <tr>
-                            <th>Chapter name</th>
-                            <th>Marks</th>
+                            <th>Assessment Date</th>
+                            <th>Training Name</th>
+                            <th>Topic name</th>
+                            <th>Total Marks</th>
+                            <th>Obtained Marks</th>
                             <th>Percentage</th>
-                            <th>Certificate</th>
+                            <th>Status</th>
                         </tr>
                         <tr *ngFor="let details of uniquelist|filter :search">
+                            <td>{{details.assesment}}</td>
+                            <td>{{details.coursename}}</td>
                             <td style="color:#0C275A">{{details.chapterName}}</td>
-                            <td> {{details.obtainedMarks/details.totalmarks}}</td>
+                            <td> {{details.totalmarks}}</td>
+                            <td> {{details.obtainedMarks}}</td>
                             <td> {{details.obtainedMarks/details.totalmarks
                                 *100 | number : '1.2-2'}} % </td>
-                            <td style="color:#0C275A">
-                                <button class="Button"
-                                [routerLink]="['/Employee/CourseCertificate',details.id]">View</button>
-                            </td>
+                            <td>Pass</td>
                             
                         </tr>
                     </thead>

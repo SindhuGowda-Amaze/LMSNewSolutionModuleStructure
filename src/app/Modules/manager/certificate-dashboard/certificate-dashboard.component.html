@@ -43,7 +43,6 @@
                     <thead>
                         <tr>
                             <th>Training name</th>
-                            <th>Topic Name</th>
                             <th>Start Date</th>
                             <th>Completion Date</th>
                             <th>Trainer Name</th>
@@ -52,7 +51,6 @@
                         </tr>
                         <tr *ngFor="let details of uniquelist|filter :search">
                             <td style="color:#0C275A">{{details.coursename}}</td>
-                            <td style="color:#0C275A">{{details.chaptername}}</td>
                             <td style="color:#0C275A">{{details.startDate|date}}</td>
                             <td style="color:#0C275A">{{details.endDate|date}}</td>
                             <td style="color:#0C275A">{{details.trainer}}</td>

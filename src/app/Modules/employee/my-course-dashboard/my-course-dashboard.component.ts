@@ -129,7 +129,6 @@ export class MyCourseDashboardComponent implements OnInit {
       this.GetApproveCourse();
     } else if (value == 3) {
       debugger;
-      //  this.coursedetails = this.trainerCourseMapList.filter((x: { staffID: any; completed: number; enrollid: number; })=> x.staffID==this.userid && x.completed!=1 && x.enrollid==0);
       this.LearningService.GetTrainerCourseMapping().subscribe({
         next: (data) => {
           debugger;
@@ -140,7 +139,6 @@ export class MyCourseDashboardComponent implements OnInit {
         },
        error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in GetTrainerCourseMapping');
-          // Insert error in Db Here//
           var obj = {
             PageName: this.currentUrl,
             ErrorMessage: err.error.message,
@@ -167,7 +165,6 @@ export class MyCourseDashboardComponent implements OnInit {
         },
        error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in GetCourse');
-          // Insert error in Db Here//
           var obj = {
             PageName: this.currentUrl,
             ErrorMessage: err.error.message,

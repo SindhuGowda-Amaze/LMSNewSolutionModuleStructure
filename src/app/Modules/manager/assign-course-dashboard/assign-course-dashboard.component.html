@@ -37,15 +37,27 @@
                 <table class="table" *ngIf="(assignList | filter: search).length > 0; else noResults">
                     <thead>
                         <tr>
+                            <th>Month</th>
+                            <th>Employee ID</th>
                             <th>Employee Name</th>
                             <th>Training Name</th>
+                            <th>Trainer</th>
+                            <th>Position</th>
+                            <th>Band</th>
+                            <th>Level</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let details of assignList|filter:search">
+                            <td style="font-size: 15px;">{{details.month}}</td>
+                            <td style="font-size: 15px;">{{details.employeeID}}</td>
                             <td style="font-size: 15px;">{{details.employeeName}}</td>
                             <td style="font-size: 15px;">{{details.name}}</td>
+                            <td style="font-size: 15px;">{{details.trainer}}</td>
+                            <td style="font-size: 15px;">{{details.position}}</td>
+                            <td style="font-size: 15px;">{{details.band}}</td>
+                            <td style="font-size: 15px;">{{details.level}}</td>
                             <td style="width: 20%;">
                               
 

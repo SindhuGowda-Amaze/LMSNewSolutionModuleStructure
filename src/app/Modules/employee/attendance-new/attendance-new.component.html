@@ -30,18 +30,24 @@
                         <table class="table" *ngIf="(Attendance | filter: search).length > 0; else noResults">
                             <thead>
                                 <tr>
+                                    <th *ngIf="roleid!=2">Employee ID</th>
                                     <th *ngIf="roleid!=2">Employee Name</th>
                                     <th>Login Date</th>
-                                    <th>Punch In Time</th>
-                                    <th>Punch Out Time</th>
+                                    <th>Log In Time</th>
+                                    <th>Log Out Time</th>
+                                    <th *ngIf="roleid!=2">No of Hrs</th>
+                                    <th *ngIf="roleid!=2">Trainee Name</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let details of Attendance | filter: search">
+                                    <td *ngIf="roleid!=2">{{employeeID}}</td>
                                     <td *ngIf="roleid!=2">{{userName}}</td>
                                     <td>{{details.loginDate}}</td>
                                     <td>{{details.loginTime}}</td>
                                     <td>{{details.logoutDate}}</td>
+                                    <td *ngIf="roleid!=2">{{noofhrs}}</td>
+                                    <td *ngIf="roleid!=2">{{trainer}}</td>
                                 </tr>
                             </tbody>
                         </table>
