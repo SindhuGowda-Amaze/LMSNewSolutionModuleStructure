@@ -14,9 +14,21 @@
                 <p class="filter">Filter By</p>
             </div>
         
-            <div class="col-lg-2">
+            <div class="col-lg-4">
                 <input type="search" class="form-control search" placeholder="Search for Data.." [(ngModel)]="search"
                     name="search">
+            </div>
+            <div class="col-lg-2">
+                <select class="form-control"     name="courseID" [(ngModel)]="courseID" (change)="getcourseid($event)">
+                    <option value="0">Course Name</option>
+                    <option *ngFor="let details of Courselist" value="{{details.id}}">{{details.name}}</option>
+                </select>
+            </div>
+            <div class="col-lg-2">
+                <select class="form-control"     name="courseID" [(ngModel)]="TopicID" (change)="getcourseid($event)">
+                    <option value="0">Topic Name</option>
+                    <option *ngFor="let details of TopicList" value="{{details.id}}">{{details.name}}</option>
+                </select>
             </div>
         </div><br>
     </div>
@@ -26,12 +38,7 @@
       </div>
      <br>
      <div class="row">
-        <div class="col-lg-2">
-            <select class="form-control"   placeholder="Training Name"  name="courseID" [(ngModel)]="courseID" (change)="getcourseid($event)">
-                <option value="0">Chapter Name</option>
-                <option *ngFor="let details of courselist" value="{{details.id}}">{{details.courseName}}</option>
-            </select>
-        </div>
+      
         <!-- <div class="col-lg-3">
             <select class="form-control"    placeholder="Select Trainer Name" name="cars" id="Duration" [(ngModel)]="TrainerID" (change)="getTrainerID($event)">
                 <option style="color:#0C275A" value="0">Select Trainer Name</option>
@@ -56,8 +63,8 @@
                             <th>Status</th>
                         </tr>
                         <tr *ngFor="let details of uniquelist|filter :search">
-                            <td>{{details.assesment}}</td>
-                            <td>{{details.coursename}}</td>
+                            <td>{{details.assessmentDate|date}}</td>
+                            <td>{{details.courseName}}</td>
                             <td style="color:#0C275A">{{details.chapterName}}</td>
                             <td> {{details.totalmarks}}</td>
                             <td> {{details.obtainedMarks}}</td>

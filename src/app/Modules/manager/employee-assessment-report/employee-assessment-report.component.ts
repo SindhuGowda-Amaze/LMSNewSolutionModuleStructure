@@ -37,10 +37,14 @@ export class EmployeeAssessmentReportComponent implements OnInit {
   ngOnInit(): void {
     this.currentUrl = window.location.href;
     this.userid = sessionStorage.getItem('userid');
-    this.GetTrainerReport();
-    this.GetDepartmentMaster();
+ 
     this.courseID="0"
     this.TrainerID="0"
+    this.TopicID="0"
+    this.GetTrainerReport();
+    this.GetDepartmentMaster();
+    this.getcourse();
+    this.getTopic();
   }
   uniquelist:any;
   public GetTrainerReport() {
@@ -163,6 +167,24 @@ export class EmployeeAssessmentReportComponent implements OnInit {
     this.LearningService.GetTrainer().subscribe((data) => {
       debugger;
       this.trainerlist = data;
+    });
+  }
+  Courselist:any;
+  public getcourse() {
+    debugger;
+    this.LearningService.GetCourseDropdown().subscribe((data) => {
+      debugger;
+      this.Courselist = data;
+    });
+  }
+
+  TopicList:any
+  TopicID:any;
+  public getTopic() {
+    debugger;
+    this.LearningService.GetChapter().subscribe((data) => {
+      debugger;
+      this.TopicList = data;
     });
   }
 }
