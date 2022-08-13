@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -17,7 +18,6 @@ export class MyCourseDashboardComponent implements OnInit {
   stafflist: any;
   userid: any;
   search: any;
-  uniquelist:any=[];
   managlist: any;
   manageremail: any;
   loader: any;
@@ -44,9 +44,7 @@ export class MyCourseDashboardComponent implements OnInit {
     this.Showcards(2);
     this.show = 2;
     this.GetAllCounts();
-   
-
-
+    this.Showcards(2);
     this.GetMyDetails();
     // this.loader=true
     // debugger
@@ -114,7 +112,6 @@ export class MyCourseDashboardComponent implements OnInit {
       }
     }
   }
-
   Showcards(value: any) {
     this.loader = true;
     this.show = value;
@@ -122,13 +119,14 @@ export class MyCourseDashboardComponent implements OnInit {
       this.GetApproveCourse();
     } else if (value == 2) {
       debugger;
-      this.LearningService.GetEnroll().subscribe(data => {
-        debugger
-        this.coursedetails = data.filter((x: { staffID: any; completed: number }) => x.completed == 0 && x.staffID == this.userid);
-      });
+      // this.LearningService.GetEnroll().subscribe(data => {
+      //   debugger
+      //   this.coursedetails = data.filter((x: { staffID: any; completed: number }) => x.completed == 0 && x.staffID == this.userid);
+      // });
       this.GetApproveCourse();
     } else if (value == 3) {
       debugger;
+      //  this.coursedetails = this.trainerCourseMapList.filter((x: { staffID: any; completed: number; enrollid: number; })=> x.staffID==this.userid && x.completed!=1 && x.enrollid==0);
       this.LearningService.GetTrainerCourseMapping().subscribe({
         next: (data) => {
           debugger;
@@ -139,6 +137,7 @@ export class MyCourseDashboardComponent implements OnInit {
         },
        error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in GetTrainerCourseMapping');
+          // Insert error in Db Here//
           var obj = {
             PageName: this.currentUrl,
             ErrorMessage: err.error.message,
@@ -156,15 +155,10 @@ export class MyCourseDashboardComponent implements OnInit {
             (x) =>
               x.completed == 1 && x.enrollid != 0 && x.staffID == this.userid
           );
-          const key = 'id';
-
-          this.uniquelist = [...new Map(this.coursedetails.map((item: { [x: string]: any; }) =>
-  
-            [(item[key]), item])).values()]
-
         },
        error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in GetCourse');
+          // Insert error in Db Here//
           var obj = {
             PageName: this.currentUrl,
             ErrorMessage: err.error.message,
@@ -377,3 +371,4 @@ export class MyCourseDashboardComponent implements OnInit {
     });
   }
 }
+
