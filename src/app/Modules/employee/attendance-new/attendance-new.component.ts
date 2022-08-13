@@ -50,7 +50,7 @@ export class AttendanceNewComponent implements OnInit {
           this.Attendance = data.filter(x => x.trainerID == this.userid);
         }
         else{
-          this.Attendance = data.filter(x => x.empID == this.userid);
+          this.Attendance = data.filter(x => x.supervisor == this.userid);
         }
       },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetAttendance_New');

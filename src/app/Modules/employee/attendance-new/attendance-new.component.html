@@ -41,12 +41,12 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let details of Attendance | filter: search">
-                                    <td *ngIf="roleid!=2">{{employeeID}}</td>
-                                    <td *ngIf="roleid!=2">{{userName}}</td>
+                                    <td *ngIf="roleid!=2">{{details.empID}}</td>
+                                    <td *ngIf="roleid!=2">{{details.employeename}}</td>
                                     <td>{{details.loginDate}}</td>
                                     <td>{{details.loginTime}}</td>
                                     <td>{{details.logoutDate}}</td>
-                                    <td *ngIf="roleid!=2">{{noofhrs}}</td>
+                                    <td *ngIf="roleid!=2">{{details.noofhrs}}</td>
                                     <td *ngIf="roleid!=2">{{trainer}}</td>
                                 </tr>
                             </tbody>
