@@ -179,7 +179,7 @@
             &nbsp;
         </a>
 
-        <a *ngIf="roleid==2 || roleid==3" routerLink="Employee/EnrolledTraining" class="tablinks" (click)="highlight($event)"
+        <a *ngIf="roleid==3" routerLink="Employee/EnrolledTraining" class="tablinks" (click)="highlight($event)"
             (click)="enrolledtraining()">
             <img src="assets/Images/catalogue.png" style="width:13% ;margin-right: 17px;"
                 [ngClass]="active == 'enrolledtraining' ? 'Active1' : 'Active2'" />

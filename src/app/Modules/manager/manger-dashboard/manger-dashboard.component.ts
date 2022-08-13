@@ -55,7 +55,7 @@ export class MangerDashboardComponent implements OnInit {
 
     // }
   }
-
+  uniquelist:any
   public GetEnroll() {
     debugger;
     this.LearningService.GetEnroll()
@@ -66,6 +66,15 @@ export class MangerDashboardComponent implements OnInit {
         //  this.result = data
         this.dummemployeedetails = data;
         this.employeeList = data;
+
+        debugger;
+        this.result = data.filter((x) =>x.manager == this.manager);
+
+        const key = 'chapterName';
+        this.uniquelist = [...new Map(this.result.map((item: { [x: string]: any; }) =>
+
+          [(item[key]), item])).values()]
+
         this.count = this.result.length;
       },
      error: (err: { error: { message: any; }; }) => {
