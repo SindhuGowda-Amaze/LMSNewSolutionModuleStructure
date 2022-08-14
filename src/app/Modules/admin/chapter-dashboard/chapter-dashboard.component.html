@@ -60,9 +60,11 @@
                                     (click)="Showimage(details.chapterPhoto)" style="width:100px">
                             </td>
                             <td>
+                                <p *ngIf="details.photo==null && details.photo=='' ">No Attachment</p>
                                 <img class="pdfimg" src="assets/Images/image.png" style="width: 20px;"
                                     data-toggle="modal" data-target="#exampleModal"
                                     (click)="ShowAttachments(details.id)">
+                            </td>
                                  
 
                             <td>
