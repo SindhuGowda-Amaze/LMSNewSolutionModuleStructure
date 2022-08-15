@@ -20,16 +20,22 @@ export class AttendanceNewComponent implements OnInit {
   currentUrl:any;
   employeeID:any;
   trainer:any;
+  courseID: any;
+  TopicID:any;
   noofhrs:any;
   constructor(private ActivatedRoute: ActivatedRoute, private LearningService: LearningService) { }
 
   ngOnInit(): void {
-
+    this.Course="0"
+    this.courseID="0"
+    this.TopicID="0"
     this.currentUrl = window.location.href;
     this.roleid = sessionStorage.getItem('roleid');
     this.userid = sessionStorage.getItem('userid');
     this.userName = sessionStorage.getItem('UserName');
-
+this.GetCourseDropdown();
+this.getcourse();
+this.getTopic();
     this.GetAttendance_New();
     // this.areYouReallySure = false;
     // this.allowPrompt = true;
@@ -38,7 +44,7 @@ export class AttendanceNewComponent implements OnInit {
   
 
 
-;
+
   public GetAttendance_New() {
     debugger
     this.LearningService.GetAttendance_New()
@@ -100,8 +106,124 @@ export class AttendanceNewComponent implements OnInit {
   // }
 
 
+  endDate: any;
+  uniquelist: any;
+  Date: any;
+  filterbydate() {
+    this.LearningService.GetTestResponse().subscribe({
+      next: (data) => {
+        this.uniquelist = data.filter(
+          (x) => x.startDate >= this.Date && x.endDate <= this.endDate
+        );
+
+        const key = 'coursename';
+        this.uniquelist = [
+          ...new Map(
+            this.uniquelist.map((item: { [x: string]: any }) => [
+              item[key],
+              item,
+            ])
+          ).values(),
+        ];
+      },
+    });
+  }
+  courseid: any;
+  dummyuniqlist: any;
+  employeereportlist:any;
+  getcourseid(even: any) {
+    debugger;
+    this.courseid = even.target.value;
+    if (even.target.value != 0) {
+      this.uniquelist = this.dummyuniqlist.filter(
+        (x: { coursename: any }) => x.coursename == this.courseid
+      );
+
+      this.count = this.employeereportlist.length;
+    } else {
+      this.GetTrainerReport();
+    }
+  }
+  dummemployeereportlist:any;
+  employeeFilterReportList:any;
+  Course:any;
+  public GetTrainerReport() {
+    debugger;
+    this.LearningService.GetTestResponse().subscribe({
+      next: (data) => {
+        debugger;
+        this.employeereportlist = data.filter((x) => x.userID == this.userid);
+
+        const key = 'coursename';
+        this.uniquelist = [
+          ...new Map(
+            this.employeereportlist.map((item: { [x: string]: any }) => [
+              item[key],
+              item,
+            ])
+          ).values(),
+        ];
+        this.dummyuniqlist = this.uniquelist;
+        this.dummemployeereportlist = data;
+        this.employeeFilterReportList = this.employeereportlist;
+        this.count = this.employeereportlist.length;
+      },
+      error: (err: { error: { message: any } }) => {
+        Swal.fire('Issue in GetTestResponse');
+        // Insert error in Db Here//
+        var obj = {
+          PageName: this.currentUrl,
+          ErrorMessage: err.error.message,
+        };
+        this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+          debugger;
+        });
+      },
+    });
+  }
+  courseList:any;
+  public GetCourseDropdown() {
+    this.LearningService.GetCourseDropdown().subscribe({
+      next: (data) => {
+        debugger;
+        this.courseList = data;
+      },
+      error: (err: { error: { message: any } }) => {
+        Swal.fire('Issue in GetCourseDropdown');
+        // Insert error in Db Here//
+        var obj = {
+          PageName: this.currentUrl,
+          ErrorMessage: err.error.message,
+        };
+        this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+          debugger;
+        });
+      },
+    });
+  }
 
 
+  getCourseID(even: any) {
+    debugger;
+    this.courseID = even.target.value;
+  }
 
+  Courselist:any;
+  public getcourse() {
+    debugger;
+    this.LearningService.GetCourseDropdown().subscribe((data) => {
+      debugger;
+      this.Courselist = data;
+    });
+  }
+
+  TopicList:any
+  public getTopic() {
+    debugger;
+    this.LearningService.GetChapter().subscribe((data) => {
+      debugger;
+      this.TopicList = data;
+    });
+  }
 
 }

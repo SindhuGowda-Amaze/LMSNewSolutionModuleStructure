@@ -7,7 +7,7 @@
             <!-- <img src="{{chapterphoto}}" alt="1st Training Assessment"
                 style="width:100%; height:100px; padding-right:20px;border-radius: 10px;"> <br> <br> -->
 
-            <img style="overflow-y: auto;height:384px;" *ngIf="show==1" class="chapterimage" src="{{chapterphoto}}">
+            <img style="overflow-y: auto;height:284px;" *ngIf="show==1" class="chapterimage" src="{{chapterphoto}}">
             <video controls style="height: 384px; width: 100%;" *ngIf="show==2">
                 <source src="{chapterphoto}}" type="video/mp4">
                 <source src="{{chapterphoto}}" type="video/ogg">
@@ -20,7 +20,7 @@
             <!-- <iframe src="{{chapterphoto}}" style="height: 384px; width: 100%;" *ngIf="show==5"></iframe> -->
             <ngx-doc-viewer *ngIf="show==5" url="{{chapterphoto}}" viewer="google" style="width:100%;height:50vh;">
             </ngx-doc-viewer>
-            <br> <br>
+            
             <label class="label" *ngFor="let details of Attachmentlist">
                 <!-- <img class="icon" style="height:30px;width:30px" *ngIf="details.attachmentType=='video'"
                     src="assets/Images/Video_lcon.png" alt="video_icon" (click)="PreviewVideo(details.photo)"> -->
@@ -55,7 +55,7 @@
             <br>
             <br>
             <div>
-                <p style=" margin-left: 15px;overflow-y: auto; height:100px;color: #0C275A; font-family: Poppins;font-style: normal;
+                <p style=" margin-left: 15px; height:100px;color: #0C275A; font-family: Poppins;font-style: normal;
                 font-weight: normal;font-size: 16px;line-height:17px;" [innerHTML]="chapterdescription"></p>
 
             </div>

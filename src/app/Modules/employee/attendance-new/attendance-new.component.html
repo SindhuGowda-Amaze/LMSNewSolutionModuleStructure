@@ -15,8 +15,32 @@
             <div class="col-lg-1">
                 <p class="filter" style="margin-left: 15px;">Filter By </p>
             </div>
-            <div class="col-lg-5">
+            <div class="col-lg-2">
                 <input type="search" class="form-control search" placeholder="Search" [(ngModel)]="search">
+            </div>
+            <div class="col-lg-2">
+                <select class="form-control"  name="Course" [(ngModel)]="Course" (change)="getcourseid($event)">
+                    <option value="0" >Select Training</option>
+                    <option style="color:#0C275A" *ngFor="let details of courseList" value="{{details.name}}" >{{details.name}}</option>
+                </select>
+            </div>
+            <!-- <div class="col-lg-2">
+                <select class="form-control"     name="courseID" [(ngModel)]="courseID" (change)="getcourseid($event)">
+                    <option value="0">Course Name</option>
+                    <option *ngFor="let details of Courselist" value="{{details.id}}">{{details.name}}</option>
+                </select>
+            </div> -->
+            <div class="col-lg-2">
+                <select class="form-control"     name="courseID" [(ngModel)]="TopicID" (change)="getcourseid($event)">
+                    <option value="0">Topic Name</option>
+                    <option *ngFor="let details of TopicList" value="{{details.id}}">{{details.name}}</option>
+                </select>
+            </div>
+            <div class="col-lg-2">
+                <input type="date" class="form-control" id="Date" name="Date" [(ngModel)]="Date" >
+            </div>
+            <div class="col-lg-2">
+                <input type="date" class="form-control" id="endDate" name="endDate" [(ngModel)]="endDate" (change)="filterbydate()">
             </div>
         </div> <br>
     </div> <br>
@@ -35,7 +59,9 @@
                                     <th>Login Date</th>
                                     <th>Log In Time</th>
                                     <th>Log Out Time</th>
-                                    <th *ngIf="roleid!=2">No of Hrs</th>
+                                    <th>Training Name</th>
+                                    <th>Topic Name</th>
+                                    <th>No of Hrs</th>
                                     <th *ngIf="roleid!=2">Trainee Name</th>
                                 </tr>
                             </thead>
@@ -46,7 +72,9 @@
                                     <td>{{details.loginDate}}</td>
                                     <td>{{details.loginTime}}</td>
                                     <td>{{details.logoutDate}}</td>
-                                    <td *ngIf="roleid!=2">{{details.noofhrs}}</td>
+                                    <td>{{details.training}}</td>
+                                    <td>{{details.topic}}</td>
+                                    <td>{{details.noofhrs}}</td>
                                     <td *ngIf="roleid!=2">{{trainer}}</td>
                                 </tr>
                             </tbody>
