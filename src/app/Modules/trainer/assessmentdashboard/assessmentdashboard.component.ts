@@ -32,12 +32,15 @@ export class AssessmentdashboardComponent implements OnInit {
   questiontype: any;
   dummquestiontype: any;
   assessmentlist: any;
+  TopicID:any;
 
   ngOnInit(): void {
     this.currentUrl = window.location.href;
+    this.TopicID="0"
     this.GetAssessmentResult();
     this.GetAssessments();
     this.GetCourse();
+    this.getTopic();
     this.GetTestResponse();
     this.GetQuestionMaster();
     this.question1 = 0;
@@ -315,4 +318,14 @@ export class AssessmentdashboardComponent implements OnInit {
       });
     }
   }
+
+  TopicList:any
+  public getTopic() {
+    debugger;
+    this.LearningService.GetChapter().subscribe((data) => {
+      debugger;
+      this.TopicList = data;
+    });
+  }
+
 }

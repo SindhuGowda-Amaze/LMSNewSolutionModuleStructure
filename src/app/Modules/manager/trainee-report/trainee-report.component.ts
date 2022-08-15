@@ -25,6 +25,7 @@ export class TraineeReportComponent implements OnInit {
   roleid: any;
   date: any;
   currentUrl: any;
+  Date: any;
   constructor(
     private LearningService: LearningService,
     private ActivatedRoute: ActivatedRoute
@@ -131,4 +132,27 @@ export class TraineeReportComponent implements OnInit {
       this.GetTrainerReport();
     }
   }
+  
+  endDate: any;
+  uniquelist: any;
+  filterbydate() {
+    this.LearningService.GetTestResponse().subscribe({
+      next: (data) => {
+        this.uniquelist = data.filter(
+          (x) => x.startDate >= this.Date && x.endDate <= this.endDate
+        );
+
+        const key = 'coursename';
+        this.uniquelist = [
+          ...new Map(
+            this.uniquelist.map((item: { [x: string]: any }) => [
+              item[key],
+              item,
+            ])
+          ).values(),
+        ];
+      },
+    });
+  }
+
 }

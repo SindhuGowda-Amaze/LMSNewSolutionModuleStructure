@@ -23,9 +23,14 @@
                 <input type="search" class="form-control search" placeholder="Search for Name.." [(ngModel)]="search"
                     name="search">
             </div>
-            <div class="col-lg-2">
+            <!-- <div class="col-lg-2">
                 <input type="date" class="form-control" name="date" id="date" [(ngModel)]="date">
-                <!-- <p *ngIf="date!=(employeereportlist.length)">Data not found</p> -->
+            </div> -->
+            <div class="col-lg-2">
+                <input type="date" class="form-control" id="Date" name="Date" [(ngModel)]="Date" >
+            </div>
+            <div class="col-lg-2">
+                <input type="date" class="form-control" id="endDate" name="endDate" [(ngModel)]="endDate" (change)="filterbydate()">
             </div>
         </div><br>
     </div>
