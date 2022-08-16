@@ -1,0 +1,60 @@
+<div class="card"><br>
+    <div class="row FilterClass">
+        <div class="col-lg-1">
+            <p class="filter">Filter By</p>
+        </div>
+        <div class="col-lg-3">
+            <input class="form-control" placeholder="Search" [(ngModel)]="search">
+        </div>
+        <div class="col-lg-3">
+            <select class="form-control" id="Duration" (change)="getemployeeid($event)">
+                <option value="0">Select Employee</option>
+                <option *ngFor="let details of uniquelist" value="{{details.employeeName}}">{{details.employeeName}}
+                </option>
+            </select>
+        </div>
+        <!-- <div class="col-lg-3"></div>
+        <div class="col-lg-2">
+            <p class="count">Count :{{count}}</p>
+        </div> -->
+    </div> <br>
+</div><br>
+
+
+
+<div class="row head">
+    <div class="col-lg-12">
+        <table class="table" *ngIf="(result | filter: search).length > 0; else noResults">
+            <thead>
+                <tr>
+                    <th>Employee Name</th>
+                    <th>Phone No</th>
+                    <th>Email</th>
+                    <th>Training Name</th>
+                    <th>Request sent date</th>
+                    <th>Action</th>
+                </tr>
+                <tr *ngFor="let details of result | filter : search">
+                    <td>{{details.employeeName}}</td>
+                    <td>{{details.phoneNo}}</td>
+                    <td>{{details.email}}</td>
+                    <td>{{details.name}}</td>
+                    <td>{{details.modifiedDate|date}}</td>
+                    <td>
+                        <p *ngIf="details.status=='Manager Approved'||details.status=='Manager Rejected'">
+                            {{details.status}}</p>
+                        <button *ngIf="details.status=='Manager Pending'" class="btn btn-primary addbtn"
+                            data-toggle="modal" data-target="#exampleModal"
+                            (click)="getid(details.id)">Approve</button> <br><br>
+                        <button *ngIf="details.status=='Manager Pending'" class="btn btn-primary"
+                            style="background-color:#dc3545; border:none; width:92%;" (click)="getid(details.id)"
+                            data-toggle="modal" data-target="#Reject">Reject</button>
+                    </td>
+                </tr>
+            </thead>
+        </table>
+        <ng-template #noResults>
+            <p class="NoResultShow">No results found </p>
+        </ng-template>
+    </div>
+</div>
