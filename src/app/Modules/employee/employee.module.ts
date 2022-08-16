@@ -19,6 +19,7 @@ import { ChatComponent } from './chat/chat.component';
 import { ViewGroupComponent } from './view-group/view-group.component';
 import { LearningDashboardComponent } from './learning-dashboard/learning-dashboard.component';
 import { CKEditorModule } from 'ckeditor4-angular';
+import { EnrolledTrainingComponent } from './enrolled-training/enrolled-training.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { CKEditorModule } from 'ckeditor4-angular';
     LearningPathDashboardComponent,
     ChatComponent,
     ViewGroupComponent,
-    LearningDashboardComponent
+    LearningDashboardComponent,
+    EnrolledTrainingComponent
   ],
   imports: [
     CommonModule,
