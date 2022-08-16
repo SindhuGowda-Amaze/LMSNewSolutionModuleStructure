@@ -17,6 +17,7 @@ import { SubmitedtestsComponent } from './submitedtests/submitedtests.component'
 import { LearningPathDashboardComponent } from './learning-path-dashboard/learning-path-dashboard.component';
 import { ChatComponent } from './chat/chat.component';
 import { ViewGroupComponent } from './view-group/view-group.component';
+import { LearningDashboardComponent } from './learning-dashboard/learning-dashboard.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { ViewGroupComponent } from './view-group/view-group.component';
     SubmitedtestsComponent,
     LearningPathDashboardComponent,
     ChatComponent,
-    ViewGroupComponent
+    ViewGroupComponent,
+    LearningDashboardComponent
   ],
   imports: [
     CommonModule,
