@@ -18,6 +18,7 @@ import { LearningPathDashboardComponent } from './learning-path-dashboard/learni
 import { ChatComponent } from './chat/chat.component';
 import { ViewGroupComponent } from './view-group/view-group.component';
 import { LearningDashboardComponent } from './learning-dashboard/learning-dashboard.component';
+import { CKEditorModule } from 'ckeditor4-angular';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { LearningDashboardComponent } from './learning-dashboard/learning-dashbo
   imports: [
     CommonModule,
     EmployeeRoutingModule,
-    SharedModule
+    SharedModule,
+    CKEditorModule
   ]
 })
 export class EmployeeModule { }

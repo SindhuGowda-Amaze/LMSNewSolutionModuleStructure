@@ -38,20 +38,24 @@
                     <thead>
                         <tr>
                             
-                            <th>Employee ID</th>
-                            <th>Employee Name</th>
-                            <th >Month</th>
+                            <th *ngIf="roleid==3" >Employee ID</th>
+                            <th *ngIf="roleid==3">Employee Name</th>
                             <th *ngIf="roleid==2">Training Name</th>
+                            <th >Month</th>
+                            <th >Year</th>
+                           
                            
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let details of assignList|filter:search">
                             
-                            <td style="font-size: 15px;">{{details.staffID}}</td>
-                            <td style="font-size: 15px;">{{details.employeeName}}</td>
-                            <td style="font-size: 15px;">{{details.monthName}}</td>
+                            <td  *ngIf="roleid==3" style="font-size: 15px;">{{details.staffID}}</td>
+                            <td  *ngIf="roleid==3" style="font-size: 15px;">{{details.employeeName}}</td>
                             <td *ngIf="roleid==2"style="font-size: 15px;">{{details.name}}</td>
+
+                            <td style="font-size: 15px;">{{details.monthName}}</td>
+                            <td style="font-size: 15px;">2022</td>
                             <!-- <td style="font-size: 15px;">{{details.trainer}}</td> -->
                             <!-- <td style="font-size: 15px;">{{details.position}}</td>
                             <td style="font-size: 15px;">{{details.band}}</td>
