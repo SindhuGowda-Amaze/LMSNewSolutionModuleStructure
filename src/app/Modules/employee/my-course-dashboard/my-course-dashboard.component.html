@@ -247,6 +247,7 @@
                             <div class="col-lg-6" >
                                 <p style="font-size: 13px;">End Date </p>
                                 <p>{{details.endDate}}</p>
+                              
                             </div>                        
                         </div>   <br><br>                
                         <div class="row">
@@ -257,7 +258,7 @@
                         <div class="row" style="text-align: center;margin-top: 0px;">
                             <div class="col-lg-12">
                                 <button class="edit" [routerLink]="['/Employee/StartMyCourseNew',details.id]"
-                                    *ngIf="details.enrollid!=0&&details.notStarted==0" (click)="getenrollid(details.enrollid)">Start
+                                    *ngIf="details.enrollid!=0&&details.notStarted==0 && !details.completed " (click)="getenrollid(details.enrollid)">Start
                                     Training</button>    
                                     <button class="edit" [routerLink]="['/Employee/StartMyCourseNew',details.id]"
                                     *ngIf="details.enrollid!=0&&details.notStarted==1&&details.completed==0" (click)="getenrollid(details.enrollid)">Open
@@ -273,6 +274,7 @@
                                     Completed</button> -->
                             </div>
                         </div>
+                        <!-- <p>{{details.id}}</p> -->
                     </div>
                 </div><br><br>
         </div>

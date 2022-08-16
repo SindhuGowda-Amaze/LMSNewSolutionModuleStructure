@@ -56,14 +56,16 @@
                                 <span style="color:#3247D5" (click)="view(details.description)" data-toggle="modal"
                                     data-target="#exampleModal3">...View more</span>
                             </td>
-                            <td><img src="{{details.chapterPhoto}}" data-toggle="modal" data-target="#exampleModal2"
-                                    (click)="Showimage(details.chapterPhoto)" style="width:100px">
-                            </td>
+                            <td><img src="{{details.chapterPhoto}}" data-toggle="modal" data-target="#exampleModal2" 
+                                    (click)="Showimage(details.chapterPhoto)" style="width:100px">        
+                                </td>
                             <td>
-                                <p *ngIf="details.photo==null && details.photo=='' ">No Attachment</p>
+                
                                 <img class="pdfimg" src="assets/Images/image.png" style="width: 20px;"
                                     data-toggle="modal" data-target="#exampleModal"
-                                    (click)="ShowAttachments(details.id)">
+                                    (click)="ShowAttachments(details.id)" *ngIf="details.photoExist == '1'">
+
+                                    <label *ngIf="details.photoExist == '0'">No Attachments</label>
                             </td>
                                  
 
