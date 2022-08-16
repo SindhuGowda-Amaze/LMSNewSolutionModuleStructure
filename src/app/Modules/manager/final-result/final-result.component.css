@@ -7,3 +7,15 @@
       border-radius: 5px;
       border:none;
   }
+
+  Button{
+
+    background-color:#0957e9;
+    color: whitesmoke;
+    width:60px;
+    border-radius: 5px;
+    border-width:0px;
+
+
+
+  }
