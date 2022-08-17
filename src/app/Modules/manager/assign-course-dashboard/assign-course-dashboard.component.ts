@@ -90,7 +90,7 @@ export class AssignCourseDashboardComponent implements OnInit {
 
   edit(ID: any) {
     debugger;
-    location.href = '#/AssignCourseToEmployee/' + ID;
+    location.href = '#/Manager/AssignCourseToEmployee/' + ID;
   }
 
   public filterAssignTraining() {

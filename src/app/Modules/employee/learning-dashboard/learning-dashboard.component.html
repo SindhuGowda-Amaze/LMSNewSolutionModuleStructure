@@ -42,6 +42,7 @@
                             <th *ngIf="roleid==3" >Employee ID</th>
                             <th *ngIf="roleid==3">Employee Name</th>
                             <th *ngIf="roleid==2">Training Name</th>
+                            <th>Training Name</th>
                             <th >Month</th>
                             <th >Year</th>
                            
@@ -54,25 +55,9 @@
                             <td  *ngIf="roleid==3" style="font-size: 15px;">{{details.staffID}}</td>
                             <td  *ngIf="roleid==3" style="font-size: 15px;">{{details.employeeName}}</td>
                             <td *ngIf="roleid==2"style="font-size: 15px;">{{details.name}}</td>
-
+                            <td style="font-size: 15px;">{{details.courseName}}</td>
                             <td style="font-size: 15px;">{{details.monthName}}</td>
-                            <td style="font-size: 15px;">2022</td>
-                            <!-- <td style="font-size: 15px;">{{details.trainer}}</td> -->
-                            <!-- <td style="font-size: 15px;">{{details.position}}</td>
-                            <td style="font-size: 15px;">{{details.band}}</td>
-                            <td style="font-size: 15px;">{{details.level}}</td> -->
-                            <!-- <td style="font-size: 15px;">Developers</td>
-                            <td style="font-size: 15px;">Staff</td>
-                            <td style="font-size: 15px;">A1</td>
-                            <td style="width: 20%;">
-                               -->
-
-                                <!-- <img src="assets/Images/Edit_ICON.png" alt="Edit_ICON" style="width: 10%;"
-                                (click)="edit(details.id)" > &nbsp;&nbsp; -->
-
-                                <!-- <img src="assets/Images/Delete_ICON.png" alt="Delete_ICON"
-                                    (click)="Ondelete(details.id)" style="width: 10%;">
-                            </td> -->
+                            <td style="font-size: 15px;">{{details.yearName}}</td>
                         </tr>
                     </tbody>
                 </table>
