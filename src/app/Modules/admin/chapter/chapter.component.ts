@@ -265,7 +265,7 @@ export class ChapterComponent implements OnInit {
           this.chapterID = data;
           this.insertAttchmentFiles();
           Swal.fire('Saved Successfully');
-          location.href = '#/ChapterDashboard';
+          location.href = '#/Admin/ChapterDashboard';
         },
         error: (err: { error: { message: any } }) => {
           Swal.fire('Issue in InsertChapter');
