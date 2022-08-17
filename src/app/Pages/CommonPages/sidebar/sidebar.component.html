@@ -152,7 +152,8 @@
 
 
 
-        <a *ngIf="roleid==2 || roleid==3" routerLink="Employee/MyCourseDashboard" class="tablinks" (click)="MyCourse()">
+        <a *ngIf="roleid==2 || roleid==3" [routerLink]="['/Employee/MyCourseDashboard',userid]" class="tablinks" (click)="MyCourse()">
+        <!-- routerLink="Employee/MyCourseDashboard/:userid" class="tablinks" (click)="MyCourse()"> -->
             <!-- <img src="assets/Images/online-course.png" style="width:13% ;margin-right: 17px;"
             [ngClass]="active == 'mycourse1' ? 'Active1' : 'Active2'" />
            <img [ngClass]="active != 'mycourse1' ? 'Active1' : 'Active2'" src="assets/Images/New folder/online-course1.png

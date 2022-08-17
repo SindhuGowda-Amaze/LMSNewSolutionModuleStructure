@@ -1,14 +1,4 @@
 <div class="container-fluid">
-    <!-- <div class="row">
-        <div class="col-lg-12">
-            <div class="row">
-                <div class="col-lg-12">
-                    <p class="Heading">Manager Dashboard</p>
-                    <p class="Heading" style="font-size: 14px;">Training Enrollment Requests:</p>
-                </div>
-            </div> <br>
-        </div>
-    </div> -->
 
     <div class="row">
         <div class="col-lg-10">
@@ -77,7 +67,7 @@
                         <td>{{details.name}}</td>
                         <td>{{details.modifiedDate|date}}</td>
                         <td>
-                            <p *ngIf="details.status=='Manager Approved'||details.status=='Manager Rejected'">
+                            <p *ngIf="details.status=='Manager Approved' || details.status=='Manager Rejected'">
                                 {{details.status}}</p>
                             <button *ngIf="details.status=='Manager Pending'" class="btn btn-primary addbtn"
                                 data-toggle="modal" data-target="#exampleModal"

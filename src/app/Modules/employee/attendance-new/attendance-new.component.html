@@ -68,13 +68,13 @@
                                     <!-- <th>Topic Name</th> -->
                                     <th>Log Out Time</th>
                                     <!-- <th>No of Hrs</th> -->
-                                    <th *ngIf="roleid!=2">Trainee Name</th>
+                                    <th *ngIf="roleid!=2 && roleid!=4">Trainee Name</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let details of Attendance | filter: search">
                                     <td *ngIf="roleid!=2">{{details.empID}}</td>
-                                    <td *ngIf="roleid!=2">{{details.name}}</td>
+                                    <td *ngIf="roleid!=2">{{details.employeename}}</td>
                                     <td>{{details.loginDate}}</td>
                                     <td>{{details.loginTime}}</td>
                                   
@@ -82,7 +82,7 @@
                                     <!-- <td>{{details.topicName}}</td> -->
                                     <td>{{details.logoutDate}}</td>
                                     <!-- <td>{{details.noofhrs}}</td> -->
-                                    <td *ngIf="roleid!=2">{{details.trainerName}}</td>
+                                    <td *ngIf="roleid!=2 && roleid!=4">{{details.trainerName}}</td>
                                 </tr>
                             </tbody>
                         </table>

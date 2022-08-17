@@ -13,12 +13,14 @@ export class SidebarComponent implements OnInit {
   UserName: any;
   company_name: any;
   role: any;
-
-
+  userid:any;
+  loginid:any;
   temp: any;
   show: any;
   ngOnInit(): void {
     this.temp = sessionStorage.getItem('temp')
+    this.loginid = sessionStorage.getItem('loginid');
+    this.userid = sessionStorage.getItem('userid');
     this.roleid = sessionStorage.getItem('roleid');
     this.company_name = sessionStorage.getItem("company_name");
     this.UserName = sessionStorage.getItem('UserName');
@@ -59,7 +61,7 @@ export class SidebarComponent implements OnInit {
 
   setup() {
     this.active = 'setup'
-    sessionStorage.setItem("clickname", "SETUP")
+    sessionStorage.setItem("clickname", "CONTENT")
   }
   report() {
     this.active = 'report'
@@ -114,7 +116,7 @@ export class SidebarComponent implements OnInit {
   }
   myassessmentreport() {
     this.active = 'myassessmentreport';
-    sessionStorage.setItem("clickname", "MY ASSESSMENT REPORT")
+    sessionStorage.setItem("clickname", "MY ASSESSMENT")
   }
   attendence() {
     this.active = 'MyATTENDANCE';
@@ -123,7 +125,7 @@ export class SidebarComponent implements OnInit {
 
   mytraininghrsreport() {
     this.active = 'mytraininghrsreport';
-    sessionStorage.setItem("clickname", "MY TRAINING HOURS REPORT")
+    sessionStorage.setItem("clickname", "TRAINING HOURS")
   }
 
   catalog() {
@@ -181,11 +183,12 @@ export class SidebarComponent implements OnInit {
     sessionStorage.setItem("clickname", "support tickets")
   }
 
-  chat: any
+  // chat: any
   public Chat() {
     debugger
     this.active = 22;
-    localStorage.setItem('Pagename', 'Chat ')
+    // localStorage.setItem('clickname', 'CHAT')
+    sessionStorage.setItem("clickname", "CHAT")
     this.router.navigate(['/Employee/ViewGroup']);
 
   }
