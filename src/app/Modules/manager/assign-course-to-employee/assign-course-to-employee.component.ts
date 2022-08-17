@@ -146,7 +146,7 @@ export class AssignCourseToEmployeeComponent implements OnInit {
         debugger;
         let id = data;
         Swal.fire('Course Assigned Successfully!!!');
-        location.href = '#/AssignCourseDashboard';
+        location.href = '/Manager/AssignCourseDashboard';
       });
     }
   }
