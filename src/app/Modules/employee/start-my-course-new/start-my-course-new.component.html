@@ -2,57 +2,91 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-9">
-            <p style="font-size: 19px;
+            <div class="row">
+                <div class="col-lg-7">
+                    <p style="font-size: 19px;
                     color: #3247D5; font-weight: bold;"><u>{{coursename}}</u></p>
-            <!-- <img src="{{chapterphoto}}" alt="1st Training Assessment"
+                    <!-- <img src="{{chapterphoto}}" alt="1st Training Assessment"
                 style="width:100%; height:100px; padding-right:20px;border-radius: 10px;"> <br> <br> -->
 
-            <img style="overflow-y: auto;height:284px;" *ngIf="show==1" class="chapterimage" src="{{chapterphoto}}">
-            <video controls style="height: 384px; width: 100%;" *ngIf="show==2">
-                <source src="{chapterphoto}}" type="video/mp4">
-                <source src="{{chapterphoto}}" type="video/ogg">
-                Your browser does not support the video tag.
-            </video>
+                    <img style="overflow-y: auto;height:250px;" *ngIf="show==1" class="chapterimage"
+                        src="{{chapterphoto}}">
+                    <video controls style="height: 384px; width: auto;" *ngIf="show==2">
+                        <source src="{chapterphoto}}" type="video/mp4">
+                        <source src="{{chapterphoto}}" type="video/ogg">
+                        Your browser does not support the video tag.
+                    </video>
 
-            <!-- <pdf-viewer src="{{chapterphoto}}" *ngIf="show==3||show==4"  style="height: 300px; width: 100%;" [render-text]="true" [original-size]="false"></pdf-viewer> -->
-            <iframe [src]="chapterphoto" style="height: 384px; width: 100%;" *ngIf="show==3||show==4"></iframe>
+                    <!-- <pdf-viewer src="{{chapterphoto}}" *ngIf="show==3||show==4"  style="height: 300px; width: 100%;" [render-text]="true" [original-size]="false"></pdf-viewer> -->
+                    <iframe [src]="chapterphoto" style="height: 384px; width: 100%;" *ngIf="show==3||show==4"></iframe>
 
-            <!-- <iframe src="{{chapterphoto}}" style="height: 384px; width: 100%;" *ngIf="show==5"></iframe> -->
-            <ngx-doc-viewer *ngIf="show==5" url="{{chapterphoto}}" viewer="google" style="width:100%;height:50vh;">
-            </ngx-doc-viewer>
-            
-            <label class="label" *ngFor="let details of Attachmentlist">
-                <!-- <img class="icon" style="height:30px;width:30px" *ngIf="details.attachmentType=='video'"
-                    src="assets/Images/Video_lcon.png" alt="video_icon" (click)="PreviewVideo(details.photo)"> -->
-                <!-- 
-                <img class="icon" style="height:30px;width:30px" *ngIf="details.attachmentType=='Pdf'"
-                    src="assets/pdf.jpg" alt="video_icon" (click)="PreviewPdf(details.photo)">
+                    <!-- <iframe src="{{chapterphoto}}" style="height: 384px; width: 100%;" *ngIf="show==5"></iframe> -->
+                    <ngx-doc-viewer *ngIf="show==5" url="{{chapterphoto}}" viewer="google"
+                        style="width:100%;height:50vh;">
+                    </ngx-doc-viewer>
 
-                <img class="icon" style="height:30px;width:30px" *ngIf="details.attachmentType=='Image'"
-                    src="assets/Images/image.png" alt="video_icon" (click)="PreviewIMG(details.photo)">
+                </div>
+                <div class="col-lg-5">
 
-                <img class="icon" style="height:30px;width:30px" *ngIf="details.attachmentType=='Ppt'"
-                    src="assets/Images/files.png" alt="video_icon" (click)="PreviewPPT(details.photo)">
+                    <!-- <img class="icon" style="height:30px;width:30px" *ngIf="details.attachmentType=='video'"
+                            src="assets/Images/Video_lcon.png" alt="video_icon" (click)="PreviewVideo(details.photo)"> -->
+                    <!-- 
+                        <img class="icon" style="height:30px;width:30px" *ngIf="details.attachmentType=='Pdf'"
+                            src="assets/pdf.jpg" alt="video_icon" (click)="PreviewPdf(details.photo)">
+        
+                        <img class="icon" style="height:30px;width:30px" *ngIf="details.attachmentType=='Image'"
+                            src="assets/Images/image.png" alt="video_icon" (click)="PreviewIMG(details.photo)">
+        
+                        <img class="icon" style="height:30px;width:30px" *ngIf="details.attachmentType=='Ppt'"
+                            src="assets/Images/files.png" alt="video_icon" (click)="PreviewPPT(details.photo)">
+        
+                        <img class="icon" style="height:30px;width:30px" *ngIf="details.attachmentType=='Document'"
+                            src="assets/Images/word.png" alt="video_icon" (click)="PreviewMSword(details.photo)"> -->
 
-                <img class="icon" style="height:30px;width:30px" *ngIf="details.attachmentType=='Document'"
-                    src="assets/Images/word.png" alt="video_icon" (click)="PreviewMSword(details.photo)"> -->
+                    <table *ngFor="let details of Attachmentlist">
+                        <tr>
+                            <td>
+                                <img class="icon" style="height:30px;width:30px" data-toggle="tooltip"
+                                    data-placement="top" title="{{details.cuttingurl}}"
+                                    *ngIf="details.attachmentType=='video'" src="assets/Images/Video_lcon.png"
+                                    alt="video_icon" (click)="PreviewVideo(details.photo)">
+                                <span *ngIf="details.attachmentType=='video'">{{details.cuttingurl}}</span>
 
-                <img class="icon" style="height:30px;width:30px" data-toggle="tooltip" data-placement="top" title="{{details.cuttingurl}}" *ngIf="details.attachmentType=='video'"
-                    src="assets/Images/Video_lcon.png" alt="video_icon" (click)="PreviewVideo(details.photo)" >
-                    <!-- <p>{{details.cuttingurl}}</p> -->
-                    
-                <!-- <img class="icon" style="height:30px;width:30px" *ngIf="details.attachmentType=='Pdf'"
-                    src="assets/pdf.jpg" alt="video_icon" (click)="PreviewPdf(details.photo)"> -->
+                                <!-- <img class="icon" style="height:30px;width:30px" *ngIf="details.attachmentType=='Pdf'"
+                            src="assets/pdf.jpg" alt="video_icon" (click)="PreviewPdf(details.photo)"> -->
 
-                <img class="icon" style="height:30px;width:30px" data-toggle="tooltip" data-placement="top" title="{{details.cuttingurl}}" *ngIf="details.attachmentType=='Image'"
-                    src="assets/Images/image.png" alt="video_icon" (click)="PreviewIMG(details.photo)">
+                                <img class="icon" style="height:30px;width:30px" data-toggle="tooltip"
+                                    data-placement="top" title="{{details.cuttingurl}}"
+                                    *ngIf="details.attachmentType=='Image'" src="assets/Images/image.png"
+                                    alt="video_icon" (click)="PreviewIMG(details.photo)">
+                                <p *ngIf="details.attachmentType=='Image'">{{details.cuttingurl}}</p>
 
-                <img class="icon" style="height:30px;width:30px" data-toggle="tooltip" data-placement="top" title="{{details.cuttingurl}}" *ngIf="details.attachmentType=='Ppt'"
-                    src="assets/Images/files.png" alt="video_icon" (click)="PreviewPPT(details.photo)">
+                                <img class="icon" style="height:30px;width:30px" data-toggle="tooltip"
+                                    data-placement="top" title="{{details.cuttingurl}}"
+                                    *ngIf="details.attachmentType=='Ppt'" src="assets/Images/files.png" alt="video_icon"
+                                    (click)="PreviewPPT(details.photo)">
+                                <p *ngIf="details.attachmentType=='Ppt'">{{details.cuttingurl}}</p>
 
-                <img class="icon" style="height:30px;width:30px" data-toggle="tooltip" data-placement="top" title="{{details.cuttingurl}}"  *ngIf="details.attachmentType=='Document'"
-                    src="assets/Images/word.png" alt="video_icon" (click)="PreviewMSword(details.photo)">
-            </label>
+                                <img class="icon" style="height:30px;width:30px" data-toggle="tooltip"
+                                    data-placement="top" title="{{details.cuttingurl}}"
+                                    *ngIf="details.attachmentType=='Document'" src="assets/Images/word.png"
+                                    alt="video_icon" (click)="PreviewMSword(details.photo)">
+                                <p *ngIf="details.attachmentType=='Document'">{{details.cuttingurl}}</p>
+                            </td>
+                        </tr>
+
+                    </table>
+
+
+
+
+
+
+
+                </div>
+            </div>
+
+
             <br>
             <br>
             <div>
@@ -83,12 +117,15 @@
                         color: blue;" *ngIf="details.obtainedMarks!=null">{{details.obtainedMarks/details.totalmarks
                             *100 | number : '1.2-2'}} %</label><br>
                         <button class="btn btn-sm btn-primary newbutton" *ngIf="details.teststatus=='nottaken'"
-                            [routerLink]="['/Employee/TakeAssessment',details.courseID,details.id,0]" id="id" name="id"> Take
+                            [routerLink]="['/Employee/TakeAssessment',details.courseID,details.id,0]" id="id" name="id">
+                            Take
                             Assessment</button>
-                            <button class="btn btn-sm btn-danger newbutton" *ngIf="details.teststatus=='Subjective Result Pending'"
-                             id="id" name="id"> Pending Result</button>
+                        <button class="btn btn-sm btn-danger newbutton"
+                            *ngIf="details.teststatus=='Subjective Result Pending'" id="id" name="id"> Pending
+                            Result</button>
                         <button class="btn btn-sm btn-danger newbutton1" *ngIf="details.teststatus=='Failed'"
-                            [routerLink]="['/Employee/TakeAssessment',details.courseID,details.id,1]" id="id" name="id">&#10006;
+                            [routerLink]="['/Employee/TakeAssessment',details.courseID,details.id,1]" id="id"
+                            name="id">&#10006;
                             Retake
                             Assessment</button>
                         <button class="btn btn-sm btn-success newbutton" *ngIf="details.teststatus=='Passed'" id="id"
