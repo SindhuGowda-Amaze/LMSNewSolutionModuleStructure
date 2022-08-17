@@ -7,7 +7,7 @@ import { HelpComponent } from './help/help.component';
 import { LoaderComponent } from './loader/loader.component';
 import { SupportTicketsDashComponent } from './support-tickets-dash/support-tickets-dash.component';
 import { SupportTicketsFormComponent } from './support-tickets-form/support-tickets-form.component';
-
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 
 import { NgWizardConfig, NgWizardModule, THEME } from 'ng-wizard';
@@ -49,7 +49,7 @@ const ngWizardConfig: NgWizardConfig = {
     NgWizardModule.forRoot(ngWizardConfig),
     NgxDropzoneModule,
     NgxDocViewerModule,
-
+    NgMultiSelectDropDownModule.forRoot(),
 
   ],
   exports: [
@@ -59,7 +59,7 @@ const ngWizardConfig: NgWizardConfig = {
     NgWizardModule,
     NgxDropzoneModule,
     NgxDocViewerModule,
-
+    NgMultiSelectDropDownModule,
   ]
 })
 export class SharedModule { }

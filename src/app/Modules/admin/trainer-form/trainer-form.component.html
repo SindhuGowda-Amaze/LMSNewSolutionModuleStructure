@@ -25,7 +25,13 @@
         </div>
         <div class="row leavereq">
             <div class="col-lg-2">
-                <input class="form-control inputfield" placeholder="Trainer Name" [(ngModel)]="TrainerName">
+                <ng-multiselect-dropdown  style="height: 30px;" [placeholder]="'Select Trainer'" [settings]="dropdownSettings"
+                [data]="Trainerlist" [(ngModel)]="TrainerName" (onSelect)="onItemSelect($event)"
+                class="fonttxt">
+            </ng-multiselect-dropdown>
+
+
+                <!-- <input class="form-control inputfield" placeholder="Trainer Name" [(ngModel)]="TrainerName"> -->
             </div>
             <div class="col-lg-2">
                 <input class="form-control inputfield" placeholder="Phone Number" [(ngModel)]="PhoneNumber" onkeypress="return /[0-9]/i.test(event.key)"
