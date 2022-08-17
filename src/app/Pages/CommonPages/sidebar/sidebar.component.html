@@ -207,7 +207,7 @@
 
         </a>
 
-        <a data-toggle="collapse" class="togglebtn button" data-target="#report" class="tablinks"
+        <a data-toggle="collapse" *ngIf="roleid!=1" class="togglebtn button" data-target="#report" class="tablinks"
         (click)="highlight($event)" (click)="report()">
 
         <img src="assets/Images/people.png" style="width:13% ;margin-right: 17px;"
