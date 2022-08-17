@@ -255,11 +255,11 @@ export class LoginComponent implements OnInit {
       'LoginDate': new Date()
     }
     await this.LearningService.InsertAttendance_New(entity).subscribe(
-      (datay: any) => {
+      (data: any) => {
         debugger
-        if (datay != 0) {
+        if (data!= 0) {
           debugger
-          sessionStorage.setItem('loginid', datay);
+          sessionStorage.setItem('loginid', data);
 
           this.router.navigate(['/Admin/Dashboard']).then(() => {
             location.reload();

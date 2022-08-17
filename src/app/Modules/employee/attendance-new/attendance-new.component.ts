@@ -48,15 +48,17 @@ this.getTopic();
   public GetAttendance_New() {
     debugger
     this.LearningService.GetAttendance_New()
-    
     .subscribe({
       next: data => {
         debugger
         if(this.roleid==4){
           this.Attendance = data.filter(x => x.trainerID == this.userid);
         }
-        else{
+        else if(this.roleid==3){
           this.Attendance = data.filter(x => x.supervisor == this.userid);
+        }
+        else{
+          this.Attendance = data.filter(x=>x.empID==this.userid)
         }
       },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetAttendance_New');

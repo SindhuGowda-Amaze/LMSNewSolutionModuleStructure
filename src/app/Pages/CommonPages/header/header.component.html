@@ -6,9 +6,7 @@
         <div class="col-lg-3" style="display: flex;
         align-items: center;
         flex-wrap: nowrap;
-        justify-content: start;margin-right: 85px 
-px
-;">
+        justify-content: start;margin-right: 85px px;">
             <div class="time">
                 <p class="time1">{{hh}}</p>
             </div>
@@ -26,8 +24,6 @@ px
         /* align-content: stretch; */
         justify-content: flex-end;">
             <div class="d-flex align-items-center" style="margin-right:10px">
-               
-
                 <div class="d-flex align-items-center" style="margin-right:10px">
                     <a data-toggle="dropdown">
                         <img src="assets/Images/notification.png" style="width: 30px;margin-right: 16px;">
@@ -46,7 +42,6 @@ px
                         <button style="margin-left: 235px;" (click)="ClearNotification()" type="button"
                             class="btn-sm btn-danger ">Clear
                             All</button>
-
                         <div class="container-fluid contain" style="font-family: 'Poppins';">
                             <!-- <h6>No Notification Today !</h6> -->
                             <div class="row" *ngFor="let item of notificationslist">
@@ -56,25 +51,16 @@ px
                                 </div>
                                 <div class="col-lg-8">
                                     <h6>{{item.message}}</h6>
-
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-lg-12" style="overflow: auto;">
-
-
-
                                 </div>
                             </div>
-
                             <li class="divider"></li>
                         </div>
-                    </ul>
-                  
-
-                   
-
+                    </ul>             
                 </div>
 
                 <div class="profile-block">
@@ -85,12 +71,10 @@ px
                     <span *ngIf="login==8" class="initial ng-star-inserted">F</span>
                     <span *ngIf="login==9" class="initial ng-star-inserted">H</span> -->
                         <!---->
-
                     </div>
                     <span class="mdi mdi-chevron-down"></span>
                 </div>
                 <p class="welcomename">{{UserName}} &nbsp;</p>
-
                 <div>
                     <a data-toggle="dropdown">
                         <i class="fa fa-caret-down" style="color:white;margin-left: 5px;"></i>
@@ -104,27 +88,20 @@ px
                                    
                                     <i class="fa fa-user link" aria-hidden="true"
                                         style="margin-top:5px;color: #3247D5; font-size: 20px;"></i>
-                                        <br>
-                                 
-                                  
+                                        <br>                                                           
                                     <i class="fa fa-power-off link" aria-hidden="true"
                                         style="margin-top:7px;color: #3247D5; font-size: 20px;"></i>
                                 </div>
-                                <div class="col-lg-10">
-                                  
+                                <div class="col-lg-10">                        
                                     <!-- <h6 class="link1">Quick Links</h6> -->
-                                    <h6 class="link1" (click)="accountsetting()" style="margin-top: 4px;">My Account Settings</h6>
-                               
+                                    <h6 class="link1" (click)="accountsetting()" style="margin-top: 4px;">My Account Settings</h6>                           
                                     <h6 (click)="logout()" class="link1" style="margin-top: 8px;">Logout</h6>
                                 </div>
-
                             </div>
-
                             <div class="row">
                                 <div class="col-lg-12" style="overflow: auto;">
                                 </div>
                             </div>
-
                             <li class="divider"></li>
                         </div>
                     </ul>
@@ -132,5 +109,4 @@ px
             </div>
         </div>
     </div>
-
 </div>
