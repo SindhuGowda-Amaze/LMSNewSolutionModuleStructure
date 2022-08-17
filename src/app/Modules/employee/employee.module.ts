@@ -17,6 +17,9 @@ import { SubmitedtestsComponent } from './submitedtests/submitedtests.component'
 import { LearningPathDashboardComponent } from './learning-path-dashboard/learning-path-dashboard.component';
 import { ChatComponent } from './chat/chat.component';
 import { ViewGroupComponent } from './view-group/view-group.component';
+import { LearningDashboardComponent } from './learning-dashboard/learning-dashboard.component';
+import { CKEditorModule } from 'ckeditor4-angular';
+import { EnrolledTrainingComponent } from './enrolled-training/enrolled-training.component';
 
 
 @NgModule({
@@ -34,12 +37,15 @@ import { ViewGroupComponent } from './view-group/view-group.component';
     SubmitedtestsComponent,
     LearningPathDashboardComponent,
     ChatComponent,
-    ViewGroupComponent
+    ViewGroupComponent,
+    LearningDashboardComponent,
+    EnrolledTrainingComponent
   ],
   imports: [
     CommonModule,
     EmployeeRoutingModule,
-    SharedModule
+    SharedModule,
+    CKEditorModule
   ]
 })
 export class EmployeeModule { }

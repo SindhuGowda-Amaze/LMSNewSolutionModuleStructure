@@ -6,6 +6,8 @@ import { CatalogComponent } from './catalog/catalog.component';
 import { ChatComponent } from './chat/chat.component';
 import { CourseCertificateComponent } from './course-certificate/course-certificate.component';
 import { EmployeeComponent } from './employee.component';
+import { EnrolledTrainingComponent } from './enrolled-training/enrolled-training.component';
+import { LearningDashboardComponent } from './learning-dashboard/learning-dashboard.component';
 import { LearningPathDashboardComponent } from './learning-path-dashboard/learning-path-dashboard.component';
 import { MyCourseDashboardComponent } from './my-course-dashboard/my-course-dashboard.component';
 import { StartMyCourseNewComponent } from './start-my-course-new/start-my-course-new.component';
@@ -29,6 +31,8 @@ const routes: Routes = [{ path: '', component: EmployeeComponent },
 {path:'LearningPathDashboard',component:LearningPathDashboardComponent},
 {path:'Chat/:id',component:ChatComponent},
 { path: 'ViewGroup', component: ViewGroupComponent},
+{path:'LearningDashboard',component:LearningDashboardComponent},
+{path:'EnrolledTraining',component:EnrolledTrainingComponent}
 
 
 

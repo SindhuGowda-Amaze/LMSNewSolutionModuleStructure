@@ -208,7 +208,7 @@ export class ChapterComponent implements OnInit {
         debugger;
         let result = data;
         Swal.fire('Updated Successfully ...!');
-        location.href = '#/ChapterDashboard';
+        location.href = '#/Admin/ChapterDashboard';
       },
       error: (err: { error: { message: any } }) => {
         Swal.fire('Issue in UpdateChapter');

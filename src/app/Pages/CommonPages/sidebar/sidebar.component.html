@@ -250,7 +250,7 @@
 <span [ngClass]="active == 'myemployeereport' ? 'Active1' : 'Active3'">  Employee Report </span>
 </a> -->
 
-<a *ngIf="roleid==2 || roleid==3" routerLink="Manager/LearningPath" class="tablinks" (click)="highlight($event)"
+<a  *ngIf="roleid==2 || roleid==3" routerLink="Employee/LearningDashboard" class="tablinks" (click)="highlight($event)"
 (click)="mylearningpath()">
 <img src="assets/Images/online-course.png" style="width:13% ;margin-right: 17px;"
     [ngClass]="active == 'mylearningpath' ? 'Active1' : 'Active2'" />

@@ -362,7 +362,7 @@ this.testResponseID1=temp[0].id;
                   this.startTest = "";
                 //  this.router.navigate(['/AssessmentResult', this.testResponseID]);
                 // this.router.navigate(['#/MyCourseDashboard']);
-                 location.href="/Employee/MyCourseDashboard";
+                 location.href="#/Employee/StartMyCourseNew";
                
                   // .filter(x => x.checked == 1);
                 },error: (err: { error: { message: any; }; }) => {
@@ -393,13 +393,14 @@ this.testResponseID1=temp[0].id;
                 this.AmazeService.InsertTestResponseDetails(ett).subscribe(data => {
                 });
               }
-              // Swal.fire('You have submited test successfully...');
+             
              
               this.show = 0;
               this.startTest = "";
             //  this.router.navigate(['/AssessmentResult', this.testResponseID]);
             // this.router.navigate(['#/MyCourseDashboard']);
-             location.href="#/MyCourseDashboard";
+            Swal.fire('You have submited test successfully...');
+             location.href="#/Employee/StartMyCourseNew";
             }
             
           
@@ -480,7 +481,7 @@ this.testResponseID1=temp[0].id;
           'Your Answers has been Submitted Sucessfully.',
           'success'
         )
-           location.href="#/MyCourseDashboard";
+           location.href="#/Employee/StartMyCourseNew";
       }
     })
 

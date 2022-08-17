@@ -28,7 +28,7 @@ export class SidebarComponent implements OnInit {
 
 
   public highlight(evt: any) {
-    debugger
+
    
     var i, tablinks;
     //  sessionStorage.setItem("clickname",name)

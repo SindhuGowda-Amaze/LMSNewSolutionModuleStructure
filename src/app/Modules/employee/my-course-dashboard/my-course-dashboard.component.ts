@@ -153,8 +153,10 @@ export class MyCourseDashboardComponent implements OnInit {
           debugger;
           this.coursedetails = data.filter(
             (x) =>
-              x.completed == 1 && x.enrollid != 0 && x.staffID == this.userid
+              x.completed == true && x.enrollid != 0 && x.staffID == this.userid
           );
+          const key = 'id';
+          this.coursedetails =  [...new Map(this.coursedetails.map((item: { [x: string]: any; }) =>[item[key], item])).values()];
         },
        error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in GetCourse');
