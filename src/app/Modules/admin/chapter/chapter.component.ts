@@ -41,6 +41,7 @@ export class ChapterComponent implements OnInit {
   file1: any;
   image: any;
   currentUrl: any;
+  dropdownSettings: any = {};
   constructor(
     public LearningService: LearningService,
     private ActivatedRoute: ActivatedRoute
@@ -63,6 +64,16 @@ export class ChapterComponent implements OnInit {
         this.show = 0;
       }
     });
+
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'id',
+      textField: 'name',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
   }
 
 
@@ -466,4 +477,11 @@ export class ChapterComponent implements OnInit {
       },
     });
   }
+
+  onItemSelect(item: any) {
+    debugger
+    console.log(item);
+    this.courseID = item.id;
+  }
+
 }
