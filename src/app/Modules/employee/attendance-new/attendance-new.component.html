@@ -10,7 +10,6 @@
     </div>
 
     <div class="card">
-        <br>
         <div class="row FilterClass ">
             <div class="col-lg-1">
                 <p class="filter" style="margin-left: 15px;">Filter By </p>
@@ -24,12 +23,6 @@
                     <option style="color:#0C275A" *ngFor="let details of courseList" value="{{details.name}}" >{{details.name}}</option>
                 </select>
             </div>
-            <!-- <div class="col-lg-2">
-                <select class="form-control"     name="courseID" [(ngModel)]="courseID" (change)="getcourseid($event)">
-                    <option value="0">Course Name</option>
-                    <option *ngFor="let details of Courselist" value="{{details.id}}">{{details.name}}</option>
-                </select>
-            </div> -->
             <div class="col-lg-2">
                 <select class="form-control"     name="courseID" [(ngModel)]="TopicID" (change)="getcourseid($event)">
                     <option value="0">Topic Name</option>
@@ -42,9 +35,8 @@
             <div class="col-lg-2">
                 <input type="date" class="form-control" id="endDate" name="endDate" [(ngModel)]="endDate" (change)="filterbydate()">
             </div>
-        </div> <br>
+        </div>
     </div> <br>
- <br>
 
  <div class="row">
     <div class="col-lg-10"></div>
