@@ -14,6 +14,7 @@ import { StartMyCourseNewComponent } from './start-my-course-new/start-my-course
 import { StartMyCourseComponent } from './start-my-course/start-my-course.component';
 import { SubmitedtestsComponent } from './submitedtests/submitedtests.component';
 import { TakeAssessmentComponent } from './take-assessment/take-assessment.component';
+import { TrainingHrsReportComponent } from './training-hrs-report/training-hrs-report.component';
 import { ViewCourseComponent } from './view-course/view-course.component';
 import { ViewGroupComponent } from './view-group/view-group.component';
 
@@ -32,8 +33,8 @@ const routes: Routes = [{ path: '', component: EmployeeComponent },
 {path:'Chat/:id',component:ChatComponent},
 { path: 'ViewGroup', component: ViewGroupComponent},
 {path:'LearningDashboard',component:LearningDashboardComponent},
-{path:'EnrolledTraining',component:EnrolledTrainingComponent}
-
+{path:'EnrolledTraining',component:EnrolledTrainingComponent},
+{path:'TrainingHrsReport',component:TrainingHrsReportComponent}
 
 
 

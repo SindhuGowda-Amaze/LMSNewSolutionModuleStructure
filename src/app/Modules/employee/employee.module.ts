@@ -20,6 +20,7 @@ import { ViewGroupComponent } from './view-group/view-group.component';
 import { LearningDashboardComponent } from './learning-dashboard/learning-dashboard.component';
 import { CKEditorModule } from 'ckeditor4-angular';
 import { EnrolledTrainingComponent } from './enrolled-training/enrolled-training.component';
+import { TrainingHrsReportComponent } from './training-hrs-report/training-hrs-report.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { EnrolledTrainingComponent } from './enrolled-training/enrolled-training
     ChatComponent,
     ViewGroupComponent,
     LearningDashboardComponent,
-    EnrolledTrainingComponent
+    EnrolledTrainingComponent,
+    TrainingHrsReportComponent
   ],
   imports: [
     CommonModule,
