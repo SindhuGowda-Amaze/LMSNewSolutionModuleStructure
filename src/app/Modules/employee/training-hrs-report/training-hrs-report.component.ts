@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { LearningService } from 'src/app/Pages/Services/learning.service';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
-
 @Component({
-  selector: 'app-attendance-new',
-  templateUrl: './attendance-new.component.html',
-  styleUrls: ['./attendance-new.component.css']
+  selector: 'app-training-hrs-report',
+  templateUrl: './training-hrs-report.component.html',
+  styleUrls: ['./training-hrs-report.component.css']
 })
-export class AttendanceNewComponent implements OnInit {
+export class TrainingHrsReportComponent implements OnInit {
+
   search: any;
   id: any;
   result: any;
@@ -16,7 +16,7 @@ export class AttendanceNewComponent implements OnInit {
   roleid: any;
   userid: any;
   userName: any;
-  Attendance: any;
+  AttendanceHrs: any;
   currentUrl:any;
   employeeID:any;
   trainer:any;
@@ -47,17 +47,18 @@ this.getTopic();
   public GetAttendance_New() {
     debugger
     this.LearningService.GetAttendance_New()
+    
     .subscribe({
       next: data => {
         debugger
         if(this.roleid==4){
-          this.Attendance = data.filter(x => x.trainerID == this.userid);
+          this.AttendanceHrs = data.filter(x => x.trainerID == this.userid);
         }
         else if(this.roleid==3){
-          this.Attendance = data.filter(x => x.supervisor == this.userid);
+          this.AttendanceHrs = data.filter(x => x.supervisor == this.userid);
         }
         else{
-          this.Attendance = data.filter(x=>x.empID==this.userid)
+          this.AttendanceHrs = data
         }
       },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetAttendance_New');
@@ -114,8 +115,7 @@ this.getTopic();
     this.LearningService.GetTestResponse().subscribe({
       next: (data) => {
         this.uniquelist = data.filter(
-          (x) => x.startDate >= this.Date && x.endDate <= this.endDate
-        );
+          (x) => x.startDate >= this.Date && x.endDate <= this.endDate);
 
         const key = 'coursename';
         this.uniquelist = [
@@ -137,10 +137,10 @@ this.getTopic();
     this.courseid = even.target.value;
     if (even.target.value != 0) {
       this.uniquelist = this.dummyuniqlist.filter(
-        (x: { coursename: any }) => x.coursename == this.courseid
+        (x: { trainingname: any, topicName:any}) => x.trainingname == this.courseid || x.topicName == this.courseid
       );
 
-      this.count = this.employeereportlist.length;
+      this.count = this.uniquelist.length;
     } else {
       this.GetTrainerReport();
     }
@@ -182,6 +182,8 @@ this.getTopic();
       },
     });
   }
+
+
   courseList:any;
   public GetCourseDropdown() {
     this.LearningService.GetCourseDropdown().subscribe({
@@ -208,7 +210,6 @@ this.getTopic();
     debugger;
     this.courseID = even.target.value;
   }
-
 
 
   TopicList:any
