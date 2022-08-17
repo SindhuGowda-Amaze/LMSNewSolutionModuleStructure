@@ -54,12 +54,17 @@
 </div>
 <br>
 
+<div class="row">
+    <div class="col-lg-10"></div>
+</div>
+<br>
+
     <div class="row">
         <div class="col-lg-12">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <table class="table" *ngIf="(Attendance | filter: search).length > 0; else noResults">
+                        <table id="download" class="table" *ngIf="(Attendance | filter: search).length > 0; else noResults">
                             <thead>
                                 <tr>
                                     <th *ngIf="roleid!=2">Employee ID</th>
