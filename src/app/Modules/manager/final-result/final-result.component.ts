@@ -76,4 +76,18 @@ export class FinalResultComponent implements OnInit {
     // this.loader = false;
   }
 
+  dummassignList: any;
+  assignList: any;
+  count: any;
+  public filterAssignTraining() {
+    debugger;
+    let searchCopy = this.search.toLowerCase();
+    this.assignList = this.dummassignList.filter(
+      (x: { employeeName: string }) =>
+        x.employeeName.toLowerCase().includes(searchCopy)
+    );
+    this.count = this.assignList.length;
+    // location.reload();
+  }
+
 }

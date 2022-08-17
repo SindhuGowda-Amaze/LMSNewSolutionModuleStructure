@@ -3,8 +3,18 @@
         <div class="col-lg-10">
             <p class="headings">Employee Assessment Results</p>
         </div>
-
     </div>
+
+    <div class="card">
+        <div class="row FilterClass ">
+            <div class="col-lg-1">
+                <p class="filter">Filter By</p>
+            </div>
+            <div class="col-lg-5">
+                <input type="search" class="form-control search" placeholder="Search for Name.." [(ngModel)]="search" (ngModelChange)="filterAssignTraining()">
+            </div>
+        </div>
+    </div> <br>
 
     <div class="row">
         <div class="col-lg-10"></div>
@@ -34,7 +44,7 @@
                         <th>Certificate</th>
                         <th>Status</th>
                     </tr>
-                    <tr class="header" *ngFor="let details of Marks">
+                    <tr class="header" *ngFor="let details of Marks|filter:search">
                         <td>{{details.userID}}</td>
                         <td>{{details.staffname}}</td>
                         <td>{{details.coursename}}</td>
