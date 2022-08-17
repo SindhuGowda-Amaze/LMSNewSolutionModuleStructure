@@ -24,7 +24,7 @@ export class CourseCertificateComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUrl = window.location.href;
-
+ 
     this.ActivatedRoute.params.subscribe((params) => {
       debugger;
       this.courseid = params['id'];
@@ -103,6 +103,7 @@ export class CourseCertificateComponent implements OnInit {
       next: (data) => {
         debugger;
         this.certificate = data.filter((x) => x.courseID == this.courseid);
+        console.log("certgicate",this.certificate)
       },
      error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetEnrollCourseCertificate');

@@ -23,6 +23,8 @@ export class HeaderComponent implements OnInit {
   loginid: any;
   staffID: any;
   myname: any;
+  initail: any
+  notificationslist: any
 
   constructor(private LearningService: LearningService, public router: Router) { }
   ngOnInit(): void {
@@ -87,12 +89,10 @@ export class HeaderComponent implements OnInit {
       location.href = "#/Login";
       location.reload();
     }
-
   }
 
   public async insertattdancelogout() {
     debugger
-
     this.LearningService.GetAttendance_New().subscribe(data => {
       debugger
       var todayDate = new Date().toISOString().slice(0, 10);
@@ -106,7 +106,6 @@ export class HeaderComponent implements OnInit {
           'loginid': this.loginid,
           'LogoutDate': new Date()
         }
-
         this.LearningService.UpdateAttendance_New(entity).subscribe(
           data => {
             debugger
@@ -118,21 +117,11 @@ export class HeaderComponent implements OnInit {
             }
           })
       }
-
-
     });
-
   }
-
-
-
-
-  initail: any
-  notificationslist: any
 
   public GetNotification() {
     debugger
-
     this.LearningService.GetNotification(this.staffID).subscribe(data => {
       debugger
       this.notificationslist = data;
@@ -143,14 +132,11 @@ export class HeaderComponent implements OnInit {
     debugger
     this.LearningService.ClearNotificationByID(Number(this.staffID)).subscribe(data => {
       debugger
-
     })
 
     Swal.fire('Cleared Successfully');
     this.GetNotification();
-
   }
-
 
   public accountsetting() {
     debugger
@@ -161,12 +147,4 @@ export class HeaderComponent implements OnInit {
   public onActivate(event: any) {
     window.scroll(0, 0);
   }
-
-
-
-
-
-
-
-
 }

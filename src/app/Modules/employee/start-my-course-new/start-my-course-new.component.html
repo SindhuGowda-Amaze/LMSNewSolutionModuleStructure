@@ -37,19 +37,19 @@
                 <img class="icon" style="height:30px;width:30px" *ngIf="details.attachmentType=='Document'"
                     src="assets/Images/word.png" alt="video_icon" (click)="PreviewMSword(details.photo)"> -->
 
-                <img class="icon" style="height:30px;width:30px" *ngIf="details.attachmentType=='video'"
+                <img class="icon" style="height:30px;width:30px" data-toggle="tooltip" data-placement="top" title="{{details.cuttingurl}}" *ngIf="details.attachmentType=='video'"
                     src="assets/Images/Video_lcon.png" alt="video_icon" (click)="PreviewVideo(details.photo)" >
                     
                 <!-- <img class="icon" style="height:30px;width:30px" *ngIf="details.attachmentType=='Pdf'"
                     src="assets/pdf.jpg" alt="video_icon" (click)="PreviewPdf(details.photo)"> -->
 
-                <img class="icon" style="height:30px;width:30px" *ngIf="details.attachmentType=='Image'"
+                <img class="icon" style="height:30px;width:30px" data-toggle="tooltip" data-placement="top" title="{{details.cuttingurl}}" *ngIf="details.attachmentType=='Image'"
                     src="assets/Images/image.png" alt="video_icon" (click)="PreviewIMG(details.photo)">
 
-                <img class="icon" style="height:30px;width:30px" *ngIf="details.attachmentType=='Ppt'"
+                <img class="icon" style="height:30px;width:30px" data-toggle="tooltip" data-placement="top" title="{{details.cuttingurl}}" *ngIf="details.attachmentType=='Ppt'"
                     src="assets/Images/files.png" alt="video_icon" (click)="PreviewPPT(details.photo)">
 
-                <img class="icon" style="height:30px;width:30px" *ngIf="details.attachmentType=='Document'"
+                <img class="icon" style="height:30px;width:30px" data-toggle="tooltip" data-placement="top" title="{{details.cuttingurl}}"  *ngIf="details.attachmentType=='Document'"
                     src="assets/Images/word.png" alt="video_icon" (click)="PreviewMSword(details.photo)">
             </label>
             <br>

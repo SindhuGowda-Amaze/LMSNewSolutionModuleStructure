@@ -58,10 +58,11 @@
                                     <th *ngIf="roleid!=2">Employee Name</th>
                                     <th>Login Date</th>
                                     <th>Log In Time</th>
+                                  
+                                    <!-- <th>Training Name</th> -->
+                                    <!-- <th>Topic Name</th> -->
                                     <th>Log Out Time</th>
-                                    <th>Training Name</th>
-                                    <th>Topic Name</th>
-                                    <th>No of Hrs</th>
+                                    <!-- <th>No of Hrs</th> -->
                                     <th *ngIf="roleid!=2">Trainee Name</th>
                                 </tr>
                             </thead>
@@ -71,10 +72,11 @@
                                     <td *ngIf="roleid!=2">{{details.employeename}}</td>
                                     <td>{{details.loginDate}}</td>
                                     <td>{{details.loginTime}}</td>
+                                  
+                                    <!-- <td>{{details.trainingname}}</td> -->
+                                    <!-- <td>{{details.topicName}}</td> -->
                                     <td>{{details.logoutDate}}</td>
-                                    <td>{{details.trainingname}}</td>
-                                    <td>{{details.topicName}}</td>
-                                    <td>{{details.noofhrs}}</td>
+                                    <!-- <td>{{details.noofhrs}}</td> -->
                                     <td *ngIf="roleid!=2">{{details.trainerName}}</td>
                                 </tr>
                             </tbody>
