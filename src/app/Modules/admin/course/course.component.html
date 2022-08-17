@@ -34,6 +34,8 @@
             <div class="col-lg-2">
                 <!-- name="categoryName" [(ngModel)]="categoryName"  -->
 
+        
+
                 <select class="form-control" id="categoryid" name="categoryid" [(ngModel)]="categoryid"
                     (change)="GetCategoryid($event)">
                     <option value="0">Select Category</option>
@@ -53,8 +55,8 @@
                     </ngx-dropzone-preview>
                 </ngx-dropzone>
                 <img src="{{Course_Photo}}" data-toggle="modal1" data-target="#exampleModal1" *ngIf="show==true"
-                style="width: 100px;height:auto">
-               
+                    style="width: 100px;height:auto">
+
             </div>
             <div class="col-lg-2">
                 <!-- name="categoryName" [(ngModel)]="categoryName"  -->
