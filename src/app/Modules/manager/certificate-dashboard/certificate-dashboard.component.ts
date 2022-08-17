@@ -101,7 +101,7 @@ export class CertificateDashboardComponent implements OnInit {
     });
   }
 
-  fileName = 'Approved Applicants Reports.xlsx';
+  fileName = 'Certificate Reports.xlsx';
   exportexcel(): void {
     /* table id is passed over here */
     let element = document.getElementById('download');

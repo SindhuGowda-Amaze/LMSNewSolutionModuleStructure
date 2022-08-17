@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LearningService } from 'src/app/Pages/Services/learning.service';
 import Swal from 'sweetalert2';
-
+import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
+import * as XLSX from 'xlsx';
 @Component({
   selector: 'app-enrolled-training',
   templateUrl: './enrolled-training.component.html',
@@ -152,6 +154,24 @@ export class EnrolledTrainingComponent implements OnInit {
       // this.GetApproveCourse();
     }
   }
+
+  fileName = 'Enrolled Training Reports.xlsx';
+  exportexcel(): void {
+    /* table id is passed over here */
+    let element = document.getElementById('download');
+    debugger;
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+    debugger;
+
+    /* generate workbook and add the worksheet */
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+    /* save to file */
+    XLSX.writeFile(wb, this.fileName);
+    // this.loader = false;
+  }
+
 }
 
  

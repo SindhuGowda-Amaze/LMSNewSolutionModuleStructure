@@ -20,21 +20,23 @@
         </div><br>
     </div> <br>
 
-
-
-
-
     <div class="row">
         <div class="col-lg-10"></div>
         <div class="col-lg-2">
-            <!-- <button class="form-control addnew" routerLink="/Manager/AssignCourseToEmployee">Add</button> -->
+            <button class="Button" (click)="exportexcel()">Export To Excel</button>
         </div>
-    </div> <br>
+    </div>
+    <br>
+
+    <div class="row">
+        <div class="col-lg-10"></div>
+    </div>
+   <br>
 
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <table class="table" *ngIf="(assignList | filter: search).length > 0; else noResults">
+                <table id="download" class="table" *ngIf="(assignList | filter: search).length > 0; else noResults">
                     <thead>
                         <tr>
                             
