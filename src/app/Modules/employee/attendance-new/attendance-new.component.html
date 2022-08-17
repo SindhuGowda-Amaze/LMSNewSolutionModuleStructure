@@ -69,7 +69,7 @@
                             <tbody>
                                 <tr *ngFor="let details of Attendance | filter: search">
                                     <td *ngIf="roleid!=2">{{details.empID}}</td>
-                                    <td *ngIf="roleid!=2">{{details.employeename}}</td>
+                                    <td *ngIf="roleid!=2">{{details.name}}</td>
                                     <td>{{details.loginDate}}</td>
                                     <td>{{details.loginTime}}</td>
                                   
