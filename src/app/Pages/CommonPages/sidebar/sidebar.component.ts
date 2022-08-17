@@ -61,6 +61,10 @@ export class SidebarComponent implements OnInit {
     this.active = 'setup'
     sessionStorage.setItem("clickname", "SETUP")
   }
+  report() {
+    this.active = 'report'
+    sessionStorage.setItem("clickname", "REPORT")
+  }
 
   category() {
     this.active = 'category';
