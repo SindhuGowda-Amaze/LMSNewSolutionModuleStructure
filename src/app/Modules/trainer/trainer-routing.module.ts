@@ -5,6 +5,8 @@ import { AssessmentResultComponent } from './assessment-result/assessment-result
 import { AssessmentdashboardComponent } from './assessmentdashboard/assessmentdashboard.component';
 import { CheckanswerComponent } from './checkanswer/checkanswer.component';
 import { EmployeeAssessmentResultComponent } from './employee-assessment-result/employee-assessment-result.component';
+import { TimeTableFormComponent } from './time-table-form/time-table-form.component';
+import { TimeTableComponent } from './time-table/time-table.component';
 import { TrainerComponent } from './trainer.component';
 
 const routes: Routes = [{ path: '', component: TrainerComponent },
@@ -16,8 +18,8 @@ const routes: Routes = [{ path: '', component: TrainerComponent },
 {path:'EmployeeAssessmentResult',component:EmployeeAssessmentResultComponent},
 {path:'Checkanswer',component:CheckanswerComponent},
 {path:'Checkanswer/:id',component:CheckanswerComponent},
-
-
+{path:'TimeTable',component:TimeTableComponent},
+{path:'TimeTableForm/:id',component:TimeTableFormComponent},
 
 
 

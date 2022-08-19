@@ -9,6 +9,8 @@ import { AssessmentdashboardComponent } from './assessmentdashboard/assessmentda
 import { SharedModule } from '../shared/shared.module';
 import { CheckanswerComponent } from './checkanswer/checkanswer.component';
 import { EmployeeAssessmentResultComponent } from './employee-assessment-result/employee-assessment-result.component';
+import { TimeTableComponent } from './time-table/time-table.component';
+import { TimeTableFormComponent } from './time-table-form/time-table-form.component';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { EmployeeAssessmentResultComponent } from './employee-assessment-result/
     AssessmentResultComponent,
     AssessmentdashboardComponent,
     CheckanswerComponent,
-    EmployeeAssessmentResultComponent
+    EmployeeAssessmentResultComponent,
+    TimeTableComponent,
+    TimeTableFormComponent
   ],
   imports: [
     CommonModule,

@@ -32,6 +32,8 @@ export class CourseComponent implements OnInit {
   files: File[] = [];
   categoryList: any;
   show: boolean | undefined
+  edate:any;
+  sdate:any;
 
   ngOnInit(): void {
 

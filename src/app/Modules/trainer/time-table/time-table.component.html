@@ -1,0 +1,378 @@
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-8">
+                    <ul>
+                        <li><a class="active Heading" routerLink="/Employee/LeaveListDashboard"> My Leave
+                                Details</a></li>
+                        <li *ngIf="roledid==2"><a class=" Heading" routerLink="/Manager/MyTeamLeaveDetails"><u>My Team
+                                    Leave
+                                    Details</u></a></li>
+                        <li *ngIf="roledid==9"><a class=" Heading" routerLink="/HR/HRLeaveRequest"><u>My Team Leave
+                                    Details</u></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+            <br>
+            <!-- <div class="row">
+                <div class="col-lg-2">
+                </div>
+                <div class="col-lg-10">
+                    <div class="col-lg-4">
+                        <label class="switch">
+                            <input type="checkbox" checked (change)="changeStatus($event)">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <div class="col-lg-4">
+                    </div>
+                </div>
+            </div><br> -->
+            <div class="card filtercard">
+                <div class="row">
+                    <div class="col-md-1">
+                        Filter By
+                    </div>
+                    <div class="col-md-2">
+                        <p>Start Date
+                            <input class="form-control" id="date" name="date" type="date" [(ngModel)]="date"
+                                placeholder="Duration">
+                    </div>
+                    <div class="col-md-2">
+                        <p>End Date
+                            <input class="form-control" id="edate" name="edate" (change)="getdate()" type="date"
+                                [(ngModel)]="edate" placeholder="Duration">
+                    </div>
+                    <div class="col-md-6">
+                        <br>
+                        <input class="form-control" type="search" id="term" name="term" [(ngModel)]="term"
+                            placeholder="Search for date , Leave Type or Status">
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <!-- <div class="col-md-2">
+                    <p class="show3res">SHOWING <span> {{staffleaves.length}} </span>RESULTS</p>
+                </div> -->
+                <div class="col-md-2">
+                    <select class="inputclass" (change)="changeStatus($event)">
+                        <option value="2">Calendar</option>
+                        <option value="1">List View</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+
+                </div>
+                <div class="col-md-5">
+                </div>
+                <div class="col-md-2">
+                    <a><button *ngIf="selecallbtn" class="form-control button" (click)="Approveall()">Approve
+                            Selected</button></a>
+                </div>
+            </div><br>
+            <div class="shadow p-3 mb-5 bg-white rounded  maincard " [hidden]="showorhidecontent">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row callendernavButtons">
+                            <div class="col-lg-4">
+                                <a (click)="previousmonth()">
+                                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                                </a>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <strong>{{callenderMonth}}</strong> {{callenderyear}}
+
+                            </div>
+                            <div class="col-lg-4">
+                                <a (click)="nextmonth()">
+                                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row callenderdiv">
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-2 callenderboxes"
+                                        *ngFor="let calday of callenderdaysdount;let i = index">
+                                        {{calday.date}} {{calday.day}}
+                                        <div class="event_Pending" [innerHtml]='calday.mantainenceHtml'
+                                            (click)="ShowMaintenanceRequest($event)"
+                                            style="overflow-y: auto; border-bottom: solid 6px white;">
+                                        </div>
+                                        <div class="col-md-2" *ngIf=" calday.mantainenceHtml!=null">
+                                            <h6 class="event_Pending" style="width: 100px;margin-left:80px"
+                                                (click)="changeStatus1()">
+                                                view more.....
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row" [hidden]="!showorhidecontent">
+                <br />
+                <div class="col-lg-12">
+                    <div class="tab-slider--nav">
+                        <ul class="tab-slider--tabs">
+                            <li class="tab-slider--trigger" [class.active]="viewMode == 'tab1'" rel="tab1"
+                                (click)="viewMode ='tab1'">
+                                Pending</li>
+                            <li class="tab-slider--trigger" [class.active]="viewMode == 'tab2'" rel="tab2"
+                                (click)="viewMode ='tab2'">Approved</li>
+                            <li class="tab-slider--trigger" [class.active]="viewMode == 'tab3'" rel="tab3"
+                                (click)="viewMode ='tab3'">Rejected</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="container-fluid" [hidden]="!showorhidecontent">
+                <div class="row" [hidden]="!showorhidecontent">
+                    <div class="tab-slider--container" [ngSwitch]="viewMode">
+                        <div *ngSwitchCase="'tab1'" id="tab1">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <p class="show3res">SHOWING <span>{{staffleaves1.length}}</span> RESULTS</p>
+                                </div>
+                                <!-- <div class="col-md-2">
+                                    <button class="form-control requestbtn" routerLink="/ApplyOT">Apply</button>
+                                </div> -->
+                            </div>
+                            <div class="col-md-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Select All <input type="checkbox" name="select-all" id="select-all"
+                                                (click)="selectALL($event)" /></th>
+                                            <th>Employee Name</th>
+                                            <th>From Date</th>
+                                            <th>To Date</th>
+                                            <th>Leave Type</th>
+                                            <th>Leave Reason</th>
+                                            <th>Leave Days Count</th>
+                                            <th>Attachment</th>
+                                            <th>Stage & Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let list of staffleaves1|filter: term">
+                                            <td><input *ngIf="list.status=='Manager Pending'|| list.status==null"
+                                                    type="checkbox" (click)="getCheckbocdetails(list)">
+
+                                            <td>{{list.staffName}}</td>
+                                            <td>{{list.sDateOfLeave}} </td>
+                                            <td>{{list.eDateOfLeave}} </td>
+                                            <td>{{list.leavetype}}</td>
+                                            <td>{{list.leaveReason}}</td>
+                                            <td>{{list.noOfDays}}</td>
+                                            <td>
+                                                <p *ngIf="list.medicalUrl==null">No Attachment</p>
+                                                <a *ngIf="list.filetype=='pdf' && list.medicalUrl!=null"
+                                                    href="{{list.medicalUrl}}" target="_blank"> <img
+                                                        src="assets/Images/pdf.png" alt="pdf.img" class="image"></a>
+                                                <img *ngIf="list.medicalUrl!=null && list.filetype!='pdf'"
+                                                    src="{{list.medicalUrl}}" (click)="getmedicalUrl(list.medicalUrl)"
+                                                    alt="medical.img" data-toggle="modal" data-target="#Allocate"
+                                                    style=" width: 50px;">
+                                            </td>
+                                            <td>
+                                                <p *ngIf="list.status==null">Manager Pending</p>
+                                                {{list.status}}
+                                            </td>
+                                            <td>
+                                                <img *ngIf="list.status=='Manager Pending HR Pending'|| list.status==null || list.status=='Manager Pending'"
+                                                    class="img" (click)="ManagerLeaveApprove(list)"
+                                                    src="assets/Images/check-mark.png">
+                                                <img *ngIf="list.status=='Manager Pending HR Pending'|| list.status==null || list.status=='Manager Pending'"
+                                                    class="imgcancel" (click)="GetRejectID(list)" data-toggle="modal"
+                                                    data-target="#Reject" src="assets/Images/cancel (1).png">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div *ngSwitchCase="'tab2'" id="tab2">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <br>
+                                    <p class="show3res">SHOWING <span>{{staffleaves2.length}}</span> RESULTS</p>
+                                </div>
+                                <!-- <div class="col-md-2">
+                                    <button class="form-control requestbtn" routerLink="/ApplyOT">Apply</button>
+                                </div> -->
+                            </div>
+                            <div class="col-md-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Employee Name</th>
+                                            <th>From Date</th>
+                                            <th>To Date</th>
+                                            <th>Leave Type</th>
+                                            <th>Leave Reason</th>
+                                            <th>Leave Days Count</th>
+                                            <th>Attachment</th>
+                                            <th>Stage & Status</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let list of staffleaves2|filter: term">
+                                            <td>{{list.staffName}}</td>
+                                            <td>{{list.sDateOfLeave}} </td>
+                                            <td>{{list.eDateOfLeave}} </td>
+                                            <td>{{list.leavetype}}</td>
+                                            <td>{{list.leaveReason}}</td>
+                                            <td>{{list.noOfDays}}</td>
+                                            <td>
+                                                <p *ngIf="list.medicalUrl==null">No Attachment</p>
+                                                <a *ngIf="list.filetype=='pdf' && list.medicalUrl!=null"
+                                                    href="{{list.medicalUrl}}" target="_blank"> <img
+                                                        src="assets/Images/pdf.png" alt="pdf.img" class="image"></a>
+                                                <img *ngIf="list.medicalUrl!=null && list.filetype!='pdf'"
+                                                    src="{{list.medicalUrl}}" (click)="getmedicalUrl(list.medicalUrl)"
+                                                    alt="medical.img" data-toggle="modal" data-target="#Allocate"
+                                                    style=" width: 50px;">
+                                            </td>
+                                            <td>
+                                                <p *ngIf="list.status==null">Manager Pending HR Pending</p>
+                                                {{list.status}}
+                                            </td>                                   
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div *ngSwitchCase="'tab3'" id="tab3">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <p class="show3res">SHOWING <span>{{staffleaves3.length}}</span> RESULTS</p>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Employee Name</th>
+                                            <th>From Date</th>
+                                            <th>To Date</th>
+                                            <th>Leave Type</th>
+                                            <th>Leave Reason</th>
+                                            <th>Leave Days Count</th>
+                                            <th>Attachment</th>
+                                            <th>Stage & Status</th>                                         
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let list of staffleaves3|filter: term">
+                                            <td>{{list.staffName}}</td>
+                                            <td>{{list.sDateOfLeave}} </td>
+                                            <td>{{list.eDateOfLeave}} </td>
+                                            <td>{{list.leavetype}}</td>
+                                            <td>{{list.leaveReason}}</td>
+                                            <td>{{list.noOfDays}}</td>
+                                            <td>
+                                                <p *ngIf="list.medicalUrl==null">No Attachment</p>
+                                                <a *ngIf="list.filetype=='pdf' && list.medicalUrl!=null"
+                                                    href="{{list.medicalUrl}}" target="_blank"> <img
+                                                        src="assets/Images/pdf.png" alt="pdf.img" class="image"></a>
+                                                <img *ngIf="list.medicalUrl!=null && list.filetype!='pdf'"
+                                                    src="{{list.medicalUrl}}" (click)="getmedicalUrl(list.medicalUrl)"
+                                                    alt="medical.img" data-toggle="modal" data-target="#Allocate"
+                                                    style=" width: 50px;">
+                                            </td>
+                                            <td>
+                                                <p *ngIf="list.status==null">Manager Pending HR Pending</p>
+                                                {{list.status}}
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+    <div id="Allocate" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h1>Attachment</h1>
+                        </div>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body ">
+                    <div class="container-fluid">
+                        <div class="row" style="text-align: center;">
+                            <div class="col-lg-3">
+                            </div>
+                            <img src="{{medicalUrl}}" alt="medical.img" class="imageheight">
+                        </div>
+                        <br />
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="Reject" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h5>Reject Notes</h5>
+                        </div>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body ">
+                    <div class="container-fluid">
+                        <div class="row" style="text-align: center;">
+                            <div class="col-lg-3">
+                                Notes
+                            </div>
+                            <div class="col-lg-7">
+                                <textarea rows="3" type="text" [(ngModel)]="Notes" id="Notes" name="Notes"
+                                    class="form-control" placeholder="Notes"></textarea>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row" style="text-align: center;">
+                            <div class="col-lg-4">  </div>
+                            <div class="col-lg-5">
+                                <button class="upload" (click)="ManagerLeaveDecline()">Submit</button>
+                            </div>
+                        </div>
+                        <br/>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

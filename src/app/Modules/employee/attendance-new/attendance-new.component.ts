@@ -54,6 +54,7 @@ this.getTopic();
         debugger
         if(this.roleid==4){
           this.Attendance = data.filter(x => x.trainerID == this.userid);
+          // this.Attendance = data
         }
         else if(this.roleid==3){
           this.Attendance = data.filter(x => x.supervisor == this.userid);

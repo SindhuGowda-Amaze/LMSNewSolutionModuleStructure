@@ -89,8 +89,14 @@
             <div class="col-lg-2" *ngIf="trainingType==2">
                 <p>Password</p>
             </div>
-            <div class="col-lg-3" *ngIf="trainingType==3">
+            <div class="col-lg-4" *ngIf="trainingType==3">
                 <p>Venue</p>
+            </div>
+            <div class="col-lg-2" *ngIf="trainingType==3">
+                <p>Start Date</p>
+            </div>
+            <div class="col-lg-2" *ngIf="trainingType==3">
+                <p>End Date</p>
             </div>
         </div>
 
@@ -104,17 +110,22 @@
             <div class="col-lg-2" *ngIf="trainingType==2">
                 <input class="form-control" placeholder="Password" [(ngModel)]="password" name="password">
             </div>
-            <div class="col-lg-3" *ngIf="trainingType==3">
+            <div class="col-lg-4" *ngIf="trainingType==3">
                 <textarea class="form-control" placeholder="Venue" rows="5" [(ngModel)]="venue" name="venue"></textarea>
                 <!-- <input class="form-control" placeholder="Venue" [(ngModel)]="venue" name="venue"> -->
             </div>
-
+            <div class="col-lg-2" *ngIf="trainingType==3">
+                <input type="date" class="form-control" placeholder="Password" [(ngModel)]="sdate" name="sdate">
+            </div>
+            <div class="col-lg-2" *ngIf="trainingType==3">
+                <input type="date" class="form-control" placeholder="Password" [(ngModel)]="edate" name="edate">
+            </div>
         </div><br>
 
 
 
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-4">
                 <p>Course Description</p>
             </div>
 
@@ -126,7 +137,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-4">
                 <textarea class="form-control" placeholder="Description" rows="5" [(ngModel)]="description"></textarea>
             </div>
 
