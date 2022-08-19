@@ -109,24 +109,28 @@
                                                 
                                                     <img class="icon" style="height:30px;width:30px"
                                                         *ngIf="details.attachmentType=='video'"
-                                                        src="assets/Images/Video_lcon.png" alt="video_icon"
-                                                        (click)="PreviewVideo(details.photo)">
+                                                        src="assets/Images/Video_lcon.png" alt="video_icon">
+                                                        <!-- (click)="PreviewVideo(details.photo) -->
                             
                                                     <img class="icon" style="height:30px;width:30px"
                                                         *ngIf="details.attachmentType=='Pdf'" src="assets/Images/pdf.jpg"
-                                                        alt="video_icon1" (click)="PreviewPdf(details.photo)">
+                                                        alt="video_icon1"> 
+                                                        <!-- (click)="PreviewPdf(details.photo)"> -->
                             
                                                     <img class="icon" style="height:30px;width:30px"
                                                         *ngIf="details.attachmentType=='Image'" src="assets/Images/image.png"
-                                                        alt="video_icon2" (click)="PreviewIMG(details.photo)">
+                                                        alt="video_icon2">
+                                                         <!-- (click)="PreviewIMG(details.photo)"> -->
                             
                                                     <img class="icon" style="height:30px;width:30px"
                                                         *ngIf="details.attachmentType=='Ppt'" src="assets/Images/files.png"
-                                                        alt="video_icon3" (click)="PreviewPPT(details.photo)">
+                                                        alt="video_icon3" >
+                                                        <!-- (click)="PreviewPPT(details.photo)"> -->
                             
                                                     <img class="icon" style="height:30px;width:30px"
                                                         *ngIf="details.attachmentType=='Document'" src="assets/Images/word.png"
-                                                        alt="video_icon4" (click)="PreviewMSword(details.photo)">
+                                                        alt="video_icon4">
+                                                         <!-- (click)="PreviewMSword(details.photo)"> -->
                                                 </div>    
                                             </div>
                                           

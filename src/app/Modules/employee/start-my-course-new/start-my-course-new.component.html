@@ -3,13 +3,13 @@
     <div class="row">
         <div class="col-lg-9">
             <div class="row">
-                <div class="col-lg-7">
+                <div class="col-lg-8" style="max-width: 41.666667%;">
                     <p style="font-size: 19px;
                     color: #3247D5; font-weight: bold;"><u>{{coursename}}</u></p>
                     <!-- <img src="{{chapterphoto}}" alt="1st Training Assessment"
                 style="width:100%; height:100px; padding-right:20px;border-radius: 10px;"> <br> <br> -->
 
-                    <img style="overflow-y: auto;height:250px;" *ngIf="show==1" class="chapterimage"
+                    <img style="overflow-y: auto;height:250px;width: 268px;" *ngIf="show==1" class="chapterimage"
                         src="{{chapterphoto}}">
                     <video controls style="height: 384px; width: auto;" *ngIf="show==2">
                         <source src="{chapterphoto}}" type="video/mp4">
@@ -26,7 +26,7 @@
                     </ngx-doc-viewer>
 
                 </div>
-                <div class="col-lg-5">
+                <div class="col-lg-4">
 
                     <!-- <img class="icon" style="height:30px;width:30px" *ngIf="details.attachmentType=='video'"
                             src="assets/Images/Video_lcon.png" alt="video_icon" (click)="PreviewVideo(details.photo)"> -->
@@ -43,7 +43,7 @@
                         <img class="icon" style="height:30px;width:30px" *ngIf="details.attachmentType=='Document'"
                             src="assets/Images/word.png" alt="video_icon" (click)="PreviewMSword(details.photo)"> -->
 
-                    <table *ngFor="let details of Attachmentlist">
+                    <table *ngFor="let details of Attachmentlist" style="background-color:transparent">
                         <tr>
                             <td>
                                 <img class="icon" style="height:30px;width:30px" data-toggle="tooltip"
@@ -56,7 +56,7 @@
                             src="assets/pdf.jpg" alt="video_icon" (click)="PreviewPdf(details.photo)"> -->
 
                                 <img class="icon" style="height:30px;width:30px" data-toggle="tooltip"
-                                    data-placement="top" title="{{details.cuttingurl}}"
+                                    data-placement="top" title="{{details.cuttingurl}}"EnrolledTraining
                                     *ngIf="details.attachmentType=='Image'" src="assets/Images/image.png"
                                     alt="video_icon" (click)="PreviewIMG(details.photo)">
                                 <p *ngIf="details.attachmentType=='Image'">{{details.cuttingurl}}</p>
@@ -76,17 +76,8 @@
                         </tr>
 
                     </table>
-
-
-
-
-
-
-
                 </div>
             </div>
-
-
             <br>
             <br>
             <div>
