@@ -335,7 +335,7 @@
             <span [ngClass]="active == 'submitest' ? 'Active1' : 'Active3'"> Test Submitted </span>
         </a> -->
 
-        <a routerLink="/TimeTable" class="tablinks" (click)="highlight($event)" (click)="timetable()">
+        <a routerLink="Trainer/TimeTable" class="tablinks" (click)="highlight($event)" (click)="timetable()">
             <img src="assets/Images/homework (1).png" style="width:13% ;margin-right: 17px;"
                 [ngClass]="active == 'timetable' ? 'Active1' : 'Active2'" />
             <img [ngClass]="active != 'timetable' ? 'Active1' : 'Active2'" src="assets/Images/New folder/homework.png"

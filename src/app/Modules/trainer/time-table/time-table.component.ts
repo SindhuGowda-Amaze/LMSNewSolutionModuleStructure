@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { LearningService } from 'src/app/Pages/Services/learning.service';
-import { FullCalendarOptions, EventObject } from 'ngx-fullcalendar';
+//import { FullCalendarOptions, EventObject } from 'ngx-fullcalendar';
 import { DatePipe, formatDate } from '@angular/common';
 @Component({
   selector: 'app-time-table',
@@ -14,8 +14,8 @@ export class TimeTableComponent implements OnInit {
  
   constructor(public DigiofficeService: LearningService, public router: Router, public datePipe: DatePipe) { }
   public showorhidecontent: any;
-  options: FullCalendarOptions | undefined;
-  events: EventObject[] | undefined;
+  // options: FullCalendarOptions | undefined;
+  // events: EventObject[] | undefined;
   roleid: any;
   viewMode = 'tab1';
   IntID: boolean = false;

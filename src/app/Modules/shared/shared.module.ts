@@ -50,6 +50,7 @@ const ngWizardConfig: NgWizardConfig = {
     NgxDropzoneModule,
     NgxDocViewerModule,
     NgMultiSelectDropDownModule.forRoot(),
+    
 
   ],
   exports: [
