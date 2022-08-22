@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { LearningService } from 'src/app/Pages/Services/learning.service';
-import { FullCalendarOptions, EventObject } from 'ngx-fullcalendar';
+//import { FullCalendarOptions, EventObject } from 'ngx-fullcalendar';
 import { DatePipe, formatDate } from '@angular/common';
 @Component({
   selector: 'app-time-table',
@@ -14,16 +14,20 @@ export class TimeTableComponent implements OnInit {
  
   constructor(public DigiofficeService: LearningService, public router: Router, public datePipe: DatePipe) { }
   public showorhidecontent: any;
-  options: FullCalendarOptions | undefined;
-  events: EventObject[] | undefined;
+  // options: FullCalendarOptions | undefined;
+  // events: EventObject[] | undefined;
   roleid: any;
+  search:any;
+  quetionlist:any;
   viewMode = 'tab1';
   IntID: boolean = false;
   public ID: any = [];
   temp: any
-  staffleaves2: any;
-  staffleaves3: any;
+  staffleaves2: any=[];
+  staffleaves3: any=[];
   Notes: any
+  p: any = 1;
+  count1: any = 10;
   public selectedlanguage: any;
   public selectedlanguage1: any;
   public callenderyear: any;
@@ -43,7 +47,7 @@ export class TimeTableComponent implements OnInit {
   currentUrl: any;
   term: any;
   staffleaves: any;
-  staffleaves1: any;
+  staffleaves1: any=[];
   date: any;
   id: any;
   edate: any;

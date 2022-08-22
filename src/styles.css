@@ -191,7 +191,7 @@
         }       
         table,        
         tr,        
-        td {      
+        td,thead {      
           border: none !important;       
           font-family: Poppins;       
           font-style: normal;       

@@ -5,11 +5,12 @@ import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import * as XLSX from 'xlsx';
 @Component({
-  selector: 'app-employee-assessment-result',
-  templateUrl: './employee-assessment-result.component.html',
-  styleUrls: ['./employee-assessment-result.component.css'],
+  selector: 'app-learning-history',
+  templateUrl: './learning-history.component.html',
+  styleUrls: ['./learning-history.component.css']
 })
-export class EmployeeAssessmentResultComponent implements OnInit {
+export class LearningHistoryComponent implements OnInit {
+
   joblist: any;
   search: any;
   count: any;
@@ -104,7 +105,11 @@ export class EmployeeAssessmentResultComponent implements OnInit {
         debugger;
         if (this.roleid == 4) {
           this.detailslist = data.filter((x) => x.trainerID == this.staffid);
-        } else {
+        }
+        else if(this.roleid==2){
+          this.detailslist = data.filter(x=>x.userID==this.staffid);
+        }
+        else {
           this.detailslist = data;
         }
 

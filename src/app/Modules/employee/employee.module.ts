@@ -21,6 +21,7 @@ import { LearningDashboardComponent } from './learning-dashboard/learning-dashbo
 import { CKEditorModule } from 'ckeditor4-angular';
 import { EnrolledTrainingComponent } from './enrolled-training/enrolled-training.component';
 import { TrainingHrsReportComponent } from './training-hrs-report/training-hrs-report.component';
+import { LearningHistoryComponent } from './learning-history/learning-history.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { TrainingHrsReportComponent } from './training-hrs-report/training-hrs-r
     ViewGroupComponent,
     LearningDashboardComponent,
     EnrolledTrainingComponent,
-    TrainingHrsReportComponent
+    TrainingHrsReportComponent,
+    LearningHistoryComponent
   ],
   imports: [
     CommonModule,

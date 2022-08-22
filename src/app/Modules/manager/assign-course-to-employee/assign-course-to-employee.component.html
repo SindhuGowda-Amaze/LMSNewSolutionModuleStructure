@@ -16,6 +16,15 @@
                     <div class="col-lg-2">
                         <p class="newFont">Training <span style="color: red;">*</span></p>
                     </div>
+                    <div class="col-lg-2">
+                        <p class="newFont">Mandatory <span style="color: red;">*</span></p>
+                    </div>
+                    <div class="col-lg-2">
+                        <p class="newFont">Learning Path <span style="color: red;">*</span></p>
+                    </div>
+                    <div class="col-lg-2">
+                        <p class="newFont">PIP <span style="color: red;">*</span></p>
+                    </div>
                 </div>
                 <div class="row leavereq">
                     <div class="col-md-3">
@@ -30,6 +39,15 @@
                             <option *ngFor="let details of courselist" value="{{details.id}}" (change)="getdata(details)">{{details.name}}</option>
                         </select>
                     </div>
+                    <div class="col-md-2">
+                       <input type="checkbox">
+                    </div>
+                    <div class="col-md-2">
+                        <input type="checkbox">
+                     </div>
+                     <div class="col-md-2">
+                        <input type="checkbox">
+                     </div>
                 </div>
               
               

@@ -1,1 +1,56 @@
-<p>time-table-form works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-2">
+            <p class="headings">Topic Details </p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="row column">
+            <div class="col-lg-2">
+                <p>Training Name <span style="color: red;">*</span></p>
+            </div>
+            <div class="col-lg-2">
+                <p>Topic Name <span style="color: red;">*</span></p>
+            </div>
+            <div class="col-lg-2">
+                <p>Date <span style="color: red;">*</span></p>
+            </div>
+            <div class="col-lg-2">
+                <p>Start Time</p>
+            </div>
+            <div class="col-lg-2">
+                <p>End Time</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2">
+                <ng-multiselect-dropdown style="height: 30px;" [placeholder]="'Select Training'"
+                    [settings]="dropdownSettings" [data]="courselist" [(ngModel)]="courseID"
+                    (onSelect)="onItemSelect($event)" class="fonttxt">
+                </ng-multiselect-dropdown>
+            </div>
+            <div class="col-lg-2">
+                <input class="form-control" placeholder="Topic Name" [(ngModel)]="name" name="name">
+            </div>
+            <div class="col-lg-2">
+                <input class="form-control" type="date" placeholder="Topic Name" [(ngModel)]="name" name="name">
+            </div>
+            <div class="col-lg-2">
+                <input class="form-control" type="time" placeholder="Topic Name" [(ngModel)]="name" name="name">
+            </div>
+            <div class="col-lg-2">
+                <input class="form-control" type="time" placeholder="Topic Name" [(ngModel)]="name" name="name">
+            </div>
+        </div> <br>
+        <div class="row">
+            <div class="col-lg-9"></div>
+            <div class="col-lg-1">
+                <button class="form-control  cancel" *ngIf="id==undefined" (click)="Save()">Save</button>
+                <button class="form-control  cancel" *ngIf="id!= undefined" (click)="Update()">Update</button>
+            </div>
+            <div class="col-lg-1">
+                <button class="form-control  cancel" (click)="Cancel()">Cancel</button>
+            </div>
+        </div><br>
+    </div>
+ 

@@ -35,7 +35,7 @@
             <div class="col-lg-12">
                 <table class="table" *ngIf="(assignList | filter: search).length > 0; else noResults">
                     <thead>
-                        <tr>
+                        <tr style="white-space: pre;">
                             <th>Month</th>
                             <th>Employee ID</th>
                             <th>Employee Name</th>
@@ -44,30 +44,36 @@
                             <th>Position</th>
                             <th>Band</th>
                             <th>Level</th>
+                            <th>Mandatory</th>
+                            <th>Learning Path</th>
+                            <th style="width: 50px;">PIP</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let details of assignList|filter:search">
-                            <td style="font-size: 15px;">{{details.monthName}}</td>
-                            <td style="font-size: 15px;">{{details.staffID}}</td>
-                            <td style="font-size: 15px;">{{details.employeeName}}</td>
-                            <td style="font-size: 15px;">{{details.name}}</td>
-                            <td style="font-size: 15px;">{{details.trainer}}</td>
-                            <td style="font-size: 15px;">{{details.position}}</td>
+                            <td>{{details.monthName}}</td>
+                            <td>{{details.staffID}}</td>
+                            <td>{{details.employeeName}}</td>
+                            <td>{{details.name}}</td>
+                            <td>{{details.trainer}}</td>
+                            <!-- <td style="font-size: 15px;">{{details.position}}</td>
                             <td style="font-size: 15px;">{{details.band}}</td>
-                            <td style="font-size: 15px;">{{details.level}}</td>
-                            <!-- <td style="font-size: 15px;">Developers</td>
-                            <td style="font-size: 15px;">Staff</td>
-                            <td style="font-size: 15px;">A1</td> -->
-                            <td style="width: 20%;">
+                            <td style="font-size: 15px;">{{details.level}}</td> -->
+                            <td>Developers</td>
+                            <td>Staff</td>
+                            <td>A1</td>
+                            <td>Yes</td>
+                            <td>No</td>
+                            <td>No</td>
+                            <td style="width:0px">
                               
 
                                 <!-- <img src="assets/Images/Edit_ICON.png" alt="Edit_ICON" style="width: 10%;"
                                 (click)="edit(details.id)" > &nbsp;&nbsp; -->
 
                                 <img src="assets/Images/Delete_ICON.png" alt="Delete_ICON"
-                                    (click)="Ondelete(details.id)" style="width: 10%;">
+                                    (click)="Ondelete(details.id)" style="width: 30px;">
                             </td>
                         </tr>
                     </tbody>

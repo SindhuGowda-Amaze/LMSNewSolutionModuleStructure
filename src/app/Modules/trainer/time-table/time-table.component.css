@@ -1,64 +1,4 @@
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-  
-  }
-  
-  li {
-    float: left;
-  }
-  
-  li a {
-    display: block;
-    color: black;
-    text-align: center;
-    text-decoration: none;
-  }
-  
-  /* li a:hover {
-    text-decoration: 3px solid rgb(28, 32, 94) underline;
-  } */
-  
-  .requestbtn {
-    background-color: #3247d5;
-    color: white;
-    font-family: 'DIN Bold';
-    font-weight: bold;
-    border-left: solid 1px #f5f5f5;
-    font-size: 15px;
-    line-height: 12px;
-    text-align: center;
-    white-space: nowrap;
-  }
-  
-  /* .container-fluid {
-    font-family: 'DIN Bold';
-    padding: 0px;
-    margin: 0px;
-  } */
-  
-  /* .show3res{
-      font-size: 12px;
-      font-weight: bold;
-      letter-spacing: 0.5;
-      color: #777;
-      text-transform: uppercase;
-      padding: 10px 0 5px;
-    } */
-  .leavebalance {
-    padding-top: 10px;
-    padding-left: 10px;
-    font-weight: bold;
-    color: #404040;
-    font-size: 20px;
-  }
-  
-  .table {
-    padding: 10px;
-  }
-  
+
   .img {
     width: 25px;
     height: 10%;
@@ -79,48 +19,6 @@ ul {
     color: white;
   }
   
-  ul {
-    text-align: center;
-    position: relative;
-    display: inline-block;
-  }
-  
-  li {
-    list-style: none;
-    display: inline-block;
-    margin-right: 35px;
-  }
-  
-  a {
-    text-decoration: none;
-    cursor: pointer;
-  }
-  
-  a:active {
-    color: brown;
-  }
-  
-  .AddExpense {
-    background-color: #3247d5;
-    color: white;
-    font-family: 'DIN Bold';
-    font-weight: bold;
-    border-left: solid 1px #f5f5f5;
-    font-size: 15px;
-    line-height: 12px;
-    text-align: center;
-    white-space: nowrap;
-  }
-  
-  u {
-    text-decoration-color: #2F87CC;
-    text-decoration-thickness: 0.1em;
-    text-decoration-thickness: 12px;
-  
-  }
-  
-  
-  
   
   
   
@@ -133,102 +31,7 @@ ul {
     padding: 20px;
   }
   
-  th {
-    background-color: #e4e5e6;
-  }
-  
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-  
-  }
-  
-  li {
-    float: left;
-  }
-  
-  li a {
-    display: block;
-    color: #3247d5;
-    text-align: center;
-    text-decoration: none;
-  }
-  
-  
-  
-  .btn {
-    background-color: #3247d5;
-    color: white;
-  }
-  
-  .requestbtn {
-    background-color: #3247d5;
-    color: white;
-    font-family: 'DIN Bold';
-    font-weight: bold;
-    border-left: solid 1px #f5f5f5;
-    font-size: 15px;
-    line-height: 12px;
-    text-align: center;
-    white-space: nowrap;
-  }
-  
-  .leavelist {
-    padding: 0px 20px;
-  }
-  
-  
-  
-  .leavebalance {
-    padding-top: 10px;
-    padding-left: 10px;
-    font-weight: bold;
-    color: #404040;
-    font-size: 20px;
-  }
-  
-  .table {
-    padding: 10px;
-  }
-  
-  
-  u {
-    text-decoration-color: #2F87CC;
-    text-decoration-thickness: 0.1em;
-    text-decoration-thickness: 12px;
-  
-  }
-  
-  .header {
-    font-weight: 700;
-    color: #666666;
-    float: left;
-    width: auto;
-    margin: 0;
-    /* margin-left: 35px; */
-    padding: 0;
-    font-size: 24px;
-    text-transform: uppercase;
-    opacity: 0.9;
-    margin-top: 30px;
-  }
-  
-  .building {
-    color: #2F87CC;
-    font-size: 18px;
-  }
-  
-  .dashbutton {
-    border-radius: 10px;
-    background-color: #2F87CC;
-    color: white;
-    border: none;
-    width: 150px;
-    height: 30px;
-    margin-bottom: 12px;
-  }
+
   
   .mainrow {
     float: right;
@@ -499,24 +302,7 @@ ul {
   
   /* for callender End*/
   
-  .maintainancerequestmodal {
-    margin-left: 414px;
-    margin-top: 29px;
-  }
-  
-  @media screen and (min-width: 1600px) {
-    .maintainancerequestmodal {
-      margin-left: 414px;
-      margin-top: 29px;
-    }
-  }
-  
-  @media screen and (min-width: 1900px) {
-    .maintainancerequestmodal {
-      margin-left: 637px;
-      margin-top: 30px;
-    }
-  }
+
   
   .bgOpen {
     background-color: yellow;
@@ -534,38 +320,7 @@ ul {
     background-color: red
   }
   
-  @media screen and (min-width: 1400px) {
-    .bttn {
-      margin-right: 0px;
-      width: 150px;
-    }
-  
-    .bttn1 {
-      margin-left: 1082px;
-    }
-  }
-  
-  @media screen and (max-width: 1280px) {
-    .bttn {
-      margin-right: 0px;
-    }
-  
-    .bttn1 {
-      margin-left: 880px;
-    }
-  }
-  
-  @media screen and (min-width: 600px) and (max-width: 1600px) {
-    .row1 {
-      margin-right: -36px;
-    }
-  }
-  
-  @media screen and (min-width: 1700px) and (max-width: 2000px) {
-    .row1 {
-      margin-right: -108px;
-    }
-  }
+
   
   .inputclass {
     color: #3247D5;
@@ -587,73 +342,6 @@ ul {
   }
   
    
-  .tab-slider--nav {
-    width: 100%;
-  }
-  
-  .tab-slider--tabs {
-    display: block;
-    float: left;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    position: relative;
-    border-radius: 35px;
-    overflow: hidden;
-    background: #fff;
-    height: 35px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-  
-  .tab-slider--tabs:after {
-    content: "";
-    width: 50%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    -webkit-transition: all 250ms ease-in-out;
-    transition: all 250ms ease-in-out;
-    border-radius: 35px;
-  }
-  
-  .tab-slider--tabs.slide:after {
-    left: 50%;
-  }
-  
-  .tab-slider--trigger {
-    font-size: 12px;
-    line-height: 1;
-    font-weight: bold;
-    color: #2E3C4E;
-    text-transform: uppercase;
-    text-align: center;
-    padding: 11px 20px;
-    position: relative;
-    z-index: 2;
-    cursor: pointer;
-    display: inline-block;
-    -webkit-transition: color 250ms ease-in-out;
-    transition: color 250ms ease-in-out;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-  
-  .tab-slider--trigger.active {
-    color: #fff;
-    background: #2E3C4E;
-  }
-  
-  .tab-slider--body {
-    margin-bottom: 20px;
-  }
-  
-  th{
-    width:500px;
-  }
+ 
+ 
   
