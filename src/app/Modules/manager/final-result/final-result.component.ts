@@ -33,6 +33,10 @@ export class FinalResultComponent implements OnInit {
   //     })
   // }
 
+  name:any;
+  percentage:any;
+  courseName:any;
+  issueDate:any;
   public GetTestResponsenew() {
     debugger;
     this.LearningService.GetTestResponsenew()
@@ -41,6 +45,11 @@ export class FinalResultComponent implements OnInit {
         debugger;
         if (this.roleid == 4) {
           this.Marks = data.filter((x) => x.trainerID == this.userid);
+          this.name=this.Marks[0].staffname
+          this.courseName=this.Marks[0].coursename
+          this.percentage=this.Marks[0].obtainedMarks
+          this.issueDate=this.Marks[0].modifiedDate
+          this
         } else {
           this.Marks = data;
         }
@@ -58,6 +67,36 @@ export class FinalResultComponent implements OnInit {
       },
     });
   }
+  certificateid:any
+  public getcertificate(id:any){
+this.certificateid=id
+    this.LearningService.GetTestResponsenew()
+    .subscribe({
+      next: (data) => {
+        debugger;
+    
+          this.Marks = data.filter((x) => x.id == this.certificateid);
+          this.name=this.Marks[0].staffname
+          this.courseName=this.Marks[0].coursename
+          this.percentage=this.Marks[0].obtainedMarks
+          this.issueDate=this.Marks[0].modifiedDate
+          this
+        
+      },
+     error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in GetTestResponsenew');
+        // Insert error in Db Here//
+        var obj = {
+          PageName: this.currentUrl,
+          ErrorMessage: err.error.message,
+        };
+        this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+          debugger;
+        });
+      },
+    });
+  }
+
 
   fileName = 'Final Result Reports.xlsx';
   exportexcel(): void {
