@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-10">
-            <p class="headings">Employee Assessment </p>
+            <p class="headings">Learning History</p>
         </div>
         <div class="col-lg-2">
             <p class="count">Count: {{detailslist.length}}</p>
@@ -50,7 +50,7 @@
                         <th>Training Name</th>
                         <th>Topic Name</th>
                         <!-- <th>Assigned Date </th> -->
-                        <th>Actions</th>
+                        <th>Assessments</th>
                     </tr>
 
                     <tr *ngFor="let details of detailslist|filter:search">
@@ -59,9 +59,17 @@
                         <td>{{details.chaptername}}</td>
                         <!-- <td>{{details.assignedDate}}</td> -->
                         <td>
-                            <button class="check" (click)="Check(details.id)"  *ngIf="details.checked==0  ">Check</button>
-                            <button *ngIf="details.checked==1"  [routerLink]="['/Trainer/Checkanswer',details.id]" class="add" id="show==1">View
+                            <button class="check" (click)="Check(details.id)"  *ngIf="details.checked==0 && roleid==4">Check</button>
+                            <button *ngIf="details.checked==1&& roleid==4"  [routerLink]="['/Trainer/Checkanswer',details.id]" class="add" id="show==1">View
                             </button>
+
+                            <p   *ngIf="details.checked==0 && roleid==3">Not Checked</p>
+                            <p *ngIf="details.checked==1&& roleid==3" id="show==1">Checked
+                            </p>
+
+
+
+
                             <!-- <button *ngIf="details.checked==1&&Checkid==1" [routerLink]="['/AssesmentDetails',details.courseID,details.userID]" class="add" id="show==1">View
                             </button> -->
 

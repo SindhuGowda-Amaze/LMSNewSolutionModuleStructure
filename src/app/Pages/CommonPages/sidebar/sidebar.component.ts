@@ -174,8 +174,12 @@ export class SidebarComponent implements OnInit {
   }
 
   timetable() {
-    this.active = '1'
-    sessionStorage.setItem("clickname", "Time Table")
+    this.active = 'timetable'
+    sessionStorage.setItem("clickname", "timetable")
+  }
+  LearningHistory() {
+    this.active = 'History'
+    sessionStorage.setItem("clickname", "timetable")
   }
 
   help() {

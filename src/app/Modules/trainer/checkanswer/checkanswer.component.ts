@@ -34,6 +34,7 @@ export class CheckanswerComponent implements OnInit {
       debugger;
       this.id = params['id'];
     });
+    this.GetTestResponseDetails();
   }
 
   public GetTestResponseDetails() {
@@ -204,4 +205,39 @@ export class CheckanswerComponent implements OnInit {
       },
     });
   }
+
+  name:any;
+  percentage:any;
+  courseName:any;
+  issueDate:any;
+  certificateid:any
+  public getcertificate(id:any){
+this.certificateid=id
+    this.AmazeService.GetTestResponsenew()
+    .subscribe({
+      next: (data) => {
+        debugger;
+    
+          this.Marks = data.filter((x) => x.id == this.certificateid);
+          this.name=this.Marks[0].staffname
+          this.courseName=this.Marks[0].coursename
+          this.percentage=this.Marks[0].obtainedMarks
+          this.issueDate=this.Marks[0].modifiedDate
+          this
+        
+      },
+     error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in GetTestResponsenew');
+        // Insert error in Db Here//
+        var obj = {
+          PageName: this.currentUrl,
+          ErrorMessage: err.error.message,
+        };
+        this.AmazeService.InsertExceptionLogs(obj).subscribe((data) => {
+          debugger;
+        });
+      },
+    });
+  }
+
 }

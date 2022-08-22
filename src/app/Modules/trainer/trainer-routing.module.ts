@@ -20,7 +20,7 @@ const routes: Routes = [{ path: '', component: TrainerComponent },
 {path:'Checkanswer/:id',component:CheckanswerComponent},
 {path:'TimeTable',component:TimeTableComponent},
 {path:'TimeTableForm/:id',component:TimeTableFormComponent},
-
+{path:'TimeTableForm',component:TimeTableFormComponent},
 
 
 

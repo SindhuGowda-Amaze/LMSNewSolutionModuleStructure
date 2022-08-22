@@ -314,7 +314,6 @@ this.testResponseID1=temp[0].id;
             this.testResult = 'Subjective Result Pending';
           }
         }
-      
       }
      
       var Entityy = {
@@ -326,7 +325,6 @@ this.testResponseID1=temp[0].id;
         'Totalmarks':this.totalmarks,
         'CorrectAnswers':this.correctansers,
         'wronganswers':this.wrongansers,
-  
       }
       this.AmazeService.InsertTestResponse(Entityy)
       .subscribe({
@@ -490,8 +488,7 @@ this.testResponseID1=temp[0].id;
 
   public Cancel() {
     debugger
-    location.href = "#/StartMyCourseNew";
-    
+    location.href = "#/Employee/StartMyCourseNew";
   }
 
 

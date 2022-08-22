@@ -17,6 +17,8 @@ export class TimeTableComponent implements OnInit {
   // options: FullCalendarOptions | undefined;
   // events: EventObject[] | undefined;
   roleid: any;
+  search:any;
+  quetionlist:any;
   viewMode = 'tab1';
   IntID: boolean = false;
   public ID: any = [];
@@ -24,6 +26,8 @@ export class TimeTableComponent implements OnInit {
   staffleaves2: any=[];
   staffleaves3: any=[];
   Notes: any
+  p: any = 1;
+  count1: any = 10;
   public selectedlanguage: any;
   public selectedlanguage1: any;
   public callenderyear: any;

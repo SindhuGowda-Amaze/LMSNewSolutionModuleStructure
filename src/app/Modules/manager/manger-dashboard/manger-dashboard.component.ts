@@ -29,13 +29,14 @@ export class MangerDashboardComponent implements OnInit {
   ngOnInit(): void {
     this.currentUrl = window.location.href;
 
-    this.GetEnroll();
-    this.Showcards(2);
+
     this.show = 2;
     this.manager = sessionStorage.getItem('userid');
     // this.GetCandidateReg()
     // this.insertdetails()
     //this.GetEnroll();
+    this.GetEnroll();
+    this.Showcards(2);
   }
 
   public GetCandidateReg() {
