@@ -21,8 +21,8 @@ export class TimeTableComponent implements OnInit {
   IntID: boolean = false;
   public ID: any = [];
   temp: any
-  staffleaves2: any;
-  staffleaves3: any;
+  staffleaves2: any=[];
+  staffleaves3: any=[];
   Notes: any
   public selectedlanguage: any;
   public selectedlanguage1: any;
@@ -43,7 +43,7 @@ export class TimeTableComponent implements OnInit {
   currentUrl: any;
   term: any;
   staffleaves: any;
-  staffleaves1: any;
+  staffleaves1: any=[];
   date: any;
   id: any;
   edate: any;

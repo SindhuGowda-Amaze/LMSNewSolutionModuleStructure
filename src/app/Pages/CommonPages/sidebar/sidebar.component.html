@@ -337,11 +337,11 @@
 
         <a routerLink="Trainer/TimeTable" class="tablinks" (click)="highlight($event)" (click)="timetable()">
             <img src="assets/Images/homework (1).png" style="width:13% ;margin-right: 17px;"
-                [ngClass]="active == 'timetable' ? 'Active1' : 'Active2'" />
-            <img [ngClass]="active != 'timetable' ? 'Active1' : 'Active2'" src="assets/Images/New folder/homework.png"
+                [ngClass]="active == '1' ? 'Active1' : 'Active2'" />
+            <img [ngClass]="active != '1' ? 'Active1' : 'Active2'" src="assets/Images/New folder/homework.png"
                 style="width:13%; margin-right: 17px;">
             &nbsp;
-            <span [ngClass]="active == 'timetable' ? 'Active1' : 'Active3'">TimeTable</span>
+            <span [ngClass]="active == '1' ? 'Active1' : 'Active3'">Time Table</span>
             &nbsp;
         </a>
      
