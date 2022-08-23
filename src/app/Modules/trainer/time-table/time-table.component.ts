@@ -14,8 +14,7 @@ export class TimeTableComponent implements OnInit {
 
   constructor(public DigiofficeService: LearningService, public router: Router, public datePipe: DatePipe) { }
   public showorhidecontent: any;
-  // options: FullCalendarOptions | undefined;
-  // events: EventObject[] | undefined;
+  
   roleid: any;
   search: any;
   quetionlist: any;
