@@ -115,6 +115,7 @@ export class EmployeeAssessmentResultComponent implements OnInit {
         debugger;
         if (this.roleid == 4) {
           this.detailslist = data.filter((x) => x.trainerID == this.staffid);
+          // this.detailslist = data
         } else {
           this.detailslist = data;
         }
@@ -191,7 +192,7 @@ export class EmployeeAssessmentResultComponent implements OnInit {
           heightLeft -= pageHeight;
         }
         doc.deletePage(1);
-        doc.save('ER-2 Report.pdf');
+        doc.save('Answer Sheet.pdf');
 
         var pdf1 = doc.output('blob');
         var file = new File([pdf1], 'Application.pdf');

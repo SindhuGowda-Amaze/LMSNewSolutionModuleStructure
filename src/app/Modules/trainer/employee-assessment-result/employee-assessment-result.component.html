@@ -72,9 +72,9 @@
                             <button class="check" (click)="Check(details.id)"  *ngIf="details.checked==0 && details.trainingType!=3">Correct Assessment</button>
                             <button *ngIf="details.checked==1&& details.trainingType==1"  [routerLink]="['/Checkanswer',details.id]" class="add" id="show==1">View
                             </button>
-
-                            <button class="check" (click)="download()"  *ngIf="details.checked==0 && details.trainingType==3">Download Assessment</button>
-                            <button class="check"  *ngIf="details.checked==0 && details.trainingType==3" (click)="Check(details.id)">Enter Marks</button>
+<br>
+                            <button class="check" (click)="download()"  *ngIf="details.checked==0 ">Download Assessment</button><br>
+                            <button class="check"  *ngIf="details.checked==0 " (click)="Check(details.id)">Enter Marks</button><br>
                             <button *ngIf="details.checked==1&& details.trainingType==3"  [routerLink]="['/Checkanswer',details.id]" class="add" id="show==1">View
                             </button>
 

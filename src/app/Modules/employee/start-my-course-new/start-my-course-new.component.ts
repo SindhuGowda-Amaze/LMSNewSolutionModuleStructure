@@ -339,32 +339,32 @@ export class StartMyCourseNewComponent implements OnInit {
   }
 
   Add() {
-    for (let i = 0; i < this.Attachment.length; i++) {
-      var entity = {
-        ChapterID: this.id,
-        ChapterAttachmentUrl: this.Attachment[i],
-      };
-      this.LearningService.InsertChapterAttachment(entity).subscribe({
-        next: (data) => {
-          debugger;
-          Swal.fire('Content Added Successfully...!');
-          this.Attachment.length = 0;
-          this.files1.length = 0;
-          this.files1 = [];
-        },
-        error: (err: { error: { message: any } }) => {
-          Swal.fire('Issue in InsertChapterAttachment');
-          // Insert error in Db Here//
-          var obj = {
-            PageName: this.currentUrl,
-            ErrorMessage: err.error.message,
-          };
-          this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
-            debugger;
-          });
-        },
-      });
-    }
+    // for (let i = 0; i < this.Attachment.length; i++) {
+    //   var entity = {
+    //     ChapterID: this.id,
+    //     ChapterAttachmentUrl: this.Attachment[i],
+    //   };
+    //   this.LearningService.InsertChapterAttachment(entity).subscribe({
+    //     next: (data) => {
+    //       debugger;
+    //       Swal.fire('Content Added Successfully...!');
+    //       this.Attachment.length = 0;
+    //       this.files1.length = 0;
+    //       this.files1 = [];
+    //     },
+    //     error: (err: { error: { message: any } }) => {
+    //       Swal.fire('Issue in InsertChapterAttachment');
+    //       // Insert error in Db Here//
+    //       var obj = {
+    //         PageName: this.currentUrl,
+    //         ErrorMessage: err.error.message,
+    //       };
+    //       this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+    //         debugger;
+    //       });
+    //     },
+    //   });
+    // }
     Swal.fire('Content Added Successfully...!');
   }
 
@@ -373,6 +373,8 @@ export class StartMyCourseNewComponent implements OnInit {
 
 
   questionList:any;
-
+public save(){
+  Swal.fire('Saved Successfully...!');
+}
   
 }
