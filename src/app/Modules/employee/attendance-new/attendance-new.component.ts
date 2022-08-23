@@ -156,7 +156,7 @@ this.getTopic();
       },
     });
   }
-  courseList:any;
+courseList  :any;
   public GetCourseDropdown() {
     this.LearningService.GetCourseDropdown().subscribe({
       next: (data) => {

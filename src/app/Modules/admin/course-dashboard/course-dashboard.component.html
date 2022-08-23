@@ -62,6 +62,7 @@
           <thead>
             <tr>
               <th>Category</th>
+              <th>Training Type</th>
               <th>Training Name</th>
               <th>Description</th>
               <th>Photo</th>
@@ -73,6 +74,11 @@
             </tr>
             <tr *ngFor="let details of result | filter: search">
               <td>{{ details.category }}</td>
+              <td>
+                <p *ngIf="details.trainingType==1">Online</p>
+                <p *ngIf="details.trainingType==2">External</p>
+                <p *ngIf="details.trainingType==3">Class Room</p>
+              </td>
               <td>{{ details.name }}</td>
               <!-- <td>{{details.description}}</td> -->
               <td>

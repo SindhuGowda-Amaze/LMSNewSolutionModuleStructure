@@ -237,17 +237,20 @@
                         <div class="row" style="overflow-y: auto;height:20px">
                             <div class="col-lg-12">
                                 <p class="name2">{{details.name}}</p>
+                                <span style="font-size: 12px;"*ngIf="details.trainingType==1">Online</span>
+                                <span style="font-size: 12px;"*ngIf="details.trainingType==2">External</span>
+                                <span style="font-size: 12px;"*ngIf="details.trainingType==3">Class Room</span>
                             </div>
                         </div> <br>
                         <div class="row" style="height: 7px">
+                        
                             <div class="col-lg-6">
                                 <p style="font-size: 13px;">Start Date</p>
-                                <p >{{details.startDate}}</p>
+                                {{details.startDate}}
                             </div>
                             <div class="col-lg-6" >
                                 <p style="font-size: 13px;">End Date </p>
-                                <p>{{details.endDate}}</p>
-                              
+                                {{details.endDate}}
                             </div>                        
                         </div>   <br><br>                
                         <div class="row">
@@ -257,9 +260,15 @@
                         </div>
                         <div class="row" style="text-align: center;margin-top: 0px;">
                             <div class="col-lg-12">
+
                                 <button class="edit" [routerLink]="['/Employee/StartMyCourseNew',details.id]"
-                                    *ngIf="details.enrollid!=0&&details.notStarted==0 && !details.completed " (click)="getenrollid(details.enrollid)">Start
-                                    Training</button>    
+                                    *ngIf="details.enrollid!=0&&details.notStarted==0 && !details.completed && details.trainingType!=2" (click)="getenrollid(details.enrollid)">Start
+                                    Training</button> 
+
+                                    <button class="edit" 
+                                    *ngIf="details.enrollid!=0&&details.notStarted==0 && !details.completed && details.trainingType==2" (click)="gotolink()">Start
+                                    Training</button>     
+
                                     <button class="edit" [routerLink]="['/Employee/StartMyCourseNew',details.id]"
                                     *ngIf="details.enrollid!=0&&details.notStarted==1&&details.completed==0" (click)="getenrollid(details.enrollid)">Open
                                     </button>                            

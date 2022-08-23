@@ -372,5 +372,11 @@ export class MyCourseDashboardComponent implements OnInit {
       },
     });
   }
+
+
+  public gotolink()
+  {
+    location.href="https://www.simplilearn.com/"
+  }
 }
 

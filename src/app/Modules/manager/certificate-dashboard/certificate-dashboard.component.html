@@ -49,6 +49,7 @@
                 <table id="download" class="table" *ngIf="(uniquelist | filter: search|filter:date).length > 0; else noResults">
                     <thead>
                         <tr>
+                            <th>Training Type</th>
                             <th>Training name</th>
                             <th>Start Date</th>
                             <th>Completion Date</th>
@@ -57,15 +58,22 @@
                             <th>Certificate</th>
                         </tr>
                         <tr *ngFor="let details of uniquelist|filter :search">
+                            <td style="color:#0C275A" >
+                            <p *ngIf="details.trainingType==1">Online</p>
+                            <p *ngIf="details.trainingType==2">External</p>
+                            <p *ngIf="details.trainingType==3">Class Room</p>
+                            </td>
                             <td style="color:#0C275A">{{details.coursename}}</td>
                             <td style="color:#0C275A">{{details.startDate|date}}</td>
                             <td style="color:#0C275A">{{details.endDate|date}}</td>
                             <td style="color:#0C275A">{{details.trainer}}</td>
                             <td> {{details.obtainedMarks/details.totalmarks
                                 *100 | number : '1.2-2'}} % </td>
-                            <td style="color:#0C275A">
-                                <button class="Button"
-                                [routerLink]="['/Employee/CourseCertificate',details.id]">View</button>
+                            <td style="color:#0C275A"> 
+                                <!-- <button class="Button"[routerLink]="['/Employee/CourseCertificate',details.id]" *ngIf="details.trainingType==1">View</button> -->
+                                <button class="Button" (click)="view(details.staffname,details.coursename)" *ngIf="details.trainingType==1"data-toggle="modal" data-target="#Certificate">View</button>
+                                <button class="Button"[routerLink]="['/Employee/CourseCertificate',details.id]"*ngIf="details.trainingType==2">Upload</button>
+                                <button class="Button" *ngIf="details.trainingType==2">Delete</button>
                             </td>
                             
                         </tr>
@@ -81,5 +89,46 @@
 
 
 </div>
+
+
+<div class="modal" id="Certificate">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- <div class="modal-header">
+                <h4 class="modal-title"> Certificate</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div> -->
+            <div id="downloadaplication"
+                style="position:absolute;left:50%;margin-left:-421px;top:0px;width:842px;height:595px;border-style:outset;overflow:hidden;background-color: rgb(245, 232, 210);border: 5px solid black;">
+                <div style="position:absolute;left:300.76px;top:84.60px" class="cls_002"><span class="cls_002">Learning
+                        And Development </span></div>
+                <div style="position:absolute;left:225.12px;top:162.60px" class="cls_003"><span
+                        class="cls_003">CERTIFICATE OF COMPLETION</span></div>
+                <div style="position:absolute;left:320.68px;top:252.52px" class="cls_004"><span
+                        class="cls_004">Presented to</span></div>
+                <div style="position:absolute;left:350.40px;top:290.88px" class="cls_005"><span
+                        class="cls_005">{{Staff}}</span></div>
+                <div style="position:absolute;left:330.04px;top:336.24px;" class="cls_006"><span
+                        class="cls_0061">{{Course}}</span></div>
+                <div style="position:absolute;left:369.68px;top:430.80px" class="cls_006"><span class="cls_006">Provided
+                        by</span></div>
+                <div style="position:absolute;left:370.68px;top:450.32px" class="cls_007"><span
+                        class="cls_007">Amaze</span>
+                </div>
+                <div style="position:absolute;left:373.76px;top:481.44px" class="cls_006"><span class="cls_006">
+                        JAN 2022</span></div>
+                <div class="row">
+                    <div class="col-lg-10"></div>
+                    <div class="col-lg-2">
+                        <button
+                            style="background-color: #3247D5;color:white;border-radius: 5px;border:none;margin-top: 10px;"
+                            (click)="download()">Download</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="cancel" data-dismiss="modal">Close</button>
+            </div>
+        </div>
 
 

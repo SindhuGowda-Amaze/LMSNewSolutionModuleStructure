@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="row">
-        <br>     
+        <br>
         <div class="col-lg-12">
             <div class="row">
                 <div class="col-lg-10">
@@ -17,45 +17,73 @@
                         <p class="newFont">Training <span style="color: red;">*</span></p>
                     </div>
                     <div class="col-lg-2">
-                        <p class="newFont">Mandatory <span style="color: red;">*</span></p>
+                        <p class="newFont">Training Condition <span style="color: red;">*</span></p>
                     </div>
-                    <div class="col-lg-2">
-                        <p class="newFont">Learning Path <span style="color: red;">*</span></p>
-                    </div>
-                    <div class="col-lg-2">
-                        <p class="newFont">PIP <span style="color: red;">*</span></p>
-                    </div>
+                    
                 </div>
                 <div class="row leavereq">
                     <div class="col-md-3">
-                        <select class="form-control" name="name123" id="name123" [(ngModel)]="name123"  (change)="getdata($event)">
+                        <select class="form-control" name="name123" id="name123" [(ngModel)]="name123"
+                            (change)="getdata($event)">
                             <option value="0">Select Employee Name</option>
-                            <option *ngFor="let details of stafflist" value="{{details.id}}">{{details.name}}</option> 
+                            <option *ngFor="let details of stafflist" value="{{details.id}}">{{details.name}}</option>
                         </select>
                     </div>
                     <div class="col-md-2">
-                        <select class="form-control" name="courseid" id="courseid" [(ngModel)]="courseid" >
+                        <select class="form-control" name="courseid" id="courseid" [(ngModel)]="courseid">
                             <option value="0">Select Training</option>
-                            <option *ngFor="let details of courselist" value="{{details.id}}" (change)="getdata(details)">{{details.name}}</option>
+                            <option *ngFor="let details of courselist" value="{{details.id}}"
+                                (change)="getdata(details)">{{details.name}}</option>
                         </select>
                     </div>
                     <div class="col-md-2">
-                       <input type="checkbox">
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                            <label class="form-check-label" for="inlineRadio1" name="mandatory" id="mandatory" [(ngModel)]="mandatory" (click)="on()">Mandatory</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"(click)="off()">
+                            <label class="form-check-label" for="inlineRadio2">Learning Path</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" (click)="on()">
+                            <label class="form-check-label" for="inlineRadio2">PIP</label>
+                          </div>
+
                     </div>
-                    <div class="col-md-2">
-                        <input type="checkbox">
-                     </div>
-                     <div class="col-md-2">
-                        <input type="checkbox">
-                     </div>
+                  
                 </div>
-              
-              
+                <br>
+                <div class="row leavereq" *ngIf="mandatory==1">
+
+                    <div class="col-lg-2">
+                        <p>To be Completed By</p>
+                        <select class="form-control">
+                            <option>January</option>
+                            <option>February</option>
+                            <option>March</option>
+                            <option>April</option>
+                            <option>May</option>
+                            <option>June</option>
+                            <option>July</option>
+                            <option>August</option>
+                            <option>September</option>
+                            <option>October</option>
+                            <option>November</option>
+                            <option>December</option>
+                            
+                        </select>
+                    </div>
+                </div>
+
                 <div class="row">
                     <div class="col-lg-9"></div>
-                    <div class="col-lg-1" >
-                        <button class="form-control cancel" *ngIf="id==null || id==undefined" (click)="enroll()">Assign</button>
-                        <button class="form-control cancel"  *ngIf="id!=null || id!=undefined" (click)="Update()">Update</button>   
+                    <div class="col-lg-1">
+                        <button class="form-control cancel" *ngIf="id==null || id==undefined"
+                            (click)="enroll()">Assign</button>
+                        <button class="form-control cancel" *ngIf="id!=null || id!=undefined"
+                            (click)="Update()">Update</button>
                     </div>
                     <div class="col-lg-1">
                         <button class="form-control cancel" (click)="Cancel()">Cancel</button>
@@ -91,5 +119,3 @@
         </div>
     </div>
 </div> -->
-
-

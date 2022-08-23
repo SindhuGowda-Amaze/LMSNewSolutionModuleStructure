@@ -11,14 +11,14 @@ import { DatePipe, formatDate } from '@angular/common';
 })
 export class TimeTableComponent implements OnInit {
 
- 
+
   constructor(public DigiofficeService: LearningService, public router: Router, public datePipe: DatePipe) { }
   public showorhidecontent: any;
   // options: FullCalendarOptions | undefined;
   // events: EventObject[] | undefined;
   roleid: any;
-  search:any;
-  quetionlist:any;
+  search: any;
+  quetionlist: any;
   viewMode = 'tab1';
   IntID: boolean = false;
   public ID: any = [];
@@ -26,6 +26,7 @@ export class TimeTableComponent implements OnInit {
   staffleaves2: any;
   staffleaves3: any;
   Notes: any
+  abcdef: any;
   p: any = 1;
   count1: any = 10;
   public selectedlanguage: any;
@@ -57,10 +58,12 @@ export class TimeTableComponent implements OnInit {
   public alldates: any = [];
 
   ngOnInit(): void {
+
+    this.abcdef = 'abcdef'
     this.currentUrl = window.location.href;
     this.selecallbtn = false;
-    this.roledid = localStorage.getItem('roledid');
-    this.staffID = localStorage.getItem('staffid');
+    this.roledid = sessionStorage.getItem('roleid');
+    this.staffID = sessionStorage.getItem('userid');
     const format = 'yyyy-MM-dd';
     const myDate = new Date();
     const locale = 'en-US';
@@ -70,13 +73,22 @@ export class TimeTableComponent implements OnInit {
     this.firstDayofcurrentmonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
     this.firstDayofcurrentmonth = formatDate(this.firstDayofcurrentmonth, format, locale);
     this.getstaffleaves(this.staffID, this.firstDayofcurrentmonth, '01-01-2029');
+    this.GetEnroll();
   }
+
+
+
 
   public getstaffleaves(staffID: any, SDate: any, EDate: any) {
     debugger
- 
+    let testsarray: any = [
+      { filterdate: '2022-08-01 14:47:29.987', filterdate1: '2022-08-25 14:47:29.987' },
+      { filterdate: '2022-08-01 14:47:29.987', filterdate1: '2022-08-25 14:47:29.987' },
+      { filterdate: '2022-08-01 14:47:29.987', filterdate1: '2022-08-25 14:47:29.987' }
+    ]
 
-  
+    this.buildcallender(testsarray)
+
 
   }
 
@@ -109,7 +121,7 @@ export class TimeTableComponent implements OnInit {
         if (inputs[i].type == "checkbox") {
           inputs[i].checked = false;
 
-        
+
           // This way it won't flip flop them and will set them all to the same value which is passed into the function
         }
       }
@@ -123,7 +135,7 @@ export class TimeTableComponent implements OnInit {
       // }
 
     }
-  
+
   }
 
   public Approveall() {
@@ -136,7 +148,7 @@ export class TimeTableComponent implements OnInit {
         'LeaveTypeID': this.ID[i].leaveTypeID,
         'NoOfDays': this.ID[i].noOfDays
       }
-   
+
     }
 
 
@@ -207,7 +219,7 @@ export class TimeTableComponent implements OnInit {
       'StartDate': this.sdte,
       'EndDate': this.edate,
     }
-  
+
   }
   public InsertNotificationforReject(supervisor: any) {
     debugger
@@ -295,7 +307,6 @@ export class TimeTableComponent implements OnInit {
       this.showorhidecontent = false;
     }
   }
-
   public buildcallender(MaintainanceList: string | any[]) {
     debugger
     this.callenderdaysdount.length = 0;
@@ -339,13 +350,13 @@ export class TimeTableComponent implements OnInit {
       for (let k = 0; k < this.alldates.length; k++) {
         let currenteventlist = this.callenderdaysdount.filter((x: { dateformat: number; }) => (this.datePipe.transform(x.dateformat, 'yyyy-MM-dd') == this.datePipe.transform(this.alldates[k], 'yyyy-MM-dd')))
         if (currenteventlist.length > 0) {
-          this.callenderdaysdount[currenteventlist[0].date - 1]['RequestFor'] = MaintainanceList[j].requestFor;
-          this.callenderdaysdount[currenteventlist[0].date - 1]['StartTime'] = MaintainanceList[j].startTime;
-          this.callenderdaysdount[currenteventlist[0].date - 1]['EndTime'] = MaintainanceList[j].endTime;
+          // this.callenderdaysdount[currenteventlist[0].date - 1]['RequestFor'] = MaintainanceList[j].requestFor;
+          // this.callenderdaysdount[currenteventlist[0].date - 1]['StartTime'] = MaintainanceList[j].startTime;
+          // this.callenderdaysdount[currenteventlist[0].date - 1]['EndTime'] = MaintainanceList[j].endTime;
+          // this.callenderdaysdount[currenteventlist[0].date - 1]['mantainenceHtml'] =
           this.callenderdaysdount[currenteventlist[0].date - 1]['mantainenceHtml'] =
-            this.callenderdaysdount[currenteventlist[0].date - 1]['mantainenceHtml'] =
             // "<span class='event_PendingBookCommunity'> Leave ID : " + MaintainanceList[j].id +
-            "<br>  Staff Name  :" + MaintainanceList[j].staffName + " <br> "
+            "<br>  Staff Name  :" + "mahesh" + " <br> "
           // "<br>  Reason : " + MaintainanceList[j].leaveReason +
           "</span>";
         }
@@ -395,4 +406,28 @@ export class TimeTableComponent implements OnInit {
     this.buildcallender(this.staffleaves);
   }
 
+
+  result: any;
+  public GetEnroll() {
+    debugger;
+    this.DigiofficeService.GetTestResponsenew().subscribe({
+      next: (data) => {
+        debugger;
+        // this.result = data.filter(x => x.manager == this.manager );
+        this.result = data;
+
+      },
+      error: (err: { error: { message: any } }) => {
+        Swal.fire('Issue in GetEnroll');
+        // Insert error in Db Here//
+        var obj = {
+          PageName: this.currentUrl,
+          ErrorMessage: err.error.message,
+        };
+        this.DigiofficeService.InsertExceptionLogs(obj).subscribe((data) => {
+          debugger;
+        });
+      },
+    });
+  }
 }

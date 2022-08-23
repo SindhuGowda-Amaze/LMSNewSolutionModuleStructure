@@ -13,6 +13,7 @@ export class EmployeeAssessmentResultComponent implements OnInit {
   joblist: any;
   search: any;
   count: any;
+  public showorhidecontent: any;
   staffid: any;
   manager: any;
   trainer: any;
@@ -21,6 +22,7 @@ export class EmployeeAssessmentResultComponent implements OnInit {
   roleid: any;
   courseID: any;
   result: any;
+  viewMode = 'tab1';
   dummemployeedetails: any;
   detailslist: any;
   Staff: any;
@@ -70,6 +72,15 @@ export class EmployeeAssessmentResultComponent implements OnInit {
         });
       },
     });
+  }
+
+  changeStatus(evn: any) {
+    if (evn.target.value == 1) {
+      this.showorhidecontent = true;
+    }
+    else {
+      this.showorhidecontent = false;
+    }
   }
 
   public GetEnroll() {
@@ -208,5 +219,8 @@ export class EmployeeAssessmentResultComponent implements OnInit {
     XLSX.writeFile(wb, this.fileName);
     // this.loader = false;
   }
+
+
+  
 
 }

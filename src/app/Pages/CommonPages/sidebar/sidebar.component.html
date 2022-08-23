@@ -243,7 +243,7 @@
 
       
 
-        <a *ngIf="roleid==3 " routerLink="/Manager/TraineeReport" class="tablinks" (click)="highlight($event)"
+        <!-- <a *ngIf="roleid==3 " routerLink="/Manager/TraineeReport" class="tablinks" (click)="highlight($event)"
             (click)="TraineeReport()">
             <img src="assets/Images/people.png" style="width:13% ;margin-right: 17px;"
                 [ngClass]="active == 'traineeReport' ? 'Active1' : 'Active2'" />
@@ -251,7 +251,7 @@
                 src="assets/Images/New folder/people (1).png" style="width:13%; margin-right: 17px;">
             &nbsp;
             <span [ngClass]="active == 'traineeReport' ? 'Active1' : 'Active3'">Trainee Report</span>
-        </a>
+        </a> -->
 
         <a *ngIf="roleid==3" routerLink="Employee/EnrolledTraining" class="tablinks" (click)="highlight($event)"
             (click)="enrolledtraining()">
@@ -260,7 +260,7 @@
             <img [ngClass]="active != 'enrolledtraining' ? 'Active1' : 'Active2'"
                 src="assets/Images/New folder/catalogue (1).png" style="width:13%; margin-right: 17px;">
             &nbsp;
-            <span [ngClass]="active == 'enrolledtraining' ? 'Active1' : 'Active3'">ENROLLED TRAINING </span>
+            <span [ngClass]="active == 'enrolledtraining' ? 'Active1' : 'Active3'">Mandatory TRAINING </span>
             &nbsp;
         </a>
         <a *ngIf="roleid==4||roleid==2 || roleid==3" routerLink="Employee/AttendanceNew" class="tablinks"
@@ -270,7 +270,7 @@
             <img [ngClass]="active != 'MyATTENDANCE' ? 'Active1' : 'Active2'"
                 src="assets/Images/New folder/people (1).png" style="width:13%; margin-right: 17px;">
             &nbsp;
-            <span [ngClass]="active == 'MyATTENDANCE' ? 'Active1' : 'Active3'"> ATTENDANCE </span>
+            <span [ngClass]="active == 'MyATTENDANCE' ? 'Active1' : 'Active3'"> ATTENDANCE Report</span>
             &nbsp;
         </a>
         <a *ngIf="roleid==2" routerLink="Employee/TrainingHrsReport" class="tablinks" (click)="highlight($event)"
@@ -320,7 +320,7 @@
             <img [ngClass]="active != 'result' ? 'Active1' : 'Active2'" src="assets/Images/New folder/1 (1)1.png"
                 style="width:13%; margin-right: 17px;">
             &nbsp;
-            <span [ngClass]="active == 'result' ? 'Active1' : 'Active3'"> RESULTS </span>
+            <span [ngClass]="active == 'result' ? 'Active1' : 'Active3'">Assessment RESULTS </span>
 
         </a>
     </div>
@@ -346,7 +346,7 @@
             <span [ngClass]="active == 'submitest' ? 'Active1' : 'Active3'"> Test Submitted </span>
         </a> -->
 
-        <a routerLink="Trainer/TimeTable" class="tablinks" (click)="highlight($event)" (click)="timetable()">
+        <a routerLink="Trainer/TimeTable" *ngIf="roleid!=1" class="tablinks" (click)="highlight($event)" (click)="timetable()">
             <img src="assets/Images/homework (1).png" style="width:13% ;margin-right: 17px;"
                 [ngClass]="active == 'timetable' ? 'Active1' : 'Active2'" />
             <img [ngClass]="active != 'timetable' ? 'Active1' : 'Active2'" src="assets/Images/New folder/homework.png"

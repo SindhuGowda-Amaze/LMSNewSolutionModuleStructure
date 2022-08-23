@@ -48,7 +48,7 @@ export class LearningDashboardComponent implements OnInit {
         }
         else{
           this.assignList = data.filter(
-            (x) => x.type == 'Manager Assign' && x.staffID == this.userid
+            (x) => x.staffID == this.userid
           );
         }
         

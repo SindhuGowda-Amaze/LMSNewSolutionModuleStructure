@@ -41,8 +41,10 @@
                             
                             <th *ngIf="roleid==3" >Employee ID</th>
                             <th *ngIf="roleid==3">Employee Name</th>
-                            <th *ngIf="roleid==2">Training Name</th>
+                            <th>Trainer Name</th>
                             <th>Training Name</th>
+                            <th>Training Type</th>
+                            <th>Status</th>
                             <th >Month</th>
                             <th >Year</th>
                            
@@ -54,8 +56,15 @@
                             
                             <td  *ngIf="roleid==3" style="font-size: 15px;">{{details.staffID}}</td>
                             <td  *ngIf="roleid==3" style="font-size: 15px;">{{details.employeeName}}</td>
-                            <td *ngIf="roleid==2"style="font-size: 15px;">{{details.name}}</td>
+                            <td style="font-size: 15px;">Sreeni</td>
                             <td style="font-size: 15px;">{{details.courseName}}</td>
+                        
+                            <td style="font-size: 15px;">
+                                <p *ngIf="details.trainingType==1">Online</p>
+                                <p *ngIf="details.trainingType==2">External</p>
+                                <p *ngIf="details.trainingType==3">Class Room</p>
+                            </td>
+                            <td style="font-size: 15px;">In Progress</td>
                             <td style="font-size: 15px;">{{details.monthName}}</td>
                             <td style="font-size: 15px;">{{details.yearName}}</td>
                         </tr>

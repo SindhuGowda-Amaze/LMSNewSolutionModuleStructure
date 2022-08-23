@@ -104,7 +104,7 @@ export class LearningHistoryComponent implements OnInit {
       next: (data) => {
         debugger;
         if (this.roleid == 4) {
-          this.detailslist = data.filter((x) => x.trainerID == this.staffid);
+          this.detailslist = data.filter((x) => x.trainerID == this.trainer);
         }
         else if(this.roleid==2){
           this.detailslist = data.filter(x=>x.userID==this.staffid);

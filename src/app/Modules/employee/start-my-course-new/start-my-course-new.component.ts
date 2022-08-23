@@ -292,4 +292,87 @@ export class StartMyCourseNewComponent implements OnInit {
   certificate() {
     location.href = '#/CourseCertificate/' + this.courseid;
   }
+
+  files1: File[] = [];
+  file: any;
+  Attachment: any;
+  files: File[] = [];
+  onSelect(event: any) {
+    this.files1.length = 0;
+    this.files1 = [];
+    console.log(event);
+    this.files1.push(...event.addedFiles);
+    this.uploadattachments1();
+  }
+
+  onRemove(event: any) {
+    console.log(event);
+    this.files1.splice(this.files1.indexOf(event), 1);
+  }
+
+  public uploadattachments1() {
+    debugger;
+    this.LearningService.AttachmentsUpload(this.files1).subscribe({
+      next: (data) => {
+        debugger;
+        this.file = data;
+        this.Attachment.push(this.file);
+        console.log('Attchaments', this.Attachment);
+        Swal.fire('Attachment Uploaded');
+      },
+      error: (err: { error: { message: any } }) => {
+        Swal.fire('Issue in Getting AttachmentsUpload');
+        // Insert error in Db Here//
+        var obj = {
+          PageName: this.currentUrl,
+          ErrorMessage: err.error.message,
+        };
+        this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+          debugger;
+        });
+      },
+    });
+  }
+  id:any
+  getid(id:any){
+    this.id=id
+  }
+
+  Add() {
+    for (let i = 0; i < this.Attachment.length; i++) {
+      var entity = {
+        ChapterID: this.id,
+        ChapterAttachmentUrl: this.Attachment[i],
+      };
+      this.LearningService.InsertChapterAttachment(entity).subscribe({
+        next: (data) => {
+          debugger;
+          Swal.fire('Content Added Successfully...!');
+          this.Attachment.length = 0;
+          this.files1.length = 0;
+          this.files1 = [];
+        },
+        error: (err: { error: { message: any } }) => {
+          Swal.fire('Issue in InsertChapterAttachment');
+          // Insert error in Db Here//
+          var obj = {
+            PageName: this.currentUrl,
+            ErrorMessage: err.error.message,
+          };
+          this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+            debugger;
+          });
+        },
+      });
+    }
+    Swal.fire('Content Added Successfully...!');
+  }
+
+
+
+
+
+  questionList:any;
+
+  
 }

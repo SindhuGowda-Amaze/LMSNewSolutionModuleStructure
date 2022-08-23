@@ -35,6 +35,7 @@
                     <thead>
                         <tr>
                             <th>Trainer Name</th>
+                            <th>Training Type</th>
                             <th>Training Name</th>
                             <th>Email Id</th>
                             <th>Start Date</th>
@@ -45,23 +46,28 @@
                         </tr>
                         <tr *ngFor="let details of Trainerdetails|filter:search">
                             <td style="color:#0C275A">{{details.trainerName}}</td>
+                            <td style="color:#0C275A">
+                                <p *ngIf="details.trainingType==1">Online</p>
+                                <p *ngIf="details.trainingType==2">External</p>
+                                <p *ngIf="details.trainingType==3">Class Room</p>
+                            </td>
                             <td style="color:#0C275A">{{details.courseName}}</td>
                             <td style="color:#0C275A">{{details.email}}</td>
                             <td style="color:#0C275A">{{details.startDate|date}}</td>
                             <td style="color:#0C275A">{{details.endDate|date}}</td>
                             <td style="color:#0C275A">{{details.batchName}}</td>
                             <td style="color:#0C275A">{{details.noOfStudentsEnrolled}}</td>
-                            <td  style="width:100px">
+                            <td style="width:100px">
 
                                 <!-- <button class="edit" (click)="edit(details.id)">Edit</button>
                                 <br> <br>
                                 <button class="edit" (click)="Ondelete(details.id)">Delete</button> -->
 
                                 <img src="assets/Images/Edit_ICON.png" alt="Edit_ICON" style="width:20px;"
-                                (click)="edit(details.id)"> &nbsp;&nbsp;
+                                    (click)="edit(details.id)"> &nbsp;&nbsp;
 
                                 <img src="assets/Images/Delete_ICON.png" alt="Delete_ICON"
-                                (click)="Ondelete(details.id)" style="width:20px;">
+                                    (click)="Ondelete(details.id)" style="width:20px;">
                             </td>
                         </tr>
                     </thead>
