@@ -40,6 +40,7 @@
                 <table class="table" *ngIf="(coursedetails | filter: search).length > 0; else noResults">
                     <thead>
                         <tr>
+                            <th>Training Type</th>
                             <th>Training Name</th>
                             <th>Topic Name</th>
                             <th>Description</th>
@@ -49,6 +50,11 @@
                             <th>Actions</th>
                         </tr>
                         <tr *ngFor="let details of coursedetails | filter: search">
+                            <td>
+                                <p *ngIf="details.trainingType==1">Online</p>
+                                <p *ngIf="details.trainingType==2">External</p>
+                                <p *ngIf="details.trainingType==3">Class Room</p>
+                            </td>
                             <td>{{details.courseName}}</td>
                             <td>{{details.name}}</td>
                             <td style="height:20px">{{details.shortdescription}}

@@ -176,7 +176,7 @@ export class ChapterComponent implements OnInit {
     this.LearningService.GetCourseDropdown().subscribe({
       next: (data) => {
         debugger;
-        this.courselist = data;
+        this.courselist = data.filter(x=>x.trainingType!=2);
       },
       error: (err: { error: { message: any } }) => {
         Swal.fire('Issue in GetCourseDropdown');

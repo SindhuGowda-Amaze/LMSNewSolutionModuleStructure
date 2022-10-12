@@ -104,9 +104,19 @@ export class AssignCourseToEmployeeComponent implements OnInit {
       },
     });
   }
+  mandatory:any;
+
+
+  public on(){
+    this.mandatory=1;
+  }
+
+  public off(){
+    this.mandatory=2;
+  }
 
   Cancel() {
-    location.href = '/Manager/AssignCourseDashboard';
+    location.href = '#/Manager/AssignCourseDashboard';
   }
   // public getcoureid(id: any) {
   //   this.staffId = id
@@ -146,7 +156,7 @@ export class AssignCourseToEmployeeComponent implements OnInit {
         debugger;
         let id = data;
         Swal.fire('Course Assigned Successfully!!!');
-        location.href = '/Manager/AssignCourseDashboard';
+        location.href = '#/Manager/AssignCourseDashboard';
       });
     }
   }

@@ -272,7 +272,7 @@ export class AssessmentdashboardComponent implements OnInit {
         next: (data) => {
           debugger;
           this.quetionlist = this.dummquetionlist.filter(
-            (x: { questionID: any; courseID: any }) => x.courseID == this.course
+            (x: { questionID: any; courseID: any }) => x.questionID == even.target.value
           );
           console.log('questionlist', this.quetionlist);
           this.dummquetionlist = data;

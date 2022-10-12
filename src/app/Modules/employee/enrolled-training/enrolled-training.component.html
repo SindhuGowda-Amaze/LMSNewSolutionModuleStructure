@@ -1,8 +1,8 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-2">
-            <P class="headings">Enrolled Trainings</P>
+        <div class="col-lg-4">
+            <P class="headings">Mandatory Training Report</P>
         </div>
     </div>
     
@@ -45,18 +45,21 @@
                 <thead>
                     <tr>
                         <th>Employee Name</th>
-                        <th>Phone No</th>
-                        <th>Email</th>
                         <th>Training Name</th>
-                        <th>Request sent date</th>
-                        <th>Action</th>
+                        <th>Training Type</th>
+                        <th>To be Completed</th>
+                        <th>Status</th>
                     </tr>
                     <tr *ngFor="let details of result | filter : search">
                         <td>{{details.employeeName}}</td>
-                        <td>{{details.phoneNo}}</td>
-                        <td>{{details.email}}</td>
                         <td>{{details.name}}</td>
-                        <td>{{details.modifiedDate|date}}</td>
+                        <td>
+                            <p *ngIf="details.trainingType==1">Online</p>
+                            <p *ngIf="details.trainingType==2">External</p>
+                            <p *ngIf="details.trainingType==3">Class Room</p>
+                           </td>
+                        <td>{{details.monthName}}</td>
+                        <!-- <td>{{details.modifiedDate|date}}</td> -->
                         <td>
                             <p *ngIf="details.status=='Manager Approved'||details.status=='Manager Rejected'">
                                 {{details.status}}</p>

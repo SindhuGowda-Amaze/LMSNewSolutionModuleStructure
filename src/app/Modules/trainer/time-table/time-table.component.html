@@ -80,8 +80,8 @@
                                 <div class="row">
                                     <div class="col-lg-2 callenderboxes"
                                         *ngFor="let calday of callenderdaysdount;let i = index">
-                                        {{calday.date}} {{calday.day}}
-                                        <div class="event_Pending" [innerHtml]='calday.mantainenceHtml'
+                                        {{calday.date}}1 {{calday.day}}Monday
+                                        <div class="event_Pending" [innerHtml]='abcdef'
                                             (click)="ShowMaintenanceRequest($event)"
                                             style="overflow-y: auto; border-bottom: solid 6px white;">
                                         </div>
@@ -119,11 +119,11 @@
             <br>
             <div class="container-fluid" [hidden]="!showorhidecontent">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-10">
                         <p class="show3res">SHOWING <span>{{staffleaves1.length}}3</span> RESULTS</p>
                     </div>
                     <div class="col-md-2">
-                        <button class="form-control requestbtn" *ngIf="roledid==4"
+                        <button class="form-control updatebutton" *ngIf="roledid==4"
                             routerLink="/Trainer/TimeTableForm">ADD</button>
                     </div>
                 </div><br>
@@ -134,43 +134,51 @@
                         <table class="table" style="width: 100%;">
                             <thead style=" background-color: #3247d5;">
                                 <tr>
+                                   
                                     <th>Training Name</th>
                                     <th>Topic Name</th>
                                     <th>Date</th>
                                     <th>Day</th>
                                     <th>Start Time</th>
                                     <th>End Time</th>
+                                    <th>Venue</th>
                                     <th roledid="2">Trainer Name</th>
 
                                     <!-- <th>Actions</th> -->
                                 </tr>
                                 <!-- <tr class="header"
-                                            *ngFor="let item of quetionlist | filter: search|paginate: { itemsPerPage: count1, currentPage: p}">
+                                            *ngFor="let item of result | filter: search|paginate: { itemsPerPage: count1, currentPage: p}">
+                                         
+                                            <td>
+                                                <p *ngIf="item.trainingType==1">Online</p>
+                                                <p *ngIf="item.trainingType==2">External</p>
+                                                <p *ngIf="item.trainingType==3">Class Room</p>
+                                            </td>
                                             <td>{{item.coursename}}</td>
                                             <td>{{item.chaptername}}</td>
-                                            <td>{{item.type}}</td>
-                                            <td>{{item.question}}</td>
-                                            <td>{{item.option1}}</td>
-                                            <td>{{item.option2}}</td>
-                                            <td>{{item.option3}}</td>
-                                            <td>{{item.option4}}</td>
-                                          <td style="width: 10px;">{{item.correctAnswer}}</td> 
-                                            <td [innerHTML]="item.correctAnswer"></td>
-                                            <td>{{item.weightage}}</td>
-                                             <td>
+                                            <td>{{item.startDate|date}}</td>
+                                            <td>Thursday</td>
+                                            <td>10:30AM</td>
+                                            <td>12:30PM</td>
+                                            <td>{{item.venue}}</td>
+                                            <td>{{item.trainer}}</td>
+                                        </tr> -->
+                                            <!-- <td>
                                                 <button class="addbutton" [routerLink]="['/Trainer/AssessmentForm',item.id]" style="width: 100%;">Edit</button> <br>
                                                 <br>
                                                 <button class="addbutton" (click)="Ondelete(item.id)">Delete</button>
-                                            </td>
+                                            </td>-->
                                      
-                                        </tr> -->
+                                        
                                 <tr>
+                                    
                                     <td>Digital Marketing</td>
                                     <td>Marketing Strategy</td>
                                     <td>23 August 2022</td>
                                     <td>Tuesday</td>
                                     <td>10:00AM</td>
                                     <td>12:00PM</td>
+                                    <td>Jayanager</td>
                                     <td roledid="2">Sreeni</td>
                                 </tr>
                                 <tr>
@@ -180,6 +188,7 @@
                                     <td>Wednesday</td>
                                     <td>10:00AM</td>
                                     <td>12:00PM</td>
+                                    <td>Jayanager</td>
                                     <td roledid="2">Sreeni</td>
                                 </tr>
                                 <tr>
@@ -189,6 +198,7 @@
                                     <td>Thursday</td>
                                     <td>10:00AM</td>
                                     <td>12:00PM</td>
+                                    <td>Electronic City</td>
                                     <td roledid="2">Sreeni</td>
                                 </tr>
                             </thead>

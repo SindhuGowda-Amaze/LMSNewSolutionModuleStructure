@@ -13,6 +13,7 @@ export class EmployeeAssessmentResultComponent implements OnInit {
   joblist: any;
   search: any;
   count: any;
+  public showorhidecontent: any;
   staffid: any;
   manager: any;
   trainer: any;
@@ -21,6 +22,7 @@ export class EmployeeAssessmentResultComponent implements OnInit {
   roleid: any;
   courseID: any;
   result: any;
+  viewMode = 'tab1';
   dummemployeedetails: any;
   detailslist: any;
   Staff: any;
@@ -72,6 +74,15 @@ export class EmployeeAssessmentResultComponent implements OnInit {
     });
   }
 
+  changeStatus(evn: any) {
+    if (evn.target.value == 1) {
+      this.showorhidecontent = true;
+    }
+    else {
+      this.showorhidecontent = false;
+    }
+  }
+
   public GetEnroll() {
     debugger;
     this.LearningService.GetEnroll().subscribe({
@@ -104,6 +115,7 @@ export class EmployeeAssessmentResultComponent implements OnInit {
         debugger;
         if (this.roleid == 4) {
           this.detailslist = data.filter((x) => x.trainerID == this.staffid);
+          // this.detailslist = data
         } else {
           this.detailslist = data;
         }
@@ -180,7 +192,7 @@ export class EmployeeAssessmentResultComponent implements OnInit {
           heightLeft -= pageHeight;
         }
         doc.deletePage(1);
-        doc.save('ER-2 Report.pdf');
+        doc.save('Answer Sheet.pdf');
 
         var pdf1 = doc.output('blob');
         var file = new File([pdf1], 'Application.pdf');
@@ -208,5 +220,8 @@ export class EmployeeAssessmentResultComponent implements OnInit {
     XLSX.writeFile(wb, this.fileName);
     // this.loader = false;
   }
+
+
+  
 
 }

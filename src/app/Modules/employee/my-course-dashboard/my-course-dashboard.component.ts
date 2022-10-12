@@ -372,5 +372,12 @@ export class MyCourseDashboardComponent implements OnInit {
       },
     });
   }
+
+
+  public gotolink()
+  {
+    Swal.fire('Credendials Sent through Email');
+    location.href="https://www.simplilearn.com/"
+  }
 }
 

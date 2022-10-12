@@ -205,12 +205,12 @@
   
   .updatebutton {
     border-radius: 6px;
-    background-color: #2F87CC;
+    background-color: #3247D5;
     color: white;
     border: none;
     width: 56px;
     height: 36px;
-    margin-left: 599px;
+   
     margin-right: 0px;
   }
   
@@ -324,7 +324,7 @@
   
   .inputclass {
     color: #3247D5;
-    Font: 'Poppins';
+
     background-color: transparent;
     border: none;
   

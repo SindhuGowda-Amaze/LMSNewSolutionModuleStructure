@@ -33,11 +33,11 @@
             <button class="Button" (click)="exportexcel()">Export To Excel</button>
         </div>
     </div>
-   <br>
-   
-   <div class="row">
-      <div class="col-lg-10"></div>
-  </div>
+    <br>
+
+    <div class="row">
+        <div class="col-lg-10"></div>
+    </div>
     <br>
     <div class="row">
     </div>
@@ -47,44 +47,54 @@
                 <thead>
                     <tr>
                         <th>Employee Name</th>
+                        <th>Training Type</th>
                         <th>Training Name</th>
+
                         <th>Topic Name</th>
-                        <!-- <th>Assigned Date </th> -->
-                        <th>Assessments</th>
+                        <th>Start Date </th>
+                        <th>End Date </th>
+                        <th>Total Marks</th>
+                        <th>Obtained Marks</th>
+                        <th>Status</th>
+                        <th>Trainer</th>
+                        <th>Action</th>
                     </tr>
 
                     <tr *ngFor="let details of detailslist|filter:search">
                         <td>{{details.staffname}}</td>
+                        <td><span style="font-size: 12px;"*ngIf="details.trainingType==1">Online</span>
+                            <span style="font-size: 12px;"*ngIf="details.trainingType==2">External</span>
+                            <span style="font-size: 12px;"*ngIf="details.trainingType==3">Class Room</span>
+                            <span style="font-size: 12px;"*ngIf="details.trainingType==null">Online</span></td>
+                          
                         <td>{{details.coursename}}</td>
                         <td>{{details.chaptername}}</td>
                         <!-- <td>{{details.assignedDate}}</td> -->
+
+                        <!-- <td>{{details.assignedDate}}</td>-->
                         <td>
-                            <button class="check" (click)="Check(details.id)"  *ngIf="details.checked==0 && roleid==4">Check</button>
-                            <button *ngIf="details.checked==1&& roleid==4"  [routerLink]="['/Trainer/Checkanswer',details.id]" class="add" id="show==1">View
-                            </button>
-
-                            <p   *ngIf="details.checked==0 && roleid==3">Not Checked</p>
-                            <p *ngIf="details.checked==1&& roleid==3" id="show==1">Checked
-                            </p>
-
-
-
-
-                            <!-- <button *ngIf="details.checked==1&&Checkid==1" [routerLink]="['/AssesmentDetails',details.courseID,details.userID]" class="add" id="show==1">View
-                            </button> -->
-
-                            <!-- <button *ngIf="details.checked==1&&Checkid==1" [routerLink]="['/AssesmentDetails',details.courseID,details.userID]" class="add" id="show==1">View
-                            </button> -->
+                            <p style="font-size: 12px;" *ngIf="details.startDate==null">1st August 2022</p>
+                            <p style="font-size: 12px;" *ngIf="details.startDate!=null">{{details.startDate|date}}</p>
+                        
                         </td>
-                        <!-- <td>{{details.assignedDate}}</td>
-                        <td>{{details.startDate}}</td>
-                        <td>{{details.endDate}}</td>
-                        <td>{{details.obtainedMarks/details.totalmarks
-                            *100 | number : '1.2-2'}} %</td> -->
-                        <!-- <td>
+                        <td>
+                            <p style="font-size: 12px;" *ngIf="details.endDate==null">31st August 2022</p>
+                            <p style="font-size: 12px;" *ngIf="details.endDate!=null"> {{details.endDate|date}}</p>
+                        </td>
+                        <td>{{details.totalmarks}}</td>
+                        <td>{{details.obtainedMarks}}</td>
+                        <!-- <td>{{details.obtainedMarks/details.totalmarks
+                            *100 | number : '1.2-2'}} %</td>  -->
+                        <td>{{details.status}}</td>
+                        <td>
+                            <p style="font-size: 12px;" *ngIf="details.trainer==null">Rohan</p>
+                            <p style="font-size: 12px;" *ngIf="details.trainer!=null">   {{details.trainer}}</p>
+                          
+                        </td>
+                        <td>
                             <button class="viewcertificate" data-toggle="modal" data-target="#Certificate"
                                 (click)="view(details.staffname,details.coursename)">View Certificate</button>
-                        </td> -->
+                        </td>
                     </tr>
                 </thead>
             </table>
@@ -242,23 +252,23 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div> -->
             <div id="downloadaplication"
-                style="position:absolute;left:50%;margin-left:-421px;top:0px;width:842px;height:595px;border-style:outset;overflow:hidden;background-color: white;">
+                style="position:absolute;left:50%;margin-left:-421px;top:0px;width:842px;height:595px;border-style:outset;overflow:hidden;background-color: rgb(245, 232, 210);border: 5px solid black;">
                 <div style="position:absolute;left:300.76px;top:84.60px" class="cls_002"><span class="cls_002">Learning
                         And Development </span></div>
                 <div style="position:absolute;left:225.12px;top:162.60px" class="cls_003"><span
                         class="cls_003">CERTIFICATE OF COMPLETION</span></div>
-                <div style="position:absolute;left:355.68px;top:252.52px" class="cls_004"><span
+                <div style="position:absolute;left:320.68px;top:252.52px" class="cls_004"><span
                         class="cls_004">Presented to</span></div>
-                <div style="position:absolute;left:350.40px;top:283.88px" class="cls_005"><span
+                <div style="position:absolute;left:350.40px;top:290.88px" class="cls_005"><span
                         class="cls_005">{{Staff}}</span></div>
-                <div style="position:absolute;left:257.04px;top:336.24px;" class="cls_006"><span
+                <div style="position:absolute;left:330.04px;top:336.24px;" class="cls_006"><span
                         class="cls_0061">{{Course}}</span></div>
-                <div style="position:absolute;left:379.68px;top:430.80px" class="cls_006"><span class="cls_006">Provided
+                <div style="position:absolute;left:369.68px;top:430.80px" class="cls_006"><span class="cls_006">Provided
                         by</span></div>
-                <div style="position:absolute;left:380.68px;top:450.32px" class="cls_007"><span
+                <div style="position:absolute;left:370.68px;top:450.32px" class="cls_007"><span
                         class="cls_007">Amaze</span>
                 </div>
-                <div style="position:absolute;left:383.76px;top:481.44px" class="cls_006"><span class="cls_006">
+                <div style="position:absolute;left:373.76px;top:481.44px" class="cls_006"><span class="cls_006">
                         JAN 2022</span></div>
                 <div class="row">
                     <div class="col-lg-10"></div>
@@ -273,3 +283,8 @@
                 <button type="button" class="cancel" data-dismiss="modal">Close</button>
             </div>
         </div>
+
+
+
+
+     

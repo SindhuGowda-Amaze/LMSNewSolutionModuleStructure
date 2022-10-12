@@ -20,11 +20,17 @@
             <div class="col-lg-3">
                 <input class="form-control" placeholder="Search" [(ngModel)]="search">
             </div>
-            <div class="col-lg-3">
+            <!-- <div class="col-lg-3">
                 <select class="form-control" id="Duration" (change)="getemployeeid($event)">
                     <option value="0">Select Employee</option>
                     <option *ngFor="let details of uniquelist" value="{{details.employeeName}}">{{details.employeeName}}
                     </option>
+                </select>
+            </div> -->
+            <div class="col-lg-2">
+                <select class="form-control"  name="Course" [(ngModel)]="Course" (change)="getcourseid($event)">
+                    <option value="0" >Select Training</option>
+                    <option style="color:#0C275A" *ngFor="let details of courseList" value="{{details.name}}" >{{details.name}}</option>
                 </select>
             </div>
             <!-- <div class="col-lg-3"></div>
@@ -46,6 +52,11 @@
 
             </ul>
         </div>
+        <div class="col-lg-3" *ngIf="showwaiting==1">
+            <label>Total No of Seats: <b>20</b></label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <label>No of Seats Filled: <b>15</b></label>
+            <label>No of Seats Available: <b>5</b></label>
+        </div>
     </div> <br>
 
     <div class="row head">
@@ -56,6 +67,7 @@
                         <th>Employee Name</th>
                         <th>Phone No</th>
                         <th>Email</th>
+                        <th>Training Type</th>
                         <th>Training Name</th>
                         <th>Request sent date</th>
                         <th>Action</th>
@@ -64,6 +76,11 @@
                         <td>{{details.employeeName}}</td>
                         <td>{{details.phoneNo}}</td>
                         <td>{{details.email}}</td>
+                        <td>
+                            <p *ngIf="details.trainingType==1">Online</p>
+                            <p *ngIf="details.trainingType==2">External</p>
+                            <p *ngIf="details.trainingType==3">Class Room</p>
+                        </td>
                         <td>{{details.name}}</td>
                         <td>{{details.modifiedDate|date}}</td>
                         <td>

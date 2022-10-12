@@ -74,7 +74,7 @@ export class TrainerCouresMappingFormComponent implements OnInit {
     .subscribe({
       next: data => {
         debugger
-        this.CourseList = data
+        this.CourseList = data.filter(x=>x.trainingType!=2);
       },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetUnmappedCourseDropdown');
         // Insert error in Db Here//

@@ -62,14 +62,17 @@
                                     <img class="card-img-top" src="{{details.photo}}" alt="Card image cap">
                                     <div class="card-body">
                                         <h5 class="card-title CardHead"><b>{{details.name}}</b>
-                                     <br>   <span style="font-size: 12px;">Online</span>
+                                     <br>  
+                                      <span style="font-size: 12px;"*ngIf="details.trainingType==1">Online</span>
+                                      <span style="font-size: 12px;"*ngIf="details.trainingType==2">External</span>
+                                      <span style="font-size: 12px;"*ngIf="details.trainingType==3">Class Room</span>
                                         </h5>
                                         <p class="card-text CardBody">{{details.description}}</p>
                                         <div class="card-footer card-footer__events text-muted" style="text-align: center;">
                                             <button class="btn" data-toggle="modal" data-target="#enroll"
                                                 (click)="getcoureid(details.id)">ENROLL</button> &nbsp;&nbsp;&nbsp;
 
-                                            <button [routerLink]="['/Employee/ViewCourse',details.id]" class="btn">View
+                                            <button [routerLink]="['/Employee/ViewCourse',details.id]" *ngIf="details.trainingType!=2" class="btn">View
                                                 Training</button>
                                         </div>
                                     </div>

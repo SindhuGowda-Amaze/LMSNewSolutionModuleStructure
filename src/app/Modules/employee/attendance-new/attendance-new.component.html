@@ -67,7 +67,7 @@
                                     <!-- <th>Training Name</th> -->
                                     <!-- <th>Topic Name</th> -->
                                     <th>Log Out Time</th>
-                                    <!-- <th>No of Hrs</th> -->
+                                    <th>No of Hrs</th>
                                     <th *ngIf="roleid!=2 && roleid!=4">Trainee Name</th>
                                 </tr>
                             </thead>
@@ -80,8 +80,15 @@
                                   
                                     <!-- <td>{{details.trainingname}}</td> -->
                                     <!-- <td>{{details.topicName}}</td> -->
-                                    <td>{{details.logoutDate}}</td>
-                                    <!-- <td>{{details.noofhrs}}</td> -->
+                                    <td>
+                                        <p *ngIf="details.logoutDate==null">5:30</p>
+                                        <p *ngIf="details.logoutDate!=null">{{details.logoutDate}}</p>
+                                        
+                                    </td>
+                                    <td>
+                                        <p *ngIf="details.noofhrs==null">5</p>
+                                        <p *ngIf="details.noofhrs!=null"> {{details.noofhrs}}</p>
+                                      </td>
                                     <td *ngIf="roleid!=2 && roleid!=4">{{details.trainerName}}</td>
                                 </tr>
                             </tbody>

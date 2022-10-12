@@ -120,8 +120,14 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+
+
+
+
+
   public GetNotification() {
     debugger
+
     this.LearningService.GetNotification(this.staffID).subscribe(data => {
       debugger
       this.notificationslist = data;
@@ -132,11 +138,14 @@ export class HeaderComponent implements OnInit {
     debugger
     this.LearningService.ClearNotificationByID(Number(this.staffID)).subscribe(data => {
       debugger
+
     })
 
     Swal.fire('Cleared Successfully');
     this.GetNotification();
+
   }
+
 
   public accountsetting() {
     debugger
@@ -147,4 +156,12 @@ export class HeaderComponent implements OnInit {
   public onActivate(event: any) {
     window.scroll(0, 0);
   }
+
+
+
+
+
+
+
+
 }

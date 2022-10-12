@@ -176,7 +176,7 @@ export class CourseComponent implements OnInit {
 
   Update() {
     debugger
-    if (this.Course_Photo.includes('http://103.133.214.197/')) {
+    if (this.Course_Photo.includes('http://23.101.22.93/')) {
       var json = {
         'ID': this.id,
         // "categoryName": this.categoryName,
@@ -306,9 +306,5 @@ export class CourseComponent implements OnInit {
         )
       }
     })
-
-
   }
-
-
 }
