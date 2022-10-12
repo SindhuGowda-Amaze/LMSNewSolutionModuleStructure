@@ -7,9 +7,10 @@ import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
   providedIn: 'root'
 })
 export class LearningService {
+ 
 
-   // public baseURL = "http://localhost:4199/";
-   public baseURL = "http://23.101.22.93/LearningandDevelopmentdemo/";
+   public baseURL = "http://localhost:4199/";
+   //public baseURL = "http://23.101.22.93/LearningandDevelopmentdemo/";
    // public host1 = "https://digioffice.amazeone.co/digiofficeapi";
    public host = "https://23.101.22.93//DigiOfficeCoreHRAPI"
    
@@ -857,6 +858,13 @@ export class LearningService {
   public GetSubsidaryMaster() {
 
     return this.http.get<any[]>(this.host + "/Announcement/GetSubsidaryMaster");
+  }
+
+  public Authenicate(data: any) {
+    debugger;
+    // this.url = this.host + "/Master/Verifyotp";
+    this.url = this.baseURL + 'Master/Authenicate';
+    return this.http.post(this.url, data);
   }
  
  
