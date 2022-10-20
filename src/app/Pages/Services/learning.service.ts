@@ -7,6 +7,7 @@ import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
   providedIn: 'root'
 })
 export class LearningService {
+ 
 
   public baseURL = "http://103.12.1.103/LearningandDevelopmentdemo";
 public host = "http://103.12.1.103/DigiOfficeCoreHRAPI"
@@ -860,6 +861,13 @@ public host = "http://103.12.1.103/DigiOfficeCoreHRAPI"
   public GetSubsidaryMaster() {
 
     return this.http.get<any[]>(this.host + "/Announcement/GetSubsidaryMaster");
+  }
+
+  public Authenicate(data: any) {
+    debugger;
+    // this.url = this.host + "/Master/Verifyotp";
+    this.url = this.baseURL + 'Master/Authenicate';
+    return this.http.post(this.url, data);
   }
  
  

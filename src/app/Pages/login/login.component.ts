@@ -80,23 +80,19 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  public login() {
-
+  public login() 
+  {
     debugger
-    // let adminCopy = this.admin.toLowerCase();
-    // if (this.userName.toLowerCase().includes(adminCopy)  && this.password == '1' && this.roleID==1) {
-
-    //   debugger
-    //   sessionStorage.setItem('UserName', 'admin');
-    //   sessionStorage.setItem('temp', '1');
-    //   sessionStorage.setItem('role', 'Admin');
-    //   sessionStorage.setItem('roleid', '1');
-    //   sessionStorage.setItem("clickname", "Admin Dashboard")
-    //   location.href = "#/Dashboard";
-    //   location.reload();
-    //   this.loader=false;
-    // }
+    let adminCopy = this.admin.toLowerCase();
+    debugger
+    var entity = {
+      'Username': 'Srikanth@amazeinc.in',
+      'Password': 'welcome',
+      'UserTypeID': 1
+    }
+   
     if (this.roleID == 1) {
+      debugger
       // let adminCopy = this.userName.toLowerCase();
       this.LearningService.GetMyDetails().subscribe((data: any) => {
         debugger
@@ -125,6 +121,20 @@ export class LoginComponent implements OnInit {
         }
       });
     }
+    this.LearningService.Authenicate(entity).subscribe((data: any) => {
+      debugger
+      if (data['requestMessage'] != undefined || null) {
+        localStorage.setItem('token', data['requestMessage'].headers[0].value[0]);
+        if (this.userName.toLowerCase().includes(adminCopy) && this.password == '1' && this.roleID == 1) {
+          debugger
+          sessionStorage.setItem('UserName', 'admin');
+          sessionStorage.setItem('temp', '1');
+          sessionStorage.setItem('role', 'Admin');
+          location.href = "#admin/AdminDashboard"
+          sessionStorage.setItem('roleid', '1');
+          location.reload();
+        }
+    
     else if (this.roleID == 2) {
       debugger
       // let userNameCopy = this.userName.toLowerCase();
@@ -244,6 +254,8 @@ export class LoginComponent implements OnInit {
     //   this.loader = false;
     // }
   }
+}
+  )}
 
 
 
