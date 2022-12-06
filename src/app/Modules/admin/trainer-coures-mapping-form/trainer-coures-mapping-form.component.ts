@@ -124,7 +124,7 @@ export class TrainerCouresMappingFormComponent implements OnInit {
     .subscribe({
       next: data => {
         debugger
-        this.trainerlist = data.filter(x=>x.id!=this.TrainerID);
+        this.trainerlist = data;
       },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetUnmappedTrainer');
         // Insert error in Db Here//

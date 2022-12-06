@@ -9,9 +9,10 @@ import { SidebarComponent } from './Pages/CommonPages/sidebar/sidebar.component'
 import { LoginComponent } from './Pages/login/login.component';
 import { SharedModule } from './Modules/shared/shared.module';
 import { DatePipe } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CKEditorModule } from 'ckeditor4-angular';
 import { AdminDashboardComponent } from './Modules/admin/admin-dashboard/admin-dashboard.component';
+import { InterceptorService } from './interceptor';
 
 
 
@@ -33,7 +34,16 @@ import { AdminDashboardComponent } from './Modules/admin/admin-dashboard/admin-d
 
     
   ],
-  providers: [ DatePipe],
+  providers: [ DatePipe,
+    {
+
+      provide: HTTP_INTERCEPTORS,
+  
+      useClass: InterceptorService,
+  
+      multi: true
+  
+     },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
