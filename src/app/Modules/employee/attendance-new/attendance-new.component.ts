@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import * as XLSX from 'xlsx';
+import { formatDate } from '@angular/common';
 @Component({
   selector: 'app-attendance-new',
   templateUrl: './attendance-new.component.html',
@@ -24,6 +25,7 @@ export class AttendanceNewComponent implements OnInit {
   trainer:any;
   courseID: any;
   TopicID:any;
+  Today:any;
   noofhrs:any;
   constructor(private ActivatedRoute: ActivatedRoute, private LearningService: LearningService) { }
 
@@ -35,6 +37,9 @@ export class AttendanceNewComponent implements OnInit {
     this.roleid = sessionStorage.getItem('roleid');
     this.userid = sessionStorage.getItem('userid');
     this.userName = sessionStorage.getItem('UserName');
+
+    this.Today = new Date().toISOString().split("T")[0];
+
 this.GetCourseDropdown();
 this.getTopic();
     this.GetAttendance_New();
@@ -53,14 +58,14 @@ this.getTopic();
       next: data => {
         debugger
         if(this.roleid==4){
-          this.Attendance = data.filter(x => x.trainerID == this.userid);
+          this.Attendance = data.filter(x => x.trainerID == this.userid && x.filterdate==this.Today);
           // this.Attendance = data
         }
         else if(this.roleid==3){
-          this.Attendance = data.filter(x => x.supervisor == this.userid);
+          this.Attendance = data.filter(x => x.supervisor == this.userid  && x.filterdate==this.Today);
         }
         else{
-          this.Attendance = data.filter(x=>x.empID==this.userid)
+          this.Attendance = data.filter(x=>x.empID==this.userid  && x.filterdate==this.Today)
         }
       },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetAttendance_New');

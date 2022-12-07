@@ -76,26 +76,26 @@
                         Sample Topics</a>
                 </div>
                 <div>
-                    <div class="card chapter" *ngFor="let details of chapterdetails" style="height: 220px;overflow-y:auto; overflow-x: hidden">
+                    <div class="card chapter"  style=" overflow-x: hidden">
                         <div class="row" >
                             <div class="col-lg-10 chapter">
                                 <!-- <a href="" class="chapter" style="font-size: 18px;" (click)="GetDetails(details.name)">
                                     <u>{{details.name}}</u> </a> -->
-                                    <a class="chapter" style="font-size: 18px;" (click)="GetDetails(details.name)">
-                                        <u>{{details.name}}</u> </a>
+                                    <a class="chapter" style="font-size: 18px;">
+                                        <u>{{Name}}</u> </a>
                             </div>
                             <div>
                                 <div class="row">
                                     <div class="col-lg-10">
-                                        <p class="chapter" style="margin-left: 50px;">
-                                            {{details.description}} </p>
+                                        <p class="chapter" style="margin-left: 50px;height: 100px; overflow-y: scroll">
+                                            {{Description}} </p>
                                     </div>
                                     <div class="col-lg-1"></div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-5" style="margin-left: 50px;">
                                         <br>
-                                        <p (click)=" ShowAttachments(details.id)"><u>Click Here To View Training Material</u></p>
+                                        <p (click)=" ShowAttachments(viewcourseID)"><u>Click Here To View Training Material</u></p>
 
                                         <!-- <img class="image" src="assets/Images/pdf.jpg" style="width:20%; height: auto;"
                                             (click)="PreviewPdf()"> &nbsp; &nbsp;
@@ -104,33 +104,99 @@
 
                                         <img class="image" src="assets/Images/Video_lcon.png"
                                             style="width: 20%; height: auto;" (click)="PreviewPdf()"><br> -->
-                                            <div *ngIf="details.id==attachmentId" class="row">
+                                            <div *ngIf="viewcourseID==attachmentId" class="row">
                                                 <div *ngFor="let details of Attachmentlist" class="col-lg-4">
                                                 
                                                     <img class="icon" style="height:30px;width:30px"
                                                         *ngIf="details.attachmentType=='video'"
-                                                        src="assets/Images/Video_lcon.png" alt="video_icon">
+                                                        src="assets/Images/Video_lcon.png" alt="video_icon" (click)="PreviewVideo(details.photo)">
                                                         <!-- (click)="PreviewVideo(details.photo) -->
                             
                                                     <img class="icon" style="height:30px;width:30px"
                                                         *ngIf="details.attachmentType=='Pdf'" src="assets/Images/pdf.jpg"
-                                                        alt="video_icon1"> 
+                                                        alt="video_icon1"(click)="PreviewPdf(details.photo)">
                                                         <!-- (click)="PreviewPdf(details.photo)"> -->
                             
                                                     <img class="icon" style="height:30px;width:30px"
                                                         *ngIf="details.attachmentType=='Image'" src="assets/Images/image.png"
-                                                        alt="video_icon2">
+                                                        alt="video_icon2"(click)="PreviewIMG(details.photo)">
                                                          <!-- (click)="PreviewIMG(details.photo)"> -->
                             
                                                     <img class="icon" style="height:30px;width:30px"
                                                         *ngIf="details.attachmentType=='Ppt'" src="assets/Images/files.png"
-                                                        alt="video_icon3" >
+                                                        alt="video_icon3" (click)="PreviewPPT(details.photo)">
                                                         <!-- (click)="PreviewPPT(details.photo)"> -->
                             
                                                     <img class="icon" style="height:30px;width:30px"
                                                         *ngIf="details.attachmentType=='Document'" src="assets/Images/word.png"
-                                                        alt="video_icon4">
+                                                        alt="video_icon4"(click)="PreviewMSword(details.photo)">
                                                          <!-- (click)="PreviewMSword(details.photo)"> -->
+                                                </div>    
+                                            </div>                               
+
+                                    </div>
+                                    <div class="col-lg-7"></div>
+                                </div> <br>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="card chapter" style=" overflow-x: hidden">
+                        <div class="row" >
+                            <div class="col-lg-10 chapter">
+                                <!-- <a href="" class="chapter" style="font-size: 18px;" (click)="GetDetails(details.name)">
+                                    <u>{{details.name}}</u> </a> -->
+                                    <a class="chapter" style="font-size: 18px;" (click)="GetDetails(Name2)">
+                                        <u>{{Name2}}</u> </a>
+                            </div>
+                            <div>
+                                <div class="row">
+                                    <div class="col-lg-10">
+                                        <p class="chapter" style="margin-left: 50px;height: 100px;overflow-y: scroll">
+                                            {{Description2}} </p>
+                                    </div>
+                                    <div class="col-lg-1"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-5" style="margin-left: 50px;">
+                                        <br>
+                                        <p (click)=" ShowAttachments(viewcourseID2)"><u>Click Here To View Training Material</u></p>
+
+                                        <!-- <img class="image" src="assets/Images/pdf.jpg" style="width:20%; height: auto;"
+                                            (click)="PreviewPdf()"> &nbsp; &nbsp;
+
+                                            <img src="assets/Images/pdf.png" style="width: 30px;" (click)="Previewvideo(details.vedioUrl)">
+
+                                        <img class="image" src="assets/Images/Video_lcon.png"
+                                            style="width: 20%; height: auto;" (click)="PreviewPdf()"><br> -->
+                                            <div *ngIf="viewcourseID2==attachmentId" class="row">
+                                                <div *ngFor="let details of Attachmentlist" class="col-lg-4">
+                                                
+                                                    <img class="icon" style="height:30px;width:30px"
+                                                    *ngIf="details.attachmentType=='video'"
+                                                    src="assets/Images/Video_lcon.png" alt="video_icon" (click)="PreviewVideo(details.photo)">
+                                                    <!-- (click)="PreviewVideo(details.photo) -->
+                        
+                                                <img class="icon" style="height:30px;width:30px"
+                                                    *ngIf="details.attachmentType=='Pdf'" src="assets/Images/pdf.jpg"
+                                                    alt="video_icon1"(click)="PreviewPdf(details.photo)">
+                                                    <!-- (click)="PreviewPdf(details.photo)"> -->
+                        
+                                                <img class="icon" style="height:30px;width:30px"
+                                                    *ngIf="details.attachmentType=='Image'" src="assets/Images/image.png"
+                                                    alt="video_icon2"(click)="PreviewIMG(details.photo)">
+                                                     <!-- (click)="PreviewIMG(details.photo)"> -->
+                        
+                                                <img class="icon" style="height:30px;width:30px"
+                                                    *ngIf="details.attachmentType=='Ppt'" src="assets/Images/files.png"
+                                                    alt="video_icon3" (click)="PreviewPPT(details.photo)">
+                                                    <!-- (click)="PreviewPPT(details.photo)"> -->
+                        
+                                                <img class="icon" style="height:30px;width:30px"
+                                                    *ngIf="details.attachmentType=='Document'" src="assets/Images/word.png"
+                                                    alt="video_icon4"(click)="PreviewMSword(details.photo)">
+                                                     <!-- (click)="PreviewMSword(details.photo)"> -->
                                                 </div>    
                                             </div>                               
 
@@ -261,3 +327,74 @@
     </div>
 </div>
 <br>
+
+
+
+
+
+
+
+<!-- <div class="card chapter" *ngFor="let details of chapterdetails" style="height: 220px;overflow-y:auto; overflow-x: hidden">
+    <div class="row" >
+        <div class="col-lg-10 chapter"> -->
+            <!-- <a href="" class="chapter" style="font-size: 18px;" (click)="GetDetails(details.name)">
+                <u>{{details.name}}</u> </a> -->
+                <!-- <a class="chapter" style="font-size: 18px;" (click)="GetDetails(details.name)">
+                    <u>{{details.name}}</u> </a>
+        </div>
+        <div>
+            <div class="row">
+                <div class="col-lg-10">
+                    <p class="chapter" style="margin-left: 50px;">
+                        {{details.description}} </p>
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
+            <div class="row">
+                <div class="col-lg-5" style="margin-left: 50px;">
+                    <br>
+                    <p (click)=" ShowAttachments(details.id)"><u>Click Here To View Training Material</u></p> -->
+
+                    <!-- <img class="image" src="assets/Images/pdf.jpg" style="width:20%; height: auto;"
+                        (click)="PreviewPdf()"> &nbsp; &nbsp;
+
+                        <img src="assets/Images/pdf.png" style="width: 30px;" (click)="Previewvideo(details.vedioUrl)">
+
+                    <img class="image" src="assets/Images/Video_lcon.png"
+                        style="width: 20%; height: auto;" (click)="PreviewPdf()"><br> -->
+                        <!-- <div *ngIf="details.id==attachmentId" class="row">
+                            <div *ngFor="let details of Attachmentlist" class="col-lg-4">
+                            
+                                <img class="icon" style="height:30px;width:30px"
+                                    *ngIf="details.attachmentType=='video'"
+                                    src="assets/Images/Video_lcon.png" alt="video_icon"> -->
+                                    <!-- (click)="PreviewVideo(details.photo) -->
+        
+                                <!-- <img class="icon" style="height:30px;width:30px"
+                                    *ngIf="details.attachmentType=='Pdf'" src="assets/Images/pdf.jpg"
+                                    alt="video_icon1">  -->
+                                    <!-- (click)="PreviewPdf(details.photo)"> -->
+        
+                                <!-- <img class="icon" style="height:30px;width:30px"
+                                    *ngIf="details.attachmentType=='Image'" src="assets/Images/image.png"
+                                    alt="video_icon2"> -->
+                                     <!-- (click)="PreviewIMG(details.photo)"> -->
+        
+                                <!-- <img class="icon" style="height:30px;width:30px"
+                                    *ngIf="details.attachmentType=='Ppt'" src="assets/Images/files.png"
+                                    alt="video_icon3" > -->
+                                    <!-- (click)="PreviewPPT(details.photo)"> -->
+        
+                                <!-- <img class="icon" style="height:30px;width:30px"
+                                    *ngIf="details.attachmentType=='Document'" src="assets/Images/word.png"
+                                    alt="video_icon4"> -->
+                                     <!-- (click)="PreviewMSword(details.photo)"> -->
+                            <!-- </div>    
+                        </div>                               
+
+                </div>
+                <div class="col-lg-7"></div>
+            </div> <br>
+        </div>
+    </div>
+</div> -->
