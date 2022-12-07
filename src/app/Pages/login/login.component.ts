@@ -81,11 +81,8 @@ export class LoginComponent implements OnInit {
   }
 
   public login() {
-<<<<<<< HEAD
-=======
     debugger
-    let adminCopy = this.userName.toLowerCase();
->>>>>>> 241cb6799ca3bceabd69fc3b39f9fb128fbcabaf
+    //let adminCopy = this.userName.toLowerCase();
     debugger
      let adminCopy = this.userName.toLowerCase();
     var entity = {
@@ -93,13 +90,8 @@ export class LoginComponent implements OnInit {
       'Password': 'welcome',
       'UserTypeID': 1
     }
-<<<<<<< HEAD
-   
-     if (this.roleID == 1) {
-=======
 
     if (this.roleID == 1) {
->>>>>>> 241cb6799ca3bceabd69fc3b39f9fb128fbcabaf
       debugger
    
       this.LearningService.GetMyDetails().subscribe(async data => {
@@ -134,29 +126,6 @@ export class LoginComponent implements OnInit {
       })
     }
 
-<<<<<<< HEAD
-
-    this.LearningService.Authenicate(entity).subscribe((data: any) => {
-      debugger
-      console.log("authnticaste response",data)
-
-      
-      if (data['requestMessage'] != undefined || null) {
-        localStorage.setItem('token', data['requestMessage'].headers[0].value[0]);
-        if (this.userName.toLowerCase().includes(adminCopy) && this.password == '1' && this.roleID == 1) {
-          debugger
-          sessionStorage.setItem('UserName', 'admin');
-          sessionStorage.setItem('temp', '1');
-          sessionStorage.setItem('role', 'Admin');
-          location.href = "#admin/AdminDashboard"
-          sessionStorage.setItem('roleid', '1');
-          location.reload();
-        }
-
-     
-    
-=======
->>>>>>> 241cb6799ca3bceabd69fc3b39f9fb128fbcabaf
     else if (this.roleID == 2) {
       debugger
       // let userNameCopy = this.userName.toLowerCase();
