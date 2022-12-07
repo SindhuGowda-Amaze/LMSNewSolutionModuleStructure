@@ -32,7 +32,6 @@ export class TrainerComponent implements OnInit {
   public GetTrainer() {
     debugger
     this.LearningService.GetTrainer()
-    
     .subscribe({
       next: data => {
         debugger

@@ -82,8 +82,9 @@ export class LoginComponent implements OnInit {
 
   public login() {
     debugger
-    let adminCopy = this.userName.toLowerCase();
+    //let adminCopy = this.userName.toLowerCase();
     debugger
+     let adminCopy = this.userName.toLowerCase();
     var entity = {
       'Username': 'Srikanth@amazeinc.in',
       'Password': 'welcome',
@@ -92,33 +93,37 @@ export class LoginComponent implements OnInit {
 
     if (this.roleID == 1) {
       debugger
-      // let adminCopy = this.userName.toLowerCase();
-      this.LearningService.GetMyDetails().subscribe((data: any) => {
-        debugger
-        let temp: any = data.filter((x: { emailID: any; password: any; roleType: any }) => (x.emailID.toUpperCase() === this.userName.toUpperCase() && x.password == this.password) && x.roleType == 1);
+   
+      this.LearningService.GetMyDetails().subscribe(async data => {
+        let temp: any = data.filter(x => (x.emailID.toUpperCase() === this.userName.toUpperCase() || x.phoneNo == this.userName) && x.password == this.password  && x.roleType == 1);
         if (temp.length == 0) {
           Swal.fire('Incorrect Username Or Password')
         }
         this.result = temp[0];
+        debugger;
+
         if (this.result != undefined || this.result != null || this.roleID == 1) {
+          debugger
           sessionStorage.setItem('UserName', this.result.name);
           sessionStorage.setItem('temp', '1');
           sessionStorage.setItem('role', 'Admin');
           sessionStorage.setItem('roleid', '1');
-          sessionStorage.setItem('userid', temp[0].id);
+          // sessionStorage.setItem('userid', temp[0].id);
           sessionStorage.setItem("clickname", "Admin Dashboard")
+          this.Insertattdnace(this.result.id)
           this.router.navigate(['/Admin/Dashboard']).then(() => {
             location.reload();
             this.loader = false;
           });
         }
         else {
+
           Swal.fire('Username or Password is invalid');
           this.userName = "";
           this.password = "";
           this.loader = false;
         }
-      });
+      })
     }
 
     else if (this.roleID == 2) {

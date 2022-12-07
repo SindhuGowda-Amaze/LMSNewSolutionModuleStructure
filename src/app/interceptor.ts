@@ -1,74 +1,44 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpHeaders } from '@angular/common/http';
+import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InterceptorService implements HttpInterceptor {
-  authReq: any
+
   constructor() { }
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    debugger;
-    let token1: any = localStorage.getItem('token');
-    const token: any = (token1);
-    let toekn: any = localStorage.getItem('antiforgerytoken');
-    const antitoken = atob(toekn);
 
-    const cookietoken = localStorage.getItem('cookietoken');
-
-
+    const token = localStorage.getItem('token');;
     // Clone the request to add the new header.
-    // debugger;
+    
+    const authReq = req.clone({
+      headers: req.headers.set('Authorization', `${token}`),
 
-    // const headers = new HttpHeaders({
-    //   'Authorization': `${token}`,
-    //   'XSRF-TOKEN': `${token}`,
-    //   'Cookie': 'xsrf-token=' + `${token}`,
-    // });
-
-
-    if (req.url.includes('Authenicate') == true) {
-      this.authReq = req.clone({
-        headers: req.headers.set('Authorization', `${token}`),
-      })
-    } else  {
-        this.authReq = req.clone({
-            headers: req.headers.set('Authorization', `${token}`),
-          })
-    }
-  
-    // const authReq = req.clone({
-
-    //   headers: req.headers.set('Authorization', `${token}`),
-
-
-
-    // });
-
-    // debugger;
+    });
     next.handle(req);
-    debugger;
+    
     // console.log('Sending request with new header now ...');
 
     //send the newly created request
-    return next.handle(this.authReq).pipe(
+    return next.handle(authReq).pipe(
       catchError(err => {
         console.log('Error Occurred');
-        console.log(err);
-        throw new Error(err);
-      })) as any
+        console.log("err,", err.error.message);
+ 
+        // this.toastrService.error("error",err.error.message);
+        throw new Error();
+      })) as any;
+
 
   }
 }
-
-
-
-{ }
-
+{
+}
 
 
