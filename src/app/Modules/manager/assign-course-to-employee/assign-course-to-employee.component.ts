@@ -152,6 +152,9 @@ export class AssignCourseToEmployeeComponent implements OnInit {
         phoneNo: this.mobile,
         email: this.emailID,
         type: 'Manager Assign',
+        Mandatory:this.mandatory==undefined?0:this.mandatory,
+        PIP:this.pip==undefined?0:this.pip,
+        LearningPath:this.Learning==undefined?0:this.Learning
       };
       this.LearningService.InsertEnroll(json)
       .subscribe((data) => {

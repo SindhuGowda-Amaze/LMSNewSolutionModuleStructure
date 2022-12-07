@@ -226,22 +226,57 @@
         <div class="row" *ngIf="(coursedetails | filter: search).length > 0; else noResults">
             <br>
             <div class="col-lg-3" *ngFor="let details of coursedetails | filter:search ">
-                <div class="card1" style="background-color: white; height:330px;width:290px;border-radius: 10px;">
+                <div class="card1" style="background-color: white; height:353px;width:290px;border-radius: 10px;">
                     <div class="front">
                         <br>
                         <div class="row" style="margin-top: -15px; margin-left: -15px; margin-right: 0px;">
                             <div class="col-lg-12">
                                 <img style="width: 106%; height: 125px; overflow-y: hidden;" src="{{details.photo}}">
                             </div>
-                        </div><br>
-                        <div class="row" style="overflow-y: auto;height:20px">
+                        </div>
+                        <div class="row" style="overflow-y: auto;">
                             <div class="col-lg-12">
                                 <p class="name2">{{details.name}}</p>
+                                <!-- <span style="font-size: 12px;margin-right: 50px;"*ngIf="details.trainingType==1">Online</span>
+                                <span style="font-size: 12px;margin-right: 50px;"*ngIf="details.trainingType==2">External</span>
+                                <span style="font-size: 12px;margin-right: 50px;"*ngIf="details.trainingType==3">Class Room</span>
+                                <span style="font-size: 12px;margin-right: 50px;">Manager</span>
+                                <span style="font-size: 12px;">PIP</span> -->
+                            </div>
+                            
+                        </div> 
+                        <div class="row" style="overflow-y: auto;">
+                            <div class="col-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <span style="font-size: 11px;">TrainingMode</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <span style="font-size: 12px;"*ngIf="details.trainingType==1">Online</span>
+                                        <span style="font-size: 12px;"*ngIf="details.trainingType==2">External</span>
+                                        <span style="font-size: 12px;"*ngIf="details.trainingType==3">Class Room</span>
+                                    </div>
+                                </div>
+                                <!-- <span style="font-size: 10px;">TrainingMode</span>
                                 <span style="font-size: 12px;"*ngIf="details.trainingType==1">Online</span>
                                 <span style="font-size: 12px;"*ngIf="details.trainingType==2">External</span>
-                                <span style="font-size: 12px;"*ngIf="details.trainingType==3">Class Room</span>
+                                <span style="font-size: 12px;"*ngIf="details.trainingType==3">Class Room</span> -->
                             </div>
+                            <div class="col-lg-4">
+                                <span style="font-size: 11px;">Assigned By</span>
+                             
+                                    <span style="font-size: 12px;">Manager</span>
+                               
+                            </div>
+                            <div class="col-lg-4">
+                                <span style="font-size: 11px;">Training Type</span>
+                                <span style="font-size: 12px;">PIP</span>
+                            </div>
+                            
                         </div> <br>
+
                         <div class="row" style="height: 7px">
                         
                             <div class="col-lg-6">
@@ -270,7 +305,7 @@
                                     Training</button>     
 
                                     <button class="edit" [routerLink]="['/Employee/StartMyCourseNew',details.id]"
-                                    *ngIf="details.enrollid!=0&&details.notStarted==1&&details.completed==0" (click)="getenrollid(details.enrollid)">Open
+                                    *ngIf="details.enrollid!=0&&details.notStarted==1&&details.completed==0" (click)="getenrollid(details.enrollid)">Accept
                                     </button>                            
                                 <button class="edit" data-toggle="modal" data-target="#enroll" *ngIf="details.enrollid=='0'&&details.completed==0"
                                     (click)="getcourseid(details.id)"> &nbsp;&nbsp;

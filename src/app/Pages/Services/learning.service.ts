@@ -15,7 +15,11 @@ public host = "https://103.12.1.103/DigiOfficeCoreHRAPI"
    // public baseURL = "http://localhost:4199/";
   //  public baseURL = "http://23.101.22.93/LearningandDevelopmentdemo/";
    // public host1 = "https://digioffice.amazeone.co/digiofficeapi";
-  //  public host = "https://23.101.22.93//DigiOfficeCoreHRAPI"
+ //  public host = "https://23.101.22.93//DigiOfficeCoreHRAPI"
+
+  // public baseURL = "https://103.12.1.103/LearningandDevelopmentdemo";
+ 
+   //public host = "https://103.12.1.103/DigiOfficeCoreHRAPI"
    
   //  public host1="https://support.amazeone.co/SupportAPI/";
  

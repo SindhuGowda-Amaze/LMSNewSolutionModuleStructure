@@ -98,7 +98,7 @@ export class HeaderComponent implements OnInit {
       var todayDate = new Date().toISOString().slice(0, 10);
       let temp: any = data.filter(x => x.empID == sessionStorage.getItem('userid') && x.filterdate === todayDate);
       if (temp.length == 0) {
-        Swal.fire('Not Logged In Correctly today'); 
+         Swal.fire('Not Logged In Correctly today'); 
       } else {
         this.loginid = temp[0].id;
 

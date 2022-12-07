@@ -5,7 +5,7 @@
             <p class="headings">Assign Training Dashboard</p>
         </div>
         <div class="col-lg-2">
-            <p class="count" >Count: {{count}}</p>
+            <p class="count">Count: {{count}}</p>
         </div>
     </div>
     <div class="card">
@@ -14,7 +14,8 @@
                 <p class="filter">Filter By</p>
             </div>
             <div class="col-lg-5">
-                <input type="search" class="form-control search" placeholder="Search for Name.." [(ngModel)]="search" (ngModelChange)="filterAssignTraining()">
+                <input type="search" class="form-control search" placeholder="Search for Name.." [(ngModel)]="search"
+                    (ngModelChange)="filterAssignTraining()">
             </div>
         </div>
     </div> <br>
@@ -63,11 +64,20 @@
                             <td>Developers</td>
                             <td>Staff</td>
                             <td>A1</td>
-                            <td>Yes</td>
-                            <td>No</td>
-                            <td>No</td>
+                            <td>
+                                <p *ngIf="details.mandatory==0||details.mandatory==null">No</p>
+                                <p *ngIf="details.mandatory==1">Yes</p>
+                            </td>
+                            <td>
+                                <p *ngIf="details.pip==0||details.pip==null">No</p>
+                                <p *ngIf="details.pip==1">Yes</p>
+                            </td>
+                            <td>
+                                <p *ngIf="details.learningPath==0||details.learningPath==null">No</p>
+                                <p *ngIf="details.learningPath==1">Yes</p>
+                            </td>
                             <td style="width:0px">
-                              
+
 
                                 <!-- <img src="assets/Images/Edit_ICON.png" alt="Edit_ICON" style="width: 10%;"
                                 (click)="edit(details.id)" > &nbsp;&nbsp; -->
