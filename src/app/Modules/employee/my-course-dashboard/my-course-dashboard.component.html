@@ -226,7 +226,7 @@
         <div class="row" *ngIf="(coursedetails | filter: search).length > 0; else noResults">
             <br>
             <div class="col-lg-3" *ngFor="let details of coursedetails | filter:search ">
-                <div class="card1" style="background-color: white; height:353px;width:290px;border-radius: 10px;">
+                <div class="card1" style="background-color: white; height:353px;width:290px;border-radius: 10px;overflow-y: scroll;">
                     <div class="front">
                         <br>
                         <div class="row" style="margin-top: -15px; margin-left: -15px; margin-right: 0px;">
@@ -249,14 +249,14 @@
                             <div class="col-lg-4">
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <span style="font-size: 11px;">TrainingMode</span>
+                                        <span style="font-size: 10px;color: blue;"><b>TrainingMode</b></span>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <span style="font-size: 12px;"*ngIf="details.trainingType==1">Online</span>
-                                        <span style="font-size: 12px;"*ngIf="details.trainingType==2">External</span>
-                                        <span style="font-size: 12px;"*ngIf="details.trainingType==3">Class Room</span>
+                                        <span style="font-size: 11px;"*ngIf="details.trainingType==1">Online</span>
+                                        <span style="font-size: 11px;"*ngIf="details.trainingType==2">External</span>
+                                        <span style="font-size: 10px;"*ngIf="details.trainingType==3">ClassRoom</span>
                                     </div>
                                 </div>
                                 <!-- <span style="font-size: 10px;">TrainingMode</span>
@@ -265,14 +265,14 @@
                                 <span style="font-size: 12px;"*ngIf="details.trainingType==3">Class Room</span> -->
                             </div>
                             <div class="col-lg-4">
-                                <span style="font-size: 11px;">Assigned By</span>
+                                <span style="font-size: 10px;color: blue;"><b>Assigned By </b></span>
                              
-                                    <span style="font-size: 12px;">Manager</span>
+                                    <span style="font-size: 11px;">Manager</span>
                                
                             </div>
                             <div class="col-lg-4">
-                                <span style="font-size: 11px;">Training Type</span>
-                                <span style="font-size: 12px;">PIP</span>
+                                <span style="font-size: 10px;color: blue;"><b>TrainingType</b></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span style="font-size: 11px;">PIP</span>
                             </div>
                             
                         </div> <br>
@@ -280,17 +280,19 @@
                         <div class="row" style="height: 7px">
                         
                             <div class="col-lg-6">
-                                <p style="font-size: 13px;">Start Date</p>
-                                {{details.startDate}}
+                                <label style="font-size: 11px;"><b>Start Date</b></label>
+                                <label> {{details.startDate}}</label>
+                               
                             </div>
                             <div class="col-lg-6" >
-                                <p style="font-size: 13px;">End Date </p>
-                                {{details.endDate}}
+                                <label style="font-size: 11px;"><b>End Date</b> </label>
+                                <label> {{details.endDate}}</label>
+                               
                             </div>                        
-                        </div>   <br><br>                
+                        </div>   <br><br>      
                         <div class="row">
                             <div class="col-lg-12">
-                                <progress id="file" value="0" max="100" style="width:100%;height:15px;">0%</progress>
+                                <progress id="file" value="50" max="100" style="width:100%;height:15px;">0%</progress>
                             </div>
                         </div>
                         <div class="row" style="text-align: center;margin-top: 0px;">

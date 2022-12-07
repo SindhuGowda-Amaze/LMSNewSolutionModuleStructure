@@ -108,7 +108,7 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('temp', '1');
           sessionStorage.setItem('role', 'Admin');
           sessionStorage.setItem('roleid', '1');
-          // sessionStorage.setItem('userid', temp[0].id);
+          sessionStorage.setItem('userid', temp[0].id);
           sessionStorage.setItem("clickname", "Admin Dashboard")
           this.Insertattdnace(this.result.id)
           this.router.navigate(['/Admin/Dashboard']).then(() => {
