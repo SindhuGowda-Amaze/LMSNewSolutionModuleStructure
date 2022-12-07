@@ -27,6 +27,7 @@ export class AttendanceNewComponent implements OnInit {
   TopicID:any;
   Today:any;
   noofhrs:any;
+  EmployeeList:any;
   constructor(private ActivatedRoute: ActivatedRoute, private LearningService: LearningService) { }
 
   ngOnInit(): void {
@@ -43,6 +44,7 @@ export class AttendanceNewComponent implements OnInit {
 this.GetCourseDropdown();
 this.getTopic();
     this.GetAttendance_New();
+    this.GetStaffList();
     // this.areYouReallySure = false;
     // this.allowPrompt = true;
 
@@ -90,7 +92,7 @@ this.getTopic();
   uniquelist: any;
   Date: any;
   filterbydate() {
-    this.LearningService.GetTestResponse().subscribe({
+    this.LearningService.GetAttendance_New().subscribe({
       next: (data) => {
         this.uniquelist = data.filter(
           (x) => x.startDate >= this.Date && x.endDate <= this.endDate
@@ -216,4 +218,58 @@ courseList  :any;
     // this.loader = false;
   }
 
+
+  EmplID:any;
+  getEmpID(even: any) {
+    debugger;
+    this.EmplID = even.target.value;
+    this.LearningService.GetAttendance_New()
+    .subscribe({
+      next: data => {
+        debugger
+        if(this.roleid==4){
+          this.Attendance = data.filter(x => x.trainerID == this.userid && x.filterdate==this.Today && x.empID==this.EmplID );
+          // this.Attendance = data
+        }
+        else if(this.roleid==3){
+          this.Attendance = data.filter(x => x.supervisor == this.userid  && x.filterdate==this.Today && x.empID==this.EmplID);
+        }
+        else{
+          this.Attendance = data.filter(x=>x.empID==this.userid  && x.filterdate==this.Today && x.empID==this.EmplID)
+        }
+      },error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in GetAttendance_New');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+  }
+
+  public GetStaffList() {
+    this.LearningService.GetAllStaffNew().subscribe({
+      next: (data) => {
+        debugger;
+        this.EmployeeList = data.filter(x=>x.type!=2 && x.department==4);
+      },
+      error: (err: { error: { message: any } }) => {
+        Swal.fire('Issue in GetCourseDropdown');
+        // Insert error in Db Here//
+        var obj = {
+          PageName: this.currentUrl,
+          ErrorMessage: err.error.message,
+        };
+        this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+          debugger;
+        });
+      },
+    });
+  }
 }

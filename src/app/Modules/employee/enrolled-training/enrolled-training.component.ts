@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import * as XLSX from 'xlsx';
+import { formatDate } from '@angular/common';
 @Component({
   selector: 'app-enrolled-training',
   templateUrl: './enrolled-training.component.html',
@@ -29,12 +30,16 @@ export class EnrolledTrainingComponent implements OnInit {
   getid: any 
   uniquelist : any 
   getemployeeid : any
+  todaydate:any;
 
   constructor(public LearningService: LearningService) {}
 
   ngOnInit(): void {
     this.currentUrl = window.location.href;
-
+    const format = 'yyyy-MM-dd';
+    const myDate = new Date();
+    const locale = 'en-US';
+    this.todaydate = formatDate(myDate, format, locale);
   ;
     this.show = 2;
     this.manager = sessionStorage.getItem('userid');
