@@ -144,11 +144,7 @@ export class TrainerCouresMappingFormComponent implements OnInit {
     .subscribe({
       next: data => {
         debugger
-<<<<<<< HEAD
-        this.trainerlist = data;
-=======
         this.trainerlist = data
->>>>>>> 241cb6799ca3bceabd69fc3b39f9fb128fbcabaf
       },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetTrainer');
         // Insert error in Db Here//
