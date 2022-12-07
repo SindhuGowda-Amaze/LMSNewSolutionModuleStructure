@@ -63,7 +63,7 @@
         <div class="row">
             <div class="col-lg-9"></div>
             <div class="col-lg-1">
-                <button class="form-control cancel"  *ngIf=" id==undefined" (click)="Submit()">Save</button>    
+                <button class="form-control cancel"  *ngIf=" id==undefined" (click)="SaveDetails()">Add</button>    
              <button class="form-control cancel"  *ngIf=" id!=undefined" (click)="Update()">Update</button>   
             </div>
             <div class="col-lg-1">
@@ -71,4 +71,38 @@
             </div>
         </div><br>
     </div> <br>
+
+    <div class="row" *ngIf="tablecount==1">
+        <div class="col-lg-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Trainer Name</th>
+                            <th>Training Name</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Batch Name</th>
+                            <th>Allowed Students per Batch</th>
+                            <!-- <th>Actions</th> -->
+                    </tr>
+                    <tr *ngFor="let details of trainingresultArray">
+                        <td style="color:#0C275A">{{details.TrainerName}}</td>
+                        <td style="color:#0C275A">{{details.courseName}}</td>
+                        <td style="color:#0C275A">{{details.startDate|date}}</td>
+                        <td style="color:#0C275A">{{details.endDate|date}}</td>
+                        <td style="color:#0C275A">{{details.BatchName1}}</td>
+                        <td style="color:#0C275A">{{details.noOfStudentsEnrolled}}</td>
+                    </tr>
+                </thead>
+            </table>
+            <br>
+            <div class="row">
+                <div class="col-lg-10"></div>
+                <div class="col-lg-2">
+                    <button class="form-control cancel" (click)="InsertTrainerCourseMapping()">Save</button>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
 </div>

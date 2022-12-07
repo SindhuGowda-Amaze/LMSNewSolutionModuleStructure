@@ -19,7 +19,7 @@
                     <div class="col-lg-2">
                         <p class="newFont">Training Condition <span style="color: red;">*</span></p>
                     </div>
-                    
+
                 </div>
                 <div class="row leavereq">
                     <div class="col-md-3">
@@ -39,20 +39,24 @@
                     <div class="col-md-2">
 
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                            <label class="form-check-label" for="inlineRadio1" name="mandatory" id="mandatory" [(ngModel)]="mandatory" (click)="on()">Mandatory</label>
-                          </div>
-                          <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" [(ngModel)]="Learning" value="option2"(click)="off()">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                                value="option1">
+                            <label class="form-check-label" for="inlineRadio1" name="mandatory" id="mandatory"
+                                [(ngModel)]="mandatory" (click)="on()">Mandatory</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                                [(ngModel)]="Learning" value="option2" (click)="off()">
                             <label class="form-check-label" for="inlineRadio2">Learning Path</label>
-                          </div>
-                          <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" [(ngModel)]="pip" value="option3" (click)="on()">
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3"
+                                [(ngModel)]="pip" value="option3" (click)="on()">
                             <label class="form-check-label" for="inlineRadio3">PIP</label>
-                          </div>
+                        </div>
 
                     </div>
-                  
+
                 </div>
                 <br>
                 <div class="row leavereq" *ngIf="mandatory==1">
@@ -72,7 +76,7 @@
                             <option>October</option>
                             <option>November</option>
                             <option>December</option>
-                            
+
                         </select>
                     </div>
                 </div>
@@ -81,7 +85,7 @@
                     <div class="col-lg-9"></div>
                     <div class="col-lg-1">
                         <button class="form-control cancel" *ngIf="id==null || id==undefined"
-                            (click)="enroll()">Assign</button>
+                            (click)="EnrollMultipleTraining()">Add</button>
                         <button class="form-control cancel" *ngIf="id!=null || id!=undefined"
                             (click)="Update()">Update</button>
                     </div>
@@ -90,6 +94,45 @@
                     </div>
                 </div><br>
             </div> <br>
+            <div class="row" *ngIf="tablecount==1">
+                <div class="col-lg-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Employee Name</th>
+                                <th>Training Name</th>
+                                <th>Mandatory</th>
+                                <th>Learning Path</th>
+                                <th style="width: 50px;">PIP</th>
+                            </tr>
+                            <tr *ngFor="let details of trainingresultArray">
+                                <td>{{details.employeeName}}</td>
+                                <td>{{details.courseName}}</td>
+                                <td>
+                                    <p *ngIf="details.mandatory==0||details.mandatory==null">No</p>
+                                    <p *ngIf="details.mandatory==1">Yes</p>
+                                </td>
+                                <td>
+                                    <p *ngIf="details.pip==0||details.pip==null">No</p>
+                                    <p *ngIf="details.pip==1">Yes</p>
+                                </td>
+                                <td>
+                                    <p *ngIf="details.learningPath==0||details.learningPath==null">No</p>
+                                    <p *ngIf="details.learningPath==1">Yes</p>
+                                </td>
+                            </tr>
+                        </thead>
+                    </table>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-10"></div>
+                        <div class="col-lg-2">
+                            <button class="form-control cancel" (click)="InsertEnrollTraining()">Assign</button>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
         </div>
     </div>
 </div>
