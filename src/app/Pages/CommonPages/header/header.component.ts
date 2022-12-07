@@ -91,36 +91,52 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  // public async insertattdancelogout() {
+  //   debugger
+  //   this.LearningService.GetAttendance_New().subscribe(data => {
+  //     debugger
+  //     var todayDate = new Date().toISOString().slice(0, 10);
+  //     let temp: any = data.filter(x => x.empID == sessionStorage.getItem('userid') && x.filterdate === todayDate);
+  //     if (temp.length == 0) {
+  //        Swal.fire('Not Logged In Correctly today'); 
+  //     } else {
+  //       this.loginid = temp[0].id;
+
+  //       var entity = {
+  //         'loginid': this.staffID,
+  //         'LogoutDate': new Date()
+  //       }
+  //       this.LearningService.UpdateAttendance_New(entity).subscribe(
+  //         data => {
+  //           debugger
+  //           if (data == 0) {
+  //             sessionStorage.clear();
+  //             sessionStorage.clear();
+  //             location.href = "#/Login";
+  //             location.reload();
+  //           }
+  //         })
+  //     }
+  //   });
+  // }
+
   public async insertattdancelogout() {
-    debugger
-    this.LearningService.GetAttendance_New().subscribe(data => {
       debugger
-      var todayDate = new Date().toISOString().slice(0, 10);
-      let temp: any = data.filter(x => x.empID == sessionStorage.getItem('userid') && x.filterdate === todayDate);
-      if (temp.length == 0) {
-         Swal.fire('Not Logged In Correctly today'); 
-      } else {
-        this.loginid = temp[0].id;
-
-        var entity = {
-          'loginid': this.loginid,
-          'LogoutDate': new Date()
-        }
-        this.LearningService.UpdateAttendance_New(entity).subscribe(
-          data => {
-            debugger
-            if (data == 0) {
-              sessionStorage.clear();
-              sessionStorage.clear();
-              location.href = "#/Login";
-              location.reload();
-            }
-          })
-      }
-    });
-  }
-
-
+          var entity = {
+            'loginid': this.staffID,
+            'LogoutDate': new Date()
+          }
+          this.LearningService.UpdateAttendance_New(entity).subscribe(
+            data => {
+              debugger
+              if (data != 0) {
+                sessionStorage.clear();
+                sessionStorage.clear();
+                location.href = "#/Login";
+                location.reload();
+              }
+            })
+    }
 
 
 
