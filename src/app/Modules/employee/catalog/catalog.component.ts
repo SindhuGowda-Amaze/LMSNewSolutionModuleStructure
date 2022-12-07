@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LearningService } from 'src/app/Pages/Services/learning.service';
@@ -64,14 +65,23 @@ export class CatalogComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUrl = window.location.href;
-    this.maxdate = new Date();
+    // this.maxdate = new Date();
+    const myDate = new Date();
+
+    const locale = 'en-US';
+    const format = 'yyyy-MM-dd';
+    this.maxdate = formatDate(myDate, format, locale);
     debugger;
+    this.GetMyDetails();
+    this.manager = sessionStorage.getItem('userid');
     this.userid = sessionStorage.getItem('userid');
+   
     this.GetCourse();
     this.show1 = 1;
     this.GetCategoryMaster();
-    this.manager = sessionStorage.getItem('manager');
-    this.GetMyDetails();
+    // this.manager = sessionStorage.getItem('manager');
+    
+   
     // this.showfullcards=1;
     this.show1 = 1;
     // this.show2 = 1;
@@ -235,7 +245,7 @@ export class CatalogComponent implements OnInit {
         debugger;
         let temp=data
         if(temp[0].trainingType==3){
-          this.courselist = data.filter(x=>x.startDate>this.maxdate);
+          this.courselist = data.filter(x=>x.cStartDate>=this.maxdate);
           this.count = this.courselist.length;
         }
         else{
@@ -371,6 +381,7 @@ export class CatalogComponent implements OnInit {
     // }
   }
 }
+
 function Save() {
   throw new Error('Function not implemented.');
 }

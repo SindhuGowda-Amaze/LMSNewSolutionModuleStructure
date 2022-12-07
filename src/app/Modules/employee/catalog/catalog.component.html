@@ -53,7 +53,7 @@
             </div>
         </div><br>
         <div class="col-lg-9">
-            <div class="row" *ngIf="(courselist | filter: search).length > 0; else noResults">
+            <div class="row" *ngIf="(courselist | filter: search)?.length > 0; else noResults">
                 <div class="row" *ngIf="show1==1">
                     <div class="col-lg-12" style="margin-left: 52px;">
                         <div class="row">
@@ -265,3 +265,4 @@
                     </div>
                 </div>
             </div>
+            
