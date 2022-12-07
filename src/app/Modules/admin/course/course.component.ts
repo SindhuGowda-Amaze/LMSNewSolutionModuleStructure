@@ -32,8 +32,8 @@ export class CourseComponent implements OnInit {
   files: File[] = [];
   categoryList: any;
   show: boolean | undefined
-  edate:any;
-  sdate:any;
+  edate: any;
+  sdate: any;
 
   ngOnInit(): void {
 
@@ -49,7 +49,7 @@ export class CourseComponent implements OnInit {
       this.id = params['id']
       if (this.id != null && this.id != undefined) {
         debugger
-       
+
         this.show = true
         this.GetCourse();
       }
@@ -76,6 +76,8 @@ export class CourseComponent implements OnInit {
         this.password = this.result[0].password;
         this.venue = this.result[0].venue;
         this.trainingType = this.result[0].trainingType;
+        this.sdate = this.result[0].cStartDate;
+        this.edate = this.result[0].cEndDate;
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetCourse');
         // Insert error in Db Here//
@@ -148,7 +150,9 @@ export class CourseComponent implements OnInit {
         "userName": this.userName,
         "password": this.password,
         "venue": this.venue,
-        "trainingType": this.trainingType
+        "trainingType": this.trainingType,
+        "CStartDate":this.sdate == '' || this.sdate == undefined ? '1990-01-01 00:00:00.000' : this.sdate,
+        "CEndDate":this.edate == '' || this.edate == undefined ? '1990-01-01 00:00:00.000' : this.edate,
       };
       this.LearningService.InsertCourse(json).subscribe({
         next: data => {
@@ -176,7 +180,7 @@ export class CourseComponent implements OnInit {
 
   Update() {
     debugger
-    if (this.Course_Photo.includes('http://23.101.22.93/')) {
+    if (this.Course_Photo.includes('https://103.12.1.103/')) {
       var json = {
         'ID': this.id,
         // "categoryName": this.categoryName,
@@ -192,7 +196,9 @@ export class CourseComponent implements OnInit {
         "userName": this.userName,
         "password": this.password,
         "venue": this.venue,
-        "trainingType": this.trainingType
+        "trainingType": this.trainingType,
+        "CStartDate":this.sdate == '' || this.sdate == undefined ? '1990-01-01 00:00:00.000' : this.sdate,
+        "CEndDate":this.edate == '' || this.edate == undefined ? '1990-01-01 00:00:00.000' : this.edate,
       };
 
     }
@@ -212,7 +218,9 @@ export class CourseComponent implements OnInit {
         "userName": this.userName,
         "password": this.password,
         "venue": this.venue,
-        "trainingType": this.trainingType
+        "trainingType": this.trainingType,
+        "CStartDate":this.sdate == '' || this.sdate == undefined ? '1990-01-01 00:00:00.000' : this.sdate,
+        "CEndDate":this.edate == '' || this.edate == undefined ? '1990-01-01 00:00:00.000' : this.edate,
       };
     }
 
@@ -271,11 +279,23 @@ export class CourseComponent implements OnInit {
   }
 
   onSelect(event: { addedFiles: any; }) {
+    // if ((event.addedFiles[0].size ) > 5242880) {
     debugger
     console.log(event);
     this.files.push(event.addedFiles[0]);
-    this.uploadattachments();
-    console.log("content", this.files);
+    if (this.files.length == 0) {
+      Swal.fire('Invalid Attachment Type');
+    }
+    else if ((event.addedFiles[0].size) > 5242880) {
+      Swal.fire('Please Upload File Less than 5 MB.')
+    }
+    // if ((event.addedFiles[0].size / 1048576) > 1) {
+    //   Swal.fire('Please Upload File Less than 1 MB.')
+    // } 
+    else {
+      this.uploadattachments();
+      console.log("content", this.files);
+    }
   }
 
 

@@ -8,6 +8,7 @@ import { EmployeeReportComponent } from './employee-report/employee-report.compo
 import { FinalResultComponent } from './final-result/final-result.component';
 import { ManagerComponent } from './manager.component';
 import { MangerDashboardComponent } from './manger-dashboard/manger-dashboard.component';
+import { PIPReportComponent } from './pipreport/pipreport.component';
 import { TraineeReportComponent } from './trainee-report/trainee-report.component';
 
 const routes: Routes = [{ path: '', component: ManagerComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [{ path: '', component: ManagerComponent },
 {path:'FinalResult',component:FinalResultComponent},
 {path:'MangerDashboard',component:MangerDashboardComponent},
 {path:'TraineeReport',component:TraineeReportComponent},
+{path:'PIPReport',component:PIPReportComponent},
 
 
 

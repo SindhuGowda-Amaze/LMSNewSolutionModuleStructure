@@ -67,16 +67,13 @@ export class TrainerCouresMappingFormComponent implements OnInit {
   }
 
   public GetUnmappedCourseDropdown(){
-
-  if(this.id==undefined || this.id==null){
     this.LearningService.GetUnmappedCourseDropdown()
-    
     .subscribe({
       next: data => {
         debugger
-        this.CourseList = data.filter(x=>x.trainingType!=2);
+        this.CourseList = data
       },error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in GetUnmappedCourseDropdown');
+        Swal.fire('Issue in Getting Expenses List Web');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -89,44 +86,67 @@ export class TrainerCouresMappingFormComponent implements OnInit {
         )
       }
     })
+
+  // if(this.id==undefined || this.id==null){
+  //   this.LearningService.GetUnmappedCourseDropdown()
+    
+  //   .subscribe({
+  //     next: data => {
+  //       debugger
+  //       // this.CourseList = data.filter(x=>x.trainingType!=2);
+  //       this.CourseList = data
+  //     },error: (err: { error: { message: any; }; }) => {
+  //       Swal.fire('Issue in GetUnmappedCourseDropdown');
+  //       // Insert error in Db Here//
+  //       var obj = {
+  //         'PageName': this.currentUrl,
+  //         'ErrorMessage': err.error.message
+  //       }
+  //       this.LearningService.InsertExceptionLogs(obj).subscribe(
+  //         data => {
+  //           debugger
+  //         },
+  //       )
+  //     }
+  //   })
     
 
-    }
-    else{
-      this.LearningService.GetCourseDropdown()
-      .subscribe({
-        next: data => {
-          debugger
-          this.CourseList = data
-        },error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Issue in Getting Expenses List Web');
-          // Insert error in Db Here//
-          var obj = {
-            'PageName': this.currentUrl,
-            'ErrorMessage': err.error.message
-          }
-          this.LearningService.InsertExceptionLogs(obj).subscribe(
-            data => {
-              debugger
-            },
-          )
-        }
-      })
+  //   }
+  //   else{
+  //     this.LearningService.GetCourseDropdown()
+  //     .subscribe({
+  //       next: data => {
+  //         debugger
+  //         this.CourseList = data
+  //       },error: (err: { error: { message: any; }; }) => {
+  //         Swal.fire('Issue in Getting Expenses List Web');
+  //         // Insert error in Db Here//
+  //         var obj = {
+  //           'PageName': this.currentUrl,
+  //           'ErrorMessage': err.error.message
+  //         }
+  //         this.LearningService.InsertExceptionLogs(obj).subscribe(
+  //           data => {
+  //             debugger
+  //           },
+  //         )
+  //       }
+  //     })
       
-    }
+  //   }
 
   }
 
 
   public GetUnmappedTrainer(){
-  if(this.id==undefined || this.id==null){
-    this.LearningService.GetUnmappedTrainer()
+    this.LearningService.GetTrainer()
+      
     .subscribe({
       next: data => {
         debugger
-        this.trainerlist = data.filter(x=>x.id!=this.TrainerID);
+        this.trainerlist = data
       },error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in GetUnmappedTrainer');
+        Swal.fire('Issue in GetTrainer');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -139,31 +159,52 @@ export class TrainerCouresMappingFormComponent implements OnInit {
         )
       }
     })
+
+  // if(this.id==undefined || this.id==null){
+  //   this.LearningService.GetUnmappedTrainer()
+  //   .subscribe({
+  //     next: data => {
+  //       debugger
+  //       // this.trainerlist = data.filter(x=>x.id!=this.TrainerID);
+  //       this.trainerlist = data
+  //     },error: (err: { error: { message: any; }; }) => {
+  //       Swal.fire('Issue in GetUnmappedTrainer');
+  //       // Insert error in Db Here//
+  //       var obj = {
+  //         'PageName': this.currentUrl,
+  //         'ErrorMessage': err.error.message
+  //       }
+  //       this.LearningService.InsertExceptionLogs(obj).subscribe(
+  //         data => {
+  //           debugger
+  //         },
+  //       )
+  //     }
+  //   })
     
-    }
-    else{
-      this.LearningService.GetTrainer()
+  //   }
+  //   else{
+  //     this.LearningService.GetTrainer()
       
-      .subscribe({
-        next: data => {
-          debugger
-          this.trainerlist = data
-        },error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Issue in GetTrainer');
-          // Insert error in Db Here//
-          var obj = {
-            'PageName': this.currentUrl,
-            'ErrorMessage': err.error.message
-          }
-          this.LearningService.InsertExceptionLogs(obj).subscribe(
-            data => {
-              debugger
-            },
-          )
-        }
-      })
-    
-    }
+  //     .subscribe({
+  //       next: data => {
+  //         debugger
+  //         this.trainerlist = data
+  //       },error: (err: { error: { message: any; }; }) => {
+  //         Swal.fire('Issue in GetTrainer');
+  //         // Insert error in Db Here//
+  //         var obj = {
+  //           'PageName': this.currentUrl,
+  //           'ErrorMessage': err.error.message
+  //         }
+  //         this.LearningService.InsertExceptionLogs(obj).subscribe(
+  //           data => {
+  //             debugger
+  //           },
+  //         )
+  //       }
+  //     })
+  //   }
 
   }
 

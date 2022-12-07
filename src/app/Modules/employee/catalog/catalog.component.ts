@@ -56,6 +56,7 @@ export class CatalogComponent implements OnInit {
   emailID: any;
   loader: any;
   currentUrl: any;
+  maxdate:any;
   constructor(
     private LearningService: LearningService,
     private ActivatedRoute: ActivatedRoute
@@ -63,6 +64,7 @@ export class CatalogComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUrl = window.location.href;
+    this.maxdate = new Date().toISOString().split("T")[0];
     debugger;
     this.userid = sessionStorage.getItem('userid');
     this.GetCourse();
@@ -231,8 +233,16 @@ export class CatalogComponent implements OnInit {
     .subscribe({
       next: (data) => {
         debugger;
-        this.courselist = data;
-        this.count = this.courselist.length;
+        let temp=data
+        if(temp[0].trainingType==3){
+          this.courselist = data.filter(x=>x.startDate>this.maxdate);
+          this.count = this.courselist.length;
+        }
+        else{
+          this.courselist = data;
+          this.count = this.courselist.length;
+        }
+       
       },
      error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetCoursesByUserID');

@@ -68,7 +68,7 @@
                                     <!-- <th>Topic Name</th> -->
                                     <th>Log Out Time</th>
                                     <th>No of Hrs</th>
-                                    <th *ngIf="roleid!=2 && roleid!=4">Trainee Name</th>
+                                    <!-- <th *ngIf="roleid!=2 && roleid!=4">Trainee Name</th> -->
                                 </tr>
                             </thead>
                             <tbody>
@@ -89,7 +89,7 @@
                                         <p *ngIf="details.noofhrs==null">5</p>
                                         <p *ngIf="details.noofhrs!=null"> {{details.noofhrs}}</p>
                                       </td>
-                                    <td *ngIf="roleid!=2 && roleid!=4">{{details.trainerName}}</td>
+                                    <!-- <td *ngIf="roleid!=2 && roleid!=4">{{details.trainerName}}</td> -->
                                 </tr>
                             </tbody>
                         </table>

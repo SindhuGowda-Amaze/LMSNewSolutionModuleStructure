@@ -263,6 +263,16 @@
             <span [ngClass]="active == 'enrolledtraining' ? 'Active1' : 'Active3'">Mandatory TRAINING </span>
             &nbsp;
         </a>
+        <a *ngIf="roleid==3" routerLink="Manager/PIPReport" class="tablinks" (click)="highlight($event)"
+        (click)="enrolledtrainingpip()">
+        <img src="assets/Images/catalogue.png" style="width:13% ;margin-right: 17px;"
+            [ngClass]="active == 'pip' ? 'Active1' : 'Active2'" />
+        <img [ngClass]="active != 'pip' ? 'Active1' : 'Active2'"
+            src="assets/Images/New folder/catalogue (1).png" style="width:13%; margin-right: 17px;">
+        &nbsp;
+        <span [ngClass]="active == 'pip' ? 'Active1' : 'Active3'">PIP TRAINING </span>
+        &nbsp;
+    </a>
         <a *ngIf="roleid==4||roleid==2 || roleid==3" routerLink="Employee/AttendanceNew" class="tablinks"
             (click)="highlight($event)" (click)="attendence()">
             <img src="assets/Images/people.png" style="width:13% ;margin-right: 17px;"

@@ -9,8 +9,8 @@ import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
 export class LearningService {
  
 
-  public baseURL = "http://103.12.1.103/LearningandDevelopmentdemo";
-public host = "http://103.12.1.103/DigiOfficeCoreHRAPI"
+  public baseURL = "https://103.12.1.103/LearningandDevelopmentdemo";
+public host = "https://103.12.1.103/DigiOfficeCoreHRAPI"
 
    // public baseURL = "http://localhost:4199/";
   //  public baseURL = "http://23.101.22.93/LearningandDevelopmentdemo/";
@@ -43,7 +43,7 @@ public host = "http://103.12.1.103/DigiOfficeCoreHRAPI"
        formdata.append('file_upload', files[i], files[i].name);
      }
      debugger
-     let APIURL = this.baseURL + "Master/UploadImages/";
+     let APIURL = this.baseURL + "/Master/UploadImages/";
      return this.http.post(APIURL, formdata);
    }
    public GetRoleType() {
@@ -329,25 +329,25 @@ public host = "http://103.12.1.103/DigiOfficeCoreHRAPI"
  
    public InsertCategoryMaster(json: any) {
      debugger
-     let APIURL = this.baseURL + "Master/InsertCategoryMaster";
+     let APIURL = this.baseURL + "/Master/InsertCategoryMaster";
      return this.http.post<any[]>(APIURL, json);
    }
  
    public UpdateCategoryMaster(json: any) {
      debugger
-     let APIURL = this.baseURL + "Master/UpdateCategoryMaster";
+     let APIURL = this.baseURL + "/Master/UpdateCategoryMaster";
      return this.http.post<any[]>(APIURL, json);
    }
  
    public DeleteCategoryMaster(id: any) {
      debugger
-     let APIURL = this.baseURL + "Master/DeleteCategoryMaster?ID=" + id;
+     let APIURL = this.baseURL + "/Master/DeleteCategoryMaster?ID=" + id;
      return this.http.get<any[]>(APIURL);
    }
  
    public GetQuestionMaster() {
      debugger
-     let APIURL = this.baseURL + "Master/GetQuestionMaster";
+     let APIURL = this.baseURL + "/Master/GetQuestionMaster";
      return this.http.get<any[]>(APIURL);
    }
  
@@ -357,69 +357,69 @@ public host = "http://103.12.1.103/DigiOfficeCoreHRAPI"
      debugger
     
      return this.http.get<any[]>(
-      this.baseURL + 'Master/GetTrainerCourseMapping');
+      this.baseURL + '/Master/GetTrainerCourseMapping');
    }
 
  
  
    public GetEmployee() {
      debugger
-     let APIURL = this.baseURL + "Master/GetEmployee";
+     let APIURL = this.baseURL + "/Master/GetEmployee";
      return this.http.get<any[]>(APIURL);
    }
  
    public GetTrainer() {
      debugger
-     let APIURL = this.baseURL + "Master/GetTrainer";
+     let APIURL = this.baseURL + "/Master/GetTrainer";
      return this.http.get<any[]>(APIURL);
    }
  
    public GetBatch() {
      debugger
-     let APIURL = this.baseURL + "Master/GetBatch";
+     let APIURL = this.baseURL + "/Master/GetBatch";
      return this.http.get<any[]>(APIURL);
    }
  
    public InsertTrainer(json: any) {
      debugger
-     let APIURL = this.baseURL + "Master/InsertTrainer";
+     let APIURL = this.baseURL + "/Master/InsertTrainer";
      return this.http.post<any[]>(APIURL, json);
    }
  
    public UpdateTrainer(json: any) {
      debugger
-     let APIURL = this.baseURL + "Master/UpdateTrainer";
+     let APIURL = this.baseURL + "/Master/UpdateTrainer";
      return this.http.post<any[]>(APIURL, json);
    }
  
    public DeleteTrainer(id: any) {
      debugger
-     let APIURL = this.baseURL + "Master/DeleteTrainer?ID=" + id;
+     let APIURL = this.baseURL + "/Master/DeleteTrainer?ID=" + id;
      return this.http.get<any[]>(APIURL);
    }
  
  
    public GetAssessments() {
      debugger
-     let APIURL = this.baseURL + "Master/GetAssessments";
+     let APIURL = this.baseURL + "/Master/GetAssessments";
      return this.http.get<any[]>(APIURL);
    }
  
    public InsertAssessments(json: any) {
      debugger
-     let APIURL = this.baseURL + "Master/InsertAssessments";
+     let APIURL = this.baseURL + "/Master/InsertAssessments";
      return this.http.post<any[]>(APIURL, json);
    }
  
    public UpdateAssessments(json: any) {
      debugger
-     let APIURL = this.baseURL + "Master/UpdateAssessments";
+     let APIURL = this.baseURL + "/Master/UpdateAssessments";
      return this.http.post<any[]>(APIURL, json);
    }
  
    public DeleteAssessments(id: any) {
      debugger
-     let APIURL = this.baseURL + "Master/DeleteAssessments?ID=" + id;
+     let APIURL = this.baseURL + "/Master/DeleteAssessments?ID=" + id;
      return this.http.get<any[]>(APIURL);
    }
  
@@ -457,44 +457,44 @@ public host = "http://103.12.1.103/DigiOfficeCoreHRAPI"
  
    public UpdateTrainerCourseMapping(json: any) {
      debugger
-     let APIURL = this.baseURL + "Master/UpdateTrainerCourseMapping";
+     let APIURL = this.baseURL + "/Master/UpdateTrainerCourseMapping";
      return this.http.post<any[]>(APIURL, json);
    }
  
    public DeleteTrainerCourseMapping(id: any) {
      debugger
-     let APIURL = this.baseURL + "Master/DeleteTrainerCourseMapping?ID=" + id;
+     let APIURL = this.baseURL + "/Master/DeleteTrainerCourseMapping?ID=" + id;
      return this.http.get<any[]>(APIURL);
    }
  
    public GetChapter() {
      debugger
-     let APIURL = this.baseURL + "Master/GetChapter";
+     let APIURL = this.baseURL + "/Master/GetChapter";
      return this.http.get<any[]>(APIURL);
    }
    public GetCertification() {
      debugger
-     let APIURL = this.baseURL + "Master/GetCertification";
+     let APIURL = this.baseURL + "/Master/GetCertification";
      return this.http.get<any[]>(APIURL);
    }
  
  
    public GetChapterListByEmployeeID(EmployeeID: any) {
      debugger
-     let APIURL = this.baseURL + "Master/GetChapterListByEmployeeID?EmployeeID=" + EmployeeID;
+     let APIURL = this.baseURL + "/Master/GetChapterListByEmployeeID?EmployeeID=" + EmployeeID;
      return this.http.get<any[]>(APIURL);
    }
  
  
    public InsertChapter(json: any) {
      debugger
-     let APIURL = this.baseURL + "Master/InsertChapter";
+     let APIURL = this.baseURL + "/Master/InsertChapter";
      return this.http.post<any[]>(APIURL, json);
    }
  
    public InsertCertification(json: any) {
      debugger
-     let APIURL = this.baseURL + "Master/InsertCertification";
+     let APIURL = this.baseURL + "/Master/InsertCertification";
      return this.http.post<any[]>(APIURL, json);
    }
  
@@ -502,7 +502,7 @@ public host = "http://103.12.1.103/DigiOfficeCoreHRAPI"
  
    public UpdateChapter(json: any) {
      debugger
-     let APIURL = this.baseURL + "Master/UpdateChapter";
+     let APIURL = this.baseURL + "/Master/UpdateChapter";
      return this.http.post<any[]>(APIURL, json);
    }
  
@@ -520,7 +520,7 @@ public host = "http://103.12.1.103/DigiOfficeCoreHRAPI"
  
    public UpdateEnroll(json: any) {
      debugger
-     let APIURL = this.baseURL + "Master/UpdateEnroll";
+     let APIURL = this.baseURL + "/Master/UpdateEnroll";
      return this.http.post<any[]>(APIURL, json);
    }
  
@@ -770,7 +770,7 @@ public host = "http://103.12.1.103/DigiOfficeCoreHRAPI"
  
    public GetSupportTickets() {
      return this.http.get<any[]>(
-       this.host1 + "/Master/GetSupportTickets"
+       this.host1 + "Master/GetSupportTickets"
      );
    }
  
@@ -782,7 +782,7 @@ public host = "http://103.12.1.103/DigiOfficeCoreHRAPI"
      }
      
      debugger
-     let APIURL = this.host1 + "Master/UploadImages/";
+     let APIURL = this.host1 + "/Master/UploadImages/";
      return this.http.post(APIURL, formdata);
    }
  
@@ -866,7 +866,7 @@ public host = "http://103.12.1.103/DigiOfficeCoreHRAPI"
   public Authenicate(data: any) {
     debugger;
     // this.url = this.host + "/Master/Verifyotp";
-    this.url = this.baseURL + 'Master/Authenicate';
+    this.url = this.baseURL + '/Master/Authenicate';
     return this.http.post(this.url, data);
   }
  

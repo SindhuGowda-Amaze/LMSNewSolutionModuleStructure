@@ -14,17 +14,9 @@
         <p class="filter">Filter By</p>
       </div>
       <div class="col-lg-3">
-        <select
-          class="form-control"
-          id="Duration"
-          (change)="getcategoryid($event)"
-        >
+        <select class="form-control" id="Duration" (change)="getcategoryid($event)">
           <option class="FilterClass" value="0">Select Category</option>
-          <option
-            class="FilterClass"
-            *ngFor="let cat of categorylist"
-            value="{{ cat.id }}"
-          >
+          <option class="FilterClass" *ngFor="let cat of categorylist" value="{{ cat.id }}">
             {{ cat.name }}
           </option>
         </select>
@@ -33,13 +25,16 @@
                 <option class="FilterClass" *ngFor="let cat  of categorylist" value="{{cat.id}}">{{cat.name}}</option>
             </select> -->
       </div>
+      <div class="col-lg-3">
+        <select class="form-control" name="cars" id="Duration" (change)="getTrainingType()" [(ngModel)]="TrainingType">
+          <option value="0">Select Training Type</option>
+          <option style="color:#0C275A">Class Room</option>
+          <option style="color:#0C275A">External</option>
+          <option style="color:#0C275A">Online</option>
+        </select>
+      </div>
       <div class="col-lg-5">
-        <input
-          type="search"
-          class="form-control search"
-          placeholder="Search for Training"
-          [(ngModel)]="search"
-        />
+        <input type="search" class="form-control search" placeholder="Search for Training" [(ngModel)]="search" />
       </div>
     </div>
   </div>
@@ -55,10 +50,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-lg-12">
-        <table
-          class="table"
-          *ngIf="(result | filter: search).length > 0; else noResults"
-        >
+        <table class="table" *ngIf="(result | filter: search).length > 0; else noResults">
           <thead>
             <tr>
               <th>Category</th>
@@ -70,6 +62,15 @@
               <th>Fee</th>
               <th>Entry Criteria</th>
               <th>Exit Criteria</th>
+
+              <th *ngIf="TrainingType=='External'">Training Link</th>
+
+              <th *ngIf="TrainingType=='Class Room'">Venue</th>
+              <th *ngIf="TrainingType=='Class Room'">Start Date</th>
+              <th *ngIf="TrainingType=='Class Room'">End Date</th>
+
+
+
               <th>Actions</th>
             </tr>
             <tr *ngFor="let details of result | filter: search">
@@ -83,50 +84,46 @@
               <!-- <td>{{details.description}}</td> -->
               <td>
                 <span [innerHTML]="details.coursedescription"></span>
-                <span
-                  style="color: #3247d5; float: right"
-                  data-toggle="modal"
-                  data-target="#exampleModal3"
-                  (click)="view(details.description)"
-                  >....View More</span
-                >
+                <span style="color: #3247d5; float: right" data-toggle="modal" data-target="#exampleModal3"
+                  (click)="view(details.description)">....View More</span>
               </td>
 
               <td>
-                <img
-                  (click)="clickonimage(details.photo)"
-                  *ngIf="details.photoExist == '1'"
-                  data-toggle="modal"
-                  data-target="#exampleModal"
-                  src="{{ details.photo }}"
-                  width="50%"
-                  height="auto"
-                />
+                <!-- <img (click)="clickonimage(details.photo)" *ngIf="details.photoExist == '1'" data-toggle="modal"
+                  data-target="#exampleModal" src="{{details.photo}}" width="50%" height="auto" />
 
-                <label *ngIf="details.photoExist == '0'">No Attachments</label>
+                <label *ngIf="details.photoExist == '0'">No Attachments</label> -->
+                <img (click)="clickonimage(details.photo)" *ngIf="details.photo != 'No Photo'" data-toggle="modal"
+                data-target="#exampleModal" src="{{details.photo}}" width="100%" height="auto" />
+
+              <label *ngIf="details.photo == 'No Photo'">No Attachments</label>
               </td>
               <td>{{ details.duration }}</td>
               <td>{{ details.fee }}</td>
               <td>{{ details.entryCriteria }}</td>
               <td>{{ details.exitCriteria }}</td>
+
+              <td *ngIf="details.trainingType==2">{{ details.trainingLink }}</td>
+
+
+
+              <td *ngIf="details.trainingType==3">{{ details.venue }}</td>
+              <td *ngIf="details.trainingType==3">{{ details.cStartDate|date }}</td>
+              <td *ngIf="details.trainingType==3">{{ details.cEndDate|date }}</td>
+
+
+
+
               <td style="width: 100px">
                 <!-- <button class="edit" (click)="Update(details.id)">Edit</button> <br> <br>
                                 <button class="edit" (click)="Ondelete(details.id)">Delete</button> -->
 
-                <img
-                  src="assets/Images/Edit_ICON.png"
-                  alt="Edit_ICON"
-                  style="width: 20px; height: auto"
-                  (click)="Update(details.id)"
-                />
+                <img src="assets/Images/Edit_ICON.png" alt="Edit_ICON" style="width: 20px; height: auto"
+                  (click)="Update(details.id)" />
                 &nbsp;&nbsp;
 
-                <img
-                  src="assets/Images/Delete_ICON.png"
-                  alt="Delete_ICON"
-                  (click)="Ondelete(details.id)"
-                  style="width: 20px; height: auto"
-                />
+                <img src="assets/Images/Delete_ICON.png" alt="Delete_ICON" (click)="Ondelete(details.id)"
+                  style="width: 20px; height: auto" />
               </td>
             </tr>
           </thead>
@@ -139,24 +136,13 @@
   </div>
 </div>
 
-<div
-  class="modal fade"
-  id="exampleModal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Image</h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -178,30 +164,15 @@
   </div>
 </div>
 
-<div
-  class="modal fade"
-  id="exampleModal3"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
+<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5
-          class="modal-title"
-          id="exampleModalLabel"
-          style="font-size: 19px; color: #3247d5"
-        >
+        <h5 class="modal-title" id="exampleModalLabel" style="font-size: 19px; color: #3247d5">
           Description
         </h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>

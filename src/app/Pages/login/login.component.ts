@@ -80,17 +80,16 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  public login() 
-  {
+  public login() {
     debugger
-    let adminCopy = this.admin.toLowerCase();
+    let adminCopy = this.userName.toLowerCase();
     debugger
     var entity = {
       'Username': 'Srikanth@amazeinc.in',
       'Password': 'welcome',
       'UserTypeID': 1
     }
-   
+
     if (this.roleID == 1) {
       debugger
       // let adminCopy = this.userName.toLowerCase();
@@ -110,7 +109,7 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem("clickname", "Admin Dashboard")
           this.router.navigate(['/Admin/Dashboard']).then(() => {
             location.reload();
-            this.loader=false;
+            this.loader = false;
           });
         }
         else {
@@ -121,25 +120,12 @@ export class LoginComponent implements OnInit {
         }
       });
     }
-    this.LearningService.Authenicate(entity).subscribe((data: any) => {
-      debugger
-      if (data['requestMessage'] != undefined || null) {
-        localStorage.setItem('token', data['requestMessage'].headers[0].value[0]);
-        if (this.userName.toLowerCase().includes(adminCopy) && this.password == '1' && this.roleID == 1) {
-          debugger
-          sessionStorage.setItem('UserName', 'admin');
-          sessionStorage.setItem('temp', '1');
-          sessionStorage.setItem('role', 'Admin');
-          location.href = "#admin/AdminDashboard"
-          sessionStorage.setItem('roleid', '1');
-          location.reload();
-        }
-    
+
     else if (this.roleID == 2) {
       debugger
       // let userNameCopy = this.userName.toLowerCase();
       this.LearningService.GetMyDetails().subscribe(async data => {
-        let temp: any = data.filter(x => (x.emailID.toUpperCase() === this.userName.toUpperCase() || x.phoneNo == this.userName) && x.password == this.password  && x.roleType == 6);
+        let temp: any = data.filter(x => (x.emailID.toUpperCase() === this.userName.toUpperCase() || x.phoneNo == this.userName) && x.password == this.password && x.roleType == 6);
         if (temp.length == 0) {
           Swal.fire('Incorrect Username Or Password')
         }
@@ -160,7 +146,7 @@ export class LoginComponent implements OnInit {
           this.Insertattdnace(this.result.id)
           this.router.navigate(['/Admin/Dashboard']).then(() => {
             location.reload();
-            this.loader=false;
+            this.loader = false;
           });
         }
         else {
@@ -177,11 +163,11 @@ export class LoginComponent implements OnInit {
       debugger
       // let userNameCopy = this.userName.toLowerCase();
       this.LearningService.GetMyDetails().subscribe(data => {
-        let temp: any = data.filter(x => (x.emailID.toUpperCase() === this.userName.toUpperCase() || x.phoneNo == this.userName) && x.password == this.password  && x.roleType == 2);
+        let temp: any = data.filter(x => (x.emailID.toUpperCase() === this.userName.toUpperCase() || x.phoneNo == this.userName) && x.password == this.password && x.roleType == 2);
         if (temp.length == 0) {
           Swal.fire('Incorrect Username Or Password')
         }
-      this.result = temp[0];
+        this.result = temp[0];
         debugger;
         // this.loader = true;
         if (this.result != undefined || this.result != null || this.roleID == 3) {
@@ -193,10 +179,10 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem("clickname", "Manager Dashboard")
           this.router.navigate(['/Manager/MangerDashboard']).then(() => {
             location.reload();
-            this.loader=false;
+            this.loader = false;
           });
-      this.Insertattdnace(this.result.id)
-      
+          this.Insertattdnace(this.result.id)
+
         }
         else {
           Swal.fire('Username or Password is invalid');
@@ -229,7 +215,7 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem("clickname", "Assessment Dashboard")
           this.router.navigate(['/Trainer/Assessmentdashboard']).then(() => {
             location.reload();
-            this.loader=false;
+            this.loader = false;
           });
           this.Insertattdnace(this.result.id)
         }
@@ -246,16 +232,133 @@ export class LoginComponent implements OnInit {
 
     }
 
-    // else {
+    else {
 
-    //   Swal.fire('Username or Password is invalid');
-    //   this.userName = "";
-    //   this.password = "";
-    //   this.loader = false;
+      Swal.fire('Username or Password is invalid');
+      this.userName = "";
+      this.password = "";
+      this.loader = false;
+    }
+
+
+
+    // else if (this.roleID == 2) {
+    //   debugger
+    //   // let userNameCopy = this.userName.toLowerCase();
+    //   this.LearningService.GetMyDetails().subscribe(async data => {
+    //     let temp: any = data.filter(x => (x.emailID.toUpperCase() === this.userName.toUpperCase() || x.phoneNo == this.userName) && x.password == this.password  && x.roleType == 6);
+    //     if (temp.length == 0) {
+    //       Swal.fire('Incorrect Username Or Password')
+    //     }
+    //     this.result = temp[0];
+    //     debugger;
+
+    //     if (this.result != undefined || this.result != null || this.roleID == 4) {
+    //       debugger
+    //       sessionStorage.setItem('UserName', this.result.name);
+    //       sessionStorage.setItem('userid', this.result.id);
+    //       console.log("Employeid", this.result.id)
+    //       sessionStorage.setItem('temp', '1');
+    //       sessionStorage.setItem('manager', this.result.supervisor)
+    //       sessionStorage.setItem('role', 'Employee');
+    //       debugger
+    //       sessionStorage.setItem('roleid', '2');
+    //       sessionStorage.setItem("clickname", "Employee Dashboard")
+    //       this.Insertattdnace(this.result.id)
+    //       this.router.navigate(['/Admin/Dashboard']).then(() => {
+    //         location.reload();
+    //         this.loader=false;
+    //       });
+    //     }
+    //     else {
+
+    //       Swal.fire('Username or Password is invalid');
+    //       this.userName = "";
+    //       this.password = "";
+    //       this.loader = false;
+    //     }
+    //   })
     // }
+
+    // else if (this.roleID == 3) {
+    //   debugger
+    //   // let userNameCopy = this.userName.toLowerCase();
+    //   this.LearningService.GetMyDetails().subscribe(data => {
+    //     let temp: any = data.filter(x => (x.emailID.toUpperCase() === this.userName.toUpperCase() || x.phoneNo == this.userName) && x.password == this.password  && x.roleType == 2);
+    //     if (temp.length == 0) {
+    //       Swal.fire('Incorrect Username Or Password')
+    //     }
+    //   this.result = temp[0];
+    //     debugger;
+    //     // this.loader = true;
+    //     if (this.result != undefined || this.result != null || this.roleID == 3) {
+    //       sessionStorage.setItem('UserName', this.result.name);
+    //       sessionStorage.setItem('userid', this.result.id);
+    //       sessionStorage.setItem('temp', '1');
+    //       sessionStorage.setItem('role', 'Manager');
+    //       sessionStorage.setItem('roleid', '3');
+    //       sessionStorage.setItem("clickname", "Manager Dashboard")
+    //       this.router.navigate(['/Manager/MangerDashboard']).then(() => {
+    //         location.reload();
+    //         this.loader=false;
+    //       });
+    //   this.Insertattdnace(this.result.id)
+
+    //     }
+    //     else {
+    //       Swal.fire('Username or Password is invalid');
+    //       this.userName = "";
+    //       this.password = "";
+    //       this.loader = false;
+    //     }
+    //   })
+    // }
+
+    // else if (this.roleID == 4) {
+
+    //   debugger
+    //   // let userNameCopy = this.userName.toLowerCase();
+    //   this.LearningService.GetTrainer().subscribe(data => {
+    //     let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email.toUpperCase() === this.userName.toUpperCase()) && x.password == this.password);
+    //     if (temp.length == 0) {
+    //       Swal.fire('Incorrect Username Or Password')
+    //     }
+    //     this.result = temp[0];
+    //     debugger;
+    //     // this.loader = true;
+    //     if (this.result != undefined || this.result != null || this.roleID == 4) {
+    //       sessionStorage.setItem('UserName', this.result.name);
+    //       sessionStorage.setItem('userid', this.result.id);
+    //       sessionStorage.setItem('trainerid', this.result.id)
+    //       sessionStorage.setItem('temp', '1');
+    //       sessionStorage.setItem('role', 'Trainer');
+    //       sessionStorage.setItem('roleid', '4');
+    //       sessionStorage.setItem("clickname", "Assessment Dashboard")
+    //       this.router.navigate(['/Trainer/Assessmentdashboard']).then(() => {
+    //         location.reload();
+    //         this.loader=false;
+    //       });
+    //       this.Insertattdnace(this.result.id)
+    //     }
+    //     else {
+    //       Swal.fire('Username or Password is invalid');
+    //       this.userName = "";
+    //       this.password = "";
+    //       this.loader = false;
+    //     }
+
+
+
+    //   })
+
+    // }
+
+    // this.LearningService.Authenicate(entity).subscribe((data: any) => {
+    //   debugger
+
+    // }
+    
   }
-}
-  )}
 
 
 
@@ -269,13 +372,13 @@ export class LoginComponent implements OnInit {
     await this.LearningService.InsertAttendance_New(entity).subscribe(
       (data: any) => {
         debugger
-        if (data!= 0) {
+        if (data != 0) {
           debugger
           sessionStorage.setItem('loginid', data);
 
           this.router.navigate(['/Admin/Dashboard']).then(() => {
             location.reload();
-            this.loader=false;
+            this.loader = false;
           });
         }
       })

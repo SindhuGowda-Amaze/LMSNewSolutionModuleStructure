@@ -135,11 +135,28 @@ export class ChapterComponent implements OnInit {
   }
 
   onSelect1(event: any) {
-    this.files1.length = 0;
-    this.files1 = [];
     console.log(event);
-    this.files1.push(...event.addedFiles);
-    this.uploadattachments1();
+    // if ((event.addedFiles[0].size ) > 5242880) {
+      this.files1.length = 0;
+      this.files1 = [];
+      console.log(event);
+      this.files1.push(...event.addedFiles);
+    if (this.files1.length == 0) {
+      Swal.fire('Invalid Attachment Type');
+    }
+
+    else if ((event.addedFiles[0].size) > 10485760) {
+      Swal.fire('Please Upload File Less than 10 MB.')
+    }
+
+    // if ((event.addedFiles[0].size / 1048576) > 1) {
+    //   Swal.fire('Please Upload File Less than 1 MB.')
+    // } 
+
+    else {
+      this.uploadattachments1();
+    }
+
   }
 
   onRemove1(event: any) {
@@ -312,6 +329,25 @@ export class ChapterComponent implements OnInit {
     debugger;
     this.files.push(...event.addedFiles);
     this.uploadattachments();
+
+    console.log(event);
+    // if ((event.addedFiles[0].size ) > 5242880) {
+    this.files.push(...event.addedFiles);
+    if (this.files.length == 0) {
+      Swal.fire('Invalid Attachment Type');
+    }
+
+    else if ((event.addedFiles[0].size) > 10485760) {
+      Swal.fire('Please Upload File Less than 10 MB.')
+    }
+
+    // if ((event.addedFiles[0].size / 1048576) > 1) {
+    //   Swal.fire('Please Upload File Less than 1 MB.')
+    // } 
+
+    else {
+      this.uploadattachments1();
+    }
   }
 
   onRemove(event: any) {
