@@ -330,7 +330,7 @@ export class TrainerCouresMappingFormComponent implements OnInit {
             debugger
 
             this.trainingresultArray.push(json);
-             this.TrainerID == "";
+             this.TrainerID == " ";
              this.CourseID == "";
              this.StartDate == "";
              this.EndDate == "";
@@ -368,6 +368,7 @@ export class TrainerCouresMappingFormComponent implements OnInit {
           debugger
           let traininglist = data;
           Swal.fire("Training Added Successfully");
+          location.href = "#/TrainerCourseMapping";
           this.tablecount = 0;
           location.reload();
         })
