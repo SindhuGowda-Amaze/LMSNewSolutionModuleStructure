@@ -34,7 +34,7 @@
             <div class="card  filtercard">
                 <div class="row searchrow">
                     <div class="col-lg-3 space"
-                        *ngFor="let item of stafflist|filter:Search|filter:Department|filter:CityID else noResults">
+                        *ngFor="let item of EnrollTrainerCourseMappingList|filter:Search|filter:Department|filter:CityID else noResults">
                         <div class="card staffcard" (click)="getstaffid(item)">
                             <div class="row blovk23">
                                
@@ -61,10 +61,10 @@
                                             <td style="background-color: white">Department : {{item.department_name}}</td>
                                         </tr>
                                         <tr>
-                                            <td style="background-color: white">Phone : {{item.mobile}}</td>
+                                            <td style="background-color: white">Phone : {{item.phoneNo}}</td>
                                         </tr>
                                         <tr>
-                                            <td style="background-color: white">Email : {{item.personal_Email}}</td>
+                                            <td style="background-color: white">Email : {{item.email}}</td>
                                         </tr>
                                     </table>
                                     <!-- <label>Name : {{item.name}}</label><br />

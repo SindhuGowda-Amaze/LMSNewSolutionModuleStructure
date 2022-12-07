@@ -21,6 +21,7 @@ export class ViewGroupComponent implements OnInit {
   loader: any;
   currentUrl: any;
   Subsidiary: any;
+  EnrollTrainerCourseMappingList:any;
 
   ngOnInit(): void {
     this.currentUrl = window.location.href;
@@ -28,7 +29,8 @@ export class ViewGroupComponent implements OnInit {
     this.Subsidiary = 0
     this.CityID = 0;
     this.loader = true;
-    this.GetAllStaffNew();
+  //  this.GetAllStaffNew();
+  this.GetTrainerCourseMappingByEnroll();
     this.GetSubsidaryMaster();
     this.GetDepartmentMaster();
     this.GetCityType();
@@ -57,6 +59,31 @@ export class ViewGroupComponent implements OnInit {
         }
       })
   }
+
+
+  public GetTrainerCourseMappingByEnroll() {
+    this.DigiofficeService.GetTrainer()
+      .subscribe({
+        next: data => {
+          debugger
+          this.EnrollTrainerCourseMappingList = data;
+          this.loader=false;
+        }, error: (err) => {
+          Swal.fire('Issue in Getting Subsidiary Master');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.DigiofficeService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+    }
+
 
   public GetSubsidaryMaster() {
     this.DigiofficeService.GetSubsidaryMaster()

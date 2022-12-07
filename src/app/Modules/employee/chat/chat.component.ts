@@ -27,7 +27,8 @@ export class ChatComponent implements OnInit {
   ReciverID: any;
   messsages: any;
   newmsg: any
-  public activeElement: any
+  public activeElement: any;
+  EnrollTrainerCourseMappingList:any;
   public attachments: any = [];
 
   ngOnInit(): void {
@@ -37,12 +38,36 @@ export class ChatComponent implements OnInit {
     this.City = "";
     this.Department = "";
     this.empid = localStorage.getItem('staffid');
-    this.GetAllStaffNew();
+    // this.GetAllStaffNew();
+    this.GetTrainerCourseMappingByEnroll();
     this.GetDepartment();
     this.GetCityType();
     this.GetAllStaffNewActiveParam();
     this.getchatmaster();
   }
+
+  public GetTrainerCourseMappingByEnroll() {
+    this.DigiofficeService.GetTrainer()
+      .subscribe({
+        next: data => {
+          debugger
+          this.EnrollTrainerCourseMappingList = data;
+          this.loader=false;
+        }, error: (err) => {
+          Swal.fire('Issue in Getting Subsidiary Master');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.DigiofficeService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+    }
 
   public GetAllStaffNewActiveParam() {
     this.activatedroute.params.subscribe(params => {

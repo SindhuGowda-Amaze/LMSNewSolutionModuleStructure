@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <div class="inboxchatFiltr">
-                    <div class="inbox_chat" *ngFor="let list of stafflist | filter:searchchat">
+                    <div class="inbox_chat" *ngFor="let list of EnrollTrainerCourseMappingList | filter:searchchat">
                         <div>
                             <div class="chat_people row" (click)="getstaffid(list.id)">
                                 <div class="col-lg-1">

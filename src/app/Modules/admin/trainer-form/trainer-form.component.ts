@@ -31,7 +31,7 @@ export class TrainerFormComponent implements OnInit {
 
     this.dropdownSettings = {
       singleSelection: false,
-      idField: 'name',
+      idField: 'id',
       textField: 'name',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
@@ -82,6 +82,7 @@ export class TrainerFormComponent implements OnInit {
   }
 
   Trainerlist: any;
+  StaffID:any;
   public GetNewstaff() {
     this.LearningService.GetAllStaffNew().subscribe(data => {
       debugger
@@ -93,6 +94,7 @@ export class TrainerFormComponent implements OnInit {
     debugger
     console.log(item);
     this.TrainerName = item.name;
+    this.StaffID=item.id
   }
 
   Submit() {
@@ -111,7 +113,8 @@ export class TrainerFormComponent implements OnInit {
         "YearOfExperience": this.YearOfExperience,
         "Resume": this.Company_logo,
         "SkillAndTecchnology": this.SkillsAndTechnology,
-        "TrainerFee": this.TrainerFeePerCourse
+        "TrainerFee": this.TrainerFeePerCourse,
+        "StaffID":this.StaffID
       };
       this.LearningService.InsertTrainer(json)
 
