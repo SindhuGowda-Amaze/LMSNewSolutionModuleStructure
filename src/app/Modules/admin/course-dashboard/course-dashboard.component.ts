@@ -12,40 +12,41 @@ export class CourseDashboardComponent implements OnInit {
 
   constructor(private ActivatedRoute: ActivatedRoute, private LearningService: LearningService) { }
   result: any;
-  id:any;
-  categoryName:any;
-  search:any;
-  result1:any;
-  count:any;
-  courseid:any;
-  categoryid:any;
-  dummresult:any;
-  currentUrl:any;
-  coursedetails:any;
+  id: any;
+  categoryName: any;
+  search: any;
+  result1: any;
+  count: any;
+  courseid: any;
+  categoryid: any;
+  dummresult: any;
+  currentUrl: any;
+  coursedetails: any;
   files: File[] = [];
-  categorylist:any;
-  description:any;
-  dummcoursedetails:any;
-  image:any;
-  categorydetails:any;
-  
-  ngOnInit(): void {
+  categorylist: any;
+  description: any;
+  dummcoursedetails: any;
+  image: any;
+  categorydetails: any;
+  TrainingType: any;
 
+  ngOnInit(): void {
+    this.TrainingType = "0"
     this.currentUrl = window.location.href;
-    this.GetCourse() ;
+    this.GetCourse();
     this.GetCategoryMaster();
 
   }
 
   public GetCourse() {
     debugger
-    this.LearningService.GetCourse().subscribe({
+    this.LearningService.GetCourseDropdown().subscribe({
       next: data => {
         debugger
-        this.result = data;
+        this.result = data.filter(x=>x.trainingType==1);
         this.dummresult = data;
         this.count = this.result.length;
-      },error: (err: { error: { message: any; }; }) => {
+      }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetCourse');
         // Insert error in Db Here//
         var obj = {
@@ -59,8 +60,8 @@ export class CourseDashboardComponent implements OnInit {
         )
       }
     })
-    
-    
+
+
   }
 
   public GetCategoryMaster() {
@@ -70,9 +71,9 @@ export class CourseDashboardComponent implements OnInit {
         debugger
         debugger
         this.result1 = data;
-        this.categorylist=data;
-        this.categorydetails=data;
-      },error: (err: { error: { message: any; }; }) => {
+        this.categorylist = data;
+        this.categorydetails = data;
+      }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetCategoryMaster');
         // Insert error in Db Here//
         var obj = {
@@ -86,26 +87,26 @@ export class CourseDashboardComponent implements OnInit {
         )
       }
     })
-    
-    
+
+
   }
 
 
 
-  onSelect(event:any) {
+  onSelect(event: any) {
     console.log(event);
     this.files.push(...event.addedFiles);
   }
-  
-  onRemove(event:any) {
+
+  onRemove(event: any) {
     console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
 
 
-  Update(id:any){
-    
-        location.href="#/Admin/Course/"+id;
+  Update(id: any) {
+
+    location.href = "#/Admin/Course/" + id;
   }
   public GetChapter() {
     debugger
@@ -114,7 +115,7 @@ export class CourseDashboardComponent implements OnInit {
         debugger
         this.coursedetails = data;
         this.dummcoursedetails = data;
-      },error: (err: { error: { message: any; }; }) => {
+      }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetChapter');
         // Insert error in Db Here//
         var obj = {
@@ -128,11 +129,11 @@ export class CourseDashboardComponent implements OnInit {
         )
       }
     })
-    
+
 
   }
 
-  public Ondelete(id:any) {
+  public Ondelete(id: any) {
     Swal.fire({
       title: 'Are You Sure ',
       text: "Do you want to delete the Selected Record",
@@ -146,7 +147,7 @@ export class CourseDashboardComponent implements OnInit {
         this.LearningService.DeleteCourse(id).subscribe({
           next: data => {
             debugger
-        this.GetCourse();
+            this.GetCourse();
           },
           error: (err: { error: { message: any; }; }) => {
             Swal.fire('Issue in DeleteCourse');
@@ -162,42 +163,105 @@ export class CourseDashboardComponent implements OnInit {
             )
           }
         })
-        
- 
-    Swal.fire('Successfully Deleted...!');
-    this.ngOnInit();
+
+
+        Swal.fire('Successfully Deleted...!');
+        this.ngOnInit();
       }
     });
   }
   getcourseid(even: any) {
     this.courseid = even.target.value;
     if (even.target.value != 0) {
-      this.coursedetails = this.dummcoursedetails.filter((x: { courseID: any; }) => x.courseID == this.courseid)     
+      this.coursedetails = this.dummcoursedetails.filter((x: { courseID: any; }) => x.courseID == this.courseid)
     }
-    else{
+    else {
       this.GetCourse();
     }
   }
 
-  getcategoryid(even:any){
+  getcategoryid(even: any) {
     debugger
-    this.categoryid=even.target.value;
-    if(even.target.value !=0){
+    this.categoryid = even.target.value;
+    if (even.target.value != 0) {
       this.result = this.dummresult.filter((x: { categoryID: any; }) => x.categoryID == this.categoryid)
       this.count = this.result.length;
     }
-    else{
+    else {
       this.GetCourse();
     }
   }
 
-  
-  clickonimage(photo:any){
-   this.image=photo;
+
+  clickonimage(photo: any) {
+    this.image = photo;
   }
-  view(desc:any){
-    this.description=desc;
-    
+  view(desc: any) {
+    this.description = desc;
+
   }
- 
+
+  public getTrainingType() {
+    if (this.TrainingType == 'Class Room') {
+      this.LearningService.GetCourseDropdown().subscribe({
+        next: (data) => {
+          debugger;
+          this.result = data.filter(x => x.trainingType == 3);
+          this.dummcoursedetails = data;
+        },
+        error: (err: { error: { message: any } }) => {
+          Swal.fire('Issue in Getting Expenses List Web');
+          // Insert error in Db Here//
+          var obj = {
+            PageName: this.currentUrl,
+            ErrorMessage: err.error.message,
+          };
+          this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+            debugger;
+          });
+        },
+      });
+    }
+    if (this.TrainingType == 'External') {
+      this.LearningService.GetCourseDropdown().subscribe({
+        next: (data) => {
+          debugger;
+          this.result = data.filter(x => x.trainingType == 2);
+          this.dummcoursedetails = data;
+        },
+        error: (err: { error: { message: any } }) => {
+          Swal.fire('Issue in Getting Expenses List Web');
+          // Insert error in Db Here//
+          var obj = {
+            PageName: this.currentUrl,
+            ErrorMessage: err.error.message,
+          };
+          this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+            debugger;
+          });
+        },
+      });
+    }
+    if (this.TrainingType == 'Online') {
+      this.LearningService.GetCourseDropdown().subscribe({
+        next: (data) => {
+          debugger;
+          this.result = data.filter(x => x.trainingType == 1);
+          this.dummcoursedetails = data;
+        },
+        error: (err: { error: { message: any } }) => {
+          Swal.fire('Issue in Getting Expenses List Web');
+          // Insert error in Db Here//
+          var obj = {
+            PageName: this.currentUrl,
+            ErrorMessage: err.error.message,
+          };
+          this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+            debugger;
+          });
+        },
+      });
+    }
+  }
+
 }

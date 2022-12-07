@@ -138,6 +138,11 @@ export class SidebarComponent implements OnInit {
     sessionStorage.setItem("clickname", "ENROLLED TRAINING")
   }
 
+  enrolledtrainingpip() {
+    this.active = 'pip';
+    sessionStorage.setItem("clickname", "ENROLLED TRAINING")
+  }
+
   certificate() {
     sessionStorage.setItem("clickname", "CERTIFICATE")
   }

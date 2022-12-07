@@ -8,9 +8,18 @@ import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
 })
 export class LearningService {
  
+<<<<<<< HEAD
     //public baseURL = 'http://localhost:4199/';
     public baseURL = "https://103.12.1.103/LearningandDevelopmentdemo"
    //public baseURL = "http://23.101.22.93/LearningandDevelopmentdemo/";
+=======
+
+  public baseURL = "https://103.12.1.103/LearningandDevelopmentdemo";
+public host = "https://103.12.1.103/DigiOfficeCoreHRAPI"
+
+   // public baseURL = "http://localhost:4199/";
+  //  public baseURL = "http://23.101.22.93/LearningandDevelopmentdemo/";
+>>>>>>> 241cb6799ca3bceabd69fc3b39f9fb128fbcabaf
    // public host1 = "https://digioffice.amazeone.co/digiofficeapi";
  //  public host = "https://23.101.22.93//DigiOfficeCoreHRAPI"
 
@@ -44,7 +53,7 @@ export class LearningService {
        formdata.append('file_upload', files[i], files[i].name);
      }
      debugger
-     let APIURL = this.baseURL + "Master/UploadImages/";
+     let APIURL = this.baseURL + "/Master/UploadImages/";
      return this.http.post(APIURL, formdata);
    }
    public GetRoleType() {
@@ -771,7 +780,7 @@ export class LearningService {
  
    public GetSupportTickets() {
      return this.http.get<any[]>(
-       this.host1 + "/Master/GetSupportTickets"
+       this.host1 + "Master/GetSupportTickets"
      );
    }
  

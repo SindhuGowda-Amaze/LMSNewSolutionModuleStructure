@@ -21,9 +21,12 @@ export class ChapterDashboardComponent implements OnInit {
   files: File[] = [];
   currentUrl: any;
   Attachmentlist: any;
-  constructor(private LearningService: LearningService) {}
+  TrainingType: any;
+  constructor(private LearningService: LearningService) { }
 
   ngOnInit(): void {
+
+    this.TrainingType="0"
     this.currentUrl = window.location.href;
     this.GetChapter();
     this.GetCourse();
@@ -55,7 +58,7 @@ export class ChapterDashboardComponent implements OnInit {
     this.LearningService.GetChapter().subscribe({
       next: (data) => {
         debugger;
-        this.coursedetails = data;
+        this.coursedetails = data.filter(x=>x.trainingType==1);
         this.dummcoursedetails = data;
       },
       error: (err: { error: { message: any } }) => {
@@ -160,5 +163,68 @@ export class ChapterDashboardComponent implements OnInit {
 
   view(desc: any) {
     this.description = desc;
+  }
+
+  public getTrainingType() {
+    if (this.TrainingType=='Class Room') {
+      this.LearningService.GetChapter().subscribe({
+        next: (data) => {
+          debugger;
+          this.coursedetails = data.filter(x=>x.trainingType==3);
+          this.dummcoursedetails = data;
+        },
+        error: (err: { error: { message: any } }) => {
+          Swal.fire('Issue in Getting Expenses List Web');
+          // Insert error in Db Here//
+          var obj = {
+            PageName: this.currentUrl,
+            ErrorMessage: err.error.message,
+          };
+          this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+            debugger;
+          });
+        },
+      });
+    }
+    if (this.TrainingType=='External') {
+      this.LearningService.GetChapter().subscribe({
+        next: (data) => {
+          debugger;
+          this.coursedetails = data.filter(x=>x.trainingType==2);
+          this.dummcoursedetails = data;
+        },
+        error: (err: { error: { message: any } }) => {
+          Swal.fire('Issue in Getting Expenses List Web');
+          // Insert error in Db Here//
+          var obj = {
+            PageName: this.currentUrl,
+            ErrorMessage: err.error.message,
+          };
+          this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+            debugger;
+          });
+        },
+      });
+    }
+    if (this.TrainingType == 'Online') {
+      this.LearningService.GetChapter().subscribe({
+        next: (data) => {
+          debugger;
+          this.coursedetails = data.filter(x=>x.trainingType==1);
+          this.dummcoursedetails = data;
+        },
+        error: (err: { error: { message: any } }) => {
+          Swal.fire('Issue in Getting Expenses List Web');
+          // Insert error in Db Here//
+          var obj = {
+            PageName: this.currentUrl,
+            ErrorMessage: err.error.message,
+          };
+          this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+            debugger;
+          });
+        },
+      });
+    }
   }
 }

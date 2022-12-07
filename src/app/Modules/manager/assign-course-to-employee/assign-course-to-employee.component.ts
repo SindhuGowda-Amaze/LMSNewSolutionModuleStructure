@@ -30,6 +30,8 @@ export class AssignCourseToEmployeeComponent implements OnInit {
   coursename: any;
   count: any;
   currentUrl: any;
+  pip:any;
+  Learning:any;
 
   ngOnInit(): void {
     this.currentUrl = window.location.href;

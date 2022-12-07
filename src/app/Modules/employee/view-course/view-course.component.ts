@@ -336,6 +336,9 @@ export class ViewCourseComponent implements OnInit {
       next: data => {
         debugger
         this.chapterdetails = data.filter(x => x.courseID == this.courseid);
+
+
+        
         this.count = this.chapterdetails.length;
         this.ShowAttachments(this.chapterdetails[0].id)
         this.show = 1

@@ -81,7 +81,7 @@ export class TrainerFormComponent implements OnInit {
       })
   }
 
-  Trainerlist:any;
+  Trainerlist: any;
   public GetNewstaff() {
     this.LearningService.GetAllStaffNew().subscribe(data => {
       debugger
@@ -181,11 +181,23 @@ export class TrainerFormComponent implements OnInit {
 
 
   onSelect(event: { addedFiles: any; }) {
+    // if ((event.addedFiles[0].size ) > 5242880) {
     debugger
     console.log(event);
     this.files.push(event.addedFiles[0]);
-    this.uploadattachments();
-    console.log("content", this.files);
+    if (this.files.length == 0) {
+      Swal.fire('Invalid Attachment Type');
+    }
+    else if ((event.addedFiles[0].size) > 5242880) {
+      Swal.fire('Please Upload File Less than 5 MB.')
+    }
+    // if ((event.addedFiles[0].size / 1048576) > 1) {
+    //   Swal.fire('Please Upload File Less than 1 MB.')
+    // } 
+    else {
+      this.uploadattachments();
+      console.log("content", this.files);
+    }
   }
   onRemove(event: any) {
     debugger
