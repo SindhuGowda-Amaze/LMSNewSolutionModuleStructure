@@ -38,10 +38,47 @@ export class EnrolledTrainingComponent implements OnInit {
   ;
     this.show = 2;
     this.manager = sessionStorage.getItem('userid');
-    this.Acceptcandidate()
+    //this.Acceptcandidate()
     // this.insertdetails()
-    //this.GetEnroll();
+    this.GetEnroll();
   }
+
+
+public GetEnroll(){
+  this.LearningService.GetEnroll()
+  .subscribe({
+    next: (data) => {
+      debugger;
+      // this.result = data.filter(x => x.manager == this.manager );
+      this.result = data.filter(
+        (x) => x.status == 'Manager Approved' && x.manager == this.manager
+      );
+      this.count = this.result.length;
+    },
+   error: (err: { error: { message: any; }; }) => {
+      Swal.fire('Issue in GetEnroll');
+      // Insert error in Db Here//
+      var obj = {
+        PageName: this.currentUrl,
+        ErrorMessage: err.error.message,
+      };
+      this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+        debugger;
+      });
+    },
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
   public Acceptcandidate() {
     debugger;
     var json = {
