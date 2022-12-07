@@ -262,44 +262,44 @@ export class TrainerCouresMappingFormComponent implements OnInit {
 
   }
 
-  Submit() {
-    debugger
-    if (this.TrainerID == undefined || this.CourseID == undefined || this.StartDate == undefined || this.EndDate ==
-      undefined || this.BatchName == undefined || this.AllowedStudents == undefined) {
-      Swal.fire("Please fill all the fields");
-    }
-    else {
-      var json = {
-        "trainerID": this.TrainerID,
-        "courseID": this.CourseID,
-        "startDate": this.StartDate,
-        "endDate": this.EndDate,
-        "batchID": this.BatchName,
-        "noOfStudentsEnrolled": this.AllowedStudents
-      };
-      this.LearningService.InsertTrainerCourseMapping(json)
-        .subscribe({
-          next: data => {
-            debugger
-            let trainerlist = data;
-            Swal.fire("Saved Successfully");
-            location.href = "#/TrainerCourseMapping";
-          }, error: (err: { error: { message: any; }; }) => {
-            Swal.fire('Issue in InsertTrainerCourseMapping');
-            // Insert error in Db Here//
-            var obj = {
-              'PageName': this.currentUrl,
-              'ErrorMessage': err.error.message
-            }
-            this.LearningService.InsertExceptionLogs(obj).subscribe(
-              data => {
-                debugger
-              },
-            )
-          }
-        })
-    }
-  }
+  // Submit() {
+  //   debugger
+  //   if (this.TrainerID == undefined || this.CourseID == undefined || this.StartDate == undefined || this.EndDate ==
+  //     undefined || this.BatchName == undefined || this.AllowedStudents == undefined) {
+  //     Swal.fire("Please fill all the fields");
+  //   }
+  //   else {
+  //     var json = {
+  //       "trainerID": this.TrainerID,
+  //       "courseID": this.CourseID,
+  //       "startDate": this.StartDate,
+  //       "endDate": this.EndDate,
+  //       "batchID": this.BatchName,
+  //       "noOfStudentsEnrolled": this.AllowedStudents
+  //     };
+  //     this.LearningService.InsertTrainerCourseMapping(json)
+  //       .subscribe({
+  //         next: data => {
+  //           debugger
+  //           let trainerlist = data;
+  //           Swal.fire("Saved Successfully");
+  //           location.href = "#/TrainerCourseMapping";
+  //         }, error: (err: { error: { message: any; }; }) => {
+  //           Swal.fire('Issue in InsertTrainerCourseMapping');
+  //           // Insert error in Db Here//
+  //           var obj = {
+  //             'PageName': this.currentUrl,
+  //             'ErrorMessage': err.error.message
+  //           }
+  //           this.LearningService.InsertExceptionLogs(obj).subscribe(
+  //             data => {
+  //               debugger
+  //             },
+  //           )
+  //         }
+  //       })
+  //   }
+  // }
 
   public SaveDetails() {
     debugger
