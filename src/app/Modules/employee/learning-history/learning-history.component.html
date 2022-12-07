@@ -50,7 +50,7 @@
                         <th>Training Type</th>
                         <th>Training Name</th>
 
-                        <th>Topic Name</th>
+                        <!-- <th>Topic Name</th> -->
                         <th>Start Date </th>
                         <th>End Date </th>
                         <th>Total Marks</th>
@@ -65,10 +65,11 @@
                         <td><span style="font-size: 12px;"*ngIf="details.trainingType==1">Online</span>
                             <span style="font-size: 12px;"*ngIf="details.trainingType==2">External</span>
                             <span style="font-size: 12px;"*ngIf="details.trainingType==3">Class Room</span>
-                            <span style="font-size: 12px;"*ngIf="details.trainingType==null">Online</span></td>
+                            <!-- <span style="font-size: 12px;"*ngIf="details.trainingType==null">Online</span> -->
+                        </td>
                           
                         <td>{{details.coursename}}</td>
-                        <td>{{details.chaptername}}</td>
+                        <!-- <td>{{details.chaptername}}</td> -->
                         <!-- <td>{{details.assignedDate}}</td> -->
 
                         <!-- <td>{{details.assignedDate}}</td>-->
@@ -87,7 +88,7 @@
                             *100 | number : '1.2-2'}} %</td>  -->
                         <td>{{details.status}}</td>
                         <td>
-                            <p style="font-size: 12px;" *ngIf="details.trainer==null">Rohan</p>
+                            <!-- <p style="font-size: 12px;" *ngIf="details.trainer==null">Rohan</p> -->
                             <p style="font-size: 12px;" *ngIf="details.trainer!=null">   {{details.trainer}}</p>
                           
                         </td>

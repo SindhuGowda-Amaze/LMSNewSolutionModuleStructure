@@ -64,7 +64,7 @@ export class CatalogComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUrl = window.location.href;
-    this.maxdate = new Date().toISOString().split("T")[0];
+    this.maxdate = new Date();
     debugger;
     this.userid = sessionStorage.getItem('userid');
     this.GetCourse();

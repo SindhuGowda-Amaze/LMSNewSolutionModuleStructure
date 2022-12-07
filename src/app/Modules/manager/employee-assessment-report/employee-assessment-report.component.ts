@@ -34,6 +34,7 @@ export class EmployeeAssessmentReportComponent implements OnInit {
   currentUrl: any;
   value : any
 
+
   ngOnInit(): void {
     this.currentUrl = window.location.href;
     this.userid = sessionStorage.getItem('userid');
