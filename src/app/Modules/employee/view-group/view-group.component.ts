@@ -62,11 +62,11 @@ export class ViewGroupComponent implements OnInit {
 
 
   public GetTrainerCourseMappingByEnroll() {
-    this.DigiofficeService.GetTrainer()
+    this.DigiofficeService.GetTrainerCourseMapping()
       .subscribe({
         next: data => {
           debugger
-          this.EnrollTrainerCourseMappingList = data;
+          this.EnrollTrainerCourseMappingList = data.filter(x=> x.staffID==localStorage.getItem('staffid'));
           this.loader=false;
         }, error: (err) => {
           Swal.fire('Issue in Getting Subsidiary Master');

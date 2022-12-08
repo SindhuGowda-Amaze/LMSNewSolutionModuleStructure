@@ -341,7 +341,7 @@ export class TrainerCouresMappingFormComponent implements OnInit {
     }
   }
 
-  public InsertTrainerCourseMapping() {
+  public InsertTrainerCourseMapping () {
     debugger
     // if( this.goalSettingDate< this.todaydate ){
     //   Swal.fire('Sorry, You cannot set the goal since last date is over')

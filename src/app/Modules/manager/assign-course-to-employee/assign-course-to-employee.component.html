@@ -30,29 +30,30 @@
                         </select>
                     </div>
                     <div class="col-md-2">
-                        <select class="form-control" name="courseid" id="courseid" [(ngModel)]="courseid">
+                        <select class="form-control" name="courseid" id="courseid" [(ngModel)]="courseid"  (change)="getcourseID($event)">
                             <option value="0">Select Training</option>
-                            <option *ngFor="let details of courselist" value="{{details.id}}"
-                                (change)="getdata(details)">{{details.name}}</option>
+                            <option *ngFor="let details of courselist" value="{{details.id}}">{{details.name}}</option>
                         </select>
                     </div>
                     <div class="col-md-2">
 
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                                value="option1">
+                            (click)="on1()" >
                             <label class="form-check-label" for="inlineRadio1" name="mandatory" id="mandatory"
-                                [(ngModel)]="mandatory" (click)="on()">Mandatory</label>
+                                [(ngModel)]="mandatory" (click)="on1()">Mandatory</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-                                [(ngModel)]="Learning" value="option2" (click)="off()">
-                            <label class="form-check-label" for="inlineRadio2">Learning Path</label>
+                            (click)="on2()"  >
+                            <label class="form-check-label" for="inlineRadio2" name="Learning" id="Learning"
+                            [(ngModel)]="Learning" (click)="on2()">Learning Path</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3"
-                                [(ngModel)]="pip" value="option3" (click)="on()">
-                            <label class="form-check-label" for="inlineRadio3">PIP</label>
+                            (click)="on3()">
+                            <label class="form-check-label" for="inlineRadio3" name="pip" id="pip"
+                            [(ngModel)]="pip"  (click)="on3()">PIP</label>
                         </div>
 
                     </div>
