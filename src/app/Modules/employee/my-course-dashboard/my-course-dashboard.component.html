@@ -398,7 +398,7 @@
                 <div class="row">
                     <div class="col-lg-3"></div>
                     <div class="col-lg-7">
-                        <p *ngIf="emailID==null">Manager not Assigned for Enrollment</p>
+                        <p *ngIf="emailID==null" style="color:red;"><b>Manager not Assigned for Enrollment</b></p>
                     </div>
                     <div class="col-lg-2">
                         <button class="form-control Save" *ngIf="emailID!=null"

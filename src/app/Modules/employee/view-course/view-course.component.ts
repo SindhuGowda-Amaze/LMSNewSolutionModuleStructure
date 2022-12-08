@@ -273,15 +273,15 @@ export class ViewCourseComponent implements OnInit {
   }
 
 
-
   public PreviewMSword(photo: any) {
     debugger
     this.show = 5;
     //  this.chapterphoto = this.sanitizer.bypassSecurityTrustResourceUrl(photo);
     this.show = 4;
-    this.chapterphoto = photo;
-    this.chapterphoto = this.sanitizer.bypassSecurityTrustResourceUrl(photo);
     window.open(photo, "_blank")
+    // this.chapterphoto = photo;
+    this.chapterphoto = this.sanitizer.bypassSecurityTrustResourceUrl(photo);
+   // window.open(photo, "_blank")
     if (this.Attachmentlist.length != 0) {
       this.Attachmentlist = this.dummAttachmentlist.filter((x: { attachmentType: string; }) => x.attachmentType == 'Document')
       if (this.Attachmentlist.length != 0) {
