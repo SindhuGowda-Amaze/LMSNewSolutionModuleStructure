@@ -66,7 +66,9 @@ export class ViewGroupComponent implements OnInit {
       .subscribe({
         next: data => {
           debugger
-          this.EnrollTrainerCourseMappingList = data.filter(x=> x.staffID==localStorage.getItem('staffid'));
+          this.EnrollTrainerCourseMappingList = data.filter(x=> x.staffID==sessionStorage.getItem('userid'));
+          
+          console.log(" this.EnrollTrainerCourseMappingList ", this.EnrollTrainerCourseMappingList )
           this.loader=false;
         }, error: (err) => {
           Swal.fire('Issue in Getting Subsidiary Master');
