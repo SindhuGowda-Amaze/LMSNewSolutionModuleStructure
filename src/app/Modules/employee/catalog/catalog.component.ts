@@ -73,7 +73,7 @@ export class CatalogComponent implements OnInit {
     this.maxdate = formatDate(myDate, format, locale);
     debugger;
     this.GetMyDetails();
-    this.manager = sessionStorage.getItem('userid');
+    this.manager = sessionStorage.getItem('manager');
     this.userid = sessionStorage.getItem('userid');
    
     this.GetCourse();

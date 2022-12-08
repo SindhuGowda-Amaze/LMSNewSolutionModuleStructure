@@ -33,7 +33,7 @@ export class MyCourseDashboardComponent implements OnInit {
   courseid: any;
   testresponse: any;
   currentUrl: any;
-
+  profilepercentage: any
   ngOnInit(): void {
     this.currentUrl = window.location.href;
     this.loader = false;

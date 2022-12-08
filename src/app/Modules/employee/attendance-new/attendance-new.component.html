@@ -87,12 +87,12 @@
                                     <!-- <td>{{details.trainingname}}</td> -->
                                     <!-- <td>{{details.topicName}}</td> -->
                                     <td>
-                                        <p *ngIf="details.logoutTime==null">5:30</p>
+                                        <p *ngIf="details.logoutTime==null">00:00</p>
                                         <p *ngIf="details.logoutTime!=null">{{details.logoutTime}}</p>
                                         
                                     </td>
                                     <td>
-                                        <p *ngIf="details.noofhrs==null">5</p>
+                                        <p *ngIf="details.noofhrs==null">0</p>
                                         <p *ngIf="details.noofhrs!=null"> {{details.noofhrs}}</p>
                                       </td>
                                     <!-- <td *ngIf="roleid!=2 && roleid!=4">{{details.trainerName}}</td> -->
