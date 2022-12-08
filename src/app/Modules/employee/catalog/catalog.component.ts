@@ -244,14 +244,14 @@ export class CatalogComponent implements OnInit {
       next: (data) => {
         debugger;
         let temp=data
-        if(temp[0].trainingType==3){
-          this.courselist = data.filter(x=>x.cStartDate>=this.maxdate);
+        // if(temp[0].trainingType==3){
+        //   this.courselist = data.filter(x=>x.cStartDate>=this.maxdate);
+        //   this.count = this.courselist.length;
+        // }
+        // else{
+          this.courselist = data
           this.count = this.courselist.length;
-        }
-        else{
-          this.courselist = data;
-          this.count = this.courselist.length;
-        }
+        // }
        
       },
      error: (err: { error: { message: any; }; }) => {

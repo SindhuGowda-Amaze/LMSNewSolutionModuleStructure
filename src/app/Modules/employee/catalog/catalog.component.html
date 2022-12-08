@@ -248,11 +248,14 @@
                                 </div>
                             </div> <br>
                             <div class="row">
-                                <div class="col-lg-6"></div>
+                                <div class="col-lg-3"></div>
+                                <div class="col-lg-7">
+                                    <p *ngIf="emailID==null" style="color:red;"><b>Manager not Assigned for Enrollment</b></p>
+                                </div>
                                 <div class="col-lg-2">
-                                    <button class="form-control Save"
-                                        (click)="enroll(item.name,item.mobile,item.emailID)"
-                                        data-dismiss="modal">Enroll</button>
+                                    <button class="form-control Save" *ngIf="emailID!=null"
+                                        (click)="enroll(item.name,item.mobile,item.emailID)" data-dismiss="modal">Enroll</button>
+            
                                 </div>
                             </div>
                         </div>
