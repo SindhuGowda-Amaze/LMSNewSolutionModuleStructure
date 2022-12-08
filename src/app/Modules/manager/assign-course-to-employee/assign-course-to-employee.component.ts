@@ -58,7 +58,7 @@ export class AssignCourseToEmployeeComponent implements OnInit {
 
   public GetCourse() {
     debugger;
-    this.LearningService.GetEnroll()
+    this.LearningService.GetCourseDropdown()
       .subscribe({
         next: (data) => {
           debugger;
@@ -119,6 +119,24 @@ export class AssignCourseToEmployeeComponent implements OnInit {
     this.mandatory = 2;
   }
 
+  public on1() {
+    this.mandatory = 1;
+    this.Learning = 0;
+    this.pip = 0;
+  }
+
+  public on2() {
+    this.mandatory = 0;
+    this.Learning = 1;
+    this.pip = 0;
+  }
+
+  public on3() {
+    this.mandatory = 0;
+    this.Learning = 0;
+    this.pip = 1;
+  }
+
   Cancel() {
     location.href = '#/Manager/AssignCourseDashboard';
   }
@@ -139,6 +157,27 @@ export class AssignCourseToEmployeeComponent implements OnInit {
       });
   }
 
+  ECourseID:any
+  courseName123:any;
+  courseID12:any;
+  public getcourseID(even: any) {
+    this.ECourseID = even.target.value;
+
+    this.LearningService.GetCourseDropdown()
+      .subscribe((data) => {
+        debugger;
+        let temp: any = data.filter((x) => x.id == this.ECourseID);
+        this.courseName123 = temp[0].name;
+        this.courseID12 = temp[0].id;
+  
+      });
+
+
+  
+
+
+
+  }
   // enroll() {
   //   debugger;
   //   if (this.name123 == undefined || this.courseid == undefined) {
@@ -182,13 +221,13 @@ export class AssignCourseToEmployeeComponent implements OnInit {
             this.tablecount = 1;
             var json = {
               employeeName: this.employeeName,
-              courseName: trainerlist[0].courseName,
+              courseName: this.courseName123,
               mandatory: this.mandatory == undefined ? 0 : this.mandatory,
               pip: this.pip == undefined ? 0 : this.pip,
               learningPath: this.Learning == undefined ? 0 : this.Learning,
               staffid: this.name123,
               manager: this.userid,
-              courseid: this.courseid,
+              courseID12: this.courseID12,
               status: 'Manager Assign',
               phoneNo: this.mobile,
               email: this.emailID,
@@ -208,8 +247,6 @@ export class AssignCourseToEmployeeComponent implements OnInit {
 
   public InsertEnrollTraining() {
     debugger
-
-
     debugger
     for (let i = 0; i < this.trainingresultArray.length; i++) {
       if (this.trainingresultArray.length == 0) {
@@ -220,7 +257,7 @@ export class AssignCourseToEmployeeComponent implements OnInit {
         EmployeeName: this.trainingresultArray[i].employeeName,
         StaffID: this.trainingresultArray[i].staffid,
         manager: this.trainingresultArray[i].manager,
-        CourseID: this.trainingresultArray[i].courseid,
+        CourseID: this.trainingresultArray[i].courseID12,
         Status: this.trainingresultArray[i].status,
         PhoneNo: this.trainingresultArray[i].phoneNo,
         Email: this.trainingresultArray[i].email,
