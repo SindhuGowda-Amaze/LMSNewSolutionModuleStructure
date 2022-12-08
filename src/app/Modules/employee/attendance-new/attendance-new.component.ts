@@ -94,19 +94,20 @@ this.getTopic();
   filterbydate() {
     this.LearningService.GetAttendance_New().subscribe({
       next: (data) => {
-        this.uniquelist = data.filter(
-          (x) => x.startDate >= this.Date && x.endDate <= this.endDate
+        this.Attendance = data.filter(
+          // (x) => x.loginDate >= this.Date && x.loginDate <= this.endDate
+          (x) =>x.filterdate>=this.Date && x.filterdate<=this.endDate
         );
 
-        const key = 'coursename';
-        this.uniquelist = [
-          ...new Map(
-            this.uniquelist.map((item: { [x: string]: any }) => [
-              item[key],
-              item,
-            ])
-          ).values(),
-        ];
+        // const key = 'coursename';
+        // this.uniquelist = [
+        //   ...new Map(
+        //     this.uniquelist.map((item: { [x: string]: any }) => [
+        //       item[key],
+        //       item,
+        //     ])
+        //   ).values(),
+        // ];
       },
     });
   }

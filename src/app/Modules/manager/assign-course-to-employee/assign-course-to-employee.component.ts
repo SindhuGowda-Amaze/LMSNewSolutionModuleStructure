@@ -225,9 +225,9 @@ export class AssignCourseToEmployeeComponent implements OnInit {
         PhoneNo: this.trainingresultArray[i].phoneNo,
         Email: this.trainingresultArray[i].email,
         type: this.trainingresultArray[i].type,
-        Mandatory: this.trainingresultArray[i].mandatory,
-        PIP: this.trainingresultArray[i].pip,
-        LearningPath: this.trainingresultArray[i].learningPath == undefined || this.trainingresultArray[i].learningPath == 0 ? 0 : this.trainingresultArray[i].learningPath
+        Mandatory: this.trainingresultArray[i].mandatory==undefined?0:this.trainingresultArray[i].mandatory,
+        PIP: this.trainingresultArray[i].pip==undefined?this.trainingresultArray[i].pip==0||'option3':this.trainingresultArray[i].pip,
+        LearningPath: this.trainingresultArray[i].learningPath == undefined ?0: this.trainingresultArray[i].learningPath
       };
       this.LearningService.InsertEnroll(entity).subscribe(
         data => {

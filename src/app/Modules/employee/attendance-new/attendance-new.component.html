@@ -29,7 +29,7 @@
                     <option *ngFor="let details of TopicList" value="{{details.id}}">{{details.name}}</option>
                 </select>
             </div> -->
-            <div class="col-lg-2">
+            <div class="col-lg-2" *ngIf="roleid==3">
                 <select class="form-control"     name="courseID" [(ngModel)]="TopicID" (change)="getEmpID($event)">
                     <option value="0">Employee Name</option>
                     <option *ngFor="let details of EmployeeList" value="{{details.id}}">{{details.name}}</option>
@@ -87,8 +87,8 @@
                                     <!-- <td>{{details.trainingname}}</td> -->
                                     <!-- <td>{{details.topicName}}</td> -->
                                     <td>
-                                        <p *ngIf="details.logoutDate==null">5:30</p>
-                                        <p *ngIf="details.logoutDate!=null">{{details.logoutDate}}</p>
+                                        <p *ngIf="details.logoutTime==null">5:30</p>
+                                        <p *ngIf="details.logoutTime!=null">{{details.logoutTime}}</p>
                                         
                                     </td>
                                     <td>

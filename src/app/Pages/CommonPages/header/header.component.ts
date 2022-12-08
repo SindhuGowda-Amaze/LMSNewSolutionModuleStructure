@@ -119,11 +119,22 @@ export class HeaderComponent implements OnInit {
   //     }
   //   });
   // }
-
+  loginid1:any;
   public async insertattdancelogout() {
       debugger
+      this.LearningService.GetAttendance_New().subscribe(data => {
+            debugger
+            var todayDate = new Date().toISOString().slice(0, 10);
+            let temp: any = data.filter(x => x.empID == sessionStorage.getItem('userid') && x.filterdate === todayDate);
+            if (temp.length == 0) {
+               Swal.fire('Not Logged In Correctly today'); 
+            } else {
+              this.loginid1 = temp[0].id;
+            }
+          });
           var entity = {
-            'loginid': this.staffID,
+            'loginid': this.loginid1,
+            'EmpID': this.staffID,
             'LogoutDate': new Date()
           }
           this.LearningService.UpdateAttendance_New(entity).subscribe(
