@@ -111,14 +111,6 @@ export class AssignCourseToEmployeeComponent implements OnInit {
   mandatory: any;
 
 
-  public on() {
-    this.mandatory = 1;
-  }
-
-  public off() {
-    this.mandatory = 2;
-  }
-
   public on1() {
     this.mandatory = 1;
     this.Learning = 0;
@@ -263,7 +255,7 @@ export class AssignCourseToEmployeeComponent implements OnInit {
         Email: this.trainingresultArray[i].email,
         type: this.trainingresultArray[i].type,
         Mandatory: this.trainingresultArray[i].mandatory==undefined?0:this.trainingresultArray[i].mandatory,
-        PIP: this.trainingresultArray[i].pip==undefined?this.trainingresultArray[i].pip==0||'option3':this.trainingresultArray[i].pip,
+        PIP: this.trainingresultArray[i].pip==undefined?0:this.trainingresultArray[i].pip,
         LearningPath: this.trainingresultArray[i].learningPath == undefined ?0: this.trainingresultArray[i].learningPath
       };
       this.LearningService.InsertEnroll(entity).subscribe(
