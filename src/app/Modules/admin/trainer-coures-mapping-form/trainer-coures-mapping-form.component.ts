@@ -242,8 +242,8 @@ export class TrainerCouresMappingFormComponent implements OnInit {
           this.EndDate = this.result[0].endDate;
           this.BatchName = this.result[0].batchID;
           this.AllowedStudents = this.result[0].noOfStudentsEnrolled;
-          this.TrainerName = this.result[0].trainerName,
-            this.courseName = this.result[0].courseName,
+          // this.TrainerName = this.result[0].trainerName,
+            // this.courseName = this.result[0].courseName,
             this.BatchName1 = this.result[0].batchName
         }, error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in GetTrainerCourseMapping');
@@ -323,9 +323,9 @@ export class TrainerCouresMappingFormComponent implements OnInit {
               "endDate": this.EndDate,
               "BatchName": this.BatchName,
               "noOfStudentsEnrolled": this.AllowedStudents,
-              "TrainerName": trainerlist[0].trainerName,
-              "courseName": trainerlist[0].courseName,
-              "BatchName1": trainerlist[0].batchName
+              "TrainerName": this.TrainerName,
+              "courseName": this.courseName,
+              "BatchName1": this.BatchName1
             };
             debugger
 
@@ -441,6 +441,15 @@ export class TrainerCouresMappingFormComponent implements OnInit {
   getCourseID(even: any) {
     debugger
     this.CourseID = even.target.value;
+
+    this.LearningService.GetCourse()
+    .subscribe((data) => {
+      debugger;
+      let temp: any = data.filter((x) => x.id == this.CourseID);
+      this.courseName= temp[0].name
+
+    });
+
   }
   // public GetCourse() {
   //   debugger
@@ -455,6 +464,14 @@ export class TrainerCouresMappingFormComponent implements OnInit {
   getBatchName(even: any) {
     debugger
     this.BatchName = even.target.value;
+
+    this.LearningService.GetBatch()
+    .subscribe((data) => {
+      debugger;
+      let temp: any = data.filter((x) => x.id == this.BatchName);
+      this.BatchName1= temp[0].batchName
+
+    });
   }
   public GetBatch() {
     debugger
@@ -484,6 +501,14 @@ export class TrainerCouresMappingFormComponent implements OnInit {
   getTrainerID(even: any) {
     debugger
     this.TrainerID = even.target.value;
+
+    this.LearningService.GetTrainer()
+    .subscribe((data) => {
+      debugger;
+      let temp: any = data.filter((x) => x.id == this.TrainerID);
+      this.TrainerName= temp[0].name
+
+    });
 
   }
 
