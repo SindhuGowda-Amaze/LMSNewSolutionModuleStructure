@@ -250,12 +250,15 @@ export class AssignCourseToEmployeeComponent implements OnInit {
             debugger
 
             this.trainingresultArray.push(json);
-            this.employeeName == " ";
-            this.mandatory == "";
-            this.pip == "";
-            this.Learning == "";
-            this.courseID12 == 0;
-            this.courseid == 0;
+            this.name123 = "";
+            this.courseid = "";
+            this.mandatory = "";
+            this.pip = "";
+            this.Learning = "";
+            this.toBeCompletedDate = "";
+            this.mandatory = undefined;
+            this.pip = undefined;
+            this.Learning = undefined;
           }
         })
     }

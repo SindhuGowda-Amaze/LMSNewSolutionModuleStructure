@@ -37,7 +37,7 @@
                 <input type="date" class="form-control inputfield" placeholder="Start Date" [(ngModel)]="StartDate" name="StartDate" min="{{maxdate}}">
             </div>
             <div class="col-lg-3">
-                <input type="date" class="form-control inputfield" placeholder="End Date" [(ngModel)]="EndDate" name="EndDate"  (change)="endingdatealert($event)">
+                <input type="date" class="form-control inputfield" placeholder="End Date" [(ngModel)]="EndDate" name="EndDate"  min="{{StartDate}}" (change)="endingdatealert($event)">
             </div>
         </div><br>
         <div class="row leavereq ">
