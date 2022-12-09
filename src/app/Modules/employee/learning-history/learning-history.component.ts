@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import * as XLSX from 'xlsx';
+import { formatDate } from '@angular/common';
 @Component({
   selector: 'app-learning-history',
   templateUrl: './learning-history.component.html',
@@ -30,11 +31,15 @@ export class LearningHistoryComponent implements OnInit {
   MarksObtained: any;
   TotalMarks: any;
   currentUrl: any;
-
+  todaydate:any;
   constructor(public LearningService: LearningService) { }
 
   ngOnInit(): void {
     this.currentUrl = window.location.href;
+    const format = 'yyyy-MM-dd';
+    const myDate = new Date();
+    const locale = 'en-US';
+    this.todaydate = formatDate(myDate, format, locale);
     this.getdetailslist();
     // this.show = 2;
     this.roleid = sessionStorage.getItem('roleid');
