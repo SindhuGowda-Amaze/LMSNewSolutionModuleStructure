@@ -61,7 +61,7 @@
         </div>
         <div class="row leavereq">
             <div class="col-md-2">
-                <ngx-dropzone (change)="onSelect($event)" style="height: 60px;" [(ngModel)]="Company_logo" accept="application/pdf">
+                <ngx-dropzone (change)="onSelect($event)" [(ngModel)]="Company_logo" accept="application/pdf">
                     <ngx-dropzone-label>Drop it here!</ngx-dropzone-label>
                     <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
                         <ngx-dropzone-label  >{{ f.name }} ({{ f.type }})</ngx-dropzone-label>

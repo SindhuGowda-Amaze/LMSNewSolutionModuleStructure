@@ -94,7 +94,8 @@
                         </td>
                         <td>
                             <button class="viewcertificate" data-toggle="modal" data-target="#Certificate"
-                                (click)="view(details.staffname,details.coursename)">View Certificate</button>
+                                (click)="view(details.staffname,details.coursename)" *ngIf="details.status=='Pass'">View Certificate</button>
+                                <p *ngIf="details.status=='Fail'">Fail</p>
                         </td>
                     </tr>
                 </thead>
