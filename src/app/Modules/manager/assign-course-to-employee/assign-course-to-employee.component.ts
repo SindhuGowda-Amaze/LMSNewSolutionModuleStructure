@@ -257,6 +257,26 @@ export class AssignCourseToEmployeeComponent implements OnInit {
           }
         })
     }
+
+    this.LearningService.GetCourseDropdown()
+    .subscribe({
+      next: (data) => {
+        debugger;
+        this.courselist = data.filter(x=>x.id!=this.courseid)
+        this.count = this.courselist.length;
+      },
+      error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Expenses List Web');
+        // Insert error in Db Here//
+        var obj = {
+          PageName: this.currentUrl,
+          ErrorMessage: err.error.message,
+        };
+        this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+          debugger;
+        });
+      },
+    });
   }
 
   public InsertEnrollTraining() {
