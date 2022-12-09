@@ -147,7 +147,8 @@ export class MyCourseDashboardComponent implements OnInit {
           });
         },
       });
-    } else if (value == 4) {
+    }
+     else if (value == 4) {
       this.LearningService.GetCourse().subscribe({
         next: (data) => {
           debugger;
@@ -171,6 +172,9 @@ export class MyCourseDashboardComponent implements OnInit {
         },
       });
     }
+    else if(value==5){
+      this.GetApproveCourseFoAccept();
+    }
     this.loader = false;
   }
 
@@ -186,7 +190,39 @@ export class MyCourseDashboardComponent implements OnInit {
       next: (data) => {
         debugger;
         this.coursedetails = data.filter(
-          (x) => x.completed == 0 && x.enrollid != 0 && x.staffid == this.userid
+          (x) => x.completed == 0 && x.enrollid != 0 && x.staffid == this.userid && x.type!='Manager Assign'
+        );
+        console.log(this.coursedetails);
+        this.latestcoursedetails = data[0];
+        if ((this.latestcoursedetails.length = 0)) {
+          this.lastassigned = 0;
+          this.show = 0;
+        } else {
+          this.lastassigned = 1;
+          // this.show=1
+        }
+      },
+     error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in GetApproveCourse');
+        // Insert error in Db Here//
+        var obj = {
+          PageName: this.currentUrl,
+          ErrorMessage: err.error.message,
+        };
+        this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+          debugger;
+        });
+      },
+    });
+  }
+
+  public GetApproveCourseFoAccept() {
+    debugger;
+    this.LearningService.GetApproveCourse(this.userid).subscribe({
+      next: (data) => {
+        debugger;
+        this.coursedetails = data.filter(
+          (x) => x.enrollid!=0 && x.notStarted==1 && x.completed==0 && x.status=='Manager Assign'
         );
         console.log(this.coursedetails);
         this.latestcoursedetails = data[0];

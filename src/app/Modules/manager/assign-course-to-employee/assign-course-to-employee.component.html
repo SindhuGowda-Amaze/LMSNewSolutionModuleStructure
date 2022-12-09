@@ -19,6 +19,9 @@
                     <div class="col-lg-2">
                         <p class="newFont">Training Condition <span style="color: red;">*</span></p>
                     </div>
+                    <div class="col-lg-2">
+                        <p class="newFont">To be Completed By<span style="color: red;">*</span></p>
+                    </div>
 
                 </div>
                 <div class="row leavereq">
@@ -57,10 +60,12 @@
                         </div>
 
                     </div>
-
+                    <div class="col-md-2">
+                       <input type="date" class="form-control" name="toBeCompletedDate" id="toBeCompletedDate" [(ngModel)]="toBeCompletedDate">
+                    </div>
                 </div>
                 <br>
-                <div class="row leavereq" *ngIf="mandatory==1">
+                <!-- <div class="row leavereq" *ngIf="mandatory==1">
 
                     <div class="col-lg-2">
                         <p>To be Completed By</p>
@@ -80,7 +85,7 @@
 
                         </select>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="row">
                     <div class="col-lg-9"></div>
@@ -102,6 +107,7 @@
                             <tr>
                                 <th>Employee Name</th>
                                 <th>Training Name</th>
+                                <th>To Be Completed By</th>
                                 <th>Mandatory</th>
                                 <th>Learning Path</th>
                                 <th style="width: 50px;">PIP</th>
@@ -109,6 +115,7 @@
                             <tr *ngFor="let details of trainingresultArray">
                                 <td>{{details.employeeName}}</td>
                                 <td>{{details.courseName}}</td>
+                                <td>{{details.toBeCompletedDate|date}}</td>
                                 <td>
                                     <p *ngIf="details.mandatory==0||details.mandatory==null">No</p>
                                     <p *ngIf="details.mandatory==1">Yes</p>

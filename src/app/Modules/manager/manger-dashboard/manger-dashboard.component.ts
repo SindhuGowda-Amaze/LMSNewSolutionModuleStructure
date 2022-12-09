@@ -35,8 +35,9 @@ export class MangerDashboardComponent implements OnInit {
     // this.GetCandidateReg()
     // this.insertdetails()
     //this.GetEnroll();
-    this.GetEnroll();
+
     this.Showcards(2);
+ //   this.GetEnroll();
     this.GetCourseDropdown();
   }
 

@@ -41,6 +41,7 @@
                             <th>Employee ID</th>
                             <th>Employee Name</th>
                             <th>Training Name</th>
+                            <th>TrainingType</th>
                             <th>Trainer</th>
                             <th>Position</th>
                             <th>Band</th>
@@ -57,6 +58,11 @@
                             <td>{{details.staffID}}</td>
                             <td>{{details.employeeName}}</td>
                             <td>{{details.courseName}}</td>
+                            <td>
+                                <p *ngIf="details.trainingType==1">Online</p>
+                                <p *ngIf="details.trainingType==2">External</p>
+                                <p *ngIf="details.trainingType==3">Class Room</p>
+                        </td>
                             <td>{{details.trainer}}</td>
                             <!-- <td style="font-size: 15px;">{{details.position}}</td>
                             <td style="font-size: 15px;">{{details.band}}</td>

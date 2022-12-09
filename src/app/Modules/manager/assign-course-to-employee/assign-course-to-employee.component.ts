@@ -34,6 +34,7 @@ export class AssignCourseToEmployeeComponent implements OnInit {
   Learning: any;
   tablecount: any;
   trainingresultArray: any = [];
+  toBeCompletedDate:any;
 
   ngOnInit(): void {
     this.currentUrl = window.location.href;
@@ -201,7 +202,7 @@ export class AssignCourseToEmployeeComponent implements OnInit {
 
   public EnrollMultipleTraining() {
     debugger
-    if (this.name123 == undefined || this.courseid == undefined) {
+    if (this.name123 == undefined || this.courseid == undefined||this.toBeCompletedDate==undefined) {
       Swal.fire('Please fill all the fields');
     }
     else {
@@ -219,6 +220,7 @@ export class AssignCourseToEmployeeComponent implements OnInit {
               learningPath: this.Learning == undefined ? 0 : this.Learning,
               staffid: this.name123,
               manager: this.userid,
+              toBeCompletedDate:this.toBeCompletedDate,
               courseID12: this.courseID12,
               status: 'Manager Assign',
               phoneNo: this.mobile,
@@ -256,7 +258,8 @@ export class AssignCourseToEmployeeComponent implements OnInit {
         type: this.trainingresultArray[i].type,
         Mandatory: this.trainingresultArray[i].mandatory==undefined?0:this.trainingresultArray[i].mandatory,
         PIP: this.trainingresultArray[i].pip==undefined?0:this.trainingresultArray[i].pip,
-        LearningPath: this.trainingresultArray[i].learningPath == undefined ?0: this.trainingresultArray[i].learningPath
+        LearningPath: this.trainingresultArray[i].learningPath == undefined ?0: this.trainingresultArray[i].learningPath,
+        toBeCompletedDate:this.toBeCompletedDate
       };
       this.LearningService.InsertEnroll(entity).subscribe(
         data => {
