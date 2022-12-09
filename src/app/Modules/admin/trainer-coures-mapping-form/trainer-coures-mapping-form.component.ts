@@ -303,6 +303,7 @@ export class TrainerCouresMappingFormComponent implements OnInit {
 
   public SaveDetails() {
     debugger
+
     if (this.TrainerID == undefined || this.CourseID == undefined || this.StartDate == undefined || this.EndDate ==
       undefined || this.BatchName == undefined || this.AllowedStudents == undefined) {
       Swal.fire("Please fill all the fields");
@@ -339,6 +340,29 @@ export class TrainerCouresMappingFormComponent implements OnInit {
           }
         })
     }
+
+    this.LearningService.GetUnmappedCourseDropdown()
+    .subscribe({
+      next: data => {
+        debugger
+        this.CourseList = data.filter(x=>x.id!=this.CourseID)
+       
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Expenses List Web');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+
+
   }
 
   public InsertTrainerCourseMapping () {
