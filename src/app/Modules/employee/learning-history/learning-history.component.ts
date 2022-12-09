@@ -31,7 +31,7 @@ export class LearningHistoryComponent implements OnInit {
   TotalMarks: any;
   currentUrl: any;
 
-  constructor(public LearningService: LearningService) {}
+  constructor(public LearningService: LearningService) { }
 
   ngOnInit(): void {
     this.currentUrl = window.location.href;
@@ -104,13 +104,17 @@ export class LearningHistoryComponent implements OnInit {
       next: (data) => {
         debugger;
         if (this.roleid == 4) {
-          this.detailslist = data.filter((x) => x.trainerID == this.trainer);
+          let temp: any = data.filter((x) => x.trainerID == this.trainer);
+
         }
-        else if(this.roleid==2){
-          this.detailslist = data.filter(x=>x.userID==this.staffid);
+        else if (this.roleid == 2) {
+          this.detailslist= data.filter(x => x.userID == this.staffid);
+         
         }
         else {
-          this.detailslist = data;
+          let temp: any = data;
+          this.detailslist = this.reduceData(temp);
+       
         }
 
         // .filter(x => x.checked == 1);
@@ -128,6 +132,21 @@ export class LearningHistoryComponent implements OnInit {
       },
     });
   }
+
+  public reduceData = (data: any[]) => data.reduce((acc, cur) => {
+    debugger
+    const { staffname, startDate, endDate, coursename, totalmarks, obtainedMarks, status } = cur;                            // Get name and value from current item
+    const item = acc.find((it: { coursename: any; }) => it.coursename === coursename);        // Find in our accumulator the desired object
+    item ? item.totalmarks += totalmarks : acc.push({ coursename, totalmarks });
+    item ? item.obtainedMarks += obtainedMarks : acc.push({ coursename, obtainedMarks });
+    item ? item.staffname : acc.push({ coursename, staffname });
+    // acc.push({ coursename, staffname });
+    // acc.push({ coursename, startDate }) 
+    // acc.push({ coursename, endDate })
+    // acc.push({ coursename, status })
+    //item ? item.obtainedMarks += obtainedMarks : acc.push({ coursename, obtainedMarks }); // Update object or create a new object if it doesn't exist
+    return acc;                                           // Return accumulator
+  }, []);
 
   public getdetailslist1() {
     debugger;
@@ -194,7 +213,7 @@ export class LearningHistoryComponent implements OnInit {
         body.append('Dan', file);
         console.log('pdf', pdf1);
       })
-      .then(() => {});
+      .then(() => { });
   }
 
   fileName = 'Employee Assessment Result Reports.xlsx';

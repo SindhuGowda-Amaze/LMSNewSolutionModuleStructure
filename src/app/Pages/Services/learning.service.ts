@@ -875,5 +875,9 @@ public host = "https://103.12.1.103/DigiOfficeCoreHRAPI"
   }
  
  
+  public GetExceptEnrolledCourseByStaffID(EmployeeID: any) {
+ 
+    return this.http.get<any[]>(this.baseURL + "/Master/GetExceptEnrolledCourseByStaffID?EmployeeID=" + EmployeeID);
+  }
  
  }

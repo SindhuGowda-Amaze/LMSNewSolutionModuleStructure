@@ -60,13 +60,25 @@ export class ViewGroupComponent implements OnInit {
       })
   }
 
-
+  uniquelist:any;
   public GetTrainerCourseMappingByEnroll() {
     this.DigiofficeService.GetTrainerCourseMapping()
       .subscribe({
         next: data => {
           debugger
           this.EnrollTrainerCourseMappingList = data.filter(x=> x.staffID==sessionStorage.getItem('userid'));
+
+          this.uniquelist =  data.filter(x=> x.staffID==sessionStorage.getItem('userid'));
+
+          const key = 'trainerName';
+    
+          this.uniquelist = [...new Map(this.EnrollTrainerCourseMappingList.map((item: { [x: string]: any; }) =>
+    
+            [(item[key]), item])).values()]
+
+
+
+
           console.log(" this.EnrollTrainerCourseMappingList ", this.EnrollTrainerCourseMappingList )
           this.loader=false;
         }, error: (err) => {
