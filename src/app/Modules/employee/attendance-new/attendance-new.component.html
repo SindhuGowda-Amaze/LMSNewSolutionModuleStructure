@@ -48,14 +48,23 @@
     <div class="col-lg-10"></div>
     <div class="col-lg-2">
         <button class="Button" (click)="exportexcel()">Export To Excel</button>
+        
+    </div>
+   
+</div>
+
+<br>
+<div class="row" *ngIf="EmployeeList">
+    <div class="col-lg-9"></div>
+    <div class="col-lg-3">
+<p>No. of total hours {{StaffNoofHrs1|date:"HH:mm"}}</p>
     </div>
 </div>
-<br>
-
+<!-- <br> -->
 <div class="row">
     <div class="col-lg-10"></div>
 </div>
-<br>
+
 
     <div class="row">
         <div class="col-lg-12">
@@ -93,8 +102,9 @@
                                     </td>
                                     <td>
                                         <p *ngIf="details.noofhrs==null">0</p>
-                                        <p *ngIf="details.noofhrs!=null"> {{details.noofhrs}}</p>
+                                        <p *ngIf="details.noofhrs!=null"> {{details.noofhrs|date:"HH:mm"}}</p>
                                       </td>
+                                      <!-- <td>{{StaffNoofHrs}}</td> -->
                                     <!-- <td *ngIf="roleid!=2 && roleid!=4">{{details.trainerName}}</td> -->
                                 </tr>
                             </tbody>

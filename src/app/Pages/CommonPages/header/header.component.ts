@@ -3,6 +3,7 @@ import { interval } from 'rxjs';
 import { LearningService } from 'src/app/Pages/Services/learning.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -29,6 +30,7 @@ export class HeaderComponent implements OnInit {
   constructor(private LearningService: LearningService, public router: Router) { }
   ngOnInit(): void {
     this.temp = sessionStorage.getItem('temp');
+    sessionStorage.setItem('activeSession', 'true');
     this.loginid = sessionStorage.getItem('loginid');
     this.staffID = sessionStorage.getItem('userid');
 
@@ -37,6 +39,18 @@ export class HeaderComponent implements OnInit {
     this.UserName = sessionStorage.getItem('UserName');
     this.role = sessionStorage.getItem('role')
 
+    var activeSession = sessionStorage['activeSession'];
+    if (sessionStorage['loggedOutOnAuth']) {
+        console.log('Logged out due to expiry already')
+    }
+    else if (!activeSession) {
+        sessionStorage['loggedOutOnAuth'] = true;
+        this.logout()
+    }
+
+    window.onunload = function () {
+      //logout code here...
+  }
 
     setInterval(() => {
       var time = new Date();
@@ -149,6 +163,8 @@ export class HeaderComponent implements OnInit {
             })
     }
 
+    
+
 
 
 
@@ -183,6 +199,8 @@ export class HeaderComponent implements OnInit {
   public onActivate(event: any) {
     window.scroll(0, 0);
   }
+
+  
 
 
 

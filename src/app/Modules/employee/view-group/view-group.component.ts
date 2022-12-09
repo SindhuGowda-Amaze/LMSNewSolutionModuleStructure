@@ -67,7 +67,6 @@ export class ViewGroupComponent implements OnInit {
         next: data => {
           debugger
           this.EnrollTrainerCourseMappingList = data.filter(x=> x.staffID==sessionStorage.getItem('userid'));
-          
           console.log(" this.EnrollTrainerCourseMappingList ", this.EnrollTrainerCourseMappingList )
           this.loader=false;
         }, error: (err) => {

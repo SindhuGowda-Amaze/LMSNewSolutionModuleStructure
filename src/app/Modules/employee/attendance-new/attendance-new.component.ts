@@ -221,9 +221,14 @@ courseList  :any;
 
 
   EmplID:any;
+  AttendanceAddNoOfHrs:any;
+  StaffNoofHrs:any;
+  StaffNoofHrs1:any;
   getEmpID(even: any) {
     debugger;
     this.EmplID = even.target.value;
+
+
     this.LearningService.GetAttendance_New()
     .subscribe({
       next: data => {
@@ -234,10 +239,25 @@ courseList  :any;
         }
         else if(this.roleid==3){
           this.Attendance = data.filter(x => x.supervisor == this.userid  && x.filterdate==this.Today && x.empID==this.EmplID);
+          this.AttendanceAddNoOfHrs = data.filter(x => x.supervisor == this.userid  && x.filterdate==this.Today && x.empID==this.EmplID);
+          console.log("this.AttendanceAddNoOfHrs",this.AttendanceAddNoOfHrs)
+          for (let i=0;i<this.Attendance.length;i++){
+            debugger
+            this.StaffNoofHrs=this.AttendanceAddNoOfHrs[i].noofhrs
+            this.StaffNoofHrs+= this.StaffNoofHrs
+            this.StaffNoofHrs1 = this.StaffNoofHrs
+          }
+         
+          console.log("this.StaffNoofHrs",this.StaffNoofHrs)
+
         }
         else{
           this.Attendance = data.filter(x=>x.empID==this.userid  && x.filterdate==this.Today && x.empID==this.EmplID)
         }
+
+//         var today = new Date();
+// today.setHours(today.getHours() + 4);
+
       },error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetAttendance_New');
         // Insert error in Db Here//

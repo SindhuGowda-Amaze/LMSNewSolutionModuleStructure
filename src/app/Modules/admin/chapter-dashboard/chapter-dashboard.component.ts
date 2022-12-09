@@ -85,7 +85,7 @@ export class ChapterDashboardComponent implements OnInit {
     this.files.splice(this.files.indexOf(event), 1);
   }
 
-  public PreviewVideo() {
+  public PreviewVideo(photo: any) {
     window.open('assets/Images/Java_Course.mp4');
   }
 
@@ -227,4 +227,31 @@ export class ChapterDashboardComponent implements OnInit {
       });
     }
   }
+
+
+  // public PreviewVideo(photo: any) {
+  //   debugger
+  //   this.show = 2;
+  //   // this.chapterphoto = photo;
+  //   window.open(photo, "_blank")
+  //   if (this.Attachmentlist.length != 0) {
+  //     this.Attachmentlist = this.dummAttachmentlist.filter((x: { attachmentType: string; }) => x.attachmentType == 'video')
+  //     if (this.Attachmentlist.length != 0) {
+  //       // this.show = 2
+
+  //     }
+  //     else {
+  //       this.noattachments = "No Videos Found"
+  //       this.show = 5
+  //     }
+
+  //   }
+  //   else {
+  //     this.noattachments = "No Videos Found"
+  //     this.show = 5
+  //   }
+  //   location.reload();
+
+  // }
+
 }

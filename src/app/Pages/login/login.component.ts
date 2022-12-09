@@ -148,6 +148,7 @@ export class LoginComponent implements OnInit {
           debugger
           sessionStorage.setItem('roleid', '2');
           sessionStorage.setItem("clickname", "Employee Dashboard")
+          sessionStorage.setItem('activeSession', 'true');
           this.Insertattdnace(this.result.id)
           this.router.navigate(['/Admin/Dashboard']).then(() => {
             location.reload();
