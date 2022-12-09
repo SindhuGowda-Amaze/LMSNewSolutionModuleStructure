@@ -110,12 +110,60 @@ export class LearningHistoryComponent implements OnInit {
         debugger;
         if (this.roleid == 4) {
           let temp: any = data.filter((x) => x.trainerID == this.trainer);
+          var helper: any = {}
+          this.detailslist = temp.reduce(function (r: any[], o: { coursename: any; totalmarks: any; obtainedMarks: any; status: any; startDate: any; endDate: any; }) {
+            var key = o.coursename;
+            if (!helper[key]) {
+
+              helper[key] = Object.assign({}, o); // create a copy of o
+
+              r.push(helper[key]);
+
+            } else {
+
+              helper[key].totalmarks += o.totalmarks;
+
+              helper[key].obtainedMarks += o.obtainedMarks;
+              helper[key].e_Date = o.coursename;
+              helper[key].e_Date = o.status;
+              helper[key].e_Date = o.startDate;
+              helper[key].e_Date = o.endDate;
+            }
+            return r;
+
+          }, []);
+          // this.detailslist = this.reduceData(temp);
 
         }
+
         else if (this.roleid == 2) {
-          this.detailslist = data.filter(x => x.userID == this.staffid);
+          let temp: any  = data.filter(x => x.userID == this.staffid);
+          var helper: any = {}
+          this.detailslist = temp.reduce(function (r: any[], o: { coursename: any; totalmarks: any; obtainedMarks: any; status: any; startDate: any; endDate: any; }) {
+            var key = o.coursename;
+            if (!helper[key]) {
+
+              helper[key] = Object.assign({}, o); // create a copy of o
+
+              r.push(helper[key]);
+
+            } else {
+
+              helper[key].totalmarks += o.totalmarks;
+
+              helper[key].obtainedMarks += o.obtainedMarks;
+              helper[key].e_Date = o.coursename;
+              helper[key].e_Date = o.status;
+              helper[key].e_Date = o.startDate;
+              helper[key].e_Date = o.endDate;
+            }
+            return r;
+
+          }, []);
+          // this.detailslist = this.reduceData(temp);
 
         }
+
         else {
           let temp: any = data;
           var helper: any = {}
