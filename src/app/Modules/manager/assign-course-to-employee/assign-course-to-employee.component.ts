@@ -137,7 +137,9 @@ export class AssignCourseToEmployeeComponent implements OnInit {
   //   this.staffId = id
   // }
   employeeName: any;
+  enrolledList:any;
   public getdata(even: any) {
+    debugger
     this.staffId = even.target.value;
 
     this.LearningService.GetMyDetails()
@@ -148,6 +150,24 @@ export class AssignCourseToEmployeeComponent implements OnInit {
         this.mobile = temp[0].phoneNo;
         this.emailID = temp[0].emailID;
       });
+
+      this.LearningService.GetEnroll()
+      .subscribe((data) => {
+        debugger;
+        this.enrolledList = data.filter((x) => x.staffID == this.staffId);
+      });
+
+      this.LearningService.GetCourseDropdown()
+      .subscribe((data) => {
+        debugger;
+        for(let i=0;i<this.enrolledList.length;i++){
+          this.courselist = data.filter((x) => x.id != this.enrolledList[i].courseID);
+        }
+     
+      
+      });
+
+
   }
 
   ECourseID:any
