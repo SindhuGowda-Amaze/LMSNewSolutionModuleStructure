@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import * as XLSX from 'xlsx';
+import { formatDate } from '@angular/common';
 @Component({
   selector: 'app-learning-dashboard',
   templateUrl: './learning-dashboard.component.html',
@@ -25,13 +26,17 @@ export class LearningDashboardComponent implements OnInit {
   dummassignList: any;
   currentUrl: any; 
   roleid : any
-
+  todaydate:any;
   ngOnInit(): void {
     this.currentUrl = window.location.href;
-    this.GetEnroll();
+    const format = 'yyyy-MM-dd';
+    const myDate = new Date();
+    const locale = 'en-US';
+    this.todaydate = formatDate(myDate, format, locale);
+
     this.userid = sessionStorage.getItem('userid');
     this.roleid = sessionStorage.getItem('roleid');
-
+    this.GetEnroll();
   }
 
   public GetEnroll() {

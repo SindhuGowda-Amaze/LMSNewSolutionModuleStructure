@@ -54,19 +54,19 @@
                     <tbody>
                         <tr *ngFor="let details of assignList|filter:search">
                             
-                            <td  *ngIf="roleid==3" style="font-size: 15px;">{{details.staffID}}</td>
-                            <td  *ngIf="roleid==3" style="font-size: 15px;">{{details.employeeName}}</td>
-                            <td style="font-size: 15px;">Sreeni</td>
-                            <td style="font-size: 15px;">{{details.courseName}}</td>
+                            <td [ngClass]="{'bgred':(details.cEndDate<=todaydate)||(details.toBeCompletedDate<=todaydate)}"  *ngIf="roleid==3" style="font-size: 15px;">{{details.staffID}}</td>
+                            <td [ngClass]="{'bgred':(details.cEndDate<=todaydate)||(details.toBeCompletedDate<=todaydate)}" *ngIf="roleid==3" style="font-size: 15px;">{{details.employeeName}}</td>
+                            <td [ngClass]="{'bgred':(details.cEndDate<=todaydate)||(details.toBeCompletedDate<=todaydate)}"  style="font-size: 15px;">Sreeni</td>
+                            <td [ngClass]="{'bgred':(details.cEndDate<=todaydate)||(details.toBeCompletedDate<=todaydate)}" style="font-size: 15px;">{{details.courseName}}</td>
                         
-                            <td style="font-size: 15px;">
+                            <td [ngClass]="{'bgred':(details.cEndDate<=todaydate)||(details.toBeCompletedDate<=todaydate)}" style="font-size: 15px;">
                                 <p *ngIf="details.trainingType==1">Online</p>
                                 <p *ngIf="details.trainingType==2">External</p>
                                 <p *ngIf="details.trainingType==3">Class Room</p>
                             </td>
-                            <td style="font-size: 15px;">In Progress</td>
-                            <td style="font-size: 15px;">{{details.monthName}}</td>
-                            <td style="font-size: 15px;">{{details.yearName}}</td>
+                            <td [ngClass]="{'bgred':(details.cEndDate<=todaydate)||(details.toBeCompletedDate<=todaydate)}" style="font-size: 15px;">In Progress</td>
+                            <td [ngClass]="{'bgred':(details.cEndDate<=todaydate)||(details.toBeCompletedDate<=todaydate)}" style="font-size: 15px;">{{details.monthName}}</td>
+                            <td [ngClass]="{'bgred':(details.cEndDate<=todaydate)||(details.toBeCompletedDate<=todaydate)}" style="font-size: 15px;">{{details.yearName}}</td>
                         </tr>
                     </tbody>
                 </table>
