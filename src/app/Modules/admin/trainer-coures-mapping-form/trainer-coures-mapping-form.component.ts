@@ -331,12 +331,14 @@ export class TrainerCouresMappingFormComponent implements OnInit {
             debugger
 
             this.trainingresultArray.push(json);
-             this.TrainerID == " ";
-             this.CourseID == "";
-             this.StartDate == "";
-             this.EndDate == "";
-             this.BatchName == "";
-             this.AllowedStudents == "";
+             this.TrainerID = "";
+             this.CourseID = "";
+             this.StartDate = "";
+             this.EndDate = "";
+             this.BatchName = "";
+             this.BatchName = 0;
+             this.AllowedStudents = "";
+            
           }
         })
     }
@@ -345,7 +347,9 @@ export class TrainerCouresMappingFormComponent implements OnInit {
     .subscribe({
       next: data => {
         debugger
+        for(let i=0; i<this.CourseList.length; i++){
         this.CourseList = data.filter(x=>x.id!=this.CourseID)
+      }
        
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Expenses List Web');
