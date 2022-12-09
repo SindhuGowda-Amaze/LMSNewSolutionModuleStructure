@@ -254,6 +254,8 @@ export class AssignCourseToEmployeeComponent implements OnInit {
             this.mandatory == "";
             this.pip == "";
             this.Learning == "";
+            this.courseID12 == 0;
+            this.courseid == 0;
           }
         })
     }
