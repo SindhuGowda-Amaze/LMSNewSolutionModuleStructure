@@ -56,7 +56,7 @@ public GetEnroll(){
       debugger;
       // this.result = data.filter(x => x.manager == this.manager );
       this.result = data.filter(
-        (x) => x.status == 'Manager Approved' && x.manager == this.manager
+        (x) => (x.status == 'Manager Approved'||x.status=="Manager Assign") && x.manager == this.manager && x.mandatory==1
       );
       this.count = this.result.length;
     },

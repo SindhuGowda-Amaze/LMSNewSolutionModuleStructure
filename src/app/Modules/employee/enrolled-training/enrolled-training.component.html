@@ -48,20 +48,23 @@
                         <th>Training Name</th>
                         <th>Training Type</th>
                         <th>To be Completed</th>
+                        <th>Year</th>
                         <th>Status</th>
                     </tr>
                     <tr *ngFor="let details of result | filter : search">
-                        <td [ngClass]="{'bgred':details.cEndDate<=todaydate}">{{details.employeeName}}</td>
-                        <td [ngClass]="{'bgred':details.cEndDate<=todaydate  }">{{details.name}}</td>
-                        <td [ngClass]="{'bgred':details.cEndDate<=todaydate  }">
+                        <td [ngClass]="{'bgred':(details.cEndDate<=todaydate)||(details.toBeCompletedDate<=todaydate)}">{{details.employeeName}}</td>
+                        <td [ngClass]="{'bgred':(details.cEndDate<=todaydate)||(details.toBeCompletedDate<=todaydate) }">{{details.name}}</td>
+                        <td [ngClass]="{'bgred':(details.cEndDate<=todaydate)||(details.toBeCompletedDate<=todaydate) }">
                             <p *ngIf="details.trainingType==1">Online</p>
                             <p *ngIf="details.trainingType==2">External</p>
                             <p *ngIf="details.trainingType==3">Class Room</p>
                            </td>
-                        <td [ngClass]="{'bgred':details.cEndDate<=todaydate }">{{details.monthName}}</td>
+                        <td [ngClass]="{'bgred':(details.cEndDate<=todaydate)||(details.toBeCompletedDate<=todaydate) }">{{details.monthName}}</td>
                         <!-- <td>{{details.modifiedDate|date}}</td> -->
-                        <td [ngClass]="{'bgred':details.cEndDate<=todaydate }">
-                            <p *ngIf="details.status=='Manager Approved'||details.status=='Manager Rejected'">
+                        <td [ngClass]="{'bgred':(details.cEndDate<=todaydate)||(details.toBeCompletedDate<=todaydate)}">{{details.yearName}}</td>
+
+                        <td [ngClass]="{'bgred':(details.cEndDate<=todaydate)||(details.toBeCompletedDate<=todaydate)}">
+                            <p *ngIf="details.status=='Manager Approved'||details.status=='Manager Rejected'||details.status=='Manager Assign'">
                                 {{details.status}}</p>
                             <button *ngIf="details.status=='Manager Pending'" class="btn btn-primary addbtn"
                                 data-toggle="modal" data-target="#exampleModal" (click)="getid(details.id)">Approve</button>

@@ -34,7 +34,7 @@ export class AssignCourseToEmployeeComponent implements OnInit {
   Learning: any;
   tablecount: any;
   trainingresultArray: any = [];
-  toBeCompletedDate:any;
+  toBeCompletedDate: any;
 
   ngOnInit(): void {
     this.currentUrl = window.location.href;
@@ -137,7 +137,7 @@ export class AssignCourseToEmployeeComponent implements OnInit {
   //   this.staffId = id
   // }
   employeeName: any;
-  enrolledList:any;
+  enrolledList: any;
   public getdata(even: any) {
     debugger
     this.staffId = even.target.value;
@@ -151,28 +151,28 @@ export class AssignCourseToEmployeeComponent implements OnInit {
         this.emailID = temp[0].emailID;
       });
 
-      this.LearningService.GetEnroll()
+    this.LearningService.GetEnroll()
       .subscribe((data) => {
         debugger;
         this.enrolledList = data.filter((x) => x.staffID == this.staffId);
       });
 
-      this.LearningService.GetCourseDropdown()
+    this.LearningService.GetCourseDropdown()
       .subscribe((data) => {
         debugger;
-        for(let i=0;i<this.enrolledList.length;i++){
+        for (let i = 0; i < this.enrolledList.length; i++) {
           this.courselist = data.filter((x) => x.id != this.enrolledList[i].courseID);
         }
-     
-      
+
+
       });
 
 
   }
 
-  ECourseID:any
-  courseName123:any;
-  courseID12:any;
+  ECourseID: any
+  courseName123: any;
+  courseID12: any;
   public getcourseID(even: any) {
     this.ECourseID = even.target.value;
 
@@ -182,11 +182,11 @@ export class AssignCourseToEmployeeComponent implements OnInit {
         let temp: any = data.filter((x) => x.id == this.ECourseID);
         this.courseName123 = temp[0].name;
         this.courseID12 = temp[0].id;
-  
+
       });
 
 
-  
+
 
 
 
@@ -222,7 +222,7 @@ export class AssignCourseToEmployeeComponent implements OnInit {
 
   public EnrollMultipleTraining() {
     debugger
-    if (this.name123 == undefined || this.courseid == undefined||this.toBeCompletedDate==undefined) {
+    if (this.name123 == undefined || this.courseid == undefined || this.toBeCompletedDate == undefined) {
       Swal.fire('Please fill all the fields');
     }
     else {
@@ -240,7 +240,7 @@ export class AssignCourseToEmployeeComponent implements OnInit {
               learningPath: this.Learning == undefined ? 0 : this.Learning,
               staffid: this.name123,
               manager: this.userid,
-              toBeCompletedDate:this.toBeCompletedDate,
+              toBeCompletedDate: this.toBeCompletedDate,
               courseID12: this.courseID12,
               status: 'Manager Assign',
               phoneNo: this.mobile,
@@ -276,19 +276,25 @@ export class AssignCourseToEmployeeComponent implements OnInit {
         PhoneNo: this.trainingresultArray[i].phoneNo,
         Email: this.trainingresultArray[i].email,
         type: this.trainingresultArray[i].type,
-        Mandatory: this.trainingresultArray[i].mandatory==undefined?0:this.trainingresultArray[i].mandatory,
-        PIP: this.trainingresultArray[i].pip==undefined?0:this.trainingresultArray[i].pip,
-        LearningPath: this.trainingresultArray[i].learningPath == undefined ?0: this.trainingresultArray[i].learningPath,
-        toBeCompletedDate:this.toBeCompletedDate
+        Mandatory: this.trainingresultArray[i].mandatory == undefined ? 0 : this.trainingresultArray[i].mandatory,
+        PIP: this.trainingresultArray[i].pip == undefined ? 0 : this.trainingresultArray[i].pip,
+        LearningPath: this.trainingresultArray[i].learningPath == undefined ? 0 : this.trainingresultArray[i].learningPath,
+        toBeCompletedDate: this.toBeCompletedDate
       };
       this.LearningService.InsertEnroll(entity).subscribe(
         data => {
           debugger
-          let traininglist = data;
-          Swal.fire("Course Assigned Successfully!!!");
-          location.href = '#/Manager/AssignCourseDashboard';
-          this.tablecount = 0;
-          location.reload();
+          if (data == 0) {
+            Swal.fire("Staff Already Enrolled for this Course")
+          }
+          else {
+            let traininglist = data;
+            Swal.fire("Course Assigned Successfully!!!");
+            location.href = '#/Manager/AssignCourseDashboard';
+            this.tablecount = 0;
+            location.reload();
+          }
+
         })
 
     }

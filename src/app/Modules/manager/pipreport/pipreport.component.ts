@@ -90,7 +90,7 @@ export class PIPReportComponent implements OnInit {
           debugger;
           // this.result = data.filter(x => x.manager == this.manager );
           this.result = data.filter(
-            (x) => x.status == 'Manager Approved' && x.manager == this.manager && x.pip==1
+            (x) => (x.status == 'Manager Approved'||x.status=="Manager Assign") && x.manager == this.manager && x.pip==1
           );
           this.count = this.result.length;
         },
