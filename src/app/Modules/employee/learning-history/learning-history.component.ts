@@ -31,7 +31,7 @@ export class LearningHistoryComponent implements OnInit {
   MarksObtained: any;
   TotalMarks: any;
   currentUrl: any;
-  todaydate:any;
+  todaydate: any;
   constructor(public LearningService: LearningService) { }
 
   ngOnInit(): void {
@@ -113,13 +113,35 @@ export class LearningHistoryComponent implements OnInit {
 
         }
         else if (this.roleid == 2) {
-          this.detailslist= data.filter(x => x.userID == this.staffid);
-         
+          this.detailslist = data.filter(x => x.userID == this.staffid);
+
         }
         else {
           let temp: any = data;
-          this.detailslist = this.reduceData(temp);
-       
+          var helper: any = {}
+          this.detailslist = temp.reduce(function (r: any[], o: { coursename: any; totalmarks: any; obtainedMarks: any; status: any; startDate: any; endDate: any; }) {
+            var key = o.coursename;
+            if (!helper[key]) {
+
+              helper[key] = Object.assign({}, o); // create a copy of o
+
+              r.push(helper[key]);
+
+            } else {
+
+              helper[key].totalmarks += o.totalmarks;
+
+              helper[key].obtainedMarks += o.obtainedMarks;
+              helper[key].e_Date = o.coursename;
+              helper[key].e_Date = o.status;
+              helper[key].e_Date = o.startDate;
+              helper[key].e_Date = o.endDate;
+            }
+            return r;
+
+          }, []);
+          // this.detailslist = this.reduceData(temp);
+
         }
 
         // .filter(x => x.checked == 1);
@@ -138,20 +160,26 @@ export class LearningHistoryComponent implements OnInit {
     });
   }
 
-  public reduceData = (data: any[]) => data.reduce((acc, cur) => {
-    debugger
-    const { staffname, startDate, endDate, coursename, totalmarks, obtainedMarks, status } = cur;                            // Get name and value from current item
-    const item = acc.find((it: { coursename: any; }) => it.coursename === coursename);        // Find in our accumulator the desired object
-    item ? item.totalmarks += totalmarks : acc.push({ coursename, totalmarks });
-    item ? item.obtainedMarks += obtainedMarks : acc.push({ coursename, obtainedMarks });
-    item ? item.staffname : acc.push({ coursename, staffname });
-    // acc.push({ coursename, staffname });
-    // acc.push({ coursename, startDate }) 
-    // acc.push({ coursename, endDate })
-    // acc.push({ coursename, status })
-    //item ? item.obtainedMarks += obtainedMarks : acc.push({ coursename, obtainedMarks }); // Update object or create a new object if it doesn't exist
-    return acc;                                           // Return accumulator
-  }, []);
+
+
+
+
+
+
+
+
+  // const { staffname, startDate, endDate, coursename, totalmarks, obtainedMarks, status } = cur;                            // Get name and value from current item
+  // const item = acc.find((it: { coursename: any; }) => it.coursename === coursename);        // Find in our accumulator the desired object
+  // item ? item.totalmarks += totalmarks : acc.push({ coursename, totalmarks });
+  // item ? item.obtainedMarks += obtainedMarks : acc.push({ coursename, obtainedMarks });
+  // item ? item.staffname : acc.push({ coursename, staffname });
+  // acc.push({ coursename, staffname });
+  // acc.push({ coursename, startDate }) 
+  // acc.push({ coursename, endDate })
+  // acc.push({ coursename, status })
+  //item ? item.obtainedMarks += obtainedMarks : acc.push({ coursename, obtainedMarks }); // Update object or create a new object if it doesn't exist
+  //   return acc;                                           // Return accumulator
+  // }, []);
 
   public getdetailslist1() {
     debugger;
