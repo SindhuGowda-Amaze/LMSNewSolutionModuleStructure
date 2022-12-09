@@ -151,21 +151,27 @@ export class AssignCourseToEmployeeComponent implements OnInit {
         this.emailID = temp[0].emailID;
       });
 
-      this.LearningService.GetEnroll()
-      .subscribe((data) => {
-        debugger;
-        this.enrolledList = data.filter((x) => x.staffID == this.staffId);
-      });
+      // this.LearningService.GetEnroll()
+      // .subscribe((data) => {
+      //   debugger;
+      //   this.enrolledList = data.filter((x) => x.staffID == this.staffId);
+      // });
 
-      this.LearningService.GetCourseDropdown()
-      .subscribe((data) => {
-        debugger;
-        for(let i=0;i<this.enrolledList.length;i++){
-          this.courselist = data.filter((x) => x.id != this.enrolledList[i].courseID);
-        }
+      // this.LearningService.GetCourseDropdown()
+      // .subscribe((data) => {
+      //   debugger;
+      //   for(let i=0;i<this.enrolledList.length;i++){
+      //     this.courselist = data.filter((x) => x.id != this.enrolledList[i].courseID);
+      //   }
      
       
-      });
+      // });
+
+  // this.LearningService.GetEnroll()
+      // .subscribe((data) => {
+      //   debugger;
+      //   this.enrolledList = data.filter((x) => x.staffID == this.staffId);
+      // });
 
 
   }
@@ -254,6 +260,8 @@ export class AssignCourseToEmployeeComponent implements OnInit {
             this.mandatory == "";
             this.pip == "";
             this.Learning == "";
+            this.courseID12 == 0;
+            this.courseid == 0;
           }
         })
     }
