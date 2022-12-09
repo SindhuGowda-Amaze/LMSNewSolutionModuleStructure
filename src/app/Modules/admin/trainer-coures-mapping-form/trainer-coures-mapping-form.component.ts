@@ -347,9 +347,9 @@ export class TrainerCouresMappingFormComponent implements OnInit {
     .subscribe({
       next: data => {
         debugger
-        for(let i=0; i<this.CourseList.length; i++){
+        // for(let i=0; i<this.CourseList.length; i++){
         this.CourseList = data.filter(x=>x.id!=this.CourseID)
-      }
+      // }
        
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Expenses List Web');

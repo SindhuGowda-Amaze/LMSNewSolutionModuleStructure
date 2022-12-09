@@ -39,8 +39,7 @@ export class AssignCourseToEmployeeComponent implements OnInit {
   ngOnInit(): void {
     this.currentUrl = window.location.href;
     // this.GetEnroll();
-    this.GetCourse();
-    this.GetStaff();
+ 
     this.name123 = 0;
     this.courseid = 0;
     this.userid = sessionStorage.getItem('userid');
@@ -55,29 +54,65 @@ export class AssignCourseToEmployeeComponent implements OnInit {
     //     this.GetStaff();
     //   }
     // })
+    this.GetCourse();
+    this.GetStaff();
   }
 
   public GetCourse() {
     debugger;
-    this.LearningService.GetCourseDropdown()
-      .subscribe({
-        next: (data) => {
-          debugger;
-          this.courselist = data;
-          this.count = this.courselist.length;
-        },
-        error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Issue in Getting Expenses List Web');
-          // Insert error in Db Here//
-          var obj = {
-            PageName: this.currentUrl,
-            ErrorMessage: err.error.message,
-          };
-          this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
-            debugger;
-          });
-        },
-      });
+    // this.LearningService.GetCourseDropdown()
+    //   .subscribe({
+    //     next: (data) => {
+    //       debugger;
+    //       this.courselist = data;
+    //       this.count = this.courselist.length;
+    //     },
+    //     error: (err: { error: { message: any; }; }) => {
+    //       Swal.fire('Issue in Getting Expenses List Web');
+    //       // Insert error in Db Here//
+    //       var obj = {
+    //         PageName: this.currentUrl,
+    //         ErrorMessage: err.error.message,
+    //       };
+    //       this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+    //         debugger;
+    //       });
+    //     },
+    //   });
+ 
+    this.LearningService.GetTrainerCourseMapping()
+    .subscribe({
+      next: data => {
+        debugger
+        this.EnrollTrainerCourseMappingList = data;
+
+        this.uniquelist =  this.EnrollTrainerCourseMappingList;
+
+        const key = 'courseID';
+  
+        this.uniquelist = [...new Map(this.EnrollTrainerCourseMappingList.map((item: { [x: string]: any; }) =>
+  
+          [(item[key]), item])).values()]
+
+
+
+
+        console.log(" this.EnrollTrainerCourseMappingList ", this.EnrollTrainerCourseMappingList )
+      }, error: (err) => {
+        Swal.fire('Issue in Getting Subsidiary Master');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+    
   }
 
   public GetStaff() {
@@ -138,6 +173,8 @@ export class AssignCourseToEmployeeComponent implements OnInit {
   // }
   employeeName: any;
   enrolledList: any;
+  uniquelist:any;
+  EnrollTrainerCourseMappingList:any;
   public getdata(even: any) {
     debugger
     this.staffId = even.target.value;
@@ -151,23 +188,53 @@ export class AssignCourseToEmployeeComponent implements OnInit {
         this.emailID = temp[0].emailID;
       });
 
-    this.LearningService.GetEnroll()
-      .subscribe((data) => {
-        debugger;
-        this.enrolledList = data.filter((x) => x.staffID == this.staffId);
-      });
+    // this.LearningService.GetEnroll()
+    //   .subscribe((data) => {
+    //     debugger;
+    //     this.enrolledList = data.filter((x) => x.staffID == this.staffId);
+    //   });
 
-    this.LearningService.GetCourseDropdown()
-      .subscribe((data) => {
-        debugger;
-        for (let i = 0; i < this.enrolledList.length; i++) {
-          this.courselist = data.filter((x) => x.id != this.enrolledList[i].courseID);
+    // this.LearningService.GetCourseDropdown()
+    //   .subscribe((data) => {
+    //     debugger;
+    //     for (let i = 0; i < this.enrolledList.length; i++) {
+    //       this.courselist = data.filter((x) => x.id != this.enrolledList[i].courseID);
+    //     }
+    //   });
+
+    this.LearningService.GetTrainerCourseMapping()
+    .subscribe({
+      next: data => {
+        debugger
+        this.EnrollTrainerCourseMappingList = data;
+
+        this.uniquelist =  this.EnrollTrainerCourseMappingList;
+
+        const key = 'courseID';
+  
+        this.uniquelist = [...new Map(this.EnrollTrainerCourseMappingList.map((item: { [x: string]: any; }) =>
+  
+          [(item[key]), item])).values()]
+
+
+
+
+        console.log(" this.EnrollTrainerCourseMappingList ", this.EnrollTrainerCourseMappingList )
+      }, error: (err) => {
+        Swal.fire('Issue in Getting Subsidiary Master');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
         }
-
-
-      });
-
-
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+    
   }
 
   ECourseID: any
@@ -176,16 +243,51 @@ export class AssignCourseToEmployeeComponent implements OnInit {
   public getcourseID(even: any) {
     this.ECourseID = even.target.value;
 
-    this.LearningService.GetCourseDropdown()
-      .subscribe((data) => {
-        debugger;
-        let temp: any = data.filter((x) => x.id == this.ECourseID);
-        this.courseName123 = temp[0].name;
-        this.courseID12 = temp[0].id;
+    // this.LearningService.GetCourseDropdown()
+    //   .subscribe((data) => {
+    //     debugger;
+    //     let temp: any = data.filter((x) => x.id == this.ECourseID);
+    //     this.courseName123 = temp[0].name;
+    //     this.courseID12 = temp[0].id;
 
-      });
+    //   });
+
+    this.LearningService.GetTrainerCourseMapping()
+    .subscribe({
+      next: data => {
+        debugger
+        this.EnrollTrainerCourseMappingList = data.filter((x) => x.id == this.ECourseID);;
+
+               this.courseName123 =  this.EnrollTrainerCourseMappingList[0].name;
+        this.courseID12 =  this.EnrollTrainerCourseMappingList[0].id;
+
+        this.uniquelist =  this.EnrollTrainerCourseMappingList;
+
+        const key = 'courseID';
+  
+        this.uniquelist = [...new Map(this.EnrollTrainerCourseMappingList.map((item: { [x: string]: any; }) =>
+  
+          [(item[key]), item])).values()]
 
 
+
+
+        console.log(" this.EnrollTrainerCourseMappingList ", this.EnrollTrainerCourseMappingList )
+      }, error: (err) => {
+        Swal.fire('Issue in Getting Subsidiary Master');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+    
 
 
 
@@ -240,7 +342,9 @@ export class AssignCourseToEmployeeComponent implements OnInit {
               learningPath: this.Learning == undefined ? 0 : this.Learning,
               staffid: this.name123,
               manager: this.userid,
-              toBeCompletedDate: this.toBeCompletedDate,
+              toBeCompletedDate:  this.toBeCompletedDate == undefined || this.toBeCompletedDate == null || this.toBeCompletedDate == ""
+              ? '1990-01-01 00:00:00.000'
+              : this.toBeCompletedDate,
               courseID12: this.courseID12,
               status: 'Manager Assign',
               phoneNo: this.mobile,
@@ -304,7 +408,9 @@ export class AssignCourseToEmployeeComponent implements OnInit {
         Mandatory: this.trainingresultArray[i].mandatory == undefined ? 0 : this.trainingresultArray[i].mandatory,
         PIP: this.trainingresultArray[i].pip == undefined ? 0 : this.trainingresultArray[i].pip,
         LearningPath: this.trainingresultArray[i].learningPath == undefined ? 0 : this.trainingresultArray[i].learningPath,
-        toBeCompletedDate: this.toBeCompletedDate
+        toBeCompletedDate: this.trainingresultArray[i].toBeCompletedDate == undefined || this.trainingresultArray[i].toBeCompletedDate == null || this.trainingresultArray[i].toBeCompletedDate == ""
+        ? '1990-01-01 00:00:00.000'
+        : this.trainingresultArray[i].toBeCompletedDate
       };
       this.LearningService.InsertEnroll(entity).subscribe(
         data => {
