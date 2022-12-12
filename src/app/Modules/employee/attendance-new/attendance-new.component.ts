@@ -28,6 +28,7 @@ export class AttendanceNewComponent implements OnInit {
   Today:any;
   noofhrs:any;
   EmployeeList:any;
+  todaydate:any;
   constructor(private ActivatedRoute: ActivatedRoute, private LearningService: LearningService) { }
 
   ngOnInit(): void {
@@ -40,6 +41,10 @@ export class AttendanceNewComponent implements OnInit {
     this.userName = sessionStorage.getItem('UserName');
 
     this.Today = new Date().toISOString().split("T")[0];
+    const format = 'yyyy-MM-dd';
+    const myDate = new Date();
+    const locale = 'en-US';
+    this.todaydate = formatDate(myDate, format, locale);
 
 this.GetCourseDropdown();
 this.getTopic();
@@ -227,8 +232,6 @@ courseList  :any;
   getEmpID(even: any) {
     debugger;
     this.EmplID = even.target.value;
-
-
     this.LearningService.GetAttendance_New()
     .subscribe({
       next: data => {
@@ -239,15 +242,16 @@ courseList  :any;
         }
         else if(this.roleid==3){
           this.Attendance = data.filter(x => x.supervisor == this.userid  && x.filterdate==this.Today && x.empID==this.EmplID);
-          this.AttendanceAddNoOfHrs = data.filter(x => x.supervisor == this.userid  && x.filterdate==this.Today && x.empID==this.EmplID);
+          this.AttendanceAddNoOfHrs = data.filter(x => x.supervisor == this.userid  && x.filterdate==this.todaydate && x.empID==this.EmplID);
           console.log("this.AttendanceAddNoOfHrs",this.AttendanceAddNoOfHrs)
           for (let i=0;i<this.Attendance.length;i++){
             debugger
             this.StaffNoofHrs=this.AttendanceAddNoOfHrs[i].noofhrs
-            this.StaffNoofHrs+= this.StaffNoofHrs
-            this.StaffNoofHrs1 = this.StaffNoofHrs
+            // this.StaffNoofHrs1+= this.StaffNoofHrs
+            this.StaffNoofHrs1+=this.AttendanceAddNoOfHrs[i].noofhrs
+            // this.StaffNoofHrs1 = this.StaffNoofHrs
           }
-         
+          
           console.log("this.StaffNoofHrs",this.StaffNoofHrs)
 
         }

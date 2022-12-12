@@ -47,14 +47,39 @@ export class LearningDashboardComponent implements OnInit {
         // this.result = data.filter(x => x.manager == this.manager );
         // this.result = data.filter(x => x.status == 'Manager Assigned' );
         if(this.roleid==3){
-          this.assignList = data.filter(
-            (x) => x.type == 'Manager Assign' && x.manager == this.userid
-          );
+          let temp = data.filter(
+            (x) => x.type == 'Manager Assign' && x.manager == this.userid);
+
+            var helper: any = {}
+            this.assignList = temp.reduce(function (r: any[], o: { courseName: any; staffID: any; employeeName: any; status: any; monthName: any; yearName: any; }) {
+              var key = o.courseName;
+              if (!helper[key]) {
+  
+                helper[key] = Object.assign({}, o); // create a copy of o
+  
+                r.push(helper[key]);
+  
+              } else {
+                helper[key].e_Date = o.courseName;
+                helper[key].e_Date = o.status;
+                helper[key].e_Date = o.staffID;
+                helper[key].e_Date = o.employeeName;
+                helper[key].e_Date = o.monthName;
+                helper[key].e_Date = o.yearName;
+
+                // helper[key].totalmarks += o.totalmarks;
+  
+                // helper[key].obtainedMarks += o.obtainedMarks;
+              
+              }
+              return r;
+  
+            }, []);
+            // this.detailslist = this.reduceData(temp);
+  
         }
         else{
-          this.assignList = data.filter(
-            (x) => x.staffID == this.userid
-          );
+          this.assignList = data.filter((x) => x.staffID == this.userid );
         }
         
         this.dummassignList = this.assignList;

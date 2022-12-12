@@ -14,7 +14,7 @@ export class TimeTableComponent implements OnInit {
 
   constructor(public DigiofficeService: LearningService, public router: Router, public datePipe: DatePipe) { }
   public showorhidecontent: any;
-  
+
   roleid: any;
   search: any;
   quetionlist: any;
@@ -73,7 +73,43 @@ export class TimeTableComponent implements OnInit {
     this.firstDayofcurrentmonth = formatDate(this.firstDayofcurrentmonth, format, locale);
     this.getstaffleaves(this.staffID, this.firstDayofcurrentmonth, '01-01-2029');
     this.GetEnroll();
+    this.GetEnrollNew();
   }
+
+
+  public GetEnrollNew() {
+    debugger;
+    this.DigiofficeService.GetEnrollCourseChapters().subscribe({
+      next: (data) => {
+        debugger;
+        if (this.roledid==3) {
+           this.result = data.filter(x => x.manager == this.staffID && x.trainingType==3);
+        }
+        else {
+          this.result = data;
+        }
+
+
+
+      },
+      error: (err: { error: { message: any } }) => {
+        Swal.fire('Issue in GetEnroll');
+        // Insert error in Db Here//
+        var obj = {
+          PageName: this.currentUrl,
+          ErrorMessage: err.error.message,
+        };
+        this.DigiofficeService.InsertExceptionLogs(obj).subscribe((data) => {
+          debugger;
+        });
+      },
+    });
+  }
+
+
+
+
+
 
 
 

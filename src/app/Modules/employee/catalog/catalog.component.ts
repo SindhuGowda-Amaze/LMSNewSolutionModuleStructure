@@ -122,7 +122,32 @@ export class CatalogComponent implements OnInit {
     this.courseid = id;
   }
 
+  
+  coursedetails:any
+  TrainerID:any;
   enroll(name: any, mobile: any, emailID: any) {
+
+    this.LearningService.GetTrainerCourseMapping()
+    .subscribe({
+      next: data => {
+        debugger
+        this.coursedetails = data.filter(x => x.courseID == this.courseid);
+        this.TrainerID=this.coursedetails[0].trainerID
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in GetTrainerCourseMapping');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+
     Swal.fire({
       title: 'Enroll Confirmation',
       text: 'Please click on OK to send Course Enrolment Request',
@@ -145,6 +170,7 @@ export class CatalogComponent implements OnInit {
           phoneNo: mobile,
           email: emailID,
           type: 'Request to Manager',
+          TrainerID: this.TrainerID
         };
         this.LearningService.InsertEnroll(json)
         .subscribe({

@@ -56,7 +56,51 @@ export class EmployeeAssessmentReportComponent implements OnInit {
 
         
         debugger;
-        this.employeereportlist = data.filter((x) => x.staffID == this.userid);
+      let temp = data.filter((x) => x.staffID == this.userid);
+
+        var helper: any = {}
+        this.employeereportlist = temp.reduce(function (r: any[], o: { coursename: any; totalmarks: any; obtainedMarks: any; chapterName: any; assessmentDate: any; courseName: any; }) {
+          var key = o.chapterName;
+          if (!helper[key]) {
+
+            helper[key] = Object.assign({}, o); // create a copy of o
+
+            r.push(helper[key]);
+
+          } else {
+
+            // helper[key].totalmarks += o.totalmarks;
+            // helper[key].obtainedMarks += o.obtainedMarks;
+            helper[key].totalmarks += o.totalmarks;
+            helper[key].obtainedMarks += o.obtainedMarks;
+           
+            helper[key].coursename = o.coursename;
+            helper[key].chapterName = o.chapterName;
+            helper[key].assessmentDate = o.assessmentDate;
+            helper[key].courseName = o.courseName;
+          }
+          return r;
+
+        }, []);
+        // this.detailslist = this.reduceData(temp);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         const key = 'chapterName';
         this.uniquelist = [...new Map(this.employeereportlist.map((item: { [x: string]: any; }) =>

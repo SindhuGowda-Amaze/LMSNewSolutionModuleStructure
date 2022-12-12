@@ -306,7 +306,7 @@
 
             </a>
 
-            <a *ngIf="roleid==2" routerLink="/Manager/CertificateDashboard" class="tablinks" (click)="highlight($event)"
+            <a  routerLink="/Manager/CertificateDashboard" class="tablinks" (click)="highlight($event)"
                 (click)="mycertificate()">
                 <img src="assets/Images/online-course.png" style="width:13% ;margin-right: 17px;"
                     [ngClass]="active == 'mycertificate' ? 'Active1' : 'Active2'" />
@@ -368,6 +368,17 @@
             <span [ngClass]="active == '1' ? 'Active1' : 'Active3'">Class Room Trainings</span>
             &nbsp;
         </a>
+
+        <!-- <a routerLink="Employee/UploadCertificate" class="tablinks" (click)="highlight($event)"
+        (click)="UploadCert()">
+        <img src="assets/Images/homework (1).png" style="width:13% ;margin-right: 17px;"
+            [ngClass]="active == 'cert' ? 'Active1' : 'Active2'" />
+        <img [ngClass]="active != 'cert' ? 'Active1' : 'Active2'" src="assets/Images/New folder/homework.png"
+            style="width:13%; margin-right: 17px;">
+        &nbsp;
+        <span [ngClass]="active == 'cert' ? 'Active1' : 'Active3'">Upload Certificate</span>
+        &nbsp;
+    </a> -->
 
 
 

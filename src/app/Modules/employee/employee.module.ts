@@ -22,6 +22,7 @@ import { CKEditorModule } from 'ckeditor4-angular';
 import { EnrolledTrainingComponent } from './enrolled-training/enrolled-training.component';
 import { TrainingHrsReportComponent } from './training-hrs-report/training-hrs-report.component';
 import { LearningHistoryComponent } from './learning-history/learning-history.component';
+import { UploadCertificateComponent } from './upload-certificate/upload-certificate.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { LearningHistoryComponent } from './learning-history/learning-history.co
     LearningDashboardComponent,
     EnrolledTrainingComponent,
     TrainingHrsReportComponent,
-    LearningHistoryComponent
+    LearningHistoryComponent,
+    UploadCertificateComponent
   ],
   imports: [
     CommonModule,

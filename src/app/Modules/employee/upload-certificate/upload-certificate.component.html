@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-10">
-            <p class="headings">Learning History</p>
+            <p class="headings">Upload certificates</p>
         </div>
         <div class="col-lg-2">
             <p class="count">Count: {{detailslist.length}}</p>
@@ -97,6 +97,8 @@
                         <td>
                             <button class="viewcertificate" data-toggle="modal" data-target="#Certificate"
                                 (click)="view(details.staffname,details.coursename)" *ngIf="details.status=='Pass'">View Certificate</button>
+                                <button class="viewcertificate" data-toggle="modal" data-target="#Certificate"
+                                (click)="view(details.staffname,details.coursename)" *ngIf="details.status=='Pass'">Upload Certificate</button>
                                 <p *ngIf="details.status=='Fail'">Fail</p>
                                 <p *ngIf="details.status==null">On Going</p>
                         </td>

@@ -133,6 +133,11 @@ export class SidebarComponent implements OnInit {
     sessionStorage.setItem("clickname", "CATALOG")
   }
 
+  UploadCert() {
+    this.active = 'cert';
+    sessionStorage.setItem("clickname", "Upload Certificate")
+  }
+
   enrolledtraining() {
     this.active = 'enrolledtraining';
     sessionStorage.setItem("clickname", "ENROLLED TRAINING")

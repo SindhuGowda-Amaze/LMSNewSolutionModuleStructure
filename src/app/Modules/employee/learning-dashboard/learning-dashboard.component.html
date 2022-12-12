@@ -56,7 +56,7 @@
                             
                             <td [ngClass]="{'bgred':(details.cEndDate<=todaydate)||(details.toBeCompletedDate<=todaydate)}"  *ngIf="roleid==3" style="font-size: 15px;">{{details.staffID}}</td>
                             <td [ngClass]="{'bgred':(details.cEndDate<=todaydate)||(details.toBeCompletedDate<=todaydate)}" *ngIf="roleid==3" style="font-size: 15px;">{{details.employeeName}}</td>
-                            <td [ngClass]="{'bgred':(details.cEndDate<=todaydate)||(details.toBeCompletedDate<=todaydate)}"  style="font-size: 15px;">Sreeni</td>
+                            <td [ngClass]="{'bgred':(details.cEndDate<=todaydate)||(details.toBeCompletedDate<=todaydate)}"  style="font-size: 15px;">{{details.trainer}}</td>
                             <td [ngClass]="{'bgred':(details.cEndDate<=todaydate)||(details.toBeCompletedDate<=todaydate)}" style="font-size: 15px;">{{details.courseName}}</td>
                         
                             <td [ngClass]="{'bgred':(details.cEndDate<=todaydate)||(details.toBeCompletedDate<=todaydate)}" style="font-size: 15px;">
@@ -64,7 +64,7 @@
                                 <p *ngIf="details.trainingType==2">External</p>
                                 <p *ngIf="details.trainingType==3">Class Room</p>
                             </td>
-                            <td [ngClass]="{'bgred':(details.cEndDate<=todaydate)||(details.toBeCompletedDate<=todaydate)}" style="font-size: 15px;">In Progress</td>
+                            <td [ngClass]="{'bgred':(details.cEndDate<=todaydate)||(details.toBeCompletedDate<=todaydate)}" style="font-size: 15px;">{{details.status}}</td>
                             <td [ngClass]="{'bgred':(details.cEndDate<=todaydate)||(details.toBeCompletedDate<=todaydate)}" style="font-size: 15px;">{{details.monthName}}</td>
                             <td [ngClass]="{'bgred':(details.cEndDate<=todaydate)||(details.toBeCompletedDate<=todaydate)}" style="font-size: 15px;">{{details.yearName}}</td>
                         </tr>

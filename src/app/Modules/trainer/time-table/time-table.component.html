@@ -37,12 +37,12 @@
                 <!-- <div class="col-md-2">
                     <p class="show3res">SHOWING <span> {{staffleaves.length}} </span>RESULTS</p>
                 </div> -->
-                <div class="col-md-2">
+                <!-- <div class="col-md-2">
                     <select class="inputclass" (change)="changeStatus($event)">
                         <option value="2">Calendar</option>
                         <option value="1">List View</option>
                     </select>
-                </div>
+                </div> -->
             </div>
             <div class="row">
                 <div class="col-md-5">
@@ -55,7 +55,7 @@
                             Selected</button></a>
                 </div>
             </div><br>
-            <div class="shadow p-3 mb-5 bg-white rounded  maincard " [hidden]="showorhidecontent">
+            <div class="shadow p-3 mb-5 bg-white rounded  maincard " [hidden]="!showorhidecontent">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="row callendernavButtons">
@@ -117,17 +117,17 @@
                 </div>
             </div> -->
             <br>
-            <div class="container-fluid" [hidden]="!showorhidecontent">
+            <div class="container-fluid" >
                 <div class="row">
                     <div class="col-md-10">
-                        <p class="show3res">SHOWING <span>{{staffleaves1.length}}3</span> RESULTS</p>
+                        <p class="show3res">SHOWING <span>{{result.length}}</span> RESULTS</p>
                     </div>
                     <div class="col-md-2">
                         <button class="form-control updatebutton" *ngIf="roledid==4"
                             routerLink="/Trainer/TimeTableForm">ADD</button>
                     </div>
                 </div><br>
-                <div class="row" [hidden]="!showorhidecontent">
+                <div class="row" >
 
 
                     <div class="col-md-12">
@@ -146,23 +146,23 @@
 
                                     <!-- <th>Actions</th> -->
                                 </tr>
-                                <!-- <tr class="header"
+                                <tr class="header"
                                             *ngFor="let item of result | filter: search|paginate: { itemsPerPage: count1, currentPage: p}">
                                          
-                                            <td>
+                                            <!-- <td>
                                                 <p *ngIf="item.trainingType==1">Online</p>
                                                 <p *ngIf="item.trainingType==2">External</p>
                                                 <p *ngIf="item.trainingType==3">Class Room</p>
-                                            </td>
-                                            <td>{{item.coursename}}</td>
-                                            <td>{{item.chaptername}}</td>
-                                            <td>{{item.startDate|date}}</td>
+                                            </td> -->
+                                            <td>{{item.courseName}}</td>
+                                            <td>{{item.chapterName}}</td>
+                                            <td>{{item.cStartDate|date}}</td>
                                             <td>Thursday</td>
                                             <td>10:30AM</td>
                                             <td>12:30PM</td>
                                             <td>{{item.venue}}</td>
                                             <td>{{item.trainer}}</td>
-                                        </tr> -->
+                                        </tr>
                                             <!-- <td>
                                                 <button class="addbutton" [routerLink]="['/Trainer/AssessmentForm',item.id]" style="width: 100%;">Edit</button> <br>
                                                 <br>
@@ -170,7 +170,7 @@
                                             </td>-->
                                      
                                         
-                                <tr>
+                                <!-- <tr>
                                     
                                     <td>Digital Marketing</td>
                                     <td>Marketing Strategy</td>
@@ -200,7 +200,7 @@
                                     <td>12:00PM</td>
                                     <td>Electronic City</td>
                                     <td roledid="2">Sreeni</td>
-                                </tr>
+                                </tr> -->
                             </thead>
                         </table>
                         <ng-template>
