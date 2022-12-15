@@ -127,12 +127,19 @@ export class CatalogComponent implements OnInit {
   TrainerID:any;
   enroll(name: any, mobile: any, emailID: any) {
 
+
     this.LearningService.GetTrainerCourseMapping()
     .subscribe({
       next: data => {
         debugger
-        this.coursedetails = data.filter(x => x.courseID == this.courseid);
-        this.TrainerID=this.coursedetails[0].trainerID
+        this.coursedetails = data.filter(x => x.courseID == this.courseid && x.trainingType!=2);
+        if(this.coursedetails.length==0){
+          this.TrainerID=0
+        }
+        else{
+          this.TrainerID=this.coursedetails[0].trainerID
+        }
+        
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetTrainerCourseMapping');
         // Insert error in Db Here//
@@ -163,13 +170,17 @@ export class CatalogComponent implements OnInit {
         debugger;
         var json = {
           staffid: this.userid,
-          manager: this.manager,
           courseid: this.courseid,
           status: 'Manager Pending',
+          manager: this.manager,
           employeeName: name,
           phoneNo: mobile,
           email: emailID,
           type: 'Request to Manager',
+          Mandatory:0,
+          PIP :0,
+          LearningPath : 1,
+          toBeCompletedDate : this.maxdate,
           TrainerID: this.TrainerID
         };
         this.LearningService.InsertEnroll(json)

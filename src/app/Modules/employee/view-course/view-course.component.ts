@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LearningService } from 'src/app/Pages/Services/learning.service';
@@ -42,6 +43,7 @@ export class ViewCourseComponent implements OnInit {
   rowno: any;
   showchapter: any;
   chapterdetails: any;
+  maxdate:any;
 
   constructor(private ActivatedRoute: ActivatedRoute, private LearningService: LearningService) { }
 
@@ -61,7 +63,11 @@ export class ViewCourseComponent implements OnInit {
 
       this.show = 1
     })
+    const myDate = new Date();
 
+    const locale = 'en-US';
+    const format = 'yyyy-MM-dd';
+    this.maxdate = formatDate(myDate, format, locale);
     this.GetMyDetails();
 
   }
@@ -413,8 +419,14 @@ export class ViewCourseComponent implements OnInit {
     .subscribe({
       next: data => {
         debugger
-        this.coursedetails = data.filter(x => x.courseID == this.courseid);
-        this.TrainerID=this.coursedetails[0].trainerID
+        this.coursedetails = data.filter(x => x.courseID == this.courseid && x.trainingType!=2);
+        if(this.coursedetails.length==0){
+          this.TrainerID=0
+        }
+        else{
+          this.TrainerID=this.coursedetails[0].trainerID
+        }
+        
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetTrainerCourseMapping');
         // Insert error in Db Here//
@@ -426,7 +438,7 @@ export class ViewCourseComponent implements OnInit {
           data => {
             debugger
           },
-        )
+        ) 
       }
     })
 
@@ -445,15 +457,19 @@ export class ViewCourseComponent implements OnInit {
       if (result.isConfirmed) {
         debugger
         var json = {
-          "staffid": this.userid,
-          "manager": this.manager,
-          "courseid": this.courseid,
-          "status": 'Manager Pending',
-          "employeeName": name,
-          "phoneNo": mobile,
-          "email": emailID,
-          "type": 'Request to Manager',
-          "TrainerID": this.TrainerID
+          staffid: this.userid,
+          courseid: this.courseid,
+          status: 'Manager Pending',
+          manager: this.manager,
+          employeeName: name,
+          phoneNo: mobile,
+          email: emailID,
+          type: 'Request to Manager',
+          Mandatory:0,
+          PIP :0,
+          LearningPath : 1,
+          toBeCompletedDate : this.maxdate,
+          TrainerID: this.TrainerID
         };
         this.LearningService.InsertEnroll(json)
 

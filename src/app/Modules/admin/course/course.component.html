@@ -38,7 +38,7 @@
 
                 <select class="form-control" id="categoryid" name="categoryid" [(ngModel)]="categoryid"
                     (change)="GetCategoryid($event)">
-                    <option value="0">Select Category</option>
+                    <option value="0" disabled>Select Category</option>
                     <option *ngFor="let details of categoryList" value="{{details.id}}">
                         {{details.name}}</option>
                 </select>
@@ -62,7 +62,7 @@
                 <!-- name="categoryName" [(ngModel)]="categoryName"  -->
                 <select class="form-control" (change)="GetTrainingType($event)" id="trainingType" name="trainingType"
                     [(ngModel)]="trainingType">
-                    <option value="0">Select Type</option>
+                    <option value="0" disabled>Select Type</option>
                     <option value="1">Internal online</option>
                     <option value="2">External online</option>
                     <option value="3">Class Room Taining</option>
