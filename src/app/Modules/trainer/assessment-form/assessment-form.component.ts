@@ -56,9 +56,9 @@ export class AssessmentFormComponent implements OnInit {
     this.currentUrl = window.location.href;
 
     // this.GetAssessments();
-    this.courseid = 0;
-    this.chapterid = 0;
-    this.questionid = 0;
+    this.courseid = "0";
+    this.chapterid ="0";
+    this.questionid = "0";
     this.userid = sessionStorage.getItem('userid');
     //this.GetAssessments();
     this.ActivatedRoute.params.subscribe((params) => {
@@ -76,11 +76,11 @@ export class AssessmentFormComponent implements OnInit {
             next: data => {
 
               debugger
-
+              this.GetQuestionMaster();
               this.quetionlist = data.filter(x => x.id == this.id);
-             
+              this.GetCourse();
               this.courseid = this.quetionlist[0].courseID;
-
+              this.GetChapter();
               this.chapterid = this.quetionlist[0].chapterID;
 
               this.questionid = this.quetionlist[0].questionID;
@@ -98,6 +98,7 @@ export class AssessmentFormComponent implements OnInit {
               this.CorrectAnswer = this.quetionlist[0].correctAnswer;
               
               this.Weightage = this.quetionlist[0].weightage;
+              this.assessmentName = this.quetionlist[0].assessmentName;
 
   
             },  error: (err: { error: { message: any; }; }) => {
@@ -132,34 +133,37 @@ export class AssessmentFormComponent implements OnInit {
 
     });
 
-    this.GetQuestionMaster();
-    this.ActivatedRoute.params.subscribe((params) => {
-      debugger;
-      this.questionid = params['id'];
-      if (this.questionid != null && this.questionid != undefined) {
-        this.GetQuestionMaster();
+    // this.GetQuestionMaster();
+    // this.ActivatedRoute.params.subscribe((params) => {
+    //   debugger;
+    //   this.questionid = params['id'];
+    //   if (this.questionid != null && this.questionid != undefined) {
+    //     this.GetQuestionMaster();
        
-      }
-    });
+    //   }
+    // });
 
-    this.GetChapter();
-    this.ActivatedRoute.params.subscribe((params) => {
-      debugger;
-      this.chapterid = params['id'];
-      if (this.chapterid != null && this.chapterid != undefined) {
-        this.GetChapter();
-      }
-    });
+    // this.GetChapter();
+    // this.ActivatedRoute.params.subscribe((params) => {
+    //   debugger;
+    //   this.chapterid = params['id'];
+    //   if (this.chapterid != null && this.chapterid != undefined) {
+    //     this.GetChapter();
+    //   }
+    // });
 
-    this.GetCourse();
-    this.ActivatedRoute.params.subscribe((params) => {
-      debugger;
-      this.courseid = params['id'];
-      if (this.courseid != null && this.courseid != undefined) {
-        this.GetCourse();
-      }
-    });
+    // this.GetCourse();
+    // this.ActivatedRoute.params.subscribe((params) => {
+    //   debugger;
+    //   this.courseid = params['id'];
+    //   if (this.courseid != null && this.courseid != undefined) {
+    //     this.GetCourse();
+    //   }
+    // });
   }
+
+
+
 
   public GetAssessments() {
     debugger;
@@ -196,7 +200,7 @@ export class AssessmentFormComponent implements OnInit {
     this.LearningService.GetChapter().subscribe({
       next: (data) => {
         debugger;
-        this.dumchapterlist = data;
+        this.ChapterList = data;
       },
       error: (err: { error: { message: any } }) => {
         Swal.fire('Issue in GetChapter');

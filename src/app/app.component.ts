@@ -14,17 +14,22 @@ export class AppComponent {
   //   debugger
   //   event.preventDefault();
   //   event.returnValue = 'Your data will be lost!';
-
   //   return false;
   // }
+  
   staffID: any;
   roleid:any; 
   constructor(private LearningService: LearningService) { }
   ngOnInit() {
-
+  
     this.temp = sessionStorage.getItem('temp');
     this.staffID = sessionStorage.getItem('userid');
     this.roleid = sessionStorage.getItem('roleid');
+
+    window.addEventListener('beforeunload', function (e) {
+      e.preventDefault();
+      e.returnValue = '';
+  });
   }
   async logout() {
     debugger

@@ -114,7 +114,7 @@
                             *100 | number : '1.2-2'}} %</label><br>
 
                         <button class="btn btn-sm btn-primary newbutton" *ngIf="details.teststatus=='nottaken' && details.trainingType!=3"
-                            [routerLink]="['/Employee/TakeAssessment',details.courseID,details.id,0]" id="id" name="id">
+                            [routerLink]="['/Employee/TakeAssessment',details.courseID,details.id,1]" id="id" name="id">
                             Take Assessment</button>
 
                             <button class="btn btn-sm btn-primary newbutton" *ngIf="details.teststatus=='nottaken' && details.trainingType==3"

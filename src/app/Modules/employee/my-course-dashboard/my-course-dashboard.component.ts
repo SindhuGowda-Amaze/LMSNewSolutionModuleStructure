@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 import { LearningService } from 'src/app/Pages/Services/learning.service';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-my-course-dashboard',
@@ -33,8 +34,15 @@ export class MyCourseDashboardComponent implements OnInit {
   courseid: any;
   testresponse: any;
   currentUrl: any;
-  profilepercentage: any
+  profilepercentage: any;
+  maxdate:any;
   ngOnInit(): void {
+    const myDate = new Date();
+
+    const locale = 'en-US';
+    const format = 'yyyy-MM-dd';
+    this.maxdate = formatDate(myDate, format, locale);
+    
     this.currentUrl = window.location.href;
     this.loader = false;
     this.manager = sessionStorage.getItem('manager');
@@ -288,7 +296,39 @@ export class MyCourseDashboardComponent implements OnInit {
     });
   }
 
+  
+
+  TrainerID:any;
   enroll(name: any, mobile: any, emailID: any) {
+
+
+    this.LearningService.GetTrainerCourseMapping()
+    .subscribe({
+      next: data => {
+        debugger
+        this.coursedetails = data.filter(x => x.courseID == this.courseid && x.trainingType!=2);
+        if(this.coursedetails.length==0){
+          this.TrainerID=0
+        }
+        else{
+          this.TrainerID=this.coursedetails[0].trainerID
+        }
+        
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in GetTrainerCourseMapping');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.LearningService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+
     Swal.fire({
       title: 'Enroll Confirmation',
       text: 'Please click on OK to send Course Enrolment Request',
@@ -304,28 +344,25 @@ export class MyCourseDashboardComponent implements OnInit {
         debugger;
         var json = {
           staffid: this.userid,
-          manager: this.manager,
           courseid: this.courseid,
           status: 'Manager Pending',
+          manager: this.manager,
           employeeName: name,
           phoneNo: mobile,
           email: emailID,
           type: 'Request to Manager',
+          Mandatory:0,
+          PIP :0,
+          LearningPath : 1,
+          toBeCompletedDate : this.maxdate,
+          TrainerID: this.TrainerID
         };
-        this.LearningService.InsertEnroll(json).subscribe({
+        this.LearningService.InsertEnroll(json)
+        .subscribe({
           next: (data) => {
             debugger;
             let id = data;
-            if (id != 0) {
-              Swal.fire(
-                'Request Sent',
-                'Your request has been sent to manager for Approval',
-                'success'
-              );
-              location.href = '#/Catalog';
-            } else {
-              Swal.fire('Already Enrolled');
-            }
+            location.href = '#/Employee/Catalog';
           },
          error: (err: { error: { message: any; }; }) => {
             Swal.fire('Issue in InsertEnroll');
@@ -339,6 +376,12 @@ export class MyCourseDashboardComponent implements OnInit {
             });
           },
         });
+
+        Swal.fire(
+          'Request Sent',
+          'Your request has been sent to manager for Approval',
+          'success'
+        );
         location.href = '#/Catalog';
       }
     });

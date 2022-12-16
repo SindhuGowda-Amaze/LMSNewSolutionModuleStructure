@@ -14,7 +14,7 @@ import { CKEditorModule } from 'ckeditor4-angular';
 })
 export class ChapterComponent implements OnInit {
   Course_Photo: any;
-  Attachment: any[] = [];
+  Attachment: any = [];
   result: any;
   id: any;
   CourseID: any;
@@ -32,10 +32,10 @@ export class ChapterComponent implements OnInit {
   assessmentName: any;
   generalInstructions: any;
   showChapterPhoto: any;
-  files1: File[] = [];
+  files1: any = [];
   file: any;
   courselist: any;
-  files: File[] = [];
+  files:  any = [];
   photourl: any;
   photoid: any;
   file1: any;
@@ -300,6 +300,7 @@ export class ChapterComponent implements OnInit {
   }
 
   insertAttchmentFiles() {
+    debugger
     for (let i = 0; i < this.Attachment.length; i++) {
       var entity = {
         ChapterID: this.chapterID,
@@ -327,8 +328,8 @@ export class ChapterComponent implements OnInit {
   onSelect(event: any) {
     console.log(event);
     debugger;
-    this.files.push(...event.addedFiles);
-    this.uploadattachments();
+    // this.files.push(...event.addedFiles);
+    // this.uploadattachments();
 
     console.log(event);
     // if ((event.addedFiles[0].size ) > 5242880) {
@@ -346,7 +347,7 @@ export class ChapterComponent implements OnInit {
     // } 
 
     else {
-      this.uploadattachments1();
+      this.uploadattachments();
     }
   }
 
@@ -431,6 +432,7 @@ export class ChapterComponent implements OnInit {
   }
 
   Add() {
+    debugger
     for (let i = 0; i < this.Attachment.length; i++) {
       var entity = {
         ChapterID: this.id,
