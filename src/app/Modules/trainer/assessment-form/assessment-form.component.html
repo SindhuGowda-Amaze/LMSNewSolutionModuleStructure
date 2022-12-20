@@ -94,7 +94,7 @@
                         <!-- <ckeditor id="CorrectAnswer" name="CorrectAnswer" [(ngModel)]="CorrectAnswer"
                             data="<p>Enter Answer Here !</p>"></ckeditor>  -->
                             
-                            <textarea id="CorrectAnswer" name="CorrectAnswer" class="form-control" [(ngModel)]="CorrectAnswer" ></textarea>
+          <textarea  class="form-control" [(ngModel)]="CorrectAnswer" ></textarea>
 
 
                     
@@ -178,7 +178,7 @@
                                 <td>{{details.Question}}</td>
                              
                                 
-                                <td [innerHTML]="CorrectAnswer"></td>
+                                <td [innerHTML]="details.CorrectAnswer"></td>
                                 <td>{{details.weightage}}</td>
                                 <!-- <td></td> -->
                                

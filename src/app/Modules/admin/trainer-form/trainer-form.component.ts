@@ -25,10 +25,11 @@ export class TrainerFormComponent implements OnInit {
   files: File[] = [];
   currentUrl: any;
   dropdownSettings: any = {};
+  TrainerID:any;
   ngOnInit(): void {
 
     this.currentUrl = window.location.href;
-
+this.TrainerName="0"
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'id',

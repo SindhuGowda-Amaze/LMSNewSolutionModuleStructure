@@ -25,10 +25,15 @@
         </div>
         <div class="row leavereq">
             <div class="col-lg-2">
-                <ng-multiselect-dropdown  style="height: 30px;" [placeholder]="'Select Trainer'" [settings]="dropdownSettings"
+                <!-- <ng-multiselect-dropdown  style="height: 30px;" [placeholder]="'Select Trainer'" [settings]="dropdownSettings"
                 [data]="Trainerlist" [(ngModel)]="TrainerName" (onSelect)="onItemSelect($event)"
                 class="fonttxt">
-            </ng-multiselect-dropdown>
+               </ng-multiselect-dropdown> -->
+
+               <select class="form-control" name="cars" id="Duration" [(ngModel)]="TrainerName" >
+                <option style="color:#0C275A" value="0" disabled>Select Trainer</option>
+                <option  style="color:#0C275A" *ngFor="let details of Trainerlist"  value="{{details.name}}">{{details.name}}</option>
+            </select>
 
 
                 <!-- <input class="form-control inputfield" placeholder="Trainer Name" [(ngModel)]="TrainerName"> -->
@@ -67,6 +72,11 @@
                         <ngx-dropzone-label  >{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
                     </ngx-dropzone-preview>
                 </ngx-dropzone>
+                <a *ngIf="Company_logo!=null" target="_blank" href="{{Company_logo}}">
+                    <!-- <img src="assets/Images/pdf.png" style="height: 40px;width: 40px;"> &#x2705; -->
+                    <i class="fa fa-files-o" aria-hidden="true"
+                    style="font-size: 30px;"></i>
+                </a>
             </div>
             <div class="col-md-4">
                 <textarea class="form-control inputfield" placeholder="Skills and Technology..." rows="4" [(ngModel)]="SkillsAndTechnology"></textarea>

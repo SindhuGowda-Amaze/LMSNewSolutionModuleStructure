@@ -39,7 +39,7 @@ export class TrainerCouresMappingFormComponent implements OnInit {
     this.currentUrl = window.location.href;
 
     this.TrainerID = 0;
-    this.CourseID = 0;
+
     this.maxdate = new Date().toISOString().split("T")[0];
     this.GetBatch();
     this.ActivatedRoute.params.subscribe(params => {
@@ -47,13 +47,15 @@ export class TrainerCouresMappingFormComponent implements OnInit {
       this.id = params["id"];
       if (this.id != null && this.id != undefined) {
         this.GetTrainerCourseMapping();
+        this.GetUnmappedCourseDropdown();
+        
       }
     })
 
     // this.GetTrainerCourseMappingDashboard();
     this.GetUnmappedTrainer();
     this.TrainerID = 0;
-    this.CourseID = 0;
+
 
     this.BatchName = 0;
     // this.GetCourse();
@@ -71,7 +73,8 @@ export class TrainerCouresMappingFormComponent implements OnInit {
     // this.CourseID=0;
     // this.BatchName=0;
     //this.GetTrainerCourseMapping();
-    this.GetUnmappedCourseDropdown();
+    this.GetCourseDropdown();
+  
   }
 
   public GetUnmappedCourseDropdown() {
@@ -142,6 +145,29 @@ export class TrainerCouresMappingFormComponent implements OnInit {
     //     })
 
     //   }
+
+  }
+
+  public GetCourseDropdown() {
+    this.LearningService.GetCourseDropdown()
+      .subscribe({
+        next: data => {
+          debugger
+          this.CourseList = data
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting Expenses List Web');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.LearningService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
 
   }
 
@@ -243,7 +269,7 @@ export class TrainerCouresMappingFormComponent implements OnInit {
           this.BatchName = this.result[0].batchID;
           this.AllowedStudents = this.result[0].noOfStudentsEnrolled;
           // this.TrainerName = this.result[0].trainerName,
-            // this.courseName = this.result[0].courseName,
+             this.courseName = this.result[0].courseName,
             this.BatchName1 = this.result[0].batchName
         }, error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in GetTrainerCourseMapping');

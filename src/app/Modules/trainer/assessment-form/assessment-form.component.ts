@@ -66,6 +66,11 @@ export class AssessmentFormComponent implements OnInit {
       this.id = params['id'];
       if (this.id == undefined) {
         //this.GetAssessments();
+        this.GetCourse();
+        this.GetChapter();
+        this.GetQuestionMaster();
+     
+    
       }
       else {
 
@@ -132,7 +137,7 @@ export class AssessmentFormComponent implements OnInit {
       }
 
     });
-
+   
     // this.GetQuestionMaster();
     // this.ActivatedRoute.params.subscribe((params) => {
     //   debugger;
@@ -277,6 +282,7 @@ export class AssessmentFormComponent implements OnInit {
       this.Option4 = '';
       this.Weightage = '';
       this.assessmentName = '';
+      this.CorrectAnswer=''
       Swal.fire('Saved Successfully');
     }
   }

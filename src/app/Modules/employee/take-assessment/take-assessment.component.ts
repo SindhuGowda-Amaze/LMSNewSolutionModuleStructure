@@ -334,52 +334,13 @@ this.testResponseID1=temp[0].id;
           if(this.testResponseID==10){
             Swal.fire('You Already took this Test');
             this.ngOnInit();
-          }else{
+          }
   
-            if(this.testtype==1){
-  
-              this.AmazeService.DeleteTestResponseDetails(this.testResponseID1)
-              
-              .subscribe({
-                next: data => {
-                  debugger
-                  for (var i = 0; i < this.questionList.length; i++) {
-                    var ett = {
-                      'QuestionID': this.questionList[i].id,
-                      'CorrectAnswer': this.questionList[i].correctAnswer,
-                      'UserAnswer': this.questionList[i].userAnswer.split("$@")[1],
-                      'TestResponseID': this.testResponseID1,
-                      'ObtainedMarks':  this.questionList[i].correctAnswer==this.questionList[i].userAnswer.split("$@")[1]?this.questionList[i].weightage:0
-                    }
-                    this.AmazeService.InsertTestResponseDetails(ett).subscribe(data => {
-                    });
-                  }
-                  // Swal.fire('You have submited test successfully...');
-                 
-                  this.show = 0;
-                  this.startTest = "";
-                //  this.router.navigate(['/AssessmentResult', this.testResponseID]);
-                // this.router.navigate(['#/MyCourseDashboard']);
-                 location.href="#/Employee/StartMyCourseNew";
-               
-                  // .filter(x => x.checked == 1);
-                },error: (err: { error: { message: any; }; }) => {
-                  Swal.fire('Issue in DeleteTestResponseDetails');
-                  // Insert error in Db Here//
-                  var obj = {
-                    'PageName': this.currentUrl,
-                    'ErrorMessage': err.error.message
-                  }
-                  this.AmazeService.InsertExceptionLogs(obj).subscribe(
-                    data => {
-                      debugger
-                    },
-                  )
-                }
-              })
-            
-  
-            }else{
+            // if(this.testtype==1){
+           
+
+            // }
+            else{
               for (var i = 0; i < this.questionList.length; i++) {
                 var ett = {
                   'QuestionID': this.questionList[i].id,
@@ -390,20 +351,16 @@ this.testResponseID1=temp[0].id;
                 }
                 this.AmazeService.InsertTestResponseDetails(ett).subscribe(data => {
                 });
-              }
-             
-             
+              }            
               this.show = 0;
               this.startTest = "";
             //  this.router.navigate(['/AssessmentResult', this.testResponseID]);
             // this.router.navigate(['#/MyCourseDashboard']);
             Swal.fire('You have submited test successfully...');
              location.href="#/Employee/StartMyCourseNew";
-            }
-            
-          
+            }        
           }
-        },error: (err: { error: { message: any; }; }) => {
+        ,error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in Getting Expenses List Web');
           // Insert error in Db Here//
           var obj = {
@@ -417,13 +374,8 @@ this.testResponseID1=temp[0].id;
           )
         }
       })
-      
-
     }
-
-  
-   
-    //location.href="/#/AssessmentResult/";
+    // location.href="/#/AssessmentResult/";
 
   }
 
@@ -555,3 +507,47 @@ this.testResponseID1=temp[0].id;
 //   }
 // }
 
+
+
+
+
+
+
+// this.AmazeService.DeleteTestResponseDetails(this.testResponseID1)
+// .subscribe({
+//   next: data => {
+//     debugger
+//     for (var i = 0; i < this.questionList.length; i++) {
+//       var ett = {
+//         'QuestionID': this.questionList[i].id,
+//         'CorrectAnswer': this.questionList[i].correctAnswer,
+//         'UserAnswer': this.questionList[i].userAnswer.split("$@")[1],
+//         'TestResponseID': this.testResponseID1,
+//         'ObtainedMarks':  this.questionList[i].correctAnswer==this.questionList[i].userAnswer.split("$@")[1]?this.questionList[i].weightage:0
+//       }
+//       this.AmazeService.InsertTestResponseDetails(ett).subscribe(data => {
+//       });
+//     }
+//     // Swal.fire('You have submited test successfully...');
+   
+//     this.show = 0;
+//     this.startTest = "";
+  //  this.router.navigate(['/AssessmentResult', this.testResponseID]);
+  // this.router.navigate(['#/MyCourseDashboard']);
+  //  location.href="#/Employee/StartMyCourseNew";
+ 
+    // .filter(x => x.checked == 1);
+//   },error: (err: { error: { message: any; }; }) => {
+//     Swal.fire('Issue in DeleteTestResponseDetails');
+//     // Insert error in Db Here//
+//     var obj = {
+//       'PageName': this.currentUrl,
+//       'ErrorMessage': err.error.message
+//     }
+//     this.AmazeService.InsertExceptionLogs(obj).subscribe(
+//       data => {
+//         debugger
+//       },
+//     )
+//   }
+// })

@@ -63,11 +63,11 @@
               <th>Entry Criteria</th>
               <th>Exit Criteria</th>
 
-              <th *ngIf="TrainingType=='External'">Training Link</th>
+              <th *ngIf="TrainingType=='External'||TrainingType=='2'">Training Link</th>
 
-              <th *ngIf="TrainingType=='Class Room'">Venue</th>
-              <th *ngIf="TrainingType=='Class Room'">Start Date</th>
-              <th *ngIf="TrainingType=='Class Room'">End Date</th>
+              <th *ngIf="TrainingType=='Class Room'||TrainingType=='3'">Venue</th>
+              <th *ngIf="TrainingType=='Class Room'||TrainingType=='3'">Start Date</th>
+              <th *ngIf="TrainingType=='Class Room'||TrainingType=='3'">End Date</th>
 
 
 

@@ -46,6 +46,7 @@ export class CourseDashboardComponent implements OnInit {
         this.result = data.filter(x=>x.trainingType==1);
         this.dummresult = data;
         this.count = this.result.length;
+        this.TrainingType=this.result.trainingType
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetCourse');
         // Insert error in Db Here//
@@ -73,6 +74,7 @@ export class CourseDashboardComponent implements OnInit {
         this.result1 = data;
         this.categorylist = data;
         this.categorydetails = data;
+        this.TrainingType=this.result1.trainingType
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetCategoryMaster');
         // Insert error in Db Here//
@@ -174,6 +176,7 @@ export class CourseDashboardComponent implements OnInit {
     this.courseid = even.target.value;
     if (even.target.value != 0) {
       this.coursedetails = this.dummcoursedetails.filter((x: { courseID: any; }) => x.courseID == this.courseid)
+      this.TrainingType=this.coursedetails[0].trainingType
     }
     else {
       this.GetCourse();
@@ -186,9 +189,10 @@ export class CourseDashboardComponent implements OnInit {
     if (even.target.value != 0) {
       this.result = this.dummresult.filter((x: { categoryID: any; }) => x.categoryID == this.categoryid)
       this.count = this.result.length;
+      this.TrainingType=this.result[0].trainingType
     }
     else {
-      this.GetCourse();
+      this.GetCourse(); 
     }
   }
 
@@ -207,7 +211,9 @@ export class CourseDashboardComponent implements OnInit {
         next: (data) => {
           debugger;
           this.result = data.filter(x => x.trainingType == 3);
+         
           this.dummcoursedetails = data;
+          this.count = this.result.length;
         },
         error: (err: { error: { message: any } }) => {
           Swal.fire('Issue in Getting Expenses List Web');
@@ -227,7 +233,9 @@ export class CourseDashboardComponent implements OnInit {
         next: (data) => {
           debugger;
           this.result = data.filter(x => x.trainingType == 2);
+        
           this.dummcoursedetails = data;
+          this.count = this.result.length;
         },
         error: (err: { error: { message: any } }) => {
           Swal.fire('Issue in Getting Expenses List Web');
@@ -247,7 +255,9 @@ export class CourseDashboardComponent implements OnInit {
         next: (data) => {
           debugger;
           this.result = data.filter(x => x.trainingType == 1);
+        
           this.dummcoursedetails = data;
+          this.count = this.result.length;
         },
         error: (err: { error: { message: any } }) => {
           Swal.fire('Issue in Getting Expenses List Web');
