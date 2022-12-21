@@ -316,10 +316,10 @@
                         <div class="row" style="text-align: center;margin-top: 0px;">
                             <div class="col-lg-12">
 
-                                <button class="edit" [routerLink]="['/Employee/StartMyCourseNew',details.id]"
+                                <!-- <button class="edit" [routerLink]="['/Employee/StartMyCourseNew',details.id]"
                                     *ngIf="details.enrollid!=0&&details.notStarted==0 && !details.completed && details.trainingType!=2"
                                     (click)="getenrollid(details.enrollid)">Start
-                                    Training</button>
+                                    Training</button> -->
 
                                 <button class="edit"
                                     *ngIf="details.enrollid!=0&&details.notStarted==0 && !details.completed && details.trainingType==2"
@@ -327,11 +327,11 @@
                                     Training</button>
 
                                 <button class="edit" [routerLink]="['/Employee/StartMyCourseNew',details.id]"
-                                    *ngIf="details.enrollid!=0 && details.notStarted==1 && details.completed==0 && details.status!='Manager Assign'"
+                                    *ngIf="details.enrollid!=0 && details.notStarted==1 && details.completed==0 && details.status=='Manager Assign'"
                                     (click)="getenrollid(details.enrollid)">Open
                                 </button>
                                 <button class="edit" [routerLink]="['/Employee/StartMyCourseNew',details.id]"
-                                    *ngIf="details.enrollid!=0 && details.notStarted==1 && details.completed==0 && details.status=='Manager Assign'"
+                                    *ngIf="details.enrollid!=0 && details.notStarted==0 && details.completed==0 && details.status=='Manager Assign'&&details.trainingType!=2"
                                     (click)="getenrollid(details.enrollid)">Accept
                                 </button>
                                 <button class="edit" data-toggle="modal" data-target="#enroll"

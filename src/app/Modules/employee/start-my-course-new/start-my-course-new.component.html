@@ -52,8 +52,10 @@
                                     alt="video_icon" (click)="PreviewVideo(details.photo)">
                                 <span *ngIf="details.attachmentType=='video'">{{details.cuttingurl}}</span>
 
-                                <!-- <img class="icon" style="height:30px;width:30px" *ngIf="details.attachmentType=='Pdf'"
-                            src="assets/pdf.jpg" alt="video_icon" (click)="PreviewPdf(details.photo)"> -->
+                                <img class="icon" style="height:30px;width:30px" *ngIf="details.attachmentType=='Pdf'"
+                            src="assets/Images/pdf.jpg" alt="video_icon" (click)="PreviewPdf(details.photo)">
+                            <p *ngIf="details.attachmentType=='Pdf'">{{details.cuttingurl}}</p>
+
 
                                 <img class="icon" style="height:30px;width:30px" data-toggle="tooltip"
                                     data-placement="top" title="{{details.cuttingurl}}"EnrolledTraining

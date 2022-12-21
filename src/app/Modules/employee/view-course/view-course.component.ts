@@ -350,7 +350,6 @@ export class ViewCourseComponent implements OnInit {
           this.viewcourseID = this.chapterdetails[0].id
           this.Name = this.chapterdetails[0].name,
             this.Description = this.chapterdetails[0].description,
-
             this.viewcourseID2 = this.chapterdetails[1].id
           this.Name2 = this.chapterdetails[1].name,
             this.Description2 = this.chapterdetails[1].description,

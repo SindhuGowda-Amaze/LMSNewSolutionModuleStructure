@@ -35,7 +35,7 @@ export class MyCourseDashboardComponent implements OnInit {
   testresponse: any;
   currentUrl: any;
   profilepercentage: any;
-  maxdate:any;
+  maxdate:any
   ngOnInit(): void {
     const myDate = new Date();
 
@@ -198,7 +198,8 @@ export class MyCourseDashboardComponent implements OnInit {
       next: (data) => {
         debugger;
         this.coursedetails = data.filter(
-          (x) => x.completed == 0 && x.enrollid != 0 && x.staffid == this.userid && x.type!='Manager Assign'
+          (x) => x.completed == 0 && x.enrollid != 0 && x.staffid == this.userid && x.notStarted==1
+          && (x.type=='Manager Assign'||x.status=='Manager Approved')
         );
         console.log(this.coursedetails);
         this.latestcoursedetails = data[0];
@@ -230,7 +231,7 @@ export class MyCourseDashboardComponent implements OnInit {
       next: (data) => {
         debugger;
         this.coursedetails = data.filter(
-          (x) => x.enrollid!=0 && x.notStarted==1 && x.completed==0 && x.status=='Manager Assign'
+          (x) => x.enrollid!=0 && x.notStarted==0 && x.completed==0 && x.status=='Manager Assign'
         );
         console.log(this.coursedetails);
         this.latestcoursedetails = data[0];

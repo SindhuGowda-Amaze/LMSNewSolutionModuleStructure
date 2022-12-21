@@ -20,7 +20,8 @@ export class StartMyCourseNewComponent implements OnInit {
   chapterdescription: any;
   chapterphoto: any;
   show: any;
-  Attachmentlist: any;
+  Attachmentlist : any = [];
+
   dummAttachmentlist: any;
   showvideo: any;
   showimage: any;
@@ -32,6 +33,10 @@ export class StartMyCourseNewComponent implements OnInit {
   domSanitizer: any;
   ppt: any;
   currentUrl: any;
+  files1: File[] = [];
+  file: any;
+  Attachment: any = [];
+  files: File[] = [];
 
   constructor(
     private LearningService: LearningService,
@@ -293,10 +298,7 @@ export class StartMyCourseNewComponent implements OnInit {
     location.href = '#/CourseCertificate/' + this.courseid;
   }
 
-  files1: File[] = [];
-  file: any;
-  Attachment: any;
-  files: File[] = [];
+
   onSelect(event: any) {
     this.files1.length = 0;
     this.files1 = [];
