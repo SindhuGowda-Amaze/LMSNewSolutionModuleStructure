@@ -135,16 +135,46 @@ export class MyCourseDashboardComponent implements OnInit {
     } else if (value == 3) {
       debugger;
       //  this.coursedetails = this.trainerCourseMapList.filter((x: { staffID: any; completed: number; enrollid: number; })=> x.staffID==this.userid && x.completed!=1 && x.enrollid==0);
-      this.LearningService.GetTrainerCourseMapping().subscribe({
+      // this.LearningService.GetTrainerCourseMapping().subscribe({
+      //   next: (data) => {
+      //     debugger;
+      //     this.coursedetails = data.filter(
+      //       (x: { staffID: any; completed: number; enrollid: number }) =>
+      //         x.completed != 1 && x.enrollid == 0
+      //     );
+      //   },
+      //  error: (err: { error: { message: any; }; }) => {
+      //     Swal.fire('Issue in GetTrainerCourseMapping');
+      //     // Insert error in Db Here//
+      //     var obj = {
+      //       PageName: this.currentUrl,
+      //       ErrorMessage: err.error.message,
+      //     };
+      //     this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+      //       debugger;
+      //     });
+      //   },
+      // });
+
+      this.LearningService.GetCoursesByUserID(this.userid)
+      .subscribe({
         next: (data) => {
           debugger;
-          this.coursedetails = data.filter(
-            (x: { staffID: any; completed: number; enrollid: number }) =>
-              x.completed != 1 && x.enrollid == 0
-          );
+          let temp=data
+          this.coursedetails = data
+          // this.count = this.coursedetails.length;
+          // if(temp[0].trainingType==3){
+          //   this.courselist = data.filter(x=>x.cStartDate>=this.maxdate);
+          //   this.count = this.courselist.length;
+          // }
+          // else{
+          //   this.courselist = data
+          //   this.count = this.courselist.length;
+          //  }
+         
         },
        error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Issue in GetTrainerCourseMapping');
+          Swal.fire('Issue in GetCoursesByUserID');
           // Insert error in Db Here//
           var obj = {
             PageName: this.currentUrl,
@@ -198,8 +228,9 @@ export class MyCourseDashboardComponent implements OnInit {
       next: (data) => {
         debugger;
         this.coursedetails = data.filter(
-          (x) => x.completed == 0 && x.enrollid != 0 && x.staffid == this.userid && x.notStarted==1
-          && (x.type=='Manager Assign'||x.status=='Manager Approved')
+          (x) => x.completed == 0 && x.enrollid != 0 && x.staffid == this.userid 
+          // && x.notStarted==1 && x.type=='Manager Assign'||
+          && (x.status=='Manager Approved'||x.status=="Manager Assign")
         );
         console.log(this.coursedetails);
         this.latestcoursedetails = data[0];

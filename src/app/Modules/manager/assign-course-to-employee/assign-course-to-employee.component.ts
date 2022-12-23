@@ -243,14 +243,14 @@ export class AssignCourseToEmployeeComponent implements OnInit {
   public getcourseID(even: any) {
     this.ECourseID = even.target.value;
 
-    // this.LearningService.GetCourseDropdown()
-    //   .subscribe((data) => {
-    //     debugger;
-    //     let temp: any = data.filter((x) => x.id == this.ECourseID);
-    //     this.courseName123 = temp[0].name;
-    //     this.courseID12 = temp[0].id;
+    this.LearningService.GetCourseDropdown()
+      .subscribe((data) => {
+        debugger;
+        let temp: any = data.filter((x) => x.id == this.ECourseID);
+        this.courseName123 = temp[0].name;
+        // this.courseID12 = temp[0].id;
 
-    //   });
+      });
 
     this.LearningService.GetTrainerCourseMapping()
     .subscribe({
@@ -345,7 +345,7 @@ export class AssignCourseToEmployeeComponent implements OnInit {
               toBeCompletedDate:  this.toBeCompletedDate == undefined || this.toBeCompletedDate == null || this.toBeCompletedDate == ""
               ? '1990-01-01 00:00:00.000'
               : this.toBeCompletedDate,
-              courseID12: this.courseID12,
+              courseID12: this.courseid,
               status: 'Manager Assign',
               phoneNo: this.mobile,
               email: this.emailID,

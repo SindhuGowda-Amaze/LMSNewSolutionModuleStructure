@@ -237,18 +237,22 @@ courseList  :any;
       next: data => {
         debugger
         if(this.roleid==4){
-          this.Attendance = data.filter(x => x.trainerID == this.userid && x.filterdate==this.Today && x.empID==this.EmplID );
-          // this.Attendance = data
+          //this.Attendance = data.filter(x => x.trainerID == this.userid && x.filterdate==this.Today && x.empID==this.EmplID );
+           this.Attendance = data
+           for (let i=0;i<this.Attendance.length;i++){
+           this.StaffNoofHrs=this.Attendance[i].noofhrsinmins
+           }
         }
         else if(this.roleid==3){
           this.Attendance = data.filter(x => x.supervisor == this.userid  && x.filterdate==this.Today && x.empID==this.EmplID);
           this.AttendanceAddNoOfHrs = data.filter(x => x.supervisor == this.userid  && x.filterdate==this.todaydate && x.empID==this.EmplID);
           console.log("this.AttendanceAddNoOfHrs",this.AttendanceAddNoOfHrs)
-          for (let i=0;i<this.Attendance.length;i++){
+        
+          for (let i=0;i<this.AttendanceAddNoOfHrs.length;i++){
             debugger
-            this.StaffNoofHrs=this.AttendanceAddNoOfHrs[i].noofhrs
+            this.StaffNoofHrs=this.AttendanceAddNoOfHrs[i].noofhrsinmins
             // this.StaffNoofHrs1+= this.StaffNoofHrs
-            this.StaffNoofHrs1+=this.AttendanceAddNoOfHrs[i].noofhrs
+            // this.StaffNoofHrs1+=this.AttendanceAddNoOfHrs[i].noofhrs
             // this.StaffNoofHrs1 = this.StaffNoofHrs
           }
           
@@ -257,6 +261,9 @@ courseList  :any;
         }
         else{
           this.Attendance = data.filter(x=>x.empID==this.userid  && x.filterdate==this.Today && x.empID==this.EmplID)
+          for (let i=0;i<this.Attendance.length;i++){
+            this.StaffNoofHrs=this.Attendance[i].noofhrsinmins
+            }
         }
 
 //         var today = new Date();

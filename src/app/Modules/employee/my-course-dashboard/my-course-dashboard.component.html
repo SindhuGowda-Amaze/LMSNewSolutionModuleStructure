@@ -322,22 +322,30 @@
                                     Training</button> -->
 
                                 <button class="edit"
-                                    *ngIf="details.enrollid!=0&&details.notStarted==0 && !details.completed && details.trainingType==2"
-                                    (click)="gotolink()">Start
+                                    *ngIf="details.enrollid!=0&&details.notStarted==0 && !details.completed && details.trainingType==2"(click)="gotolink()">Start
                                     Training</button>
+                                    <!-- && details.trainingType==2" -->
+                                    <button class="edit"
+                                    *ngIf="details.enrollid!=0&&details.notStarted==0 && !details.completed && details.trainingType!=2&& details.status!='Manager Assign'"[routerLink]="['/Employee/StartMyCourseNew',details.id]">Start
+                                    Training</button>
+                                    <!-- && details.trainingType==2" -->
+                                    
 
                                 <button class="edit" [routerLink]="['/Employee/StartMyCourseNew',details.id]"
                                     *ngIf="details.enrollid!=0 && details.notStarted==1 && details.completed==0 && details.status=='Manager Assign'"
                                     (click)="getenrollid(details.enrollid)">Open
                                 </button>
                                 <button class="edit" [routerLink]="['/Employee/StartMyCourseNew',details.id]"
-                                    *ngIf="details.enrollid!=0 && details.notStarted==0 && details.completed==0 && details.status=='Manager Assign'&&details.trainingType!=2"
+                                    *ngIf="details.enrollid!=0 && details.notStarted==0 && details.completed==0 && details.status=='Manager Assign'&& details.trainingType!=2"
                                     (click)="getenrollid(details.enrollid)">Accept
                                 </button>
+
                                 <button class="edit" data-toggle="modal" data-target="#enroll"
-                                    *ngIf="details.enrollid=='0'&&details.completed==0"
-                                    (click)="getcourseid(details.id)"> &nbsp;&nbsp;
+                               
+                                    (click)="getcourseid(details.id)" *ngIf="details.enrollid==null"> &nbsp;&nbsp;
                                     Enroll</button>
+                                    <!-- *ngIf="details.enrollid=='0'&&details.completed==0" -->
+                                   
 
                                 <button class="edit" *ngIf="details.completed==1"
                                     (click)="getenrollid(details.enrollid)"

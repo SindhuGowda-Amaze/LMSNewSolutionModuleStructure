@@ -112,7 +112,7 @@ export class CheckanswerComponent implements OnInit {
           ID: this.id,
           Totalmarks: this.Totalmarks,
           ObtainedMarks: this.ObtainedMarks,
-          Checked: 1,
+          // Checked: 1,
           TestResult: this.testResult,
         };
 

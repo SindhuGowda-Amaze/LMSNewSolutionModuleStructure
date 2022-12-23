@@ -71,7 +71,7 @@ export class CertificateDashboardComponent implements OnInit {
     this.LearningService.GetTestResponse().subscribe({
       next: (data) => {
         debugger;
-        this.employeereportlist = data.filter((x) => x.userID == this.userid);
+        this.employeereportlist = data.filter((x) => x.userID == this.userid&& x.completed==1);
 
         const key = 'coursename';
         this.uniquelist = [
