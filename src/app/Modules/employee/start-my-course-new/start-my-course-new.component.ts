@@ -20,7 +20,7 @@ export class StartMyCourseNewComponent implements OnInit {
   chapterdescription: any;
   chapterphoto: any;
   show: any;
-  Attachmentlist : any = [];
+  Attachmentlist: any = [];
 
   dummAttachmentlist: any;
   showvideo: any;
@@ -37,23 +37,24 @@ export class StartMyCourseNewComponent implements OnInit {
   file: any;
   Attachment: any = [];
   files: File[] = [];
-
+  userid:any;
   constructor(
     private LearningService: LearningService,
     private ActivatedRoute: ActivatedRoute,
     private sanitizer: DomSanitizer
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.currentUrl = window.location.href;
     this.loader = false;
-    
-    
+    this.userid = sessionStorage.getItem('userid');
+
+
     this.ActivatedRoute.params.subscribe((params) => {
       debugger;
       this.courseid = params['id'];
       this.GetChapter();
-      
+
     });
     this.show = 1;
   }
@@ -87,10 +88,10 @@ export class StartMyCourseNewComponent implements OnInit {
           this.LearningService.UpdateCourseCompleted(
             sessionStorage.getItem('userid'),
             this.courseid
-          ).subscribe((data) => {});
+          ).subscribe((data) => { });
         }
       },
-     error: (err: { error: { message: any; }; }) => {
+      error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetChapterListByEmployeeID');
         // Insert error in Db Here//
         var obj = {
@@ -105,7 +106,7 @@ export class StartMyCourseNewComponent implements OnInit {
 
     this.loader = false;
   }
-   public getcoursedetails(details: any) {
+  public getcoursedetails(details: any) {
     this.coursename = details.courseName;
     this.chaptername = details.name;
     this.chapterdescription = details.chapterText;
@@ -164,7 +165,7 @@ export class StartMyCourseNewComponent implements OnInit {
           }
         }
       },
-     error: (err: { error: { message: any; }; }) => {
+      error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetChapterAttachmentByChapterID');
         // Insert error in Db Here//
         var obj = {
@@ -335,9 +336,9 @@ export class StartMyCourseNewComponent implements OnInit {
       },
     });
   }
-  id:any
-  getid(id:any){
-    this.id=id
+  ChapterID: any
+  getid(id: any) {
+    this.ChapterID = id
   }
 
   Add() {
@@ -374,9 +375,54 @@ export class StartMyCourseNewComponent implements OnInit {
 
 
 
-  questionList:any;
-public save(){
-  Swal.fire('Saved Successfully...!');
-}
-  
+  questionList: any;
+  public save() {
+    Swal.fire({
+      title: 'Are you sure Want to Submit?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Submit it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        var Entityy = {
+          'Attachment': this.Attachment,
+          'UserID': this.userid,
+          'CourseID': this.courseid,
+          'ChapterID': this.ChapterID
+        }
+        this.LearningService.InsertTestResponse(Entityy)
+          .subscribe({
+            next: data => {
+              // debugger
+              // this.testResponseID = data;
+              // if (this.testResponseID == 10) {
+              //   Swal.fire('You Already took this Test');
+              //   this.ngOnInit();
+              // }
+            }
+            , error: (err: { error: { message: any; }; }) => {
+              Swal.fire('Issue in Getting Expenses List Web');
+              // Insert error in Db Here//
+              var obj = {
+                'PageName': this.currentUrl,
+                'ErrorMessage': err.error.message
+              }
+              this.LearningService.InsertExceptionLogs(obj).subscribe(
+                data => {
+                  debugger
+                },
+              )
+            }
+          })
+        Swal.fire(
+          'Submitted!',
+          'Saved Sucessfully.',
+          'success'
+        )
+        location.href = "#/Employee/StartMyCourseNew";
+      }
+    })
+  }
 }

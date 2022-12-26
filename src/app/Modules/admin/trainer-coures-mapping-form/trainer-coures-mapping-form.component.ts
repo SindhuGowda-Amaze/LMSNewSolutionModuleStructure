@@ -73,7 +73,8 @@ export class TrainerCouresMappingFormComponent implements OnInit {
     // this.CourseID=0;
     // this.BatchName=0;
     //this.GetTrainerCourseMapping();
-    this.GetCourseDropdown();
+    // this.GetCourseDropdown();
+    this.GetUnmappedCourseDropdown();
   
   }
 
@@ -148,28 +149,28 @@ export class TrainerCouresMappingFormComponent implements OnInit {
 
   }
 
-  public GetCourseDropdown() {
-    this.LearningService.GetCourseDropdown()
-      .subscribe({
-        next: data => {
-          debugger
-          this.CourseList = data
-        }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Issue in Getting Expenses List Web');
-          // Insert error in Db Here//
-          var obj = {
-            'PageName': this.currentUrl,
-            'ErrorMessage': err.error.message
-          }
-          this.LearningService.InsertExceptionLogs(obj).subscribe(
-            data => {
-              debugger
-            },
-          )
-        }
-      })
+  // public GetCourseDropdown() {
+  //   this.LearningService.GetCourseDropdown()
+  //     .subscribe({
+  //       next: data => {
+  //         debugger
+  //         this.CourseList = data
+  //       }, error: (err: { error: { message: any; }; }) => {
+  //         Swal.fire('Issue in Getting Expenses List Web');
+  //         // Insert error in Db Here//
+  //         var obj = {
+  //           'PageName': this.currentUrl,
+  //           'ErrorMessage': err.error.message
+  //         }
+  //         this.LearningService.InsertExceptionLogs(obj).subscribe(
+  //           data => {
+  //             debugger
+  //           },
+  //         )
+  //       }
+  //     })
 
-  }
+  // }
 
   trainerliststaff: any;
   public GetUnmappedTrainer() {

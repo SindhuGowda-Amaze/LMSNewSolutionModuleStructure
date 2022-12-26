@@ -44,6 +44,14 @@ export class ViewCourseComponent implements OnInit {
   showchapter: any;
   chapterdetails: any;
   maxdate:any;
+  Name: any;
+  Description: any;
+  Name2: any;
+  Description2: any;
+  viewcourseID: any;
+  viewcourseID2: any;
+  Attachmentlist2:any;
+  dummAttachmentlist2:any;
 
   constructor(private ActivatedRoute: ActivatedRoute, private LearningService: LearningService) { }
 
@@ -147,16 +155,59 @@ export class ViewCourseComponent implements OnInit {
   //   window.open(vedioUrl, "_blank")
   // }
 
-  ShowAttachments(id: any) {
+  public GetChapter() {
+    this.loader = true
+    debugger
+    this.LearningService.GetChapter()
+      .subscribe({
+        next: data => {
+          debugger
+          this.chapterdetails = data.filter(x => x.courseID == this.courseid);
+          this.viewcourseID = this.chapterdetails[0].id
+          this.Name = this.chapterdetails[0].name,
+          this.Description = this.chapterdetails[0].description,
+
+          this.viewcourseID2 = this.chapterdetails[1].id
+          this.Name2 = this.chapterdetails[1].name,
+          this.Description2 = this.chapterdetails[1].description,
+
+
+
+          this.count = this.chapterdetails.length;
+          // this.ShowAttachments(this.chapterdetails[0].id)
+          this.ShowAttachments(this.chapterdetails[0].id) 
+          this.ShowAttachments2(this.chapterdetails[1].id) 
+          this.show = 1
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in GetChapter');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.LearningService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+
+
+    this.loader = false
+  }
+
+
+  ShowAttachments(viewcourseID: any) {
     debugger
     this.showvideo = 0;
     this.showimage = 0;
     this.showPdf = 0;
     this.showDocument = 0;
     this.showPpt = 0;
-    this.attachmentId = id;
+    this.attachmentId = viewcourseID;
 
-    this.LearningService.GetChapterAttachmentByChapterID(id)
+    this.LearningService.GetChapterAttachmentByChapterID(viewcourseID)
 
       .subscribe({
         next: data => {
@@ -201,6 +252,62 @@ export class ViewCourseComponent implements OnInit {
         }
       })
   }
+
+  ShowAttachments2(viewcourseID2: any) {
+    debugger
+    this.showvideo = 0;
+    this.showimage = 0;
+    this.showPdf = 0;
+    this.showDocument = 0;
+    this.showPpt = 0;
+    this.attachmentId = viewcourseID2;
+
+    this.LearningService.GetChapterAttachmentByChapterID(viewcourseID2)
+
+      .subscribe({
+        next: data => {
+          debugger
+          this.Attachmentlist2 = data;
+          this.dummAttachmentlist2 = data;
+          this.show = 1
+          if (this.dummAttachmentlist2.length != 0) {
+            var list0 = this.dummAttachmentlist2.filter((x: { attachmentType: string; }) => x.attachmentType == 'video')
+            var list11 = this.dummAttachmentlist2.filter((x: { attachmentType: string; }) => x.attachmentType == 'Pdf')
+            var list22 = this.dummAttachmentlist2.filter((x: { attachmentType: string; }) => x.attachmentType == 'Image')
+            var list33 = this.dummAttachmentlist2.filter((x: { attachmentType: string; }) => x.attachmentType == 'Document')
+            var list44 = this.dummAttachmentlist2.filter((x: { attachmentType: string; }) => x.attachmentType == 'Ppt')
+            if (list0.length != 0) {
+              this.showvideo = 1
+            }
+            if (list11.length != 0) {
+              this.showPdf = 1
+            }
+            if (list22.length != 0) {
+              this.showimage = 1
+            }
+            if (list33.length != 0) {
+              this.showDocument = 1
+            }
+            if (list44.length != 0) {
+              this.showPpt = 1
+            }
+          }
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in GetChapterAttachmentByChapterID');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.LearningService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+  }
+
 
 
 
@@ -332,52 +439,9 @@ export class ViewCourseComponent implements OnInit {
     location.reload();
   }
 
-  Name: any;
-  Description: any;
-  Name2: any;
-  Description2: any;
-  viewcourseID: any;
-  viewcourseID2: any;
-
-  public GetChapter() {
-    this.loader = true
-    debugger
-    this.LearningService.GetChapter()
-      .subscribe({
-        next: data => {
-          debugger
-          this.chapterdetails = data.filter(x => x.courseID == this.courseid);
-          this.viewcourseID = this.chapterdetails[0].id
-          this.Name = this.chapterdetails[0].name,
-            this.Description = this.chapterdetails[0].description,
-            this.viewcourseID2 = this.chapterdetails[1].id
-          this.Name2 = this.chapterdetails[1].name,
-            this.Description2 = this.chapterdetails[1].description,
 
 
-
-            this.count = this.chapterdetails.length;
-          this.ShowAttachments(this.chapterdetails[0].id)
-          this.show = 1
-        }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Issue in GetChapter');
-          // Insert error in Db Here//
-          var obj = {
-            'PageName': this.currentUrl,
-            'ErrorMessage': err.error.message
-          }
-          this.LearningService.InsertExceptionLogs(obj).subscribe(
-            data => {
-              debugger
-            },
-          )
-        }
-      })
-
-
-    this.loader = false
-  }
-
+ 
 
   public GetTrainerCourseMapping() {
     this.loader = true

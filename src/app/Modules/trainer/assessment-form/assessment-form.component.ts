@@ -206,6 +206,7 @@ export class AssessmentFormComponent implements OnInit {
       next: (data) => {
         debugger;
         this.ChapterList = data;
+        this.dumchapterlist= this.ChapterList
       },
       error: (err: { error: { message: any } }) => {
         Swal.fire('Issue in GetChapter');
@@ -281,9 +282,9 @@ export class AssessmentFormComponent implements OnInit {
       this.Option3 = '';
       this.Option4 = '';
       this.Weightage = '';
-      this.assessmentName = '';
+      // this.assessmentName = '';
       this.CorrectAnswer=''
-      Swal.fire('Saved Successfully');
+      Swal.fire('Added Successfully');
     }
   }
 
@@ -319,7 +320,7 @@ export class AssessmentFormComponent implements OnInit {
         Option4: this.assessmenrArray[i].Option4,
         CorrectAnswer: this.assessmenrArray[i].CorrectAnswer,
         weightage: this.assessmenrArray[i].weightage,
-        AssessmentName: this.assessmenrArray[i].assessmentName,
+        AssessmentName: this.assessmenrArray[i].AssessmentName,
         // "TrainerID":this.assessmenrArray[i].TrainerID
       };
       debugger;

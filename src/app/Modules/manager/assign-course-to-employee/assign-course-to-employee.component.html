@@ -61,7 +61,7 @@
 
                     </div>
                     <div class="col-md-2">
-                       <input type="date" class="form-control" name="toBeCompletedDate" id="toBeCompletedDate" [(ngModel)]="toBeCompletedDate">
+                       <input type="date" class="form-control" name="toBeCompletedDate" id="toBeCompletedDate" min="{{maxdate}}" [(ngModel)]="toBeCompletedDate">
                     </div>
                 </div>
                 <br>

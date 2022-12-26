@@ -35,7 +35,7 @@ export class AssignCourseDashboardComponent implements OnInit {
         // this.result = data.filter(x => x.manager == this.manager );
         // this.result = data.filter(x => x.status == 'Manager Assigned' );
         this.assignList = data.filter(
-          (x) => x.type == 'Manager Assign' && x.manager == this.userid
+          (x) => x.type == 'Manager Assign' && x.manager == this.userid && x.mappingHidden==0
         );
         this.dummassignList = this.assignList;
         this.count = this.assignList.length;

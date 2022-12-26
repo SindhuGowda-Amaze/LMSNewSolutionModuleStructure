@@ -35,11 +35,12 @@ export class AssignCourseToEmployeeComponent implements OnInit {
   tablecount: any;
   trainingresultArray: any = [];
   toBeCompletedDate: any;
+  maxdate: any;
 
   ngOnInit(): void {
     this.currentUrl = window.location.href;
     // this.GetEnroll();
- 
+    this.maxdate = new Date().toISOString().split("T")[0];
     this.name123 = 0;
     this.courseid = 0;
     this.userid = sessionStorage.getItem('userid');

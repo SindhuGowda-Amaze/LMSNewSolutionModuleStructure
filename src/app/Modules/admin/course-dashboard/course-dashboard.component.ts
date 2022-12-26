@@ -46,7 +46,7 @@ export class CourseDashboardComponent implements OnInit {
         this.result = data.filter(x=>x.trainingType==1);
         this.dummresult = data;
         this.count = this.result.length;
-        this.TrainingType=this.result.trainingType
+        // this.TrainingType=this.result.trainingType
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetCourse');
         // Insert error in Db Here//
@@ -74,7 +74,7 @@ export class CourseDashboardComponent implements OnInit {
         this.result1 = data;
         this.categorylist = data;
         this.categorydetails = data;
-        this.TrainingType=this.result1.trainingType
+        // this.TrainingType=this.result1.trainingType
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetCategoryMaster');
         // Insert error in Db Here//

@@ -158,8 +158,14 @@ export class CourseComponent implements OnInit {
         next: data => {
           debugger
           let id = data;
-          Swal.fire("Saved Successfully");
-          location.href = "#/Admin/CourseDashboard"
+          if(data==0){
+            Swal.fire("Training Already Exists in Same Category");
+          }
+          else{
+            Swal.fire("Saved Successfully");
+            location.href = "#/Admin/CourseDashboard"
+          }
+         
         }, error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in InsertCourse');
           // Insert error in Db Here//

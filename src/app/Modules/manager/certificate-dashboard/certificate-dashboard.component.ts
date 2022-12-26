@@ -17,6 +17,8 @@ export class CertificateDashboardComponent implements OnInit {
     private LearningService: LearningService,
     private ActivatedRoute: ActivatedRoute
   ) {}
+
+  viewMode = 'tab1';
   userid: any;
   courseList: any;
   search: any;
@@ -100,6 +102,7 @@ export class CertificateDashboardComponent implements OnInit {
       },
     });
   }
+  
 
   fileName = 'Certificate Reports.xlsx';
   exportexcel(): void {

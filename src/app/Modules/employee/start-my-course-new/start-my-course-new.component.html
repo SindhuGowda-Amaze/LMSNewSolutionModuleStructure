@@ -53,12 +53,12 @@
                                 <span *ngIf="details.attachmentType=='video'">{{details.cuttingurl}}</span>
 
                                 <img class="icon" style="height:30px;width:30px" *ngIf="details.attachmentType=='Pdf'"
-                            src="assets/Images/pdf.jpg" alt="video_icon" (click)="PreviewPdf(details.photo)">
-                            <p *ngIf="details.attachmentType=='Pdf'">{{details.cuttingurl}}</p>
+                                    src="assets/Images/pdf.jpg" alt="video_icon" (click)="PreviewPdf(details.photo)">
+                                <p *ngIf="details.attachmentType=='Pdf'">{{details.cuttingurl}}</p>
 
 
                                 <img class="icon" style="height:30px;width:30px" data-toggle="tooltip"
-                                    data-placement="top" title="{{details.cuttingurl}}"EnrolledTraining
+                                    data-placement="top" title="{{details.cuttingurl}}" EnrolledTraining
                                     *ngIf="details.attachmentType=='Image'" src="assets/Images/image.png"
                                     alt="video_icon" (click)="PreviewIMG(details.photo)">
                                 <p *ngIf="details.attachmentType=='Image'">{{details.cuttingurl}}</p>
@@ -92,13 +92,14 @@
             <button type="button" class="list-group-item list-group-item-action active color">
                 Topics
             </button>
+
             <div class="list-group" style=" overflow-y:auto;height:230px;border:black;border-bottom:2px solid silver;">
                 <button type="button" class="list-group-item list-group-item-action border"
-                    *ngFor="let details of coursedetails" (click)="getcoursedetails(details)">{{details.name}}
-                    <button class="btn btn-sm btn-primary newbutton" *ngIf="details.teststatus=='nottaken' && details.trainingType==3"
-                    id="id" name="id" data-toggle="modal" data-target="#topic">upload</button>
+                    *ngFor="let details of coursedetails" (click)="getcoursedetails(details)">{{details.name}}<br>
+                    <button class="btn btn-sm btn-primary newbutton"
+                        *ngIf="details.teststatus=='nottaken' && details.trainingType==3" id="id" name="id"
+                        data-toggle="modal" data-target="#topic">upload</button>
                 </button>
- 
             </div>
             <br>
             <button type="button" class="list-group-item list-group-item-action active color">
@@ -115,18 +116,22 @@
                         color: blue;" *ngIf="details.obtainedMarks!=null">{{details.obtainedMarks/details.totalmarks
                             *100 | number : '1.2-2'}} %</label><br>
 
-                        <button class="btn btn-sm btn-primary newbutton" *ngIf="details.teststatus=='nottaken' && details.trainingType!=3"
+                        <button class="btn btn-sm btn-primary newbutton"
+                            *ngIf="details.teststatus=='nottaken' && details.trainingType!=3"
                             [routerLink]="['/Employee/TakeAssessment',details.courseID,details.id,1]" id="id" name="id">
                             Take Assessment</button>
 
-                            <button class="btn btn-sm btn-primary newbutton" *ngIf="details.teststatus=='nottaken' && details.trainingType==3"
-                            id="id" name="id"  (click)="getid(details.id)"  data-toggle="modal" data-target="#assessment">upload</button>
+                        <button class="btn btn-sm btn-primary newbutton"
+                            *ngIf="details.teststatus=='nottaken' && details.trainingType==3" id="id" name="id"
+                            (click)="getid(details.id)" data-toggle="modal" data-target="#assessment">upload</button>
 
                         <button class="btn btn-sm btn-danger newbutton"
-                            *ngIf="details.teststatus=='Subjective Result Pending'" id="id" name="id"> Pending Result</button>
+                            *ngIf="details.teststatus=='Subjective Result Pending'" id="id" name="id"> Pending
+                            Result</button>
 
                         <button class="btn btn-sm btn-danger newbutton1" *ngIf="details.teststatus=='Failed'"
-                            [routerLink]="['/Employee/TakeAssessment',details.courseID,details.id,1]" id="id" name="id">&#10006;
+                            [routerLink]="['/Employee/TakeAssessment',details.courseID,details.id,1]" id="id"
+                            name="id">&#10006;
                             Retake Assessment</button>
 
                         <button class="btn btn-sm btn-success newbutton" *ngIf="details.teststatus=='Passed'" id="id"
@@ -151,8 +156,7 @@
 
 
 
-<div class="modal fade" id="topic" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="topic" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -164,7 +168,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-lg-8">
-                        <ngx-dropzone (change)="onSelect($event)" >
+                        <ngx-dropzone (change)="onSelect($event)">
                             <ngx-dropzone-label>
                                 <img class="image" src="assets/Images/youtube.png">&nbsp;&nbsp;
                                 <img class="image" src="assets/Images/word.png">&nbsp;&nbsp;
@@ -208,11 +212,11 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-lg-8">
-                        <ngx-dropzone (change)="onSelect($event)" >
+                        <ngx-dropzone (change)="onSelect($event)">
                             <ngx-dropzone-label>
-                      
+
                                 <img class="image" src="assets/Images/word.png">&nbsp;&nbsp;
-                                <img class="image" src="assets/Images/pdf.png">&nbsp;&nbsp;                       
+                                <img class="image" src="assets/Images/pdf.png">&nbsp;&nbsp;
                             </ngx-dropzone-label>
                             <ngx-dropzone-preview *ngFor="let f of files1" [removable]="true" (removed)="onRemove(f)">
                                 <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>

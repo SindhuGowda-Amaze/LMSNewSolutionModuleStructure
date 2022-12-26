@@ -11,8 +11,11 @@ import Swal from 'sweetalert2';
 })
 export class CatalogComponent implements OnInit {
   clientlist: any;
+  p: any = 1;
+  pcount: any = 6;
   clientlist1: any;
   count: any;
+  Course: any;
   clientstafflist: any;
   clientstafflist1: any;
   count1: any;
@@ -57,17 +60,19 @@ export class CatalogComponent implements OnInit {
   emailID: any;
   loader: any;
   currentUrl: any;
-  maxdate:any;
+  maxdate: any;
+  courseList: any;
+
   constructor(
     private LearningService: LearningService,
     private ActivatedRoute: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.currentUrl = window.location.href;
     // this.maxdate = new Date();
     const myDate = new Date();
-
+    this.Course = "0"
     const locale = 'en-US';
     const format = 'yyyy-MM-dd';
     this.maxdate = formatDate(myDate, format, locale);
@@ -75,45 +80,78 @@ export class CatalogComponent implements OnInit {
     this.GetMyDetails();
     this.manager = sessionStorage.getItem('manager');
     this.userid = sessionStorage.getItem('userid');
-   
+
     this.GetCourse();
     this.show1 = 1;
     this.GetCategoryMaster();
     // this.manager = sessionStorage.getItem('manager');
-    
-   
+
+
     // this.showfullcards=1;
     this.show1 = 1;
     // this.show2 = 1;
     // this.show3 = 1;
     //  this.show = 0;
+    this.GetCourseDropdown();
   }
 
-  public GetMyDetails(){
-
-    this.LearningService.GetMyDetails()
-    .subscribe({
-      next: data => {
+  public GetCourseDropdown() {
+    this.LearningService.GetCourseDropdown().subscribe({
+      next: (data) => {
         debugger;
-        this.stafflist = data.filter((x) => x.id == this.userid);
-        this.managlist = data.filter((x) => x.id == this.manager);
-        this.manageremail = this.managlist[0].emailID;
-        this.Emplist = data.filter((x) => x.id == this.userid);
-        this.emplyphn = this.Emplist[0].phoneNo;
-      },error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in GetMyDetails');
+        this.courseList = data;
+      },
+      error: (err: { error: { message: any } }) => {
+        Swal.fire('Issue in GetCourseDropdown');
         // Insert error in Db Here//
         var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
+          PageName: this.currentUrl,
+          ErrorMessage: err.error.message,
+        };
+        this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+          debugger;
+        });
+      },
+    });
+  }
+
+  getcourseid(even: any) {
+    debugger;
+    this.courseid = even.target.value;
+    if (even.target.value != 0) {
+      this.courselist = this.courseList.filter((x: { id: any }) => x.id == this.courseid);
+
+      this.count = this.courselist.length;
+    } else {
+      this.GetCourseDropdown();
+    }
+  }
+
+  public GetMyDetails() {
+
+    this.LearningService.GetMyDetails()
+      .subscribe({
+        next: data => {
+          debugger;
+          this.stafflist = data.filter((x) => x.id == this.userid);
+          this.managlist = data.filter((x) => x.id == this.manager);
+          this.manageremail = this.managlist[0].emailID;
+          this.Emplist = data.filter((x) => x.id == this.userid);
+          this.emplyphn = this.Emplist[0].phoneNo;
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in GetMyDetails');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.LearningService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
-        this.LearningService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
+      })
   }
 
 
@@ -121,39 +159,37 @@ export class CatalogComponent implements OnInit {
   public getcoureid(id: any) {
     this.courseid = id;
   }
-
-  
-  coursedetails:any
-  TrainerID:any;
+  coursedetails: any
+  TrainerID: any;
   enroll(name: any, mobile: any, emailID: any) {
 
 
     this.LearningService.GetTrainerCourseMapping()
-    .subscribe({
-      next: data => {
-        debugger
-        this.coursedetails = data.filter(x => x.courseID == this.courseid && x.trainingType!=2);
-        if(this.coursedetails.length==0){
-          this.TrainerID=0
+      .subscribe({
+        next: data => {
+          debugger
+          this.coursedetails = data.filter(x => x.courseID == this.courseid && x.trainingType != 2);
+          if (this.coursedetails.length == 0) {
+            this.TrainerID = 0
+          }
+          else {
+            this.TrainerID = this.coursedetails[0].trainerID
+          }
+
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in GetTrainerCourseMapping');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.LearningService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
-        else{
-          this.TrainerID=this.coursedetails[0].trainerID
-        }
-        
-      }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in GetTrainerCourseMapping');
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
-        }
-        this.LearningService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
+      })
 
     Swal.fire({
       title: 'Enroll Confirmation',
@@ -177,31 +213,31 @@ export class CatalogComponent implements OnInit {
           phoneNo: mobile,
           email: emailID,
           type: 'Request to Manager',
-          Mandatory:0,
-          PIP :0,
-          LearningPath : 1,
-          toBeCompletedDate : this.maxdate,
+          Mandatory: 0,
+          PIP: 0,
+          LearningPath: 1,
+          toBeCompletedDate: this.maxdate,
           TrainerID: this.TrainerID
         };
         this.LearningService.InsertEnroll(json)
-        .subscribe({
-          next: (data) => {
-            debugger;
-            let id = data;
-         location.reload()
-          },
-         error: (err: { error: { message: any; }; }) => {
-            Swal.fire('Issue in InsertEnroll');
-            // Insert error in Db Here//
-            var obj = {
-              PageName: this.currentUrl,
-              ErrorMessage: err.error.message,
-            };
-            this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+          .subscribe({
+            next: (data) => {
               debugger;
-            });
-          },
-        });
+              let id = data;
+              location.reload()
+            },
+            error: (err: { error: { message: any; }; }) => {
+              Swal.fire('Issue in InsertEnroll');
+              // Insert error in Db Here//
+              var obj = {
+                PageName: this.currentUrl,
+                ErrorMessage: err.error.message,
+              };
+              this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+                debugger;
+              });
+            },
+          });
 
         Swal.fire(
           'Request Sent',
@@ -248,63 +284,63 @@ export class CatalogComponent implements OnInit {
   public GetCategoryMaster() {
     debugger;
     this.LearningService.GetCategoryMaster()
-    .subscribe({
-      next: (data) => {
-        debugger;
-
-        this.categorylist = data;
-        console.log('categorylist', this.categorylist);
-        // .slice(0, 1);
-        // this.categorylist1 = data.slice(1, 2);
-        // this.categorylist2 = data.slice(2, 3);
-        // this.categorylist3 = data.slice(3, 4);
-        // this.categorylist4 = data.slice(4, 5);
-      },
-     error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in GetCategoryMaster');
-        // Insert error in Db Here//
-        var obj = {
-          PageName: this.currentUrl,
-          ErrorMessage: err.error.message,
-        };
-        this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+      .subscribe({
+        next: (data) => {
           debugger;
-        });
-      },
-    });
+
+          this.categorylist = data;
+          console.log('categorylist', this.categorylist);
+          // .slice(0, 1);
+          // this.categorylist1 = data.slice(1, 2);
+          // this.categorylist2 = data.slice(2, 3);
+          // this.categorylist3 = data.slice(3, 4);
+          // this.categorylist4 = data.slice(4, 5);
+        },
+        error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in GetCategoryMaster');
+          // Insert error in Db Here//
+          var obj = {
+            PageName: this.currentUrl,
+            ErrorMessage: err.error.message,
+          };
+          this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+            debugger;
+          });
+        },
+      });
   }
 
   public GetCourse() {
     debugger;
     this.LearningService.GetCoursesByUserID(this.userid)
-    .subscribe({
-      next: (data) => {
-        debugger;
-        let temp=data
-        this.courselist = data
-        this.count = this.courselist.length;
-        // if(temp[0].trainingType==3){
-        //   this.courselist = data.filter(x=>x.cStartDate>=this.maxdate);
-        //   this.count = this.courselist.length;
-        // }
-        // else{
-        //   this.courselist = data
-        //   this.count = this.courselist.length;
-        //  }
-       
-      },
-     error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in GetCoursesByUserID');
-        // Insert error in Db Here//
-        var obj = {
-          PageName: this.currentUrl,
-          ErrorMessage: err.error.message,
-        };
-        this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+      .subscribe({
+        next: (data) => {
           debugger;
-        });
-      },
-    });
+          let temp = data
+          this.courselist = data
+          this.count = this.courselist.length;
+          // if(temp[0].trainingType==3){
+          //   this.courselist = data.filter(x=>x.cStartDate>=this.maxdate);
+          //   this.count = this.courselist.length;
+          // }
+          // else{
+          //   this.courselist = data
+          //   this.count = this.courselist.length;
+          //  }
+
+        },
+        error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in GetCoursesByUserID');
+          // Insert error in Db Here//
+          var obj = {
+            PageName: this.currentUrl,
+            ErrorMessage: err.error.message,
+          };
+          this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+            debugger;
+          });
+        },
+      });
 
     this.show1 = 1;
   }
@@ -325,32 +361,32 @@ export class CatalogComponent implements OnInit {
   public filtercourse(value: any) {
     debugger;
     this.LearningService.GetCoursesByUserID(this.userid)
-    .subscribe({
-      next: (data) => {
-        debugger;
-        this.courselist = data.filter((x) => x.categoryID == value);
-        console.log(this.courselist);
-        this.count = this.courselist.length;
-        for (let i = 0; i < this.categorylist.length; i++) {
-          if (this.categorylist[i].id == value) {
-            debugger;
-          } else {
-            this.categorylist[i]['checked'] = false;
-          }
-        }
-      },
-     error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in GetCoursesByUserID');
-        // Insert error in Db Here//
-        var obj = {
-          PageName: this.currentUrl,
-          ErrorMessage: err.error.message,
-        };
-        this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+      .subscribe({
+        next: (data) => {
           debugger;
-        });
-      },
-    });
+          this.courselist = data.filter((x) => x.categoryID == value);
+          console.log(this.courselist);
+          this.count = this.courselist.length;
+          for (let i = 0; i < this.categorylist.length; i++) {
+            if (this.categorylist[i].id == value) {
+              debugger;
+            } else {
+              this.categorylist[i]['checked'] = false;
+            }
+          }
+        },
+        error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in GetCoursesByUserID');
+          // Insert error in Db Here//
+          var obj = {
+            PageName: this.currentUrl,
+            ErrorMessage: err.error.message,
+          };
+          this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+            debugger;
+          });
+        },
+      });
     this.show1 = 1;
 
     // if(value==1)

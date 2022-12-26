@@ -219,3 +219,41 @@
           border-radius: 12px;
           width: 100%;
         }
+
+        
+.tab-slider--tabs {
+  display: block;
+  float: left;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: relative;
+  background: #fff;
+  border-radius: 8px;
+  border: 2px solid #3247D5;
+  /*  border-left: 1px !important; */
+}
+
+.tab-slider--trigger {
+  font-size: 12px;
+  line-height: 1;
+  font-weight: bold;
+  color: #3247D5;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 11px 20px;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+  display: inline-block;
+  transition: color 250ms ease-in-out;
+  user-select: none;
+  border-left: 2px solid #3247D5;
+
+}
+
+.tab-slider--trigger.active {
+  color: #fff;
+  background: #3247D5;
+}
+

@@ -19,7 +19,7 @@
             </div>
             <div class="col-lg-2">
                 <select class="form-control"     name="courseID" [(ngModel)]="courseID" (change)="getcourseid($event)">
-                    <option value="0">Training   Name</option>
+                    <option value="0">Training Name</option>
                     <option *ngFor="let details of Courselist" value="{{details.id}}">{{details.name}}</option>
                 </select>
             </div>
@@ -34,50 +34,126 @@
       <br>
 
       <div class="row">
-        <div class="col-lg-10"></div>
+        <div class="col-lg-10">
+            <div class="tab-slider--nav">
+                <ul class="tab-slider--tabs">
+                    <li class="tab-slider--trigger" [class.active]="viewMode == 'tab1'" rel="tab1"
+                        (click)="viewMode ='tab1'">
+                        Online</li>
+                    <li class="tab-slider--trigger" [class.active]="viewMode == 'tab2'" rel="tab2"
+                        (click)="viewMode ='tab2'">Class Room</li>
+
+                    <li class="tab-slider--trigger" [class.active]="viewMode == 'tab3'" rel="tab3"
+                        (click)="viewMode ='tab3'">External</li>
+                </ul>
+            </div>
+
+        </div>
         <div class="col-lg-2">
             <button class="Button" (click)="exportexcel()">Export To Excel</button>
         </div>
     </div>
    <br>
 
-      <div class="row">
-          <div class="col-lg-10"></div>
-      </div>
-     <br>
-    <div class="container-fluid">
+    
+
         <div class="row">
-            <div class="col-lg-12">
-                <table id="download" class="table" *ngIf="(employeereportlist | filter: search).length > 0; else noResults">
-                    <thead>
-                        <tr>
-                            <th>Assessment Date</th>
-                            <th>Training Name</th>
-                            <th>Topic name</th>
-                            <th>Total Marks</th>
-                            <th>Obtained Marks</th>
-                            <th>Percentage</th>
-                            <th>Status</th>
-                        </tr>
-                        <tr *ngFor="let details of employeereportlist|filter :search">
-                            <td>{{details.assessmentDate|date}}</td>
-                            <td>{{details.courseName}}</td>
-                            <td style="color:#0C275A">{{details.chapterName}}</td>
-                            <td> {{details.totalmarks}}</td>
-                            <td> {{details.obtainedMarks}}</td>
-                            <td> {{details.obtainedMarks/details.totalmarks
-                                *100 | number : '1.2-2'}} % </td>
-                            <td>{{details.testResult}}</td>
-                            
-                        </tr>
-                    </thead>
-                </table>
-                <ng-template #noResults>
-                    <p class="NoResultShow"> Results not found </p>
-                </ng-template>
-            </div>
+            <div class="tab-slider--container" [ngSwitch]="viewMode">
+                <div *ngSwitchCase="'tab1'" id="tab1">
+                    <div class="col-lg-12">
+                        <table id="download" class="table" *ngIf="(employeereportlist | filter: search).length > 0; else noResults">
+                            <thead>
+                                <tr>
+                                    <th>Assessment Date</th>
+                                    <th>Training Name</th>
+                                    <th>Topic name</th>
+                                    <th>Total Marks</th>
+                                    <th>Obtained Marks</th>
+                                    <th>Percentage</th>
+                                    <th>Status</th>
+                                </tr>
+                                <tr *ngFor="let details of employeereportlist|filter :search">
+                                    <td>{{details.assessmentDate|date}}</td>
+                                    <td>{{details.courseName}}</td>
+                                    <td style="color:#0C275A">{{details.chapterName}}</td>
+                                    <td> {{details.totalmarks}}</td>
+                                    <td> {{details.obtainedMarks}}</td>
+                                    <td> {{details.obtainedMarks/details.totalmarks
+                                        *100 | number : '1.2-2'}} % </td>
+                                    <td>{{details.testResult}}</td>
+                                    
+                                </tr>
+                            </thead>
+                        </table>
+                        <ng-template #noResults>
+                            <p class="NoResultShow"> Results not found </p>
+                        </ng-template>
+                    </div>
+                </div>
+                <div *ngSwitchCase="'tab2'" id="tab2">
+                    <div class="col-lg-12">
+                        <table id="download" class="table" *ngIf="(employeereportlist | filter: search).length > 0; else noResults">
+                            <thead>
+                                <tr>
+                                    <th>Assessment Date</th>
+                                    <th>Training Name</th>
+                                    <th>Topic name</th>
+                                    <th>Total Marks</th>
+                                    <th>Obtained Marks</th>
+                                    <th>Percentage</th>
+                                    <th>Status</th>
+                                </tr>
+                                <tr *ngFor="let details of employeereportlist|filter :search">
+                                    <td>{{details.assessmentDate|date}}</td>
+                                    <td>{{details.courseName}}</td>
+                                    <td style="color:#0C275A">{{details.chapterName}}</td>
+                                    <td> {{details.totalmarks}}</td>
+                                    <td> {{details.obtainedMarks}}</td>
+                                    <td> {{details.obtainedMarks/details.totalmarks
+                                        *100 | number : '1.2-2'}} % </td>
+                                    <td>{{details.testResult}}</td>
+                                    
+                                </tr>
+                            </thead>
+                        </table>
+                        <ng-template #noResults>
+                            <p class="NoResultShow"> Results not found </p>
+                        </ng-template>
+                    </div>
+                </div>
+                <div *ngSwitchCase="'tab3'" id="tab3">
+                    <div class="col-lg-12">
+                        <table id="download" class="table" *ngIf="(employeereportlist | filter: search).length > 0; else noResults">
+                            <thead>
+                                <tr>
+                                    <th>Assessment Date</th>
+                                    <th>Training Name</th>
+                                    <th>Topic name</th>
+                                    <th>Total Marks</th>
+                                    <th>Obtained Marks</th>
+                                    <th>Percentage</th>
+                                    <th>Status</th>
+                                </tr>
+                                <tr *ngFor="let details of employeereportlist|filter :search">
+                                    <td>{{details.assessmentDate|date}}</td>
+                                    <td>{{details.courseName}}</td>
+                                    <td style="color:#0C275A">{{details.chapterName}}</td>
+                                    <td> {{details.totalmarks}}</td>
+                                    <td> {{details.obtainedMarks}}</td>
+                                    <td> {{details.obtainedMarks/details.totalmarks
+                                        *100 | number : '1.2-2'}} % </td>
+                                    <td>{{details.testResult}}</td>
+                                    
+                                </tr>
+                            </thead>
+                        </table>
+                        <ng-template #noResults>
+                            <p class="NoResultShow"> Results not found </p>
+                        </ng-template>
+                    </div>
+                </div>
         </div>
-    </div>
+   
 
 
 

@@ -15,11 +15,18 @@
             <div class="col-lg-1">
                 <p class="filter">Filter By</p>
             </div>
+            <div class="col-lg-3">
+                <select class="form-control"  name="Course" [(ngModel)]="Course" (change)="getcourseid($event)">
+                    <option value="0" >Select Training</option>
+                    <option style="color:#0C275A" *ngFor="let details of courseList" value="{{details.id}}" >{{details.name}}</option>
+                </select>
+            </div>
             <div class="col-lg-4">
                 <!-- <input class="form-control" type="search" placeholder="Search for Trainers" [(ngModel)]="search"> -->
                 <input class="form-control" type="search" placeholder="What do you want to learn?" [(ngModel)]="search">
             </div>
-            <div class="col-lg-7">
+
+            <div class="col-lg-4">
                 <!-- <h3 class="Heading" style="padding-left:30px;">Viewing 
                     <span style="color: black; font-weight: 600;">{{count}} </span>Results</h3> -->
                 <!-- <p class="Count">Count: {{count}} </p> -->
@@ -38,6 +45,8 @@
                     </div>
                 </div>
                 <div class="vertical-menu VScroll">
+                    <button class="ShowMore" (click)="uncheck()">Clear
+                        Filter </button> <br>
                     <a class="FilterBox " style="   background-color: #02cfff !important; color: white;"
                         *ngFor="let details of categorylist"> 
                         
@@ -45,19 +54,16 @@
                             [(ngModel)]="details.checked" name="details.checked"
                             (change)="filtercourse(details.id)"> 
                             
-                            {{details.name}}</a> <br>
-
-                    <button class="ShowMore" (click)="uncheck()">Clear
-                        Filter </button>
+                            {{details.name}}</a>
                 </div>
             </div>
         </div><br>
         <div class="col-lg-9">
-            <div class="row" *ngIf="(courselist | filter: search)?.length > 0; else noResults">
+            <div class="row" *ngIf="(courselist | filter: search| paginate: { itemsPerPage: pcount, currentPage: p})?.length > 0; else noResults">
                 <div class="row" *ngIf="show1==1">
                     <div class="col-lg-12" style="margin-left: 52px;">
                         <div class="row">
-                            <div class="col-lg-4" *ngFor="let details of courselist| filter : search">
+                            <div class="col-lg-4" *ngFor="let details of courselist| filter : search| paginate: { itemsPerPage: pcount, currentPage: p}">
                                 <div class="card1" style="background-color: white; height: 325px;width: 250px;">
                                     <img class="card-img-top" src="{{details.photo}}" alt="Card image cap">
                                     <div class="card-body">
@@ -81,7 +87,10 @@
                         </div><br><br><br>
                     </div><br><br><br>
                 </div>
-
+                <div class="text-left">
+                    <br>
+                    <pagination-controls (pageChange)="p = $event" class="poppinns"></pagination-controls>
+                </div>
                 <div class="row" *ngIf="show2==1">
                     <div class="col-lg-12" style="margin-left: 52px;">
                         <div class="row">

@@ -33,7 +33,7 @@ export class EmployeeAssessmentReportComponent implements OnInit {
   trainerlist: any;
   currentUrl: any;
   value : any
-
+  viewMode = 'tab1';
 
   ngOnInit(): void {
     this.currentUrl = window.location.href;
@@ -230,6 +230,28 @@ export class EmployeeAssessmentReportComponent implements OnInit {
     this.LearningService.GetChapter().subscribe((data) => {
       debugger;
       this.TopicList = data;
+    });
+  }
+  AssessmentDocList:any;
+  public GetClassRoomAssessmentDocument() {
+    debugger;
+    this.LearningService.GetClassRoomAssessmentDocument()
+    .subscribe({
+      next: (data) => {
+        debugger;
+        this.AssessmentDocList = data;
+      },
+     error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in GetClassRoomAssessmentDocument');
+        // Insert error in Db Here//
+        var obj = {
+          PageName: this.currentUrl,
+          ErrorMessage: err.error.message,
+        };
+        this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+          debugger;
+        });
+      },
     });
   }
 }

@@ -879,5 +879,22 @@ public host = "https://103.12.1.103/DigiOfficeCoreHRAPI"
  
     return this.http.get<any[]>(this.baseURL + "/Master/GetExceptEnrolledCourseByStaffID?EmployeeID=" + EmployeeID);
   }
+
+  public DeleteChapterAttachment(ID: any) {
+    return this.http.get<any[]>(
+      this.baseURL + "/Master/DeleteChapterAttachment?ID=" + ID);
+  }
+
+  public GetClassRoomAssessmentDocument() {
+    debugger;
+    return this.http.get<any[]>(
+      this.baseURL + '/Master/GetClassRoomAssessmentDocument');
+  }
+  
+  public InsertClassRoomAssessmentDocument(data: any) {
+    debugger;
+    this.url = this.baseURL + '/Master/InsertClassRoomAssessmentDocument';
+    return this.http.post(this.url, data);
+  }
  
  }

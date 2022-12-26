@@ -228,7 +228,7 @@ export class MyCourseDashboardComponent implements OnInit {
       next: (data) => {
         debugger;
         this.coursedetails = data.filter(
-          (x) => x.completed == 0 && x.enrollid != 0 && x.staffid == this.userid 
+          (x) => x.completed == 0 && x.enrollid != 0 && x.staffid == this.userid && x.ehidden==0
           // && x.notStarted==1 && x.type=='Manager Assign'||
           && (x.status=='Manager Approved'||x.status=="Manager Assign")
         );

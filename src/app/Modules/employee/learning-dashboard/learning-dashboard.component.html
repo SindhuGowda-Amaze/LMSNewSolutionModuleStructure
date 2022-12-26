@@ -56,7 +56,11 @@
                             
                             <td [ngClass]="{'bgred':(details.cEndDate<=todaydate)||(details.toBeCompletedDate<=todaydate)}"  *ngIf="roleid==3" style="font-size: 15px;">{{details.staffID}}</td>
                             <td [ngClass]="{'bgred':(details.cEndDate<=todaydate)||(details.toBeCompletedDate<=todaydate)}" *ngIf="roleid==3" style="font-size: 15px;">{{details.employeeName}}</td>
-                            <td [ngClass]="{'bgred':(details.cEndDate<=todaydate)||(details.toBeCompletedDate<=todaydate)}"  style="font-size: 15px;">{{details.trainer}}</td>
+                            <td [ngClass]="{'bgred':(details.cEndDate<=todaydate)||(details.toBeCompletedDate<=todaydate)}"  style="font-size: 15px;">
+                               <p *ngIf="details.trainer==null">NA</p>
+                               <p *ngIf="details.trainer!=null"> {{details.trainer}}</p>
+                               
+                            </td>
                             <td [ngClass]="{'bgred':(details.cEndDate<=todaydate)||(details.toBeCompletedDate<=todaydate)}" style="font-size: 15px;">{{details.courseName}}</td>
                         
                             <td [ngClass]="{'bgred':(details.cEndDate<=todaydate)||(details.toBeCompletedDate<=todaydate)}" style="font-size: 15px;">

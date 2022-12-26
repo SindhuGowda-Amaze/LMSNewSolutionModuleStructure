@@ -261,8 +261,8 @@ export class ChapterComponent implements OnInit {
       this.ChapterPhoto == undefined ||
       this.chapterText == undefined ||
       this.generalInstructions == undefined ||
-      this.assessmentName == undefined ||
-      this.assessmentName == '' ||
+      // this.assessmentName == undefined ||
+      // this.assessmentName == '' ||
       this.generalInstructions == ''
     ) {
       Swal.fire('Please fill all the fields');
@@ -336,6 +336,10 @@ export class ChapterComponent implements OnInit {
     this.files.push(...event.addedFiles);
     if (this.files.length == 0) {
       Swal.fire('Invalid Attachment Type');
+    }
+    else if (event.addedFiles.length > 1 || this.files.length > 1) {
+      Swal.fire('Multiple File Select Not Allowed');
+      this.files = ""
     }
 
     else if ((event.addedFiles[0].size) > 10485760) {
@@ -429,7 +433,46 @@ export class ChapterComponent implements OnInit {
   Edit(attchments: any) {
     this.photourl = attchments.originalurl;
     this.photoid = attchments.id;
+
   }
+
+  delete(id:any) {
+    debugger
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      debugger
+      if (result.value == true) {
+        this.LearningService.DeleteChapterAttachment(id)
+          .subscribe({
+            next: data => {
+              debugger
+              Swal.fire('Deleted Successfully')
+              location.reload();
+            }, error: (err) => {
+              Swal.fire('Issue in Deleting Attachment');
+              // Insert error in Db Here//
+              var obj = {
+                'PageName': this.currentUrl,
+                'ErrorMessage': err.error.message
+              }
+              this.LearningService.InsertExceptionLogs(obj).subscribe(
+                data => {
+                  debugger
+                },
+              )
+            }
+          })
+      }
+    })
+  }
+
+
 
   Add() {
     debugger
@@ -442,6 +485,28 @@ export class ChapterComponent implements OnInit {
         next: (data) => {
           debugger;
           Swal.fire('Added Successfully...!');
+          this.LearningService.GetChapterAttachmentByChapterID(this.id).subscribe(
+            {
+              next: (data) => {
+                debugger;
+                this.Attachmentlist = data;
+                this.files1 = [];
+              },
+              error: (err: { error: { message: any } }) => {
+                Swal.fire('Issue in GetChapterAttachmentByChapterID');
+                // Insert error in Db Here//
+                var obj = {
+                  PageName: this.currentUrl,
+                  ErrorMessage: err.error.message,
+                };
+                this.LearningService.InsertExceptionLogs(obj).subscribe(
+                  (data) => {
+                    debugger;
+                  }
+                );
+              },
+            }
+          );
           this.Attachment.length = 0;
           this.files1.length = 0;
           this.files1 = [];
