@@ -102,7 +102,7 @@ export class CertificateDashboardComponent implements OnInit {
       },
     });
   }
-  
+
 
   fileName = 'Certificate Reports.xlsx';
   exportexcel(): void {
@@ -119,6 +119,7 @@ export class CertificateDashboardComponent implements OnInit {
     /* save to file */
     XLSX.writeFile(wb, this.fileName);
   }
+  
 
   public GetDepartmentMaster() {
     debugger;

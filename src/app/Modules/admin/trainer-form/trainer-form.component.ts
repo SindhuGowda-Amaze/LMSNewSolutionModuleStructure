@@ -52,6 +52,8 @@ this.TrainerName="0"
 
 
   GetTrainer() {
+
+
     this.LearningService.GetTrainer()
       .subscribe({
         next: data => {
@@ -94,7 +96,7 @@ this.TrainerName="0"
   onItemSelect(item: any) {
     debugger
     console.log(item);
-    this.TrainerName = item.name;
+    // this.TrainerName = item.name;
     this.StaffID=item.id
   }
 

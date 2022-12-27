@@ -47,6 +47,7 @@ export class ChatComponent implements OnInit {
   }
 
   public GetTrainerCourseMappingByEnroll() {
+    
     this.DigiofficeService.GetTrainer()
       .subscribe({
         next: data => {

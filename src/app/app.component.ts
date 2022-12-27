@@ -26,10 +26,22 @@ export class AppComponent {
     this.staffID = sessionStorage.getItem('userid');
     this.roleid = sessionStorage.getItem('roleid');
 
-  //   window.addEventListener('beforeunload', function (e) {
-  //     e.preventDefault();
-  //     e.returnValue = '';
-  // });
+    window.addEventListener('beforeunload', function (e) {
+      debugger;
+      e.preventDefault();
+      e.returnValue = '';
+      localStorage.setItem('Loggedouttime','10:00')
+      
+      
+  });
+  if(localStorage.getItem('Loggedouttime')!=null){
+    this.insertattdancelogout();
+  }
+
+  
+
+  
+
   }
   async logout() {
     debugger

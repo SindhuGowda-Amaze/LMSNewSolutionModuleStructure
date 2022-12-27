@@ -63,6 +63,7 @@ export class MyCourseDashboardComponent implements OnInit {
     this.GetAllCounts();
     this.Showcards(2);
     this.GetMyDetails();
+
     // this.loader=true
     // debugger
     // this.LearningService.GetTrainerCourseMapping().subscribe(data => {
@@ -322,6 +323,34 @@ export class MyCourseDashboardComponent implements OnInit {
       next: (data) => {
         debugger;
         this.coursedetails = data.filter((x) => x.staffID == this.userid);
+      },
+      error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in GetCourse');
+        // Insert error in Db Here//
+        var obj = {
+          PageName: this.currentUrl,
+          ErrorMessage: err.error.message,
+        };
+        this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+          debugger;
+        });
+      },
+    });
+  }
+
+
+  courseid2:any;
+  CertificatList:any;
+  getcourseid2(id: any) {
+    this.courseid2 = id;
+    this. GetCertification();
+  }
+
+  GetCertification() {
+    this.LearningService.GetCertification().subscribe({
+      next: (data) => {
+        debugger;
+        this.CertificatList = data.filter(x=>x.employeeID==this.userid)
       },
       error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetCourse');
@@ -602,7 +631,7 @@ export class MyCourseDashboardComponent implements OnInit {
         'EmployeeID':  this.userid,
         'MarksObtained': this.Percentage,
         'TotalMarks': this.totalmarks,
-        'Certificate': this.attachmentsurl[0],
+        'CertificateAttachment': this.attachmentsurl[0],
        
       }
       this.LearningService.InsertCertification(eb)

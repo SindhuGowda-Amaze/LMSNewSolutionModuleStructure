@@ -3,6 +3,9 @@ import { LearningService } from 'src/app/Pages/Services/learning.service';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 import { DomSanitizer } from '@angular/platform-browser';
+import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-start-my-course-new',
@@ -37,7 +40,8 @@ export class StartMyCourseNewComponent implements OnInit {
   file: any;
   Attachment: any = [];
   files: File[] = [];
-  userid:any;
+  userid: any;
+  UserName: any;
   constructor(
     private LearningService: LearningService,
     private ActivatedRoute: ActivatedRoute,
@@ -48,7 +52,7 @@ export class StartMyCourseNewComponent implements OnInit {
     this.currentUrl = window.location.href;
     this.loader = false;
     this.userid = sessionStorage.getItem('userid');
-
+    this.UserName = sessionStorage.getItem('UserName');
 
     this.ActivatedRoute.params.subscribe((params) => {
       debugger;
@@ -58,7 +62,7 @@ export class StartMyCourseNewComponent implements OnInit {
     });
     this.show = 1;
   }
-
+  teststatus: any
   public GetChapter() {
     this.loader = true;
     debugger;
@@ -76,6 +80,8 @@ export class StartMyCourseNewComponent implements OnInit {
         this.chaptername = this.coursedetails[0].name;
         this.chapterdescription = this.coursedetails[0].chapterText;
         this.chapterphoto = this.coursedetails[0].chapterPhoto;
+        this.teststatus = this.coursedetails[0].teststatus;
+
         this.ShowAttachments(this.coursedetails[0].id);
         this.show = 1;
         debugger;
@@ -296,6 +302,8 @@ export class StartMyCourseNewComponent implements OnInit {
   }
 
   certificate() {
+
+
     location.href = '#/CourseCertificate/' + this.courseid;
   }
 
@@ -425,4 +433,45 @@ export class StartMyCourseNewComponent implements OnInit {
       }
     })
   }
+
+
+  download() {
+    this.convetToPDF1();
+  }
+  public convetToPDF1() {
+    debugger;
+
+    var data: any = document.getElementById('downloadaplication');
+    html2canvas(data)
+      .then((canvas) => {
+        var margin = 5;
+        var imgWidth = 208;
+        // var pageHeight = 295 - 10 * margin;
+        var pageHeight = 295;
+        var imgHeight = (canvas.height * imgWidth) / canvas.width;
+        var heightLeft = imgHeight;
+        var doc = new jsPDF('p', 'mm');
+        var position = 0;
+        while (heightLeft > 0) {
+          const contentDataURL = canvas.toDataURL('image/png');
+          position = heightLeft - imgHeight;
+
+          doc.addPage();
+          doc.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
+          heightLeft -= pageHeight;
+        }
+        doc.deletePage(1);
+        doc.save('ER-2 Report.pdf');
+
+        var pdf1 = doc.output('blob');
+        var file = new File([pdf1], 'Application.pdf');
+        let body = new FormData();
+        debugger;
+        body.append('Dan', file);
+        console.log('pdf', pdf1);
+      })
+      .then(() => { });
+  }
 }
+
+
