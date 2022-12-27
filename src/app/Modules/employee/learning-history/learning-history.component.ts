@@ -32,9 +32,11 @@ export class LearningHistoryComponent implements OnInit {
   TotalMarks: any;
   currentUrl: any;
   todaydate: any;
+  year:any;
   constructor(public LearningService: LearningService) { }
 
   ngOnInit(): void {
+    this.year=""
     this.currentUrl = window.location.href;
     const format = 'yyyy-MM-dd';
     const myDate = new Date();
@@ -209,7 +211,109 @@ export class LearningHistoryComponent implements OnInit {
   }
 
 
+public filterByYear(){
+  this.LearningService.GetTestResponsenew().subscribe({
+    next: (data) => {
+      debugger;
+      if (this.roleid == 4) {
+        let temp: any = data.filter((x) => x.trainerID == this.trainer && x.year==this.year);
+        var helper: any = {}
+        this.detailslist = temp.reduce(function (r: any[], o: { coursename: any; totalmarks: any; obtainedMarks: any; status: any; startDate: any; endDate: any; }) {
+          var key = o.coursename;
+          if (!helper[key]) {
 
+            helper[key] = Object.assign({}, o); // create a copy of o
+
+            r.push(helper[key]);
+
+          } else {
+
+            helper[key].totalmarks += o.totalmarks;
+
+            helper[key].obtainedMarks += o.obtainedMarks;
+            helper[key].e_Date = o.coursename;
+            helper[key].e_Date = o.status;
+            helper[key].e_Date = o.startDate;
+            helper[key].e_Date = o.endDate;
+          }
+          return r;
+
+        }, []);
+        // this.detailslist = this.reduceData(temp);
+
+      }
+
+      else if (this.roleid == 2) {
+        let temp: any  = data.filter(x => x.userID == this.staffid && x.year==this.year);
+        var helper: any = {}
+        this.detailslist = temp.reduce(function (r: any[], o: { coursename: any; totalmarks: any; obtainedMarks: any; status: any; startDate: any; endDate: any; }) {
+          var key = o.coursename;
+          if (!helper[key]) {
+
+            helper[key] = Object.assign({}, o); // create a copy of o
+
+            r.push(helper[key]);
+
+          } else {
+
+            helper[key].totalmarks += o.totalmarks;
+
+            helper[key].obtainedMarks += o.obtainedMarks;
+            helper[key].e_Date = o.coursename;
+            helper[key].e_Date = o.status;
+            helper[key].e_Date = o.startDate;
+            helper[key].e_Date = o.endDate;
+          }
+          return r;
+
+        }, []);
+        // this.detailslist = this.reduceData(temp);
+
+      }
+
+      else {
+        let temp: any = data.filter(x=> x.year==this.year);
+        var helper: any = {}
+        this.detailslist = temp.reduce(function (r: any[], o: { coursename: any; totalmarks: any; obtainedMarks: any; status: any; startDate: any; endDate: any; }) {
+          var key = o.coursename;
+          if (!helper[key]) {
+
+            helper[key] = Object.assign({}, o); // create a copy of o
+
+            r.push(helper[key]);
+
+          } else {
+
+            helper[key].totalmarks += o.totalmarks;
+
+            helper[key].obtainedMarks += o.obtainedMarks;
+            helper[key].e_Date = o.coursename;
+            helper[key].e_Date = o.status;
+            helper[key].e_Date = o.startDate;
+            helper[key].e_Date = o.endDate;
+          }
+          return r;
+
+        }, []);
+        // this.detailslist = this.reduceData(temp);
+
+      }
+
+      // .filter(x => x.checked == 1);
+    },
+    error: (err: { error: { message: any } }) => {
+      Swal.fire('Issue in GetTestResponsenew');
+      // Insert error in Db Here//
+      var obj = {
+        PageName: this.currentUrl,
+        ErrorMessage: err.error.message,
+      };
+      this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+        debugger;
+      });
+    },
+  });
+}
 
 
 

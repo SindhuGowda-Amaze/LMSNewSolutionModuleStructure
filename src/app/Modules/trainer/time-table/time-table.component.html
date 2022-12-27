@@ -144,7 +144,7 @@
                                     <th>Venue</th>
                                     <th roledid="2">Trainer Name</th>
 
-                                    <!-- <th>Actions</th> -->
+                                    <th>Actions</th>
                                 </tr>
                                 <tr class="header"
                                             *ngFor="let item of result | filter: search|paginate: { itemsPerPage: count1, currentPage: p}">
@@ -162,7 +162,11 @@
                                             <td>12:30PM</td>
                                             <td>{{item.venue}}</td>
                                             <td>{{item.trainer}}</td>
+                                            <td>
+                                                <button class="addnew" [routerLink]="['/Trainer/AssessmentForm',item.id]" style="width: 100%;">Schedule Class</button> <br>
+                                            </td>
                                         </tr>
+                                      
                                             <!-- <td>
                                                 <button class="addbutton" [routerLink]="['/Trainer/AssessmentForm',item.id]" style="width: 100%;">Edit</button> <br>
                                                 <br>

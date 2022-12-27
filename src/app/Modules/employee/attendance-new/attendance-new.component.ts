@@ -19,22 +19,38 @@ export class AttendanceNewComponent implements OnInit {
   roleid: any;
   userid: any;
   userName: any;
-  Attendance: any;
-  currentUrl:any;
-  employeeID:any;
-  trainer:any;
+  Attendance: any=[];
+  currentUrl: any;
+  employeeID: any;
+  trainer: any;
   courseID: any;
-  TopicID:any;
-  Today:any;
-  noofhrs:any;
-  EmployeeList:any;
-  todaydate:any;
+  TopicID: any;
+  Today: any;
+  noofhrs: any;
+  EmployeeList: any;
+  todaydate: any;
+  courseid: any;
+  dummyuniqlist: any;
+  employeereportlist: any;
+  endDate: any;
+  uniquelist: any;
+  Date: any;
+  dummemployeereportlist: any;
+  employeeFilterReportList: any;
+  Course: any;
+  courseList: any;
+  EmplID: any;
+  AttendanceAddNoOfHrs: any;
+  StaffNoofHrs: any;
+  StaffNoofHrs1: any;
+  TopicList: any
+
   constructor(private ActivatedRoute: ActivatedRoute, private LearningService: LearningService) { }
 
   ngOnInit(): void {
-    this.Course="0"
-    this.courseID="0"
-    this.TopicID="0"
+    this.Course = "0"
+    this.courseID = "0"
+    this.TopicID = "0"
     this.currentUrl = window.location.href;
     this.roleid = sessionStorage.getItem('roleid');
     this.userid = sessionStorage.getItem('userid');
@@ -46,64 +62,75 @@ export class AttendanceNewComponent implements OnInit {
     const locale = 'en-US';
     this.todaydate = formatDate(myDate, format, locale);
 
-this.GetCourseDropdown();
-this.getTopic();
+    this.GetCourseDropdown();
+    this.getTopic();
     this.GetAttendance_New();
     this.GetStaffList();
     // this.areYouReallySure = false;
     // this.allowPrompt = true;
 
   }
-  
-
 
 
   public GetAttendance_New() {
     debugger
+    this.StaffNoofHrs=0
     this.LearningService.GetAttendance_New()
-    .subscribe({
-      next: data => {
-        debugger
-        if(this.roleid==4){
-          this.Attendance = data.filter(x => x.trainerID == this.userid && x.filterdate==this.Today);
-          // this.Attendance = data
-        }
-        else if(this.roleid==3){
-          this.Attendance = data.filter(x => x.supervisor == this.userid  && x.filterdate==this.Today);
-        }
-        else{
-          this.Attendance = data.filter(x=>x.empID==this.userid  && x.filterdate==this.Today)
-        }
-      },error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in GetAttendance_New');
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
-        }
-        this.LearningService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
-    
+      .subscribe({
+        next: data => {
+          debugger
+          if (this.roleid == 4) {
+            this.Attendance = data.filter(x => x.trainerID == this.userid && x.filterdate == this.Today);
 
+
+            for (let i = 0; i < this.Attendance.length; i++) {
+              this.StaffNoofHrs = this.Attendance[i].noofhrsinmins
+            }
+            // this.Attendance = data
+          }
+          else if (this.roleid == 3) {
+            this.Attendance = data.filter(x => x.supervisor == this.userid && x.filterdate == this.Today);
+            for (let i = 0; i < this.Attendance.length; i++) {
+              this.StaffNoofHrs = this.Attendance[i].noofhrsinmins
+            }
+          }
+          else {
+            this.StaffNoofHrs=0
+            this.Attendance = data.filter(x => x.empID == this.userid && x.filterdate == this.Today)
+           
+            for (let i = 0; i < this.Attendance.length; i++) {
+              this.StaffNoofHrs = this.Attendance[i].noofhrsinmins
+            }
+          }
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in GetAttendance_New');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.LearningService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
   }
 
 
-  endDate: any;
-  uniquelist: any;
-  Date: any;
   filterbydate() {
+    debugger
+    this.StaffNoofHrs=0
     this.LearningService.GetAttendance_New().subscribe({
       next: (data) => {
         this.Attendance = data.filter(
           // (x) => x.loginDate >= this.Date && x.loginDate <= this.endDate
-          (x) =>x.filterdate>=this.Date && x.filterdate<=this.endDate
+          (x) => x.filterdate >= this.Date && x.filterdate <= this.endDate
         );
-
+        for (let i = 0; i < this.Attendance.length; i++) {
+          this.StaffNoofHrs += this.Attendance[i].noofhrsinmins
+        }
         // const key = 'coursename';
         // this.uniquelist = [
         //   ...new Map(
@@ -116,9 +143,7 @@ this.getTopic();
       },
     });
   }
-  courseid: any;
-  dummyuniqlist: any;
-  employeereportlist:any;
+
   getcourseid(even: any) {
     debugger;
     this.courseid = even.target.value;
@@ -132,9 +157,7 @@ this.getTopic();
       this.GetTrainerReport();
     }
   }
-  dummemployeereportlist:any;
-  employeeFilterReportList:any;
-  Course:any;
+
   public GetTrainerReport() {
     debugger;
     this.LearningService.GetTestResponse().subscribe({
@@ -169,7 +192,7 @@ this.getTopic();
       },
     });
   }
-courseList  :any;
+
   public GetCourseDropdown() {
     this.LearningService.GetCourseDropdown().subscribe({
       next: (data) => {
@@ -196,9 +219,6 @@ courseList  :any;
     this.courseID = even.target.value;
   }
 
-
-
-  TopicList:any
   public getTopic() {
     debugger;
     this.LearningService.GetChapter().subscribe((data) => {
@@ -225,71 +245,65 @@ courseList  :any;
   }
 
 
-  EmplID:any;
-  AttendanceAddNoOfHrs:any;
-  StaffNoofHrs:any;
-  StaffNoofHrs1:any;
+
   getEmpID(even: any) {
     debugger;
     this.EmplID = even.target.value;
     this.LearningService.GetAttendance_New()
-    .subscribe({
-      next: data => {
-        debugger
-        if(this.roleid==4){
-          //this.Attendance = data.filter(x => x.trainerID == this.userid && x.filterdate==this.Today && x.empID==this.EmplID );
-           this.Attendance = data
-           for (let i=0;i<this.Attendance.length;i++){
-           this.StaffNoofHrs=this.Attendance[i].noofhrsinmins
-           }
-        }
-        else if(this.roleid==3){
-          this.Attendance = data.filter(x => x.supervisor == this.userid  && x.filterdate==this.Today && x.empID==this.EmplID);
-          this.AttendanceAddNoOfHrs = data.filter(x => x.supervisor == this.userid  && x.filterdate==this.todaydate && x.empID==this.EmplID);
-          console.log("this.AttendanceAddNoOfHrs",this.AttendanceAddNoOfHrs)
-        
-          for (let i=0;i<this.AttendanceAddNoOfHrs.length;i++){
-            debugger
-            this.StaffNoofHrs=this.AttendanceAddNoOfHrs[i].noofhrsinmins
-            // this.StaffNoofHrs1+= this.StaffNoofHrs
-            // this.StaffNoofHrs1+=this.AttendanceAddNoOfHrs[i].noofhrs
-            // this.StaffNoofHrs1 = this.StaffNoofHrs
-          }
-          
-          console.log("this.StaffNoofHrs",this.StaffNoofHrs)
-
-        }
-        else{
-          this.Attendance = data.filter(x=>x.empID==this.userid  && x.filterdate==this.Today && x.empID==this.EmplID)
-          for (let i=0;i<this.Attendance.length;i++){
-            this.StaffNoofHrs=this.Attendance[i].noofhrsinmins
+      .subscribe({
+        next: data => {
+          debugger
+          if (this.roleid == 4) {
+            //this.Attendance = data.filter(x => x.trainerID == this.userid && x.filterdate==this.Today && x.empID==this.EmplID );
+            this.Attendance = data
+            for (let i = 0; i < this.Attendance.length; i++) {
+              this.StaffNoofHrs = this.Attendance[i].noofhrsinmins
             }
-        }
+          }
+          else if (this.roleid == 3) {
+            this.Attendance = data.filter(x => x.supervisor == this.userid && x.filterdate == this.Today && x.empID == this.EmplID);
+            this.AttendanceAddNoOfHrs = data.filter(x => x.supervisor == this.userid && x.filterdate == this.todaydate && x.empID == this.EmplID);
+            console.log("this.AttendanceAddNoOfHrs", this.AttendanceAddNoOfHrs)
 
-//         var today = new Date();
-// today.setHours(today.getHours() + 4);
+            for (let i = 0; i < this.Attendance.length; i++) {
+              debugger
+              this.StaffNoofHrs += this.Attendance[i].noofhrsinmins
+            }
 
-      },error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in GetAttendance_New');
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
+            console.log("this.StaffNoofHrs", this.StaffNoofHrs)
+
+          }
+          else {
+            this.Attendance = data.filter(x => x.empID == this.userid && x.filterdate == this.Today && x.empID == this.EmplID)
+            for (let i = 0; i < this.Attendance.length; i++) {
+              this.StaffNoofHrs = this.Attendance[i].noofhrsinmins
+            }
+          }
+
+          //         var today = new Date();
+          // today.setHours(today.getHours() + 4);
+
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in GetAttendance_New');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.LearningService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
-        this.LearningService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
+      })
   }
 
   public GetStaffList() {
     this.LearningService.GetAllStaffNew().subscribe({
       next: (data) => {
         debugger;
-        this.EmployeeList = data.filter(x=>x.type!=2 && x.department==4);
+        this.EmployeeList = data.filter(x => x.type != 2 && x.department == 4);
       },
       error: (err: { error: { message: any } }) => {
         Swal.fire('Issue in GetCourseDropdown');

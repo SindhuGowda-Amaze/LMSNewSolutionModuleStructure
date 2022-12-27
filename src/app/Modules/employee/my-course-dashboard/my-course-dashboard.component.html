@@ -2,7 +2,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-3">
-            <div class="card1" style="background-color: black; height:290px;width: 290px; border-radius: 10px;">
+            <div class="card1" style="background-color: black; height:290px;width: 325; border-radius: 10px;">
                 <div class="front">
                     <br>
                     <div class="row title_outer1">
@@ -327,8 +327,10 @@
                                     Training</button> -->
 
                                 <button class="edit"
-                                    *ngIf="details.enrollid!=0&&details.notStarted==0 && !details.completed && details.trainingType==2"(click)="gotolink()">Start
+                                    *ngIf="details.enrollid!=0&&details.notStarted==0 && !details.completed && details.trainingType==2"(click)="gotolink()" target="blank">Start
                                     Training</button>
+                                    <button class="editupload"
+                                    *ngIf="details.enrollid!=0&&details.notStarted==0 && !details.completed && details.trainingType==2" (click)="getdetailsforupload(details)" data-toggle="modal" data-target="#uploadcerti">Upload Certificate</button>
                                     <!-- && details.trainingType==2" -->
                                     <button class="edit"
                                     *ngIf="details.enrollid!=0&&details.notStarted==0 && !details.completed && details.trainingType!=2&& details.status!='Manager Assign'"[routerLink]="['/Employee/StartMyCourseNew',details.id]">Start
@@ -352,10 +354,14 @@
                                     <!-- *ngIf="details.enrollid=='0'&&details.completed==0" -->
                                    
 
-                                <button class="edit" *ngIf="details.completed==1"
+                                <!-- <button class="edit" *ngIf="details.completed==1"
                                     (click)="getenrollid(details.enrollid)"
                                     [routerLink]="['/CourseCertificateNew',details.id]">Completed
-                                </button>
+                                </button> -->
+                                <button class="edit" *ngIf="details.completed==1"
+                                (click)="getenrollid(details.enrollid)"
+                                [routerLink]="['/Employee/StartMyCourseNew',details.id]">Completed
+                            </button>
                                 <!-- <button class="Button1" *ngIf="show==4" (click)="getcourseid(details.id)">
                                     Completed</button> -->
                             </div>
@@ -370,6 +376,7 @@
         <p class="NoResultShow"> No results found </p>
     </ng-template>
 </div>
+
 <div id="enroll" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -435,3 +442,133 @@
         </div>
     </div>
 </div>
+
+
+
+<div id="uploadcerti" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Upload Certificate</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" *ngFor="let item of stafflist">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="Text" style="font-weight: bold;">Name:</label>
+                    </div>
+                    <div class="col-lg-5">
+                        <input class="form-control" name="name" id="name" [(ngModel)]="name" placeholder="{{item.name}}"
+                            disabled>
+                    </div>
+                </div> <br>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="Text" style="font-weight: bold;">Phone No:</label>
+                    </div>
+                    <div class="col-lg-5">
+                        <input class="form-control" name="mobile" id="mobile" [(ngModel)]="mobile"
+                            placeholder="{{item.mobile}}" disabled>
+                    </div>
+                </div> <br>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="Text" style="font-weight: bold;">Email:</label>
+                    </div>
+                    <div class="col-lg-5">
+                        <input class="form-control" name="emailID" id="emailID" [(ngModel)]="emailID"
+                            placeholder="{{item.emailID}}" disabled>
+                    </div>
+                </div> <br>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="Text" style="font-weight: bold;">Manager:</label>
+                    </div>
+                    <div class="col-lg-5">
+                        <input class="form-control" name="emailID" id="emailID" [(ngModel)]="emailID"
+                            placeholder="{{manageremail}}" disabled>
+                    </div>
+                </div> <br>
+                <div class="row">
+                    <div class="col-lg-4"></div>
+                    <div class="col-lg-7" *ngIf="manageremail==null">
+                        <p  style="color:red;"><b>Manager not Assigned for Enrollment</b></p>
+                    </div>
+                    <!-- <div class="col-lg-2"  *ngIf="manageremail!=null">
+                        <button class="form-control Save"
+                            (click)="enroll(item.name,item.mobile,item.emailID)" data-dismiss="modal">Upload</button>
+
+                    </div> -->
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="Text" style="font-weight: bold;">Course:</label>
+                    </div>
+                    <div class="col-lg-5">
+                        <input class="form-control" name="name" id="name" [(ngModel)]="name" placeholder="{{ExternalCourse}}"
+                            disabled>
+                    </div>
+                </div> <br>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="Text" style="font-weight: bold;">Total Marks</label>
+                    </div>
+                    <div class="col-lg-5">
+                        <input type="number" class="form-control" name="totalmarks" id="totalmarks" [(ngModel)]="totalmarks"
+                            placeholder="" >
+                    </div>
+                 
+                </div> <br>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="Text" style="font-weight: bold;">Obtained Marks:</label>
+                    </div>
+                    <div class="col-lg-5">
+                        <input class="form-control" name="Percentage" id="Percentage" [(ngModel)]="Percentage"
+                            placeholder="%" >
+                    </div>
+                </div> <br>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="Text" style="font-weight: bold;">Upload</label>
+                    </div>
+                    <div class="col-lg-5">
+                        <ngx-dropzone accept="image/jpeg,image/jpg,image/png,application/pdf" (change)="onSelect21($event)"
+                        class="dropFile">
+                        <!-- <img src="assets/Images/MicrosoftTeams-image.png" *ngIf="attachments21.length==0"
+                            class="img-set dropdowning"> -->
+                        <ngx-dropzone-label>Drop files here</ngx-dropzone-label>
+                        <ngx-dropzone-preview *ngFor="let f of attachments21" [removable]="true"
+                            (removed)="onRemove21(f)">
+                            <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                        </ngx-dropzone-preview>
+                    </ngx-dropzone>
+                    </div>
+                </div> <br>
+                <div class="row">
+                    <div class="col-lg-4"></div>
+                    <div class="col-lg-7" *ngIf="manageremail==null">
+                        <p  style="color:red;"><b>Manager not Assigned for Enrollment</b></p>
+                    </div>
+                    <div class="col-lg-2"  *ngIf="manageremail!=null">
+                        <button class="form-control Save"
+                            (click)="UploadCertificate()" data-dismiss="modal">Upload</button>
+
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <!-- <hr>
+                <div class="col-lg-2">
+                    <button data-dismiss="modal" class="form-control CloseBTN">Close</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+

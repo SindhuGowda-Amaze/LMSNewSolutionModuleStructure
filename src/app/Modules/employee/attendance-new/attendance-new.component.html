@@ -30,7 +30,7 @@
                 </select>
             </div> -->
             <div class="col-lg-2" *ngIf="roleid==3">
-                <select class="form-control"     name="courseID" [(ngModel)]="TopicID" (change)="getEmpID($event)">
+                <select class="form-control"  id="EmplID"   name="EmplID" [(ngModel)]="EmplID" (change)="getEmpID($event)">
                     <option value="0">Employee Name</option>
                     <option *ngFor="let details of EmployeeList" value="{{details.id}}">{{details.name}}</option>
                 </select>
@@ -57,7 +57,8 @@
 <div class="row" *ngIf="EmployeeList">
     <div class="col-lg-9"></div>
     <div class="col-lg-3">
-<p>No. of total hours {{StaffNoofHrs|date:"HH:mm"}}</p>
+<p>Total Time Spent: {{StaffNoofHrs}}min</p>
+<!-- |date:"HH:mm" -->
     </div>
 </div>
 <!-- <br> -->

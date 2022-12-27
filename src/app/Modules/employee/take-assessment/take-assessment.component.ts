@@ -277,106 +277,122 @@ this.testResponseID1=temp[0].id;
   // public submitAnswer(){}
 
   public submitAnswer() {
-    debugger;
-    let notansred:any=0;
-    for (var i = 0; i < this.questionList.length; i++) {
-      if (this.questionList[i].userAnswer == '') {
-        notansred=notansred+1
-      }
-      
-    }
+    Swal.fire({
+      title: 'Are you sure Want to Submit?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Submit it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
 
-    if(notansred>0){
-      Swal.fire('You have not Answered '+ notansred +' Questions')
-    }
-    else{
-      this.correctansers=0;
-      this.wrongansers=0;
-      for (var i = 0; i < this.questionList.length; i++) {
-        if(this.questionList[i].questionID==1){
-          if (this.questionList[i].correctAnswer == this.questionList[i].userAnswer.split("$@")[1]) {
-            this.marks = this.marks +  this.questionList[i].weightage;
-           this.correctansers= this.correctansers +1;
+        debugger;
+        let notansred:any=0;
+        for (var i = 0; i < this.questionList.length; i++) {
+          if (this.questionList[i].userAnswer == '') {
+            notansred=notansred+1
           }
-          else{
-            this.wrongansers= this.wrongansers + 1;
-          }
-          if (this.marks >= this.totalmarks/2) {
-            this.testResult = 'Pass'
-          } else {
-            this.testResult = 'Fail';
-          }
+          
         }
-        else if(this.questionList[i].questionID==2){
-          if (this.marks >= this.totalmarks/2) {
-            this.testResult = 'Pass'
-          } else {
-            this.testResult = 'Subjective Result Pending';
-          }
+    
+        if(notansred>0){
+          Swal.fire('You have not Answered '+ notansred +' Questions')
         }
-      }
-     
-      var Entityy = {
-        'TestResult': this.testResult,
-        'UserID': this.userid,
-        'ObtainedMarks': this.marks,
-        'CourseID':this.courseid,
-        'ChapterID':this.chapterid,
-        'Totalmarks':this.totalmarks,
-        'CorrectAnswers':this.correctansers,
-        'wronganswers':this.wrongansers,
-      }
-      this.AmazeService.InsertTestResponse(Entityy)
-      .subscribe({
-        next: data => {
-          debugger
-          this.testResponseID = data;
-          if(this.testResponseID==10){
-            Swal.fire('You Already took this Test');
-            this.ngOnInit();
+        else{
+          this.correctansers=0;
+          this.wrongansers=0;
+          for (var i = 0; i < this.questionList.length; i++) {
+            if(this.questionList[i].questionID==1){
+              if (this.questionList[i].correctAnswer == this.questionList[i].userAnswer.split("$@")[1]) {
+                this.marks = this.marks +  this.questionList[i].weightage;
+               this.correctansers= this.correctansers +1;
+              }
+              else{
+                this.wrongansers= this.wrongansers + 1;
+              }
+              if (this.marks >= this.totalmarks/2) {
+                this.testResult = 'Pass'
+              } else {
+                this.testResult = 'Fail';
+              }
+            }
+            else if(this.questionList[i].questionID==2){
+              if (this.marks >= this.totalmarks/2) {
+                this.testResult = 'Pass'
+              } else {
+                this.testResult = 'Subjective Result Pending';
+              }
+            }
           }
-  
-            // if(this.testtype==1){
-           
-
-            // }
-            else{
-              for (var i = 0; i < this.questionList.length; i++) {
-                var ett = {
-                  'QuestionID': this.questionList[i].id,
-                  'CorrectAnswer': this.questionList[i].correctAnswer,
-                  'UserAnswer': this.questionList[i].userAnswer.split("$@")[1],
-                  'TestResponseID': this.testResponseID,
-                  'ObtainedMarks':  this.questionList[i].correctAnswer==this.questionList[i].userAnswer.split("$@")[1]?this.questionList[i].weightage:0
-                }
-                this.AmazeService.InsertTestResponseDetails(ett).subscribe(data => {
-                });
-              }            
-              this.show = 0;
-              this.startTest = "";
-            //  this.router.navigate(['/AssessmentResult', this.testResponseID]);
-            // this.router.navigate(['#/MyCourseDashboard']);
-            Swal.fire('You have submited test successfully...');
-             location.href="#/Employee/StartMyCourseNew";
-            }        
+          var Entityy = {
+            'TestResult': this.testResult,
+            'UserID': this.userid,
+            'ObtainedMarks': this.marks,
+            'CourseID':this.courseid,
+            'ChapterID':this.chapterid,
+            'Totalmarks':this.totalmarks,
+            'CorrectAnswers':this.correctansers,
+            'wronganswers':this.wrongansers,
           }
-        ,error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Issue in Getting Expenses List Web');
-          // Insert error in Db Here//
-          var obj = {
-            'PageName': this.currentUrl,
-            'ErrorMessage': err.error.message
-          }
-          this.AmazeService.InsertExceptionLogs(obj).subscribe(
-            data => {
+          this.AmazeService.InsertTestResponse(Entityy)
+          .subscribe({
+            next: data => {
               debugger
-            },
-          )
+              this.testResponseID = data;
+              if(this.testResponseID==10){
+                Swal.fire('You Already took this Test');
+                location.href="#/Employee/StartMyCourseNew";
+              }
+      
+                // if(this.testtype==1){
+               
+    
+                // }
+                else{
+                  for (var i = 0; i < this.questionList.length; i++) {
+                    var ett = {
+                      'QuestionID': this.questionList[i].id,
+                      'CorrectAnswer': this.questionList[i].correctAnswer,
+                      'UserAnswer': this.questionList[i].userAnswer.split("$@")[1],
+                      'TestResponseID': this.testResponseID,
+                      'ObtainedMarks':  this.questionList[i].correctAnswer==this.questionList[i].userAnswer.split("$@")[1]?this.questionList[i].weightage:0
+                    }
+                    this.AmazeService.InsertTestResponseDetails(ett).subscribe(data => {
+                    });
+                  }            
+                  this.show = 0;
+                  this.startTest = "";
+                //  this.router.navigate(['/AssessmentResult', this.testResponseID]);
+                // this.router.navigate(['#/MyCourseDashboard']);
+                Swal.fire('You have submited test successfully...');
+                 location.href="#/Employee/StartMyCourseNew";
+                }        
+              }
+            ,error: (err: { error: { message: any; }; }) => {
+              Swal.fire('Issue in Getting Expenses List Web');
+              // Insert error in Db Here//
+              var obj = {
+                'PageName': this.currentUrl,
+                'ErrorMessage': err.error.message
+              }
+              this.AmazeService.InsertExceptionLogs(obj).subscribe(
+                data => {
+                  debugger
+                },
+              )
+            }
+          })
         }
-      })
-    }
+        Swal.fire(
+          'Submitted!',
+          'Saved Sucessfully.',
+          'success'
+        )
+        location.href="#/Employee/StartMyCourseNew";
+      }
+    })
     // location.href="/#/AssessmentResult/";
-
   }
 
 

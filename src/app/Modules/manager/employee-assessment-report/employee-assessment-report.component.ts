@@ -69,10 +69,9 @@ export class EmployeeAssessmentReportComponent implements OnInit {
 
           } else {
 
-            // helper[key].totalmarks += o.totalmarks;
-            // helper[key].obtainedMarks += o.obtainedMarks;
-            helper[key].totalmarks += o.totalmarks;
-            helper[key].obtainedMarks += o.obtainedMarks;
+           
+            helper[key].totalmarks == o.totalmarks;
+            helper[key].obtainedMarks == o.obtainedMarks;
            
             helper[key].coursename = o.coursename;
             helper[key].chapterName = o.chapterName;
@@ -84,25 +83,7 @@ export class EmployeeAssessmentReportComponent implements OnInit {
         }, []);
         // this.detailslist = this.reduceData(temp);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        const key = 'chapterName';
+        const key = 'coursename';
         this.uniquelist = [...new Map(this.employeereportlist.map((item: { [x: string]: any; }) =>
 
           [(item[key]), item])).values()]

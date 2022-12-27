@@ -897,4 +897,16 @@ public host = "https://103.12.1.103/DigiOfficeCoreHRAPI"
     return this.http.post(this.url, data);
   }
  
+  // public sendemailattachements(data: any) {
+  //   //debugger
+  //   this.url = this.baseURL + '/Master/sendemailsmtp';
+  //   return this.http.post(this.url, data)
+
+  // }
+
+  public sendemailattachements(data: any) {
+    debugger
+    this.url = this.host + '/Master/sendemailattachements';
+    return this.http.post(this.url, data)
+  }
  }
