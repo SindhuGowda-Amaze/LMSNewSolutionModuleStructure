@@ -35,6 +35,7 @@ export class CertificateDashboardComponent implements OnInit {
   coursename: any;
   employeeFilterReportList: any;
   currentUrl: any;
+  uniquelist1:any;
 
   ngOnInit(): void {
     this.currentUrl = window.location.href;
@@ -43,6 +44,7 @@ export class CertificateDashboardComponent implements OnInit {
     this.GetDepartmentMaster();
     this.GetCourseDropdown();
     this.Course = 0;
+    this.GetCertification();
   }
 
   public GetCourseDropdown() {
@@ -119,7 +121,7 @@ export class CertificateDashboardComponent implements OnInit {
     /* save to file */
     XLSX.writeFile(wb, this.fileName);
   }
-  
+
 
   public GetDepartmentMaster() {
     debugger;
@@ -243,4 +245,27 @@ export class CertificateDashboardComponent implements OnInit {
       })
       .then(() => {});
   }
+
+  CertificatList:any;
+
+  GetCertification() {
+    this.LearningService.GetCertification().subscribe({
+      next: (data) => {
+        debugger;
+        this.CertificatList = data.filter(x=>x.employeeID==this.userid)
+      },
+      error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in GetCourse');
+        // Insert error in Db Here//
+        var obj = {
+          PageName: this.currentUrl,
+          ErrorMessage: err.error.message,
+        };
+        this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+          debugger;
+        });
+      },
+    });
+  }
+
 }

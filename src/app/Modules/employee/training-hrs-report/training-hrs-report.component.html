@@ -63,7 +63,7 @@
                                     <th>Log In Time</th>
                                     <th>Log Out Time</th>
                                     <th>Training Name</th>
-                                    <th>Topic Name</th>
+                                    <!-- <th>Topic Name</th> -->
                                     <th>No of Hrs</th>
                                 </tr>
                             </thead>
@@ -73,19 +73,19 @@
                                     <td>{{details.loginTime}}</td>
                                     <td>
                                         <!-- <p *ngIf="details.logoutDate==null">13:30</p> -->
-                                        <p *ngIf="details.logoutDate!=null"> {{details.logoutDate}}</p>
+                                        <p *ngIf="details.logoutTime!=null"> {{details.logoutTime}}</p>
                                        
                                     </td>
                                     <td>
                                         <!-- <p *ngIf="details.trainingname==null">IOT</p> -->
-                                        <p *ngIf="details.trainingname!=null"> {{details.trainingname}}</p>
+                                        <p *ngIf="details.courseName!=null"> {{details.courseName}}</p>
                                        
                                     </td>
-                                    <td>
+                                    <!-- <td> -->
                                         <!-- <p *ngIf="details.topicName==null">Introduction to IOT</p> -->
-                                        <p *ngIf="details.topicName!=null"> {{details.topicName}}</p>
-                                       </td>
-                                    <td>
+                                        <!-- <p *ngIf="details.topicName!=null"> {{details.topicName}}</p>
+                                       </td> -->
+                                    <td> 
                                         <!-- <p *ngIf="details.noofhrs==null">3</p> -->
                                         <p *ngIf="details.noofhrs!=null"> {{details.noofhrs|date:"HH:mm"}}</p>
                                        

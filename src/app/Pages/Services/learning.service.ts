@@ -488,7 +488,7 @@ public host = "https://103.12.1.103/DigiOfficeCoreHRAPI"
      let APIURL = this.baseURL + "/Master/GetChapterListByEmployeeID?EmployeeID=" + EmployeeID;
      return this.http.get<any[]>(APIURL);
    }
- 
+  
  
    public InsertChapter(json: any) {
      debugger
@@ -501,8 +501,24 @@ public host = "https://103.12.1.103/DigiOfficeCoreHRAPI"
      let APIURL = this.baseURL + "/Master/InsertCertification";
      return this.http.post<any[]>(APIURL, json);
    }
+
+   public InsertTrainingHours(json: any) {
+    debugger
+    let APIURL = this.baseURL + "/Master/InsertTrainingHours"; 
+    return this.http.post<any[]>(APIURL, json);
+  }
  
- 
+  public GetTrainingHours() {
+    debugger
+    let APIURL = this.baseURL + "/Master/GetTrainingHours";
+    return this.http.get<any[]>(APIURL);
+  }
+   
+  public UpdateTrainingHoursEndTime(json: any) {
+    debugger
+    let APIURL = this.baseURL + "/Master/UpdateTrainingHoursEndTime";
+    return this.http.post<any[]>(APIURL, json);
+  }
  
    public UpdateChapter(json: any) {
      debugger

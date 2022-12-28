@@ -642,7 +642,7 @@ export class MyCourseDashboardComponent implements OnInit {
             this.router.navigate(['/Employee/MyCourseDashboard']);
             this.loader = false;
           }, error: (err) => {
-            Swal.fire('Issue in Inserting Announcements');
+            Swal.fire('Issue in Inserting Certificate');
             // Insert error in Db Here//
             var obj = {
               'PageName': this.currentUrl,
@@ -657,5 +657,6 @@ export class MyCourseDashboardComponent implements OnInit {
         })
     }
   }
+
 }
 

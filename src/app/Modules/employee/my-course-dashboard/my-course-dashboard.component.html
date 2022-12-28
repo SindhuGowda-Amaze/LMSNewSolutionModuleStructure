@@ -331,8 +331,8 @@
 
                                 <button class="edit"
                                     *ngIf="details.enrollid!=0&&details.notStarted==0 && !details.completed && details.trainingType==2"
-                                    (click)="gotolink()" target="blank">Start
-                                    Training</button>
+                                    (click)="gotolink()" target="blank">Start Training</button>
+
                                 <button class="editupload"
                                     *ngIf="details.enrollid!=0&&details.notStarted==0 && !details.completed && details.trainingType==2"
                                     (click)="getdetailsforupload(details)" data-toggle="modal"
@@ -340,8 +340,7 @@
                                 <!-- && details.trainingType==2" -->
                                 <button class="edit"
                                     *ngIf="details.enrollid!=0&&details.notStarted==0 && !details.completed && details.trainingType!=2&& details.status!='Manager Assign'"
-                                    [routerLink]="['/Employee/StartMyCourseNew',details.id]">Start
-                                    Training</button>
+                                    [routerLink]="['/Employee/StartMyCourseNew',details.id]">Start Training</button>
                                 <!-- && details.trainingType==2" -->
 
 

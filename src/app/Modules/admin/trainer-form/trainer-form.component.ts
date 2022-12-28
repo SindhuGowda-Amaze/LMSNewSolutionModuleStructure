@@ -25,11 +25,11 @@ export class TrainerFormComponent implements OnInit {
   files: File[] = [];
   currentUrl: any;
   dropdownSettings: any = {};
-  TrainerID:any;
+  TrainerID: any;
   ngOnInit(): void {
 
     this.currentUrl = window.location.href;
-this.TrainerName="0"
+    this.TrainerName = "0"
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'id',
@@ -50,7 +50,7 @@ this.TrainerName="0"
   }
 
 
-
+  TrainerName2:any;
   GetTrainer() {
 
 
@@ -60,7 +60,7 @@ this.TrainerName="0"
           debugger
           this.result = data;
           this.result = this.result.filter((x: { id: any; }) => x.id == Number(this.id));
-          this.TrainerName = this.result[0].name;
+           this.TrainerName = this.result[0].staffID;
           this.PhoneNumber = this.result[0].phoneNo;
           this.EmailID = this.result[0].email;
           this.Address = this.result[0].address;
@@ -68,6 +68,7 @@ this.TrainerName="0"
           this.Company_logo = this.result[0].resume;
           this.SkillsAndTechnology = this.result[0].skillAndTecchnology;
           this.TrainerFeePerCourse = this.result[0].trainerFee;
+          this.TrainerName2= this.result[0].name;
         }, error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in GetTrainer');
           // Insert error in Db Here//
@@ -85,7 +86,8 @@ this.TrainerName="0"
   }
 
   Trainerlist: any;
-  StaffID:any;
+  StaffID: any;
+
   public GetNewstaff() {
     this.LearningService.GetAllStaffNew().subscribe(data => {
       debugger
@@ -93,23 +95,39 @@ this.TrainerName="0"
       console.log("manager", this.Trainerlist)
     });
   }
-  onItemSelect(item: any) {
+
+  public onItemSelect(item: any) {
     debugger
     console.log(item);
     // this.TrainerName = item.name;
-    this.StaffID=item.id
+    // this.StaffID = item.id
   }
+
+  getTrainerID(even: any) {
+    debugger
+    this.TrainerID = even.target.value;
+    this.LearningService.GetAllStaffNew().subscribe(data => {
+      debugger
+      let list = data.filter(x=>x.id==this.TrainerID)
+      this.StaffID=list[0].id
+      this.TrainerName1=list[0].name
+      console.log("manager", this.Trainerlist)
+    });
+  }
+  TrainerName1:any;
 
   Submit() {
     debugger
+
     if (this.TrainerName == undefined || this.PhoneNumber == undefined || this.EmailID == undefined || this.Address == undefined ||
       this.YearOfExperience == undefined || this.Company_logo == undefined || this.SkillsAndTechnology == undefined ||
       this.TrainerFeePerCourse == undefined) {
       Swal.fire("Please fill all the fields");
     }
     else {
+ 
       var json = {
-        "Name": this.TrainerName,
+        "Name": this.TrainerName1,
         "PhoneNo": this.PhoneNumber,
         "Email": this.EmailID,
         "Address": this.Address,
@@ -117,7 +135,7 @@ this.TrainerName="0"
         "Resume": this.Company_logo,
         "SkillAndTecchnology": this.SkillsAndTechnology,
         "TrainerFee": this.TrainerFeePerCourse,
-        "StaffID":this.StaffID
+        "StaffID": this.StaffID
       };
       this.LearningService.InsertTrainer(json)
 
@@ -149,14 +167,15 @@ this.TrainerName="0"
     debugger
     var json = {
       "ID": this.id,
-      "Name": this.TrainerName,
+      "Name": this.TrainerName1==null?this.TrainerName2:this.TrainerName1,
       "PhoneNo": this.PhoneNumber,
       "Email": this.EmailID,
       "Address": this.Address,
       "YearOfExperience": this.YearOfExperience,
       "Resume": this.Company_logo,
       "SkillAndTecchnology": this.SkillsAndTechnology,
-      "TrainerFee": this.TrainerFeePerCourse
+      "TrainerFee": this.TrainerFeePerCourse,
+      "StaffID": this.StaffID==null?this.TrainerName:this.StaffID
     };
 
     this.LearningService.UpdateTrainer(json)

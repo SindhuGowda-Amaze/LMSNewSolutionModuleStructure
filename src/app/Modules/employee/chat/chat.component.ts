@@ -30,14 +30,16 @@ export class ChatComponent implements OnInit {
   public activeElement: any;
   EnrollTrainerCourseMappingList:any;
   public attachments: any = [];
+  roleid:any;
 
   ngOnInit(): void {
     debugger
     this.currentUrl = window.location.href;
+    this.roleid = sessionStorage.getItem('roleid')
     this.loader = true;
     this.City = "";
     this.Department = "";
-    this.empid = localStorage.getItem('staffid');
+    this.empid = sessionStorage.getItem('userid');
     // this.GetAllStaffNew();
     this.GetTrainerCourseMappingByEnroll();
     this.GetDepartment();
@@ -47,27 +49,32 @@ export class ChatComponent implements OnInit {
   }
 
   public GetTrainerCourseMappingByEnroll() {
-    
-    this.DigiofficeService.GetTrainer()
-      .subscribe({
-        next: data => {
+if(this.roleid==2){
+  this.DigiofficeService.GetTrainer()
+  .subscribe({
+    next: data => {
+      debugger
+      this.EnrollTrainerCourseMappingList = data;
+      this.loader=false;
+    }, error: (err) => {
+      Swal.fire('Issue in Getting Subsidiary Master');
+      // Insert error in Db Here//
+      var obj = {
+        'PageName': this.currentUrl,
+        'ErrorMessage': err.error.message
+      }
+      this.DigiofficeService.InsertExceptionLogs(obj).subscribe(
+        data => {
           debugger
-          this.EnrollTrainerCourseMappingList = data;
-          this.loader=false;
-        }, error: (err) => {
-          Swal.fire('Issue in Getting Subsidiary Master');
-          // Insert error in Db Here//
-          var obj = {
-            'PageName': this.currentUrl,
-            'ErrorMessage': err.error.message
-          }
-          this.DigiofficeService.InsertExceptionLogs(obj).subscribe(
-            data => {
-              debugger
-            },
-          )
-        }
-      })
+        },
+      )
+    }
+  })
+}
+else if(this.roleid=4){
+
+}
+   
     }
 
   public GetAllStaffNewActiveParam() {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy} from '@angular/core';
 import { LearningService } from 'src/app/Pages/Services/learning.service';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -8,13 +8,13 @@ import Swal from 'sweetalert2';
   templateUrl: './start-my-course.component.html',
   styleUrls: ['./start-my-course.component.css'],
 })
-export class StartMyCourseComponent implements OnInit {
+export class StartMyCourseComponent implements OnInit, OnDestroy {
   courseid: any;
   coursedetails: any;
   coursename: any;
   chaptername: any;
   chapterdescription: any;
-  chapterphoto: any;
+  chapterphoto: any;  
   noattachments: any;
   coursedescription: any;
   dummAttachmentlist: any;
@@ -34,6 +34,7 @@ export class StartMyCourseComponent implements OnInit {
   ID: any;
   chapterdetails: any;
   currentUrl: any;
+  TraininghourseID:any;
   constructor(
     private LearningService: LearningService,
     private ActivatedRoute: ActivatedRoute
@@ -41,12 +42,45 @@ export class StartMyCourseComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUrl = window.location.href;
+    this.TraininghourseID = localStorage.getItem('TraininghourseID');
     this.ActivatedRoute.params.subscribe((params) => {
       debugger;
       this.courseid = params['id'];
       this.GetChapter();
     });
     this.show = 1;
+  }
+
+  ngOnDestroy(): void {
+    debugger
+    console.log("Destroying loop"); // ngOnDestroy is not triggering
+    alert("leaving page..")
+    Swal.fire("leaving..")
+    this.traininglogout();
+  }
+
+  public traininglogout(){
+    debugger
+      this.LearningService.UpdateTrainingHoursEndTime(this.TraininghourseID).subscribe({
+        next: (data) => {
+          debugger;
+          if(data.length!=0){
+            Swal.fire("done")
+          }
+        },
+        error: (err: { error: { message: any } }) => {
+          Swal.fire('Issue in GetEnroll');
+          // Insert error in Db Here//
+          var obj = {
+            PageName: this.currentUrl,
+            ErrorMessage: err.error.message,
+          };
+          this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+            debugger;
+          });
+        },
+      });
+    
   }
 
   clickEvent() {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LearningService } from 'src/app/Pages/Services/learning.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { DomSanitizer } from '@angular/platform-browser';
 import { jsPDF } from 'jspdf';
@@ -45,10 +45,12 @@ export class StartMyCourseNewComponent implements OnInit {
   constructor(
     private LearningService: LearningService,
     private ActivatedRoute: ActivatedRoute,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    public router: Router,
   ) { }
 
   ngOnInit(): void {
+    debugger
     this.currentUrl = window.location.href;
     this.loader = false;
     this.userid = sessionStorage.getItem('userid');
@@ -57,11 +59,63 @@ export class StartMyCourseNewComponent implements OnInit {
     this.ActivatedRoute.params.subscribe((params) => {
       debugger;
       this.courseid = params['id'];
+      this.InsertTimeSpent();
       this.GetChapter();
 
     });
     this.show = 1;
+   
   }
+ 
+
+  TraininghourseID:any;
+ 
+  Coureseidfortime:any;
+  public InsertTimeSpent(){
+    debugger
+
+    var eb = {
+      'CourseID': this.courseid,
+      'StaffID':  this.userid,
+      // 'LogoutDate': new Date(),
+      // 'EndTime': this.totalmarks,
+     
+    }
+    this.LearningService.InsertTrainingHours(eb)
+      .subscribe({
+        next: data => {
+          debugger
+          this.TraininghourseID=data;
+          localStorage.setItem('TraininghourseID',this.TraininghourseID)
+          this.loader = false;
+        }, error: (err) => {
+          Swal.fire('Issue in Inserting Announcements');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.LearningService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
   teststatus: any
   public GetChapter() {
     this.loader = true;
@@ -385,6 +439,7 @@ export class StartMyCourseNewComponent implements OnInit {
 
   questionList: any;
   public save() {
+    debugger
     Swal.fire({
       title: 'Are you sure Want to Submit?',
       icon: 'warning',
@@ -395,12 +450,12 @@ export class StartMyCourseNewComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         var Entityy = {
-          'Attachment': this.Attachment,
-          'UserID': this.userid,
+          'Attachment': this.Attachment[0],
+          'StaffID': this.userid,
           'CourseID': this.courseid,
           'ChapterID': this.ChapterID
         }
-        this.LearningService.InsertTestResponse(Entityy)
+        this.LearningService.InsertClassRoomAssessmentDocument(Entityy)
           .subscribe({
             next: data => {
               // debugger

@@ -32,7 +32,8 @@ export class EmployeeAssessmentReportComponent implements OnInit {
   TrainerID: any;
   trainerlist: any;
   currentUrl: any;
-  value : any
+  value : any;
+  employeereportlist2:any;
   viewMode = 'tab1';
 
   ngOnInit(): void {
@@ -46,6 +47,7 @@ export class EmployeeAssessmentReportComponent implements OnInit {
     this.GetDepartmentMaster();
     this.getcourse();
     this.getTopic();
+    this.getWrittenAssessment();
   }
   uniquelist:any;
   public GetTrainerReport() {
@@ -70,8 +72,8 @@ export class EmployeeAssessmentReportComponent implements OnInit {
           } else {
 
            
-            helper[key].totalmarks == o.totalmarks;
-            helper[key].obtainedMarks == o.obtainedMarks;
+            // helper[key].totalmarks == r.totalmarks;
+            // helper[key].obtainedMarks == r.obtainedMarks;
            
             helper[key].coursename = o.coursename;
             helper[key].chapterName = o.chapterName;
@@ -83,8 +85,8 @@ export class EmployeeAssessmentReportComponent implements OnInit {
         }, []);
         // this.detailslist = this.reduceData(temp);
 
-        const key = 'coursename';
-        this.uniquelist = [...new Map(this.employeereportlist.map((item: { [x: string]: any; }) =>
+        const key = 'chapterName';
+        this.uniquelist = [...new Map(temp.map((item: { [x: string]: any; }) =>
 
           [(item[key]), item])).values()]
 
@@ -105,6 +107,28 @@ export class EmployeeAssessmentReportComponent implements OnInit {
       },
     });
   }
+
+public getWrittenAssessment(){
+  debugger;
+    this.LearningService.GetClassRoomAssessmentDocument()
+    .subscribe({
+      next: (data) => {
+        debugger;
+        this.employeereportlist2 = data;
+      },
+     error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in GetDepartmentMaster');
+        // Insert error in Db Here//
+        var obj = {
+          PageName: this.currentUrl,
+          ErrorMessage: err.error.message,
+        };
+        this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+          debugger;
+        });
+      },
+    });
+}
 
   fileName = 'Employee Assessment Reports.xlsx';
   exportexcel(): void {

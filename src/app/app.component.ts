@@ -28,19 +28,14 @@ export class AppComponent {
 
     window.addEventListener('beforeunload', function (e) {
       debugger;
-      e.preventDefault();
-      e.returnValue = '';
+      // e.preventDefault();
+      // e.returnValue = '';
       localStorage.setItem('Loggedouttime','10:00')
-      
-      
   });
   if(localStorage.getItem('Loggedouttime')!=null){
     this.insertattdancelogout();
   }
 
-  
-
-  
 
   }
   async logout() {

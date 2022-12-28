@@ -21,16 +21,20 @@ export class ViewGroupComponent implements OnInit {
   loader: any;
   currentUrl: any;
   Subsidiary: any;
-  EnrollTrainerCourseMappingList:any;
+  EnrollTrainerCourseMappingList: any;
+  roleid: any;
+  trainerid:any;
 
   ngOnInit(): void {
     this.currentUrl = window.location.href;
+    this.roleid = sessionStorage.getItem('roleid')
+    this.trainerid = sessionStorage.getItem('trainerid')
     this.Department = 0;
     this.Subsidiary = 0
     this.CityID = 0;
     this.loader = true;
-  //  this.GetAllStaffNew();
-  this.GetTrainerCourseMappingByEnroll();
+    //  this.GetAllStaffNew();
+    this.GetTrainerCourseMappingByEnroll();
     this.GetSubsidaryMaster();
     this.GetDepartmentMaster();
     this.GetCityType();
@@ -60,42 +64,71 @@ export class ViewGroupComponent implements OnInit {
       })
   }
 
-  uniquelist:any;
+  uniquelist: any;
   public GetTrainerCourseMappingByEnroll() {
-    this.DigiofficeService.GetTrainerCourseMapping()
-      .subscribe({
-        next: data => {
-          debugger
-          this.EnrollTrainerCourseMappingList = data.filter(x=> x.staffID==sessionStorage.getItem('userid'));
+    if (this.roleid == 2) {
+      this.DigiofficeService.GetTrainerCourseMapping()
+        .subscribe({
+          next: data => {
+            debugger
+            this.EnrollTrainerCourseMappingList = data.filter(x => x.staffID == sessionStorage.getItem('userid'));
 
-          this.uniquelist =  data.filter(x=> x.staffID==sessionStorage.getItem('userid'));
+            this.uniquelist = data.filter(x => x.staffID == sessionStorage.getItem('userid'));
 
-          const key = 'trainerName';
-    
-          this.uniquelist = [...new Map(this.EnrollTrainerCourseMappingList.map((item: { [x: string]: any; }) =>
-    
-            [(item[key]), item])).values()]
+            const key = 'trainerName';
 
+            this.uniquelist = [...new Map(this.EnrollTrainerCourseMappingList.map((item: { [x: string]: any; }) =>
 
+              [(item[key]), item])).values()]
 
 
-          console.log(" this.EnrollTrainerCourseMappingList ", this.EnrollTrainerCourseMappingList )
-          this.loader=false;
-        }, error: (err) => {
-          Swal.fire('Issue in Getting Subsidiary Master');
-          // Insert error in Db Here//
-          var obj = {
-            'PageName': this.currentUrl,
-            'ErrorMessage': err.error.message
+
+
+            console.log(" this.EnrollTrainerCourseMappingList ", this.EnrollTrainerCourseMappingList)
+            this.loader = false;
+          }, error: (err) => {
+            Swal.fire('Issue in Getting Subsidiary Master');
+            // Insert error in Db Here//
+            var obj = {
+              'PageName': this.currentUrl,
+              'ErrorMessage': err.error.message
+            }
+            this.DigiofficeService.InsertExceptionLogs(obj).subscribe(
+              data => {
+                debugger
+              },
+            )
           }
-          this.DigiofficeService.InsertExceptionLogs(obj).subscribe(
-            data => {
-              debugger
-            },
-          )
-        }
-      })
+        })
     }
+    else if((this.roleid == 4)){
+      this.DigiofficeService.GetTrainerCourseMapping()
+        .subscribe({
+          next: data => {
+            debugger
+            this.EnrollTrainerCourseMappingList = data.filter(x => x.trainerID == sessionStorage.getItem('trainerid'));
+            this.uniquelist = data.filter(x => x.trainerID == sessionStorage.getItem('userid'))
+            const key = 'staffName';
+            this.uniquelist = [...new Map(this.EnrollTrainerCourseMappingList.map((item: { [x: string]: any; }) =>
+              [(item[key]), item])).values()]
+            console.log(" this.EnrollTrainerCourseMappingList ", this.EnrollTrainerCourseMappingList)
+            this.loader = false;
+          }, error: (err) => {
+            Swal.fire('Issue in Getting Subsidiary Master');
+            // Insert error in Db Here//
+            var obj = {
+              'PageName': this.currentUrl,
+              'ErrorMessage': err.error.message
+            }
+            this.DigiofficeService.InsertExceptionLogs(obj).subscribe(
+              data => {
+                debugger
+              },
+            )
+          }
+        })
+    }
+  }
 
 
   public GetSubsidaryMaster() {
@@ -104,7 +137,7 @@ export class ViewGroupComponent implements OnInit {
         next: data => {
           debugger
           this.SubsidaryList = data;
-          this.loader=false;
+          this.loader = false;
         }, error: (err) => {
           Swal.fire('Issue in Getting Subsidiary Master');
           // Insert error in Db Here//
@@ -127,7 +160,7 @@ export class ViewGroupComponent implements OnInit {
         next: data => {
           debugger
           this.leavelist = data;
-          this.loader=false;
+          this.loader = false;
         }, error: (err) => {
           Swal.fire('Issue in Getting Department Master');
           // Insert error in Db Here//
@@ -150,7 +183,7 @@ export class ViewGroupComponent implements OnInit {
         next: data => {
           debugger
           this.Citylist = data;
-          this.loader=false;
+          this.loader = false;
         }, error: (err) => {
           Swal.fire('Issue in Getting City Type');
           // Insert error in Db Here//
@@ -173,7 +206,7 @@ export class ViewGroupComponent implements OnInit {
   public getstaffid(item: any) {
     debugger
     this.router.navigate(['/Employee/Chat', item.id]);
-    this.loader=false;
+    this.loader = false;
   }
 
 }
