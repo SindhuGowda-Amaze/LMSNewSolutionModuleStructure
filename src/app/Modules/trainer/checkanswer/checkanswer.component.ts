@@ -81,6 +81,7 @@ export class CheckanswerComponent implements OnInit {
           });
         },
       });
+      
     }
 
     this.UpdateResult();
@@ -121,6 +122,7 @@ export class CheckanswerComponent implements OnInit {
             debugger;
             Swal.fire('Submitted Successfully');
             location.href = '#/FinalResult';
+            location.href="#/Trainer/EmployeeAssessmentResult"
           },
           error: (err) => {
             Swal.fire('Issue in UpdateTestResponse');

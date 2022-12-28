@@ -29,9 +29,9 @@
                 class="fonttxt">
                </ng-multiselect-dropdown> -->
 
-               <select class="form-control" name="cars" id="Duration" [(ngModel)]="TrainerName" >
+               <select class="form-control" name="cars" id="Duration" [(ngModel)]="TrainerName" (change)="getTrainerID($event)">
                 <option style="color:#0C275A" value="0" disabled>Select Trainer</option>
-                <option  style="color:#0C275A" *ngFor="let details of Trainerlist"  value="{{details.name}}">{{details.name}}</option>
+                <option style="color:#0C275A" *ngFor="let details of Trainerlist"  value="{{details.id}}">{{details.name}}</option>
             </select>
 
 

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LearningService } from 'src/app/Pages/Services/learning.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -7,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor(public router: Router) { }
+  constructor(public DigiofficeService: LearningService,public router: Router) { }
 
   roleid: any;
   UserName: any;
@@ -17,11 +19,15 @@ export class SidebarComponent implements OnInit {
   loginid:any;
   temp: any;
   show: any;
+  currentUrl:any;
+  TraininghourseID:any;
   ngOnInit(): void {
+    this.currentUrl = window.location.href;
     this.temp = sessionStorage.getItem('temp')
     this.loginid = sessionStorage.getItem('loginid');
     this.userid = sessionStorage.getItem('userid');
     this.roleid = sessionStorage.getItem('roleid');
+    this.TraininghourseID = localStorage.getItem('TraininghourseID');
     this.company_name = sessionStorage.getItem("company_name");
     this.UserName = sessionStorage.getItem('UserName');
     this.role = sessionStorage.getItem('role')
@@ -41,7 +47,12 @@ export class SidebarComponent implements OnInit {
 
     evt.currentTarget.className += " active";
     this.active = 'mycourse1';
+
+    
   }
+
+
+  
 
   active: any;
   Dashboard() {
@@ -99,9 +110,19 @@ export class SidebarComponent implements OnInit {
   }
 
   MyCourse() {
+    debugger
     this.active = 'mycourse1';
     sessionStorage.setItem("clickname", "MY TRAINING")
+    // this.DigiofficeService.UpdateTrainingHoursEndTime(this.TraininghourseID).subscribe({
+    //   next: (data:any[]) => {
+    //     debugger;
+    //     if(data.length!=0){
+    //       Swal.fire("done")
+    //     }
+    //   },
+    // });
   }
+  
   mycertificate() {
     this.active = 'mycertificate';
     sessionStorage.setItem("clickname", "MY CERTIFICATE")

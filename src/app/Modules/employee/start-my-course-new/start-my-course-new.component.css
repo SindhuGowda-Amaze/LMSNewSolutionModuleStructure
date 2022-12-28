@@ -73,12 +73,18 @@
     left: 124px;
     top: 41px;
     font-size: 29px;
-
-
-
   }
+
+
+  .btn{
+    margin-right: 2px;
+  }
+
+
+
+
   
-  /* span.cls_003{font-family:Times,serif;font-size:29px;color:rgb(85,79,76);font-weight:normal;font-style:normal;text-decoration: none;}
+  span.cls_003{font-family:Times,serif;font-size:29px;color:rgb(85,79,76);font-weight:normal;font-style:normal;text-decoration: none;}
   div.cls_003{font-family:Times,serif;font-size:56.0px;color:rgb(85,79,76);font-weight:normal;font-style:normal;text-decoration: none}
   span.cls_004{font-family:Times,serif;font-size:29.5px;color:rgb(190,139,68);font-weight:normal;font-style:normal;text-decoration: none}
   div.cls_004{font-family:Times,serif;font-size:29.5px;color:rgb(190,139,68);font-weight:normal;font-style:normal;text-decoration: none}
@@ -89,4 +95,4 @@
   span.cls_006{font-family:Arial,serif;font-size:12.0px;color:rgb(37,36,34);font-weight:normal;font-style:normal;text-decoration: none}
   div.cls_006{font-family:Arial,serif;font-size:12.0px;color:rgb(37,36,34);font-weight:normal;font-style:normal;text-decoration: none}
   span.cls_007{font-family:Times,serif;font-size:22.5px;color:rgb(85,79,76);font-weight:normal;font-style:normal;text-decoration: none}
-  div.cls_007{font-family:Times,serif;font-size:22.5px;color:rgb(85,79,76);font-weight:normal;font-style:normal;text-decoration: none} */
+  div.cls_007{font-family:Times,serif;font-size:22.5px;color:rgb(85,79,76);font-weight:normal;font-style:normal;text-decoration: none}

@@ -392,7 +392,7 @@ this.testResponseID1=temp[0].id;
         location.href="#/Employee/StartMyCourseNew";
       }
     })
-    // location.href="/#/AssessmentResult/";
+    location.href = "#/Employee/StartMyCourseNew";
   }
 
 

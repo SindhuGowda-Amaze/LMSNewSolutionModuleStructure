@@ -117,9 +117,10 @@
                             *100 | number : '1.2-2'}} %</label><br>
 
                         <button class="btn btn-sm btn-primary newbutton"
-                            *ngIf="details.teststatus=='nottaken' && details.trainingType!=3"
+                            *ngIf="details.teststatus=='nottaken' "
                             [routerLink]="['/Employee/TakeAssessment',details.courseID,details.id,1]" id="id" name="id">
                             Take Assessment</button>
+                            <!-- && details.trainingType!=3 -->
 
                         <button class="btn btn-sm btn-primary newbutton"
                             *ngIf="details.teststatus=='nottaken' && details.trainingType==3" id="id" name="id"
@@ -139,15 +140,16 @@
                         </button>
                 </button>
                 <hr>
-            </div>
-            <br>
-            <br>
-            <!-- <div class="row">
-                <div class="col-lg-2"></div>
-                <div class="col-lg-8">
-                    <button class="Certificate" (click)="certificate()" disabled>Certificate </button>
+                <div class="row" style="overflow-y:auto;height:230px;" *ngIf="teststatus=='Passed'">
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-8">
+                        <button class="Certificate" (click)="certificate()" data-toggle="modal"
+                        data-target="#Certificate" >Certificate</button>
+                    </div>
                 </div>
-            </div> -->
+            </div>
+          
+           
         </div>
     </div>
 </div>
@@ -214,7 +216,6 @@
                     <div class="col-lg-8">
                         <ngx-dropzone (change)="onSelect($event)">
                             <ngx-dropzone-label>
-
                                 <img class="image" src="assets/Images/word.png">&nbsp;&nbsp;
                                 <img class="image" src="assets/Images/pdf.png">&nbsp;&nbsp;
                             </ngx-dropzone-label>
@@ -236,6 +237,49 @@
 
                 <!-- <button type="button" class="cancel" data-dismiss="modal">Close</button> -->
 
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal" id="Certificate">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- <div class="modal-header">
+                <h4 class="modal-title"> Certificate</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div> -->
+            <div id="downloadaplication"
+                style="position:absolute;left:50%;margin-left:-421px;top:0px;width:842px;height:595px;border-style:outset;overflow:hidden;background-color: rgb(245, 232, 210);border: 5px solid black;">
+                <div style="position:absolute;left:300.76px;top:84.60px" class="cls_002"><span class="cls_002">Learning
+                        And Development </span></div>
+                <div style="position:absolute;left:225.12px;top:162.60px" class="cls_003"><span
+                        class="cls_003">CERTIFICATE OF COMPLETION</span></div>
+                <div style="position:absolute;left:320.68px;top:252.52px" class="cls_004"><span
+                        class="cls_004">Presented to</span></div>
+                <div style="position:absolute;left:350.40px;top:290.88px" class="cls_005"><span
+                        class="cls_005">{{UserName}}</span></div>
+                <div style="position:absolute;left:330.04px;top:336.24px;" class="cls_006"><span
+                        class="cls_0061">{{coursename}}</span></div>
+                <div style="position:absolute;left:369.68px;top:430.80px" class="cls_006"><span class="cls_006">Provided
+                        by</span></div>
+                <div style="position:absolute;left:370.68px;top:450.32px" class="cls_007"><span
+                        class="cls_007">Amaze</span>
+                </div>
+                <div style="position:absolute;left:373.76px;top:481.44px" class="cls_006"><span class="cls_006">
+                        JAN 2022</span></div>
+                <div class="row">
+                    <div class="col-lg-10"></div>
+                    <div class="col-lg-2">
+                        <button
+                            style="background-color: #3247D5;color:white;border-radius: 5px;border:none;margin-top: 10px;"
+                            (click)="download()">Download</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="cancel" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

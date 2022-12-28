@@ -20,83 +20,117 @@ export class TrainingHrsReportComponent implements OnInit {
   userid: any;
   userName: any;
   AttendanceHrs: any;
-  currentUrl:any;
-  employeeID:any;
-  trainer:any;
+  currentUrl: any;
+  employeeID: any;
+  trainer: any;
   courseID: any;
-  TopicID:any;
-  noofhrs:any;
+  TopicID: any;
+  noofhrs: any;
   constructor(private ActivatedRoute: ActivatedRoute, private LearningService: LearningService) { }
 
   ngOnInit(): void {
-    this.Course="0"
-    this.courseID="0"
-    this.TopicID="0"
+    this.Course = "0"
+    this.courseID = "0"
+    this.TopicID = "0"
     this.currentUrl = window.location.href;
     this.roleid = sessionStorage.getItem('roleid');
     this.userid = sessionStorage.getItem('userid');
     this.userName = sessionStorage.getItem('UserName');
-this.GetCourseDropdown();
-this.getTopic();
+    this.GetCourseDropdown();
+    this.getTopic();
     this.GetAttendance_New();
     // this.areYouReallySure = false;
     // this.allowPrompt = true;
 
   }
-  
 
 
+
+
+  // public GetAttendance_New() {
+  //   debugger
+  //   this.LearningService.GetAttendance_New()
+
+  //   .subscribe({
+  //     next: data => {
+  //       debugger
+  //       if(this.roleid==4){
+  //         this.AttendanceHrs = data.filter(x => x.trainerID == this.userid);
+  //       }
+  //       else if(this.roleid==3){
+  //         this.AttendanceHrs = data.filter(x => x.supervisor == this.userid);
+  //       }
+  //       else{
+  //         this.AttendanceHrs = data
+  //       }
+  //     },error: (err: { error: { message: any; }; }) => {
+  //       Swal.fire('Issue in GetAttendance_New');
+  //       // Insert error in Db Here//
+  //       var obj = {
+  //         'PageName': this.currentUrl,
+  //         'ErrorMessage': err.error.message
+  //       }
+  //       this.LearningService.InsertExceptionLogs(obj).subscribe(
+  //         data => {
+  //           debugger
+  //         },
+  //       )
+  //     }
+  //   })
+
+
+  // }
 
   public GetAttendance_New() {
     debugger
-    this.LearningService.GetAttendance_New()
-    
-    .subscribe({
-      next: data => {
-        debugger
-        if(this.roleid==4){
-          this.AttendanceHrs = data.filter(x => x.trainerID == this.userid);
-        }
-        else if(this.roleid==3){
-          this.AttendanceHrs = data.filter(x => x.supervisor == this.userid);
-        }
-        else{
+    this.LearningService.GetTrainingHours()
+      .subscribe({
+        next: data => {
           this.AttendanceHrs = data
+          // debugger
+          // if(this.roleid==4){
+          //   this.AttendanceHrs = data.filter(x => x.trainerID == this.userid);
+          // }
+          // else if(this.roleid==3){
+          //   this.AttendanceHrs = data.filter(x => x.supervisor == this.userid);
+          // }
+          // else{
+          //   this.AttendanceHrs = data
+          // }
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in GetAttendance_New');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.LearningService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
-      },error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in GetAttendance_New');
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
-        }
-        this.LearningService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
-    
+      })
+
 
   }
 
 
-// areYouReallySure:any;
- 
-// public  areYouSure() {
-//     if(this.allowPrompt){
-//         if (!this.areYouReallySure && true) {
-//             this.areYouReallySure = true;
-//             var confMessage = "***************************************\n\n W A I T !!! \n\nBefore leaving our site, follow CodexWorld for getting regular updates on Programming and Web Development.\n\n\nCLICK THE *CANCEL* BUTTON RIGHT NOW\n\n***************************************";return confMessage;
-//         }
-//     }else{
-//         this.allowPrompt = true;
-//     }
-// }
+  // areYouReallySure:any;
 
-// allowPrompt = true;
-// window.onbeforeunload = this.areYouSure;
+  // public  areYouSure() {
+  //     if(this.allowPrompt){
+  //         if (!this.areYouReallySure && true) {
+  //             this.areYouReallySure = true;
+  //             var confMessage = "***************************************\n\n W A I T !!! \n\nBefore leaving our site, follow CodexWorld for getting regular updates on Programming and Web Development.\n\n\nCLICK THE *CANCEL* BUTTON RIGHT NOW\n\n***************************************";return confMessage;
+  //         }
+  //     }else{
+  //         this.allowPrompt = true;
+  //     }
+  // }
+
+  // allowPrompt = true;
+  // window.onbeforeunload = this.areYouSure;
 
 
   // public GetEnroll(){
@@ -133,13 +167,13 @@ this.getTopic();
   }
   courseid: any;
   dummyuniqlist: any;
-  employeereportlist:any;
+  employeereportlist: any;
   getcourseid(even: any) {
     debugger;
     this.courseid = even.target.value;
     if (even.target.value != 0) {
       this.uniquelist = this.dummyuniqlist.filter(
-        (x: { trainingname: any, topicName:any}) => x.trainingname == this.courseid || x.topicName == this.courseid
+        (x: { trainingname: any, topicName: any }) => x.trainingname == this.courseid || x.topicName == this.courseid
       );
 
       this.count = this.uniquelist.length;
@@ -147,9 +181,9 @@ this.getTopic();
       this.GetTrainerReport();
     }
   }
-  dummemployeereportlist:any;
-  employeeFilterReportList:any;
-  Course:any;
+  dummemployeereportlist: any;
+  employeeFilterReportList: any;
+  Course: any;
   public GetTrainerReport() {
     debugger;
     this.LearningService.GetTestResponse().subscribe({
@@ -186,7 +220,7 @@ this.getTopic();
   }
 
 
-  courseList:any;
+  courseList: any;
   public GetCourseDropdown() {
     this.LearningService.GetCourseDropdown().subscribe({
       next: (data) => {
@@ -214,7 +248,7 @@ this.getTopic();
   }
 
 
-  TopicList:any
+  TopicList: any
   public getTopic() {
     debugger;
     this.LearningService.GetChapter().subscribe((data) => {

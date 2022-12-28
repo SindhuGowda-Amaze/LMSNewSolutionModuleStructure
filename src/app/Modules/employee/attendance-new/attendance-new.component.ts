@@ -100,7 +100,7 @@ export class AttendanceNewComponent implements OnInit {
             this.Attendance = data.filter(x => x.empID == this.userid && x.filterdate == this.Today)
            
             for (let i = 0; i < this.Attendance.length; i++) {
-              this.StaffNoofHrs = this.Attendance[i].noofhrsinmins
+              this.StaffNoofHrs += this.Attendance[i].noofhrsinmins
             }
           }
         }, error: (err: { error: { message: any; }; }) => {

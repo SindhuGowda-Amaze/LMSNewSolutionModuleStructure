@@ -41,7 +41,8 @@
                                 <div class="col-lg-3">
                                     <div class="profile-block">
                                         <div class="profile-img mobile-profile-img pointer">
-                                            <span class="initial ng-star-inserted">{{item.name|slice:0:2}}</span>
+                                            <span *ngIf="roleid!=4" class="initial ng-star-inserted">{{item.name|slice:0:2}}</span>
+                                            <span *ngIf="roleid==4" class="initial ng-star-inserted">{{item.staffName|slice:0:2}}</span>
                                         </div>
                                         <span class="mdi mdi-chevron-down"></span>
                                       <br>
@@ -52,19 +53,32 @@
                                 <div class="col-lg-12">
                                     <table class="table-borderless ">
                                         <tr>
-                                            <td style="background-color: white">Name : {{item.trainerName}}</td>
+                                            <td *ngIf="roleid!=4" style="background-color: white">Name : {{item.trainerName}}</td>
+                                            <td *ngIf="roleid==4" style="background-color: white">Name : {{item.staffName}}</td>
                                         </tr>
                                         <tr>
-                                            <td style="background-color: white">Position : Trainer</td>
+                                            <td *ngIf="roleid!=4" style="background-color: white">Position : Trainer</td>
+                                            <td *ngIf="roleid==4" style="background-color: white">Position : Staff</td>
+
+                                            <!-- <td style="background-color: white">Position : Trainer</td> -->
                                         </tr>
                                         <tr>
-                                            <td style="background-color: white">Department : Software</td>
+                                            <td *ngIf="roleid!=4" style="background-color: white">Department : Management</td>
+                                            <td *ngIf="roleid==4" style="background-color: white">Department : Management</td>
+<!-- 
+                                            <td style="background-color: white">Department : Software</td> -->
                                         </tr>
                                         <tr>
-                                            <td style="background-color: white">Phone : {{item.phoneNo}}</td>
+                                            <td *ngIf="roleid!=4" style="background-color: white">Phone : {{item.phoneNo}}</td>
+                                            <td *ngIf="roleid==4" style="background-color: white">Phone : {{item.staffmobile}}</td>
+
+                                            <!-- <td style="background-color: white">Phone : {{item.phoneNo}}</td> -->
                                         </tr>
                                         <tr>
-                                            <td style="background-color: white">Email : {{item.email}}</td>
+                                            <td *ngIf="roleid!=4" style="background-color: white">Email : {{item.email}}</td>
+                                            <td *ngIf="roleid==4" style="background-color: white">Email : {{item.staffemail}}</td>
+
+                                            <!-- <td style="background-color: white">Email : {{item.email}}</td> -->
                                         </tr>
                                     </table>
                                     <!-- <label>Name : {{item.name}}</label><br />
