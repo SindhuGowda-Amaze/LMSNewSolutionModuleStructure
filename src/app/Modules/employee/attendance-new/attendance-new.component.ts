@@ -48,6 +48,7 @@ export class AttendanceNewComponent implements OnInit {
   constructor(private ActivatedRoute: ActivatedRoute, private LearningService: LearningService) { }
 
   ngOnInit(): void {
+    this.EmplID="0"
     this.Course = "0"
     this.courseID = "0"
     this.TopicID = "0"

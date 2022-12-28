@@ -31,7 +31,7 @@
             </div> -->
             <div class="col-lg-2" *ngIf="roleid==3">
                 <select class="form-control"  id="EmplID"   name="EmplID" [(ngModel)]="EmplID" (change)="getEmpID($event)">
-                    <option value="0">Employee Name</option>
+                    <option value="0" disabled selected>Employee Name</option>
                     <option *ngFor="let details of EmployeeList" value="{{details.id}}">{{details.name}}</option>
                 </select>
             </div> 

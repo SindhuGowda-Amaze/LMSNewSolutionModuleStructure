@@ -18,14 +18,14 @@
                     </div>
                     <div class="col-lg-3">
                         <select class="form-control" id="Department" name="Department" [(ngModel)]="Department">
-                            <option value="0">Select Department </option>
+                            <option value="0" disabled selected>Select Department </option>
                             <option *ngFor="let role of leavelist" value="{{role.department_name}}">
                                 {{role.department_name}}</option>
                         </select>
                     </div>
                     <div class="col-lg-3">
                         <select class="form-control inputfield" id="CityID" name="CityID" [(ngModel)]="CityID">
-                            <option value="0">Select City </option>
+                            <option value="0" disabled selected>Select City </option>
                             <option *ngFor="let role of Citylist" value="{{role.id}}">{{role.short}}</option>
                         </select>
                     </div>

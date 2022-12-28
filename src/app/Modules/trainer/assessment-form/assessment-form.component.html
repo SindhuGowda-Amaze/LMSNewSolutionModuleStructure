@@ -30,19 +30,19 @@
                 <div class="row head">
                     <div class="col-lg-2">
                         <select class="form-control" id="courseid" name="courseid"  [(ngModel)]="courseid" (change)="getcourseid($event)">
-                            <option value="0" disabled>Select Training</option>
+                            <option value="0" disabled selected>Select Training</option>
                             <option *ngFor="let details of courseList" value="{{details.id}}">{{details.name}}</option>
                         </select>
                     </div>
                     <div class="col-lg-2">
                         <select class="form-control" id="chapterid" name="chapterid" [(ngModel)]="chapterid">
-                            <option value="0">Select Topic</option>
+                            <option value="0" disabled selected>Select Topic</option>
                             <option *ngFor="let details of ChapterList" value="{{details.id}}">{{details.name}}</option>
                         </select>
                     </div>
                     <div class="col-lg-2">
                         <select class="form-control" id="questionid" name="questionid" [(ngModel)]="questionid">
-                            <option value="0">Select Question Type</option>
+                            <option value="0" disabled selected>Select Question Type</option>
                             <option *ngFor="let details of QuestionList" value="{{details.id}}">{{details.type}}
                             </option>
                         </select>
@@ -103,7 +103,7 @@
                     </div>
                     <div class="col-lg-2"  *ngIf="questionid==1">                    
                         <select class="form-control"  (change)="getCorrectAnswer($event)" >
-                            <option value="0">Select Options</option>
+                            <option value="0" disabled selected>Select Options</option>
                             <option value="A">Option1</option>
                             <option value="B">Option2</option>
                             <option value="C">Option3</option>

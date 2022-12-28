@@ -28,13 +28,13 @@
                     <div class="col-md-3">
                         <select class="form-control" name="name123" id="name123" [(ngModel)]="name123"
                             (change)="getdata($event)">
-                            <option value="0">Select Employee Name</option>
+                            <option value="0" disabled selected>Select Employee Name</option>
                             <option *ngFor="let details of stafflist" value="{{details.id}}">{{details.name}}</option>
                         </select>
                     </div>
                     <div class="col-md-2">
                         <select class="form-control" name="courseid" id="courseid" [(ngModel)]="courseid"  (change)="getcourseID($event)">
-                            <option value="0">Select Training</option>
+                            <option value="0" disabled selected>Select Training</option>
                             <option *ngFor="let details of uniquelist" value="{{details.courseID}}">{{details.courseName}}</option>
                         </select>
                     </div>

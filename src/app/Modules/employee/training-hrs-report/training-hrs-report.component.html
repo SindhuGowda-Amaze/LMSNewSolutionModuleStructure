@@ -1,5 +1,4 @@
 <div class="container-fluid">
-
     <div class="row">
         <div class="col-lg-10">
             <p class="headings">Training Hours Report</p>
@@ -19,13 +18,13 @@
             </div>
             <div class="col-lg-2">
                 <select class="form-control"  name="Course" [(ngModel)]="Course" (change)="getcourseid($event)">
-                    <option value="0" >Select Training</option>
+                    <option value="0" disabled selected >Select Training</option>
                     <option style="color:#0C275A" *ngFor="let details of courseList" value="{{details.id}}" >{{details.name}}</option>
                 </select>
             </div>
             <div class="col-lg-2">
                 <select class="form-control"  name="courseID" [(ngModel)]="TopicID" (change)="getcourseid($event)">
-                    <option value="0">Topic Name</option>
+                    <option value="0" disabled selected >Topic Name</option>
                     <option *ngFor="let details of TopicList" value="{{details.id}}">{{details.name}}</option>
                 </select>
             </div>

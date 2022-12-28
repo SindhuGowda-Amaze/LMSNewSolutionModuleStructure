@@ -6,7 +6,6 @@
     </div>
     <div class="card">
         <div class="row leavereq" style="color: #0C275A">
-
             <div class="col-lg-2">
                 <p class="newFont">Trainer Name <span style="color: red;">*</span></p>
             </div>
@@ -70,7 +69,7 @@
                     <ngx-dropzone-label>Drop it here!</ngx-dropzone-label>
                     <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
                         <ngx-dropzone-label  >{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-                    </ngx-dropzone-preview>
+                    </ngx-dropzone-preview>           
                 </ngx-dropzone>
                 <br>
                 <a *ngIf="Company_logo!=null" target="_blank" href="{{Company_logo}}">

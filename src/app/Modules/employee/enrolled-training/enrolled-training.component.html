@@ -16,7 +16,7 @@
             </div>
             <div class="col-lg-3">
                 <select class="form-control" id="Duration" (change)="getemployeeid($event)">
-                    <option value="0">Select Employee</option>
+                    <option value="0" disabled selected>Select Employee</option>
                     <option *ngFor="let details of uniquelist" value="{{details.employeeName}}">{{details.employeeName}}
                     </option>
                 </select>

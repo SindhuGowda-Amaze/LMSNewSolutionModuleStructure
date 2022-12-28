@@ -15,7 +15,7 @@
             </div>
             <div class="col-lg-3">
                 <select class="form-control" name="cars" id="Duration" (change)="getTrainingType()" [(ngModel)]="TrainingType">
-                    <option value="0">Select Training Type</option>
+                    <option value="0" disabled selected>Select Training Type</option>
                     <option style="color:#0C275A">Class Room</option>
                     <!-- <option style="color:#0C275A">External</option> -->
                     <option style="color:#0C275A">Online</option>
@@ -23,7 +23,7 @@
             </div>
             <div class="col-lg-3">
                 <select class="form-control" name="cars" id="Duration" (change)="getcourseid($event)">
-                    <option value="0">Select Training</option>
+                    <option value="0" disabled selected>Select Training</option>
                     <option style="color:#0C275A" *ngFor="let details of courselist" value="{{details.id}}">
                         {{details.name}}</option>
                     <!-- <option style="color:#0C275A" *ngFor="let details of coursedetails" value="{{details.id}}">

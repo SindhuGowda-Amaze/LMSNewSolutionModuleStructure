@@ -117,8 +117,7 @@ this.getTopic();
   filterbydate() {
     this.LearningService.GetTestResponse().subscribe({
       next: (data) => {
-        this.uniquelist = data.filter(
-          (x) => x.startDate >= this.Date && x.endDate <= this.endDate);
+        this.uniquelist = data.filter((x) => x.loginDate >= this.Date && x.loginDate <= this.endDate);
 
         const key = 'coursename';
         this.uniquelist = [

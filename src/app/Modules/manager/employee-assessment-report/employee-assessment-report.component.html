@@ -19,14 +19,28 @@
             </div>
             <div class="col-lg-2">
                 <select class="form-control"     name="courseID" [(ngModel)]="courseID" (change)="getcourseid($event)">
-                    <option value="0">Training Name</option>
-                    <option *ngFor="let details of Courselist" value="{{details.id}}">{{details.name}}</option>
+                    <option value="0" disabled selected>Training Name</option>
+                    <option *ngFor="let details of uniquelist" value="{{details.name}}">{{details.name}}</option>
                 </select>
             </div>
             <div class="col-lg-2">
-                <select class="form-control"     name="courseID" [(ngModel)]="TopicID" (change)="getcourseid($event)">
-                    <option value="0">Topic Name</option>
-                    <option *ngFor="let details of TopicList" value="{{details.id}}">{{details.name}}</option>
+                <select class="form-control"     name="courseID" [(ngModel)]="TopicID" (change)="gettopicID($event)">
+                    <option value="0" disabled selected>Topic Name</option>
+                    <option *ngFor="let details of uniquelist1" value="{{details.name}}">{{details.name}}</option>
+                </select>
+            </div>
+            <div class="col-lg-3">
+                <select class="form-control" id="year" name="year" [(ngModel)]="year" (change)="FilterByYear()">
+                    <option value="">Select year</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
                 </select>
             </div>
         </div>

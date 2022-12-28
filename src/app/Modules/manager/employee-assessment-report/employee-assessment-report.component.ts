@@ -38,7 +38,11 @@ export class EmployeeAssessmentReportComponent implements OnInit {
   ngOnInit(): void {
     this.currentUrl = window.location.href;
     this.userid = sessionStorage.getItem('userid');
- 
+    this.roleid = sessionStorage.getItem('roleid');
+    this.staffid = sessionStorage.getItem('userid');
+    // this.manager = sessionStorage.getItem('manager');
+    this.trainer = sessionStorage.getItem('trainerid');
+    this.year=""
     this.courseID="0"
     this.TrainerID="0"
     this.TopicID="0"
@@ -155,17 +159,79 @@ export class EmployeeAssessmentReportComponent implements OnInit {
       this.GetTrainerReport();
     }
   }
+  
 
   getcourseid(even: any) {
     debugger;
     this.courseid = even.target.value;
     if (even.target.value != 0) {
-      this.employeereportlist = this.dummemployeereportlist.filter(
+      this.employeereportlist = this.employeereportlist.filter(
         (x: { courseName: any }) => x.courseName == this.courseid
       );
 
 
       const key = 'coursename';
+      this.uniquelist = [...new Map(this.employeereportlist.map((item: { [x: string]: any; }) =>
+
+        [(item[key]), item])).values()]
+
+
+
+      this.count = this.employeereportlist.length;
+
+      
+    // this.LearningService.GetCourse().subscribe((data) => {
+    //   debugger;
+    //   this.TopicList = data.filter(x=>x.name==this.courseID)
+
+    //   const key = 'name';
+    //   this.uniquelist1 = [...new Map(this.TopicList.map((item: { [x: string]: any; }) =>
+
+    //     [(item[key]), item])).values()]
+
+
+    // });
+
+    } else {
+      this.GetTrainerReport();
+    }
+  }
+
+  
+  enroll :any
+public GetEnroll(){
+  this.LearningService.GetEnroll().subscribe({
+    next: (data) => {
+      debugger;
+      this.enroll = data;
+
+      
+      const key = 'coursename';
+      this.uniquelist = [...new Map(this.enroll.map((item: { [x: string]: any; }) =>
+
+        [(item[key]), item])).values()]
+    }
+  })
+}
+
+  FilterByYear() {
+    debugger;
+    this.employeereportlist = this.employeereportlist.filter((x: { year: any }) => x.year == this.year
+    );
+
+  }
+
+
+  topicID : any
+  gettopicID(even: any) {
+    debugger;
+    this.topicID = even.target.value;
+    if (even.target.value != 0) {
+      this.employeereportlist = this.employeereportlist.filter((x: { chapterName: any }) => x.chapterName == this.topicID 
+      );
+
+
+      const key = 'chapterName';
       this.uniquelist = [...new Map(this.employeereportlist.map((item: { [x: string]: any; }) =>
 
         [(item[key]), item])).values()]
@@ -182,6 +248,10 @@ export class EmployeeAssessmentReportComponent implements OnInit {
     debugger;
     this.courseID = even.target.value;
   }
+  getTopicID(even: any) {
+    debugger;
+    this.topicID = even.target.value;
+  }
 
   getTrainerID(even: any) {
     debugger;
@@ -195,24 +265,59 @@ export class EmployeeAssessmentReportComponent implements OnInit {
       this.trainerlist = data;
     });
   }
+  
   Courselist:any;
   public getcourse() {
     debugger;
-    this.LearningService.GetCourseDropdown().subscribe((data) => {
+    this.LearningService.GetEnroll().subscribe((data) => {
       debugger;
       this.Courselist = data;
+
+      const key = 'courseName';
+      this.uniquelist = [...new Map(this.Courselist.map((item: { [x: string]: any; }) =>
+
+        [(item[key]), item])).values()]
+
+      
     });
+
+
   }
 
   TopicList:any
   TopicID:any;
+  uniquelist1 : any
+  name : any
   public getTopic() {
     debugger;
     this.LearningService.GetChapter().subscribe((data) => {
       debugger;
-      this.TopicList = data;
+      this.TopicList = data
+
+      const key = 'name';
+      this.uniquelist1 = [...new Map(this.TopicList.map((item: { [x: string]: any; }) =>
+
+        [(item[key]), item])).values()]
+
+
     });
+
+    
   }
+
+  // TopicList:any
+  // TopicID:any;
+  // public getTopic() {
+  //   debugger;
+  //   this.LearningService.GetChapter().subscribe((data) => {
+  //     debugger;
+  //     this.TopicList = data;
+  //   });
+  // }
+
+
+
+
   AssessmentDocList:any;
   public GetClassRoomAssessmentDocument() {
     debugger;
@@ -224,6 +329,220 @@ export class EmployeeAssessmentReportComponent implements OnInit {
       },
      error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetClassRoomAssessmentDocument');
+        // Insert error in Db Here//
+        var obj = {
+          PageName: this.currentUrl,
+          ErrorMessage: err.error.message,
+        };
+        this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+          debugger;
+        });
+      },
+    });
+  }
+  roleid : any
+  detailslist : any
+  year : any
+
+  public filterByYear(){
+    this.LearningService.GetTestResponsenew().subscribe({
+      next: (data) => {
+        debugger;
+        if (this.roleid == 4) {
+          let temp: any = data.filter((x) => x.trainerID == this.trainer && x.year==this.year);
+          var helper: any = {}
+          this.detailslist = temp.reduce(function (r: any[], o: { coursename: any; totalmarks: any; obtainedMarks: any; status: any; startDate: any; endDate: any; }) {
+            var key = o.coursename;
+            if (!helper[key]) {
+  
+              helper[key] = Object.assign({}, o); // create a copy of o
+  
+              r.push(helper[key]);
+  
+            } else {
+  
+              helper[key].totalmarks += o.totalmarks;
+  
+              helper[key].obtainedMarks += o.obtainedMarks;
+              helper[key].e_Date = o.coursename;
+              helper[key].e_Date = o.status;
+              helper[key].e_Date = o.startDate;
+              helper[key].e_Date = o.endDate;
+            }
+            return r;
+  
+          }, []);
+          // this.detailslist = this.reduceData(temp);
+  
+        }
+  
+        else if (this.roleid == 2) {
+          let temp: any  = data.filter(x => x.userID == this.staffid && x.year==this.year);
+          var helper: any = {}
+          this.detailslist = temp.reduce(function (r: any[], o: { coursename: any; totalmarks: any; obtainedMarks: any; status: any; startDate: any; endDate: any; }) {
+            var key = o.coursename;
+            if (!helper[key]) {
+  
+              helper[key] = Object.assign({}, o); // create a copy of o
+  
+              r.push(helper[key]);
+  
+            } else {
+  
+              helper[key].totalmarks += o.totalmarks;
+  
+              helper[key].obtainedMarks += o.obtainedMarks;
+              helper[key].e_Date = o.coursename;
+              helper[key].e_Date = o.status;
+              helper[key].e_Date = o.startDate;
+              helper[key].e_Date = o.endDate;
+            }
+            return r;
+  
+          }, []);
+          // this.detailslist = this.reduceData(temp);
+  
+        }
+  
+        else {
+          let temp: any = data.filter(x=> x.year==this.year);
+          var helper: any = {}
+          this.detailslist = temp.reduce(function (r: any[], o: { coursename: any; totalmarks: any; obtainedMarks: any; status: any; startDate: any; endDate: any; }) {
+            var key = o.coursename;
+            if (!helper[key]) {
+  
+              helper[key] = Object.assign({}, o); // create a copy of o
+  
+              r.push(helper[key]);
+  
+            } else {
+  
+              helper[key].totalmarks += o.totalmarks;
+  
+              helper[key].obtainedMarks += o.obtainedMarks;
+              helper[key].e_Date = o.coursename;
+              helper[key].e_Date = o.status;
+              helper[key].e_Date = o.startDate;
+              helper[key].e_Date = o.endDate;
+            }
+            return r;
+  
+          }, []);
+          // this.detailslist = this.reduceData(temp);
+  
+        }
+  
+        // .filter(x => x.checked == 1);
+      },
+      error: (err: { error: { message: any } }) => {
+        Swal.fire('Issue in GetTestResponsenew');
+        // Insert error in Db Here//
+        var obj = {
+          PageName: this.currentUrl,
+          ErrorMessage: err.error.message,
+        };
+        this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+          debugger;
+        });
+      },
+    });
+  }
+  trainer : any
+  staffid : any
+  public getdetailslist() {
+    debugger;
+    // this.empid = details.id;
+    this.LearningService.GetTestResponsenew().subscribe({
+      next: (data) => {
+        debugger;
+        if (this.roleid == 4) {
+          let temp: any = data.filter((x) => x.trainerID == this.trainer);
+          var helper: any = {}
+          this.detailslist = temp.reduce(function (r: any[], o: { coursename: any; totalmarks: any; obtainedMarks: any; status: any; startDate: any; endDate: any; }) {
+            var key = o.coursename;
+            if (!helper[key]) {
+
+              helper[key] = Object.assign({}, o); // create a copy of o
+
+              r.push(helper[key]);
+
+            } else {
+
+              helper[key].totalmarks += o.totalmarks;
+
+              helper[key].obtainedMarks += o.obtainedMarks;
+              helper[key].e_Date = o.coursename;
+              helper[key].e_Date = o.status;
+              helper[key].e_Date = o.startDate;
+              helper[key].e_Date = o.endDate;
+            }
+            return r;
+
+          }, []);
+          // this.detailslist = this.reduceData(temp);
+
+        }
+
+        else if (this.roleid == 2) {
+          let temp: any  = data.filter(x => x.userID == this.staffid);
+          var helper: any = {}
+          this.detailslist = temp.reduce(function (r: any[], o: { coursename: any; totalmarks: any; obtainedMarks: any; status: any; startDate: any; endDate: any; }) {
+            var key = o.coursename;
+            if (!helper[key]) {
+
+              helper[key] = Object.assign({}, o); // create a copy of o
+
+              r.push(helper[key]);
+
+            } else {
+
+              helper[key].totalmarks += o.totalmarks;
+
+              helper[key].obtainedMarks += o.obtainedMarks;
+              helper[key].e_Date = o.coursename;
+              helper[key].e_Date = o.status;
+              helper[key].e_Date = o.startDate;
+              helper[key].e_Date = o.endDate;
+            }
+            return r;
+
+          }, []);
+          // this.detailslist = this.reduceData(temp);
+
+        }
+
+        else {
+          let temp: any = data;
+          var helper: any = {}
+          this.detailslist = temp.reduce(function (r: any[], o: { coursename: any; totalmarks: any; obtainedMarks: any; status: any; startDate: any; endDate: any; }) {
+            var key = o.coursename;
+            if (!helper[key]) {
+
+              helper[key] = Object.assign({}, o); // create a copy of o
+
+              r.push(helper[key]);
+
+            } else {
+
+              helper[key].totalmarks += o.totalmarks;
+
+              helper[key].obtainedMarks += o.obtainedMarks;
+              helper[key].e_Date = o.coursename;
+              helper[key].e_Date = o.status;
+              helper[key].e_Date = o.startDate;
+              helper[key].e_Date = o.endDate;
+            }
+            return r;
+
+          }, []);
+          // this.detailslist = this.reduceData(temp);
+
+        }
+
+        // .filter(x => x.checked == 1);
+      },
+      error: (err: { error: { message: any } }) => {
+        Swal.fire('Issue in GetTestResponsenew');
         // Insert error in Db Here//
         var obj = {
           PageName: this.currentUrl,
