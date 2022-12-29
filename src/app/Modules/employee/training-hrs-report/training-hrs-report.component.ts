@@ -28,6 +28,9 @@ export class TrainingHrsReportComponent implements OnInit {
   TopicID: any;
   noofhrs: any;
   Today:any;
+  endDate: any;
+  uniquelist: any;
+  Date: any;
   constructor(private ActivatedRoute: ActivatedRoute, private LearningService: LearningService) { }
 
   ngOnInit(): void {
@@ -153,9 +156,7 @@ export class TrainingHrsReportComponent implements OnInit {
   // }
 
 
-  endDate: any;
-  uniquelist: any;
-  Date: any;
+
   filterbydate() {
     this.LearningService.GetTrainingHours().subscribe({
       next: (data) => {
