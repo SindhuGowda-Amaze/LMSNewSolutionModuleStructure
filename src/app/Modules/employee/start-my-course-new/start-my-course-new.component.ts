@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { LearningService } from 'src/app/Pages/Services/learning.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -12,7 +12,7 @@ import * as XLSX from 'xlsx';
   templateUrl: './start-my-course-new.component.html',
   styleUrls: ['./start-my-course-new.component.css'],
 })
-export class StartMyCourseNewComponent implements OnInit {
+export class StartMyCourseNewComponent implements OnInit, OnDestroy {
   courseid: any;
   loader: any;
   [x: string]: any;
@@ -64,29 +64,54 @@ export class StartMyCourseNewComponent implements OnInit {
 
     });
     this.show = 1;
-   
-  }
- 
 
-  TraininghourseID:any;
- 
-  Coureseidfortime:any;
-  public InsertTimeSpent(){
+  }
+
+  ngOnDestroy(): void {
+    debugger
+    console.log("Destroying loop"); // ngOnDestroy is not triggering
+    // alert("leaving page..")
+
+    this.traininglogout();
+    // Swal.fire("leaving..")
+  }
+
+  public traininglogout() {
+    debugger
+    var obj = {
+      'ID': this.TraininghourseID
+    }
+    this.LearningService.UpdateTrainingHoursEndTime(obj).subscribe(
+      data => {
+        // if (data.length != 0) {
+        //   Swal.fire("done")
+        // }
+        // else {
+        //   Swal.fire("not done")
+        // }
+      });
+  }
+
+
+  TraininghourseID: any;
+
+  Coureseidfortime: any;
+  public InsertTimeSpent() {
     debugger
 
     var eb = {
       'CourseID': this.courseid,
-      'StaffID':  this.userid,
+      'StaffID': this.userid,
       // 'LogoutDate': new Date(),
       // 'EndTime': this.totalmarks,
-     
+
     }
     this.LearningService.InsertTrainingHours(eb)
       .subscribe({
         next: data => {
           debugger
-          this.TraininghourseID=data;
-          localStorage.setItem('TraininghourseID',this.TraininghourseID)
+          this.TraininghourseID = data;
+          localStorage.setItem('TraininghourseID', this.TraininghourseID)
           this.loader = false;
         }, error: (err) => {
           Swal.fire('Issue in Inserting Announcements');
@@ -103,18 +128,6 @@ export class StartMyCourseNewComponent implements OnInit {
         }
       })
   }
-
-
-
-
-
-
-
-
-
-
-
-
 
   teststatus: any
   public GetChapter() {

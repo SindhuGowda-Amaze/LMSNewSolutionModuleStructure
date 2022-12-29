@@ -238,9 +238,9 @@ export class MyCourseDashboardComponent implements OnInit {
       next: (data) => {
         debugger;
         this.coursedetails = data.filter(
-          (x) => x.completed == 0 && x.enrollid != 0 && x.staffid == this.userid && x.ehidden == 0
+          (x) => x.completed == 0 && x.enrollid != 0 && x.staffid == this.userid && x.ehidden == 0 
             // && x.notStarted==1 && x.type=='Manager Assign'||
-            && (x.status == 'Manager Approved' || x.status == "Manager Assign")
+            && (x.status == 'Manager Approved')
         );
         console.log(this.coursedetails);
         this.latestcoursedetails = data[0];
@@ -350,7 +350,7 @@ export class MyCourseDashboardComponent implements OnInit {
     this.LearningService.GetCertification().subscribe({
       next: (data) => {
         debugger;
-        this.CertificatList = data.filter(x=>x.employeeID==this.userid)
+        this.CertificatList = data.filter(x=>x.employeeID==this.userid )
       },
       error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetCourse');

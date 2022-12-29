@@ -12,6 +12,7 @@ import { LearningHistoryComponent } from './learning-history/learning-history.co
 import { LearningPathDashboardComponent } from './learning-path-dashboard/learning-path-dashboard.component';
 import { MyCourseDashboardComponent } from './my-course-dashboard/my-course-dashboard.component';
 import { StartMyCourseNewComponent } from './start-my-course-new/start-my-course-new.component';
+// import { StartMyCourseNewComponent } from './start-my-course-new/start-my-course-new.component';
 import { StartMyCourseComponent } from './start-my-course/start-my-course.component';
 import { SubmitedtestsComponent } from './submitedtests/submitedtests.component';
 import { TakeAssessmentComponent } from './take-assessment/take-assessment.component';
@@ -28,7 +29,7 @@ const routes: Routes = [{ path: '', component: EmployeeComponent },
 {path:'MyCourseDashboard',component:MyCourseDashboardComponent},
 {path:'MyCourseDashboard/:id',component:MyCourseDashboardComponent},
 {path:'StartMyCourse',component:StartMyCourseComponent},
-{path:'StartMyCourseNew/:id',component:StartMyCourseNewComponent},
+ {path:'StartMyCourseNew/:id',component:StartMyCourseNewComponent},
 {path:'Submitedtests',component:SubmitedtestsComponent},
 {path:'TakeAssessment/:courseid/:chapterid/:testtype',component:TakeAssessmentComponent},
 {path:'ViewCourse/:id',component:ViewCourseComponent},

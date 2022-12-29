@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import * as XLSX from 'xlsx';
+import { formatDate } from '@angular/common';
 @Component({
   selector: 'app-training-hrs-report',
   templateUrl: './training-hrs-report.component.html',
@@ -26,9 +27,14 @@ export class TrainingHrsReportComponent implements OnInit {
   courseID: any;
   TopicID: any;
   noofhrs: any;
+  Today:any;
   constructor(private ActivatedRoute: ActivatedRoute, private LearningService: LearningService) { }
 
   ngOnInit(): void {
+    const format = 'yyyy-MM-dd';
+    const myDate = new Date();
+    const locale = 'en-US';
+    this.Today = formatDate(myDate, format, locale);
     this.Course = "0"
     this.courseID = "0"
     this.TopicID = "0"
@@ -36,6 +42,8 @@ export class TrainingHrsReportComponent implements OnInit {
     this.roleid = sessionStorage.getItem('roleid');
     this.userid = sessionStorage.getItem('userid');
     this.userName = sessionStorage.getItem('UserName');
+    // this.Today = new Date().toISOString().split("T")[0];
+
     this.GetCourseDropdown();
     this.getTopic();
     this.GetAttendance_New();
@@ -86,7 +94,7 @@ export class TrainingHrsReportComponent implements OnInit {
     this.LearningService.GetTrainingHours()
       .subscribe({
         next: data => {
-          this.AttendanceHrs = data
+          this.AttendanceHrs = data.filter(x=> x.loginDate == this.Today)
           // debugger
           // if(this.roleid==4){
           //   this.AttendanceHrs = data.filter(x => x.trainerID == this.userid);
@@ -149,9 +157,9 @@ export class TrainingHrsReportComponent implements OnInit {
   uniquelist: any;
   Date: any;
   filterbydate() {
-    this.LearningService.GetTestResponse().subscribe({
+    this.LearningService.GetTrainingHours().subscribe({
       next: (data) => {
-        this.uniquelist = data.filter((x) => x.loginDate >= this.Date && x.loginDate <= this.endDate);
+        this.AttendanceHrs = data.filter((x) => x.loginDate >= this.Date && x.loginDate <= this.endDate);
 
         const key = 'coursename';
         this.uniquelist = [

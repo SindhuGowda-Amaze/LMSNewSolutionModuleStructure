@@ -339,13 +339,13 @@
                                     data-target="#uploadcerti">Upload Certificate</button>
                                 <!-- && details.trainingType==2" -->
                                 <button class="edit"
-                                    *ngIf="details.enrollid!=0&&details.notStarted==0 && !details.completed && details.trainingType!=2&& details.status!='Manager Assign'"
+                                    *ngIf="details.enrollid!=0 && details.notStarted==0 && !details.completed && details.trainingType!=2&& details.status!='Manager Assign'"
                                     [routerLink]="['/Employee/StartMyCourseNew',details.id]">Start Training</button>
                                 <!-- && details.trainingType==2" -->
 
 
                                 <button class="edit" [routerLink]="['/Employee/StartMyCourseNew',details.id]"
-                                    *ngIf="details.enrollid!=0 && details.notStarted==1 && details.completed==0 && details.status=='Manager Assign'"
+                                    *ngIf="details.enrollid!=0 && details.notStarted==1 && details.completed==0 && details.status=='Manager Approved'"
                                     (click)="getenrollid(details.enrollid)">Open
                                 </button>
                                 <button class="edit" [routerLink]="['/Employee/StartMyCourseNew',details.id]"

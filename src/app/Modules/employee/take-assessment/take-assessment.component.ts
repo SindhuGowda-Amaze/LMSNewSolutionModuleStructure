@@ -48,6 +48,10 @@ export class TakeAssessmentComponent implements OnInit {
   courseid:any;
   chapterid:any;
   currentUrl:any;
+  count:any;
+  totalmarks:any;
+  generalinstructions:any;
+
   constructor(private AmazeService: LearningService, private ActivatedRoute: ActivatedRoute, private elementRef: ElementRef,public router:Router) {
   }
   
@@ -84,10 +88,7 @@ export class TakeAssessmentComponent implements OnInit {
        this.testtype = params['testtype'];
 
        if(this.testtype==1){
-        
-     
        }
-
      }
      )
   }
@@ -95,7 +96,6 @@ export class TakeAssessmentComponent implements OnInit {
 
  public  GetTestResponse(){
   this.AmazeService.GetTestResponse()
-  
   .subscribe({
     next: data => {
       debugger
@@ -115,10 +115,6 @@ this.testResponseID1=temp[0].id;
       )
     }
   })
-  
-  
-
-
   }
 
  public  GetAssessments(){
@@ -142,10 +138,6 @@ this.testResponseID1=temp[0].id;
       )
     }
   })
-  
-
-
-
   }
 
 
@@ -173,9 +165,7 @@ this.testResponseID1=temp[0].id;
   //     })
 
   // }
-  count:any;
-  totalmarks:any;
-  generalinstructions:any;
+
   public startTestContainer() {
     debugger
     this.startTest = 1;
@@ -189,7 +179,6 @@ this.testResponseID1=temp[0].id;
       this.questionList=this.shuffleArray(tempquetin);
         for (let i=0;i<this.questionList.length;i++){
           debugger
-        
           this.totalmarks= this.totalmarks + this.questionList[i].weightage;
         }
         this.count = this.questionList.length;
@@ -293,7 +282,6 @@ this.testResponseID1=temp[0].id;
           if (this.questionList[i].userAnswer == '') {
             notansred=notansred+1
           }
-          
         }
     
         if(notansred>0){
@@ -342,7 +330,8 @@ this.testResponseID1=temp[0].id;
               this.testResponseID = data;
               if(this.testResponseID==10){
                 Swal.fire('You Already took this Test');
-                location.href="#/Employee/StartMyCourseNew";
+                location.href="#/Employee/StartMyCourseNew/"+ this.courseid ;
+                this.Cancel()
               }
       
                 // if(this.testtype==1){
@@ -366,7 +355,8 @@ this.testResponseID1=temp[0].id;
                 //  this.router.navigate(['/AssessmentResult', this.testResponseID]);
                 // this.router.navigate(['#/MyCourseDashboard']);
                 Swal.fire('You have submited test successfully...');
-                 location.href="#/Employee/StartMyCourseNew";
+                location.href="#/Employee/StartMyCourseNew/"+ this.courseid ;
+                this.Cancel()
                 }        
               }
             ,error: (err: { error: { message: any; }; }) => {
@@ -384,15 +374,15 @@ this.testResponseID1=temp[0].id;
             }
           })
         }
-        Swal.fire(
-          'Submitted!',
-          'Saved Sucessfully.',
-          'success'
-        )
-        location.href="#/Employee/StartMyCourseNew";
+        // Swal.fire(
+        //   'Submitted!',
+        //   'Saved Sucessfully.',
+        //   'success'
+        // )
+        // location.href="#/Employee/StartMyCourseNew";
       }
     })
-    location.href = "#/Employee/StartMyCourseNew";
+    // location.href = "#/Employee/StartMyCourseNew";
   }
 
 
