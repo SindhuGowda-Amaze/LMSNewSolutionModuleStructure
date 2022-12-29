@@ -334,7 +334,7 @@
                                     (click)="gotolink()" target="blank">Start Training</button>
 
                                 <button class="editupload"
-                                    *ngIf="details.enrollid!=0&&details.notStarted==0 && !details.completed && details.trainingType==2"
+                                    *ngIf="details.enrollid!=0&&details.notStarted==0 && !details.completed && details.trainingType==2  && uploadExternalCert==1"
                                     (click)="getdetailsforupload(details)" data-toggle="modal"
                                     data-target="#uploadcerti">Upload Certificate</button>
                                 <!-- && details.trainingType==2" -->

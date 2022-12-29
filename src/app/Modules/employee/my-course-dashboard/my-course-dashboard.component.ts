@@ -16,6 +16,7 @@ export class MyCourseDashboardComponent implements OnInit {
     private LearningService: LearningService,
     public router: Router,
   ) { }
+  uploadExternalCert:any;
   show: any;
   stafflist: any;
   userid: any;
@@ -46,6 +47,7 @@ export class MyCourseDashboardComponent implements OnInit {
   Percentage:any;
 
   ngOnInit(): void {
+    this.uploadExternalCert=0
     const myDate = new Date();
 
     const locale = 'en-US';
@@ -527,6 +529,7 @@ export class MyCourseDashboardComponent implements OnInit {
     this.loader = true
     this.SendMail4();
     Swal.fire('Credendials Sent through Email');
+    this.uploadExternalCert=1
   }
 
   Attactments: any = [];

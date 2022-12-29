@@ -92,6 +92,7 @@ export class TrainerFormComponent implements OnInit {
     this.LearningService.GetAllStaffNew().subscribe(data => {
       debugger
       this.Trainerlist = data
+    
       console.log("manager", this.Trainerlist)
     });
   }
@@ -111,6 +112,8 @@ export class TrainerFormComponent implements OnInit {
       let list = data.filter(x=>x.id==this.TrainerID)
       this.StaffID=list[0].id
       this.TrainerName1=list[0].name
+      this.PhoneNumber= list[0].phoneNo
+      this.EmailID= list[0].emailID
       console.log("manager", this.Trainerlist)
     });
   }
@@ -139,13 +142,16 @@ export class TrainerFormComponent implements OnInit {
       };
       this.LearningService.InsertTrainer(json)
 
-        .subscribe({
-          next: data => {
+      .subscribe((data: any) => { 
             debugger
             let id = data;
-            Swal.fire("Successfully Saved...!");
-            location.href = "#/Admin/Trainer"
-          }, error: (err: { error: { message: any; }; }) => {
+            if(data==0){
+              Swal.fire("Trainer Already Exists");
+            }
+            else{
+              Swal.fire("Successfully Saved...!");
+              location.href = "#/Admin/Trainer"
+            } error: (err: { error: { message: any; }; }) => {
             Swal.fire('Issue in InsertTrainer');
             // Insert error in Db Here//
             var obj = {
