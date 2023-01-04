@@ -83,7 +83,8 @@
                 <textarea class="form-control inputfield" placeholder="Skills and Technology..." rows="4" [(ngModel)]="SkillsAndTechnology"></textarea>
             </div>
             <div class="col-md-2">
-                <input class="form-control inputfield" placeholder="Trainer Fee/Training " [(ngModel)]="TrainerFeePerCourse">
+                <input class="form-control inputfield" onkeypress="return /^[a-zA-Z0-9 ]+$/i.test(event.key)"
+                placeholder="Trainer Fee/Training " [(ngModel)]="TrainerFeePerCourse">
             </div>
         </div>
         <br> 

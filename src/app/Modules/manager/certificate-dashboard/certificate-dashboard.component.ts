@@ -36,10 +36,12 @@ export class CertificateDashboardComponent implements OnInit {
   employeeFilterReportList: any;
   currentUrl: any;
   uniquelist1:any;
+  roleid:any;
 
   ngOnInit(): void {
     this.currentUrl = window.location.href;
     this.userid = sessionStorage.getItem('userid');
+    this.roleid=sessionStorage.getItem('roleid');
     this.GetTrainerReport();
     this.GetDepartmentMaster();
     this.GetCourseDropdown();
@@ -72,37 +74,105 @@ export class CertificateDashboardComponent implements OnInit {
 
   public GetTrainerReport() {
     debugger;
-    this.LearningService.GetTestResponse().subscribe({
-      next: (data) => {
-        debugger;
-        this.employeereportlist = data.filter((x) => x.userID == this.userid&& x.completed==1);
-
-        const key = 'coursename';
-        this.uniquelist = [
-          ...new Map(
-            this.employeereportlist.map((item: { [x: string]: any }) => [
-              item[key],
-              item,
-            ])
-          ).values(),
-        ];
-        this.dummyuniqlist = this.uniquelist;
-        this.dummemployeereportlist = data;
-        this.employeeFilterReportList = this.employeereportlist;
-        this.count = this.employeereportlist.length;
-      },
-      error: (err: { error: { message: any } }) => {
-        Swal.fire('Issue in GetTestResponse');
-        // Insert error in Db Here//
-        var obj = {
-          PageName: this.currentUrl,
-          ErrorMessage: err.error.message,
-        };
-        this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+    if(this.roleid==2){
+      this.LearningService.GetTestResponse().subscribe({
+        next: (data) => {
           debugger;
-        });
-      },
-    });
+          this.employeereportlist = data.filter((x) => x.userID == this.userid && x.completed==1);
+          const key = 'coursename';
+          this.uniquelist = [
+            ...new Map(
+              this.employeereportlist.map((item: { [x: string]: any }) => [
+                item[key],
+                item,
+              ])
+            ).values(),
+          ];
+          this.dummyuniqlist = this.uniquelist;
+          this.dummemployeereportlist = data;
+          this.employeeFilterReportList = this.employeereportlist;
+          this.count = this.employeereportlist.length;
+        },
+        error: (err: { error: { message: any } }) => {
+          Swal.fire('Issue in GetTestResponse');
+          // Insert error in Db Here//
+          var obj = {
+            PageName: this.currentUrl,
+            ErrorMessage: err.error.message,
+          };
+          this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+            debugger;
+          });
+        },
+      });
+    }
+    else if(this.roleid==4){
+      this.LearningService.GetTestResponse().subscribe({
+        next: (data) => {
+          debugger;
+          this.employeereportlist = data.filter((x) => x.trainerID == this.userid && x.completed==1);
+          const key = 'coursename';
+          this.uniquelist = [
+            ...new Map(
+              this.employeereportlist.map((item: { [x: string]: any }) => [
+                item[key],
+                item,
+              ])
+            ).values(),
+          ];
+          this.dummyuniqlist = this.uniquelist;
+          this.dummemployeereportlist = data;
+          this.employeeFilterReportList = this.employeereportlist;
+          this.count = this.employeereportlist.length;
+        },
+        error: (err: { error: { message: any } }) => {
+          Swal.fire('Issue in GetTestResponse');
+          // Insert error in Db Here//
+          var obj = {
+            PageName: this.currentUrl,
+            ErrorMessage: err.error.message,
+          };
+          this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+            debugger;
+          });
+        },
+      });
+    }
+    else{
+      this.LearningService.GetTestResponse().subscribe({
+        next: (data) => {
+          debugger;
+          this.employeereportlist = data.filter((x) =>x.completed==1);
+          const key = 'coursename';
+          this.uniquelist = [
+            ...new Map(
+              this.employeereportlist.map((item: { [x: string]: any }) => [
+                item[key],
+                item,
+              ])
+            ).values(),
+          ];
+          this.dummyuniqlist = this.uniquelist;
+          this.dummemployeereportlist = data;
+          this.employeeFilterReportList = this.employeereportlist;
+          this.count = this.employeereportlist.length;
+        },
+        error: (err: { error: { message: any } }) => {
+          Swal.fire('Issue in GetTestResponse');
+          // Insert error in Db Here//
+          var obj = {
+            PageName: this.currentUrl,
+            ErrorMessage: err.error.message,
+          };
+          this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+            debugger;
+          });
+        },
+      });
+    }
+  
+
+
   }
 
 
