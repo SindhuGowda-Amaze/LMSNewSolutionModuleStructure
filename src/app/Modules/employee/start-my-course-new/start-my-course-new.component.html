@@ -147,6 +147,13 @@
                         data-target="#Certificate" >Certificate</button>
                     </div>
                 </div>
+                <div class="row" style="overflow-y:auto;height:230px;" *ngIf="teststatus=='nottaken'">
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-8">
+                        <button class="Certificate" (click)="getWrittenAssessment()" data-toggle="modal"
+                        data-target="#Certificate" >view Assessment</button>
+                    </div>
+                </div>
             </div>
           
            
@@ -284,6 +291,8 @@
         </div>
     </div>
 </div>
+
+
 
 <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

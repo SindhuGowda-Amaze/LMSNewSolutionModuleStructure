@@ -42,6 +42,7 @@ export class StartMyCourseNewComponent implements OnInit, OnDestroy {
   files: File[] = [];
   userid: any;
   UserName: any;
+  TrainingType:any;
   constructor(
     private LearningService: LearningService,
     private ActivatedRoute: ActivatedRoute,
@@ -65,6 +66,25 @@ export class StartMyCourseNewComponent implements OnInit, OnDestroy {
     });
     this.show = 1;
 
+    this.LearningService.GetClassRoomAssessmentDocument()
+    .subscribe({
+      next: (data) => {
+        debugger;
+        this.employeereportlist2 = data.filter(x=>x.staffID==this.userid);
+        this.TrainingType=this.employeereportlist2[0].trainingType
+      },
+     error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in GetDepartmentMaster');
+        // Insert error in Db Here//
+        var obj = {
+          PageName: this.currentUrl,
+          ErrorMessage: err.error.message,
+        };
+        this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+          debugger;
+        });
+      },
+    });
   }
 
   ngOnDestroy(): void {
@@ -539,6 +559,30 @@ export class StartMyCourseNewComponent implements OnInit, OnDestroy {
         console.log('pdf', pdf1);
       })
       .then(() => { });
+  }
+
+  employeereportlist2:any;
+
+  public getWrittenAssessment(){
+    debugger;
+      this.LearningService.GetClassRoomAssessmentDocument()
+      .subscribe({
+        next: (data) => {
+          debugger;
+          this.employeereportlist2 = data;
+        },
+       error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in GetDepartmentMaster');
+          // Insert error in Db Here//
+          var obj = {
+            PageName: this.currentUrl,
+            ErrorMessage: err.error.message,
+          };
+          this.LearningService.InsertExceptionLogs(obj).subscribe((data) => {
+            debugger;
+          });
+        },
+      });
   }
 }
 
