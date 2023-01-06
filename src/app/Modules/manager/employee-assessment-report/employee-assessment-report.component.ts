@@ -35,6 +35,9 @@ export class EmployeeAssessmentReportComponent implements OnInit {
   value : any;
   employeereportlist2:any;
   viewMode = 'tab1';
+  TopicList:any
+  TopicID:any;
+  uniquelist1 : any
 
   ngOnInit(): void {
     this.currentUrl = window.location.href;
@@ -54,7 +57,8 @@ export class EmployeeAssessmentReportComponent implements OnInit {
     this.getWrittenAssessment();
   }
   uniquelist:any;
-  public GetTrainerReport() {
+  employeereportlist1:any;
+  public GetTrainerReport1() {
     debugger;
     this.LearningService.GetTrainerReport(0, 0)
     .subscribe({
@@ -63,36 +67,36 @@ export class EmployeeAssessmentReportComponent implements OnInit {
         
         debugger;
       let temp = data.filter((x) => x.staffID == this.userid);
+      // this.employeereportlist=temp
+        // var helper: any = {}
+        // this.employeereportlist1 = temp.reduce(function (r: any[], o: { coursename: any; totalmarks: any; obtainedMarks: any; chapterName: any; assessmentDate: any; courseName: any; }) {
+        //   var key = o.courseName;
+        //   if (!helper[key]) {
 
-        var helper: any = {}
-        this.employeereportlist = temp.reduce(function (r: any[], o: { coursename: any; totalmarks: any; obtainedMarks: any; chapterName: any; assessmentDate: any; courseName: any; }) {
-          var key = o.chapterName;
-          if (!helper[key]) {
+        //     helper[key] = Object.assign({}, o); // create a copy of o
 
-            helper[key] = Object.assign({}, o); // create a copy of o
+        //     r.push(helper[key]);
 
-            r.push(helper[key]);
-
-          } else {
+        //   } else {
 
            
-            // helper[key].totalmarks == r.totalmarks;
-            // helper[key].obtainedMarks == r.obtainedMarks;
+        //     helper[key].totalmarks == o.totalmarks;
+        //     helper[key].obtainedMarks == o.obtainedMarks;
            
-            helper[key].coursename = o.coursename;
-            helper[key].chapterName = o.chapterName;
-            helper[key].assessmentDate = o.assessmentDate;
-            helper[key].courseName = o.courseName;
-          }
-          return r;
+        //     helper[key].coursename = o.coursename;
+        //     helper[key].chapterName = o.chapterName;
+        //     helper[key].assessmentDate = o.assessmentDate;
+        //     helper[key].courseName = o.courseName;
+        //   }
+        //   return r;
 
-        }, []);
-        // this.detailslist = this.reduceData(temp);
+        // }, []);
 
-        const key = 'chapterName';
-        this.uniquelist = [...new Map(temp.map((item: { [x: string]: any; }) =>
 
-          [(item[key]), item])).values()]
+        // const key = 'chapterName';
+        // this.uniquelist1 = [...new Map(temp.map((item: { [x: string]: any; }) =>
+
+        //   [(item[key]), item])).values()]
 
 
         this.courselist = data;
@@ -109,6 +113,28 @@ export class EmployeeAssessmentReportComponent implements OnInit {
           debugger;
         });
       },
+    });
+  }
+
+
+
+
+
+  public GetTrainerReport() {
+    this.LearningService.GetTrainerReport(0, 0).subscribe(data => {
+      debugger
+      this.employeereportlist = data;
+      this.uniquelist1 = this.employeereportlist
+
+      const key = 'courseName';
+      this.uniquelist1 = [
+        ...new Map(
+          this.uniquelist1.map((item: { [x: string]: any }) => [
+            item[key],
+            item,
+          ])
+        ).values(),
+      ];
     });
   }
 
@@ -308,9 +334,7 @@ public GetEnroll(){
 
   }
 
-  TopicList:any
-  TopicID:any;
-  uniquelist1 : any
+
   name : any
   public getTopic() {
     debugger;

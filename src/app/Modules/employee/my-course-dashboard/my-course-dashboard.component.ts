@@ -343,8 +343,9 @@ export class MyCourseDashboardComponent implements OnInit {
 
   courseid2:any;
   CertificatList:any;
-  getcourseid2(id: any) {
-    this.courseid2 = id;
+  getcourseid2(details: any) {
+    this.courseid2 = details.id;
+  
     this. GetCertification();
   }
 
@@ -352,7 +353,7 @@ export class MyCourseDashboardComponent implements OnInit {
     this.LearningService.GetCertification().subscribe({
       next: (data) => {
         debugger;
-        this.CertificatList = data.filter(x=>x.employeeID==this.userid )
+        this.CertificatList = data.filter(x=>x.employeeID==this.userid && x.courseID==this.courseid2)
       },
       error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GetCourse');
